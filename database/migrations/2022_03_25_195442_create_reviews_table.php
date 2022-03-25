@@ -15,6 +15,15 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+
+            $table->tinyInteger('vote');
+            $table->string('username', 40)->nullable();
+            $table->text('content')->nullable();
+
+            // FOREIGN
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

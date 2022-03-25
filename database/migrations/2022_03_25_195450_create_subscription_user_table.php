@@ -15,7 +15,14 @@ class CreateSubscriptionUserTable extends Migration
     {
         Schema::create('subscription_user', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('subscription_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('subscription_id')->references('id')->on('subscriptions');
+
+            $table->dateTime('expires_date');
+
         });
     }
 

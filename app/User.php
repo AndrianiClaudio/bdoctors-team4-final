@@ -5,6 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Model\Subscription;
+use App\Model\Specialization;
+use App\Model\Service;
+use App\Model\Message;
+use App\Model\Review;
 
 class User extends Authenticatable
 {
@@ -16,7 +21,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'firstname',
+        'lastname',
+        'address',
+        'cv',
+        'photo',
+        'phone',
     ];
 
     /**
@@ -36,4 +49,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Subscription::class);
+    }
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class);
+    }
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

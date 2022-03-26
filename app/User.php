@@ -10,6 +10,8 @@ use App\Model\Specialization;
 use App\Model\Service;
 use App\Model\Message;
 use App\Model\Review;
+use Illuminate\Database\Eloquent\Model;
+
 
 class User extends Authenticatable
 {

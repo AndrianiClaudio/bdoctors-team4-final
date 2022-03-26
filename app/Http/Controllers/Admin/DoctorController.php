@@ -26,7 +26,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+    //
     }
 
     /**
@@ -37,7 +37,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //
     }
 
     /**
@@ -50,7 +50,7 @@ class DoctorController extends Controller
     {
 
         $user = User::find($id);
-        return view('admin.doctors.show', ['doctor' => $user]);
+        return $user ? view('admin.doctors.show', ['doctor' => $user]) : view('admin.home');
     }
 
     /**
@@ -61,7 +61,7 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        //
+    //
     }
 
     /**
@@ -73,7 +73,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    //
     }
 
     /**

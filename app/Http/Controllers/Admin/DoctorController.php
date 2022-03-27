@@ -26,7 +26,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-    //
+     return view("admin.doctors.create");
     }
 
     /**
@@ -61,7 +61,8 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-    //
+        $doctor = User::find($id);
+        return view("admin.doctors.edit", compact("doctor"));
     }
 
     /**

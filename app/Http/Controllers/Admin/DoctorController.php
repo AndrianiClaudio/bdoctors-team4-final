@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
@@ -20,6 +21,15 @@ class DoctorController extends Controller
         $doctors = User::paginate(15);
         return view('admin.doctors.index', compact('doctors'));
     }
+
+
+    //doctor page 
+    /*     public function userIndex()
+    {
+        $doctors = User::where('id', Auth::User()->id)->first();
+        //dd($doctors);
+        return view('admin.doctors.index', compact('doctors'));
+    } */
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +49,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-    //
+        //
     }
 
     /**

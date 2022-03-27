@@ -15,8 +15,13 @@
                 <h1>Modify Doctor</h1>
             </div>
 
-            {{-- Modifica possibile solo a se stessi --}}
-            @if ($doctor->id === Auth::id())
+            @if (session('edit_response'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('edit_response') }}
+                </div>
+            @endif
+            {{-- Modifica possibile solo a se stessi o se si é admin --}}
+            @if ($doctor->id === Auth::id() || $doctor->is_admin)
                 <div class="col">
                     <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST">
                         @csrf
@@ -42,6 +47,10 @@
                                 </div>
                             @enderror
                         </div>
+
+                        {{-- TO-DO: 
+                            inserito per evitare auto complete value in password --}}
+                        <input type="password" class="d-none" name="" id="">
                         <div class="mb-3">
                             <label for="email" class="form-label">E-mail</label>
                             <input type="email" class="form-control" id="email" name="email"
@@ -52,15 +61,43 @@
                                 </div>
                             @enderror
                         </div>
+                        {{-- CURRENT PASSWORD --}}
                         <div class="mb-3">
-                            <label for="password" class="form-label">Change Password</label>
-                            <input type="text" class="form-control" id="password" name="password" placeholder="password">
-                            @error('password')
+                            <label for="old-password" class="form-label text-md-right">Old Password</label>
+
+                            <input id="old-password" type="password" class="form-control" name="old-password">
+
+                            @error('old-password')
+                                {{-- <span class="invalid-feedback" role="alert"> --}}
                                 <div class="alert alert-danger">
-                                    {{ $message }}
+                                    <strong>{{ $message }}</strong>
+                                    {{-- </span> --}}
                                 </div>
                             @enderror
                         </div>
+                        {{-- NEW PASSWORD --}}
+                        <div class="mb-3">
+                            <label for="password" class="form-label text-md-right">Password</label>
+
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password">
+
+                            @error('password')
+                                {{-- <span class="invalid-feedback" role="alert"> --}}
+                                <div class="alert alert-danger">
+                                    <strong>{{ $message }}</strong>
+                                    {{-- </span> --}}
+                                </div>
+                            @enderror
+                        </div>
+                        {{-- NEW PASSWORD CONFIRM --}}
+                        <div class="mb-3">
+                            <label for="password-confirm" class="col-form-label text-md-right">Confirm Password</label>
+
+                            <input id="password-confirm" type="password" class="form-control"
+                                name="password_confirmation">
+                        </div>
+                        <div class="mb-3"></div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
                             <input type="address" class="form-control" id="address" name="address"
@@ -75,6 +112,7 @@
                     </form>
                 </div>
             @else
+                {{-- Messaggio di errore --}}
                 <div class="col">
                     <div class="container">
                         <div class="alert alert-danger" role="alert">

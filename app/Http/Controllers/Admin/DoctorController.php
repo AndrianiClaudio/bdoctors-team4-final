@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
@@ -26,7 +28,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-     return view("admin.doctors.create");
+        return view("admin.doctors.create");
     }
 
     /**
@@ -74,7 +76,21 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-    //
+        // dd($request->all());
+        $data = $request->validate([
+            'firstname' => ['required', 'string', 'max:60'],
+            'lastname' => ['required', 'string', 'max:60'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'old-password' => ['required', 'string', 'min:8', new MatchOldPassword],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+        $user = User::find($id);
+
+        $data['password'] = Hash::make($request['password']);
+        $user->update($data);
+        // dd($user);
+        return redirect()->route('admin.doctors.edit', $id)->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }
 
     /**

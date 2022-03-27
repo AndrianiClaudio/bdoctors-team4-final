@@ -21,7 +21,7 @@
                 </div>
             @endif
             {{-- Modifica possibile solo a se stessi o se si é admin --}}
-            @if ($doctor->id === Auth::id() || $doctor->is_admin)
+            @if ($doctor->id === Auth::id() || Auth::user()->is_admin)
                 <div class="col">
                     <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST">
                         @csrf

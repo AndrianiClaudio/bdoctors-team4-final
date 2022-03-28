@@ -18,7 +18,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('id', Auth::User()->id)->first();
+        $doctors = User::where('slug', Auth::User()->slug)->first();
         //dd($doctors);
         return view('doctors.index', compact('doctors'));
     }
@@ -50,7 +50,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-    //
+        //
     }
 
     /**
@@ -59,11 +59,15 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
 
-        $user = User::find($id);
-        return $user ? view('doctors.show', ['doctor' => $user]) : view('doctors.home');
+        if (Auth::user()->slug != $slug) {
+            abort('403');
+        } else {
+            $user = User::where('slug', $slug)->first();
+            return $user ? view('doctors.show', ['doctor' => $user]) : view('doctors.home');
+        }
     }
 
     /**
@@ -72,9 +76,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $doctor = User::find($id);
+        $doctor = User::where('slug', $slug)->first();
         return view("doctors.edit", compact("doctor"));
     }
 
@@ -85,26 +89,22 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         // dd($request->all());
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
             'email' => ['string', 'email', 'max:255'],
-            'old-password' => ['string', 'min:8', new MatchOldPassword],
-            'password' => ['string', 'min:8', 'confirmed'],
+            'old-password' => ['nullable', 'min:8', new MatchOldPassword],
+            'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
         ]);
-
-        $user = User::find($id);
-
-        // $user->slug = $user->createSlug($user['firstname'] . '-' . $user['lastname']);
-
+        $user = User::where('slug', $slug)->first();
         $data['password'] = Hash::make($request['password']);
         $user->update($data);
         // dd($user);
-        return redirect()->route('doctors.edit', $id)->with('edit_response', 'Modifica al profilo avvenuta con successo');
+        return redirect()->route('profile.edit', $slug)->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }
 
     /**
@@ -117,6 +117,6 @@ class DoctorController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('guest.home');
+        return redirect()->route('home');
     }
 }

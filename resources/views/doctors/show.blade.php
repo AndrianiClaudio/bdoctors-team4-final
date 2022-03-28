@@ -9,6 +9,7 @@
 
 @section('content')
     <div class="container">
+        @if(Auth::user()->id)
         <div class="row">
             <div class="col">
                 doctor name
@@ -35,5 +36,6 @@
                 </ul>
             </div>
         </div>
+        @endif
     </div>
 @endsection

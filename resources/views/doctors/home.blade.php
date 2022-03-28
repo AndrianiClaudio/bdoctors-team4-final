@@ -19,7 +19,7 @@
                         @endif
 
                         {{ __('You are logged in!') }}
-                        <a class="nav-link" href="{{ route('doctors.index') }}">View all Doctors</a>
+                        <a class="nav-link" href="{{ route('profile.index') }}">View profile</a>
                     </div>
                 </div>
             </div>

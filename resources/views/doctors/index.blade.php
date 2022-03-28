@@ -32,11 +32,11 @@
                                 </td>
                                 <td>
 
-                                    <a class="btn btn-light" href="{{ route('profile.show', $doctors) }}">details</a>
+                                    <a class="btn btn-light" href="{{ route('profile.show', $doctors->slug) }}">details</a>
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('profile.edit', $doctors) }}">edit</a>
+                                    <a class="btn btn-primary" href="{{ route('profile.edit', $doctors->slug) }}">edit</a>
                                 </td>
                                 <td>
                                     <form action="{{ route('profile.destroy', $doctors->id) }}" method="post">

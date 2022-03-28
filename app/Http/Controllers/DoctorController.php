@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Model\Specialization;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +80,8 @@ class DoctorController extends Controller
     public function edit($slug)
     {
         $doctor = User::where('slug', $slug)->first();
-        return view("doctors.edit", compact("doctor"));
+        $specializations = Specialization::all();
+        return view("doctors.edit", ["doctor" => $doctor, "specializations" => $specializations]);
     }
 
     /**
@@ -96,6 +98,7 @@ class DoctorController extends Controller
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
             'email' => ['string', 'email', 'max:255'],
+            'specialization_id' => 'exists:App\Model\Specialization,id',
             'old-password' => ['nullable', 'min:8', new MatchOldPassword],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
@@ -103,6 +106,12 @@ class DoctorController extends Controller
         $user = User::where('slug', $slug)->first();
         $data['password'] = Hash::make($request['password']);
         $user->update($data);
+
+        if (!empty($data['specialization_id'])) {
+            $user->specializations()->sync($data['specialization_id']);
+        } else {
+            $user->tags()->detach();
+        }
         // dd($user);
         return redirect()->route('profile.edit', $slug)->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }

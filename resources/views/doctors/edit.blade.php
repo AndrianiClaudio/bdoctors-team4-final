@@ -27,6 +27,7 @@
                         @csrf
                         @method('PATCH')
 
+                        {{-- firstname --}}
                         <div class="mb-3">
                             <label for="firstname" class="form-label">Nome</label>
                             <input type="text" class="form-control" id="firstname" name="firstname"
@@ -37,12 +38,30 @@
                                 </div>
                             @enderror
                         </div>
+
+                        {{-- lastname --}}
                         <div class="mb-3">
                             <label for="lastname" class="form-label">Cognome</label>
                             <input type="text" class="form-control" id="lastname" name="lastname"
                                 value="{{ old('lastname', $doctor->lastname) }}">
                             @error('lastname')
                                 <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        {{-- specialization --}}
+                        <div class="mb-3">
+                            <label for="specialization_id" class="form-label">Specializzazione</label>
+                            <select class="form-select" id="specialization_id" name="specialization_id">
+                                <option value="">Select a category</option>
+                                @foreach ($specializations as $specialization)
+                                    <option @if (old('specialization_id', $doctor->specializations()->first()->id) == $specialization->id) selected @endif value="{{ $specialization->id }}">
+                                        {{ $specialization->category }}</option>
+                                @endforeach
+                            </select>
+                            @error('specialization_id')
+                                <div class="alert alert-danger mt-3">
                                     {{ $message }}
                                 </div>
                             @enderror

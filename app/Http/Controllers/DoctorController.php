@@ -97,7 +97,7 @@ class DoctorController extends Controller
         // dd($request["specializations"]);
 
         if (empty($request['specializations'])) {
-            $request['specializations'] = [];   
+            $request['specializations'] = [];
         }
 
         // dd($request->all());
@@ -106,7 +106,7 @@ class DoctorController extends Controller
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
             'email' => ['string', 'email', 'max:255'],
-            'specializations' => ['required','exists:App\Model\Specialization,id'],
+            'specializations' => ['required', 'exists:App\Model\Specialization,id'],
             'old-password' => ['nullable', 'min:8', new MatchOldPassword],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
@@ -118,7 +118,7 @@ class DoctorController extends Controller
         // dd($request->all());
 
         $user->specializations()->sync($data['specializations']);
-       
+
         // dd($user);
         return redirect()->route('profile.edit', $slug)->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }

@@ -17,7 +17,6 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
-        //Route::get('doctors/mypage', 'DoctorController@userIndex');
         Route::resource('doctors', 'DoctorController');
     });
 

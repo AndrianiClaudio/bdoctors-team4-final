@@ -14,7 +14,7 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">id</th>
+                            
                             <th scope="col">firstname</th>
                             <th scope="col">lastname</th>
                             <th scope="col">details</th>
@@ -23,32 +23,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($doctors as $doctor)
                             <tr>
-                                <td>{{ $doctor->id }}</td>
                                 <td>
-                                    <h2>{{ $doctor->firstname }}</h2>
+                                    <h2>{{ $doctors->firstname }}</h2>
                                 </td>
                                 <td>
-                                    <h2>{{ $doctor->lastname }}</h2>
+                                    <h2>{{ $doctors->lastname }}</h2>
                                 </td>
                                 <td>
 
-                                    <a class="btn btn-light" href="{{ route('admin.doctors.show', $doctor) }}">details</a>
+                                    <a class="btn btn-light" href="{{ route('admin.doctors.show', $doctors) }}">details</a>
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('admin.doctors.edit', $doctor) }}">edit</a>
+                                    <a class="btn btn-primary" href="{{ route('admin.doctors.edit', $doctors) }}">edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('admin.doctors.destroy', $doctor->id) }}" method="post">
+                                    <form action="{{ route('admin.doctors.destroy', $doctors->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <input class="btn btn-danger" type="submit" value="delete"></input>
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
                     </tbody>
                 </table>
 
@@ -57,6 +54,5 @@
 
             </div>
         </div>
-        {{ $doctors->links() }}
     </div>
 @endsection

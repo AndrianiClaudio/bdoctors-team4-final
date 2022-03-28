@@ -25,28 +25,28 @@
     <hr> --}}
     <ul class="nav nav-pills flex-column mb-auto lh-5 fs-5">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link active" aria-current="page">
           {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg> --}}
           <i class="fa-solid fa-user-doctor p-1"></i>
           Il tuo profilo
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link link-dark">
           {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg> --}}
           <i class="fa-solid fa-comment-medical p-1"></i>
           Messaggi
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link link-dark">
           {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg> --}}
           <i class="fa-regular fa-star p-1"></i>
           Piani di abbonamento
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link link-dark">
           {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> --}}
           <i class="fa-solid fa-chart-line p-1"></i>
           Le tue statistiche
@@ -54,15 +54,15 @@
       </li>
     </ul>
     <hr>
-    <div class="dropdown ps-3">
+    <div class="dropdown ps-3 pb-2">
       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
         <strong>mdo</strong>
       </a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="#">Gestisci le tue prestazioni</a></li>
+        <li><a class="dropdown-item" href="{{ route('profile.edit', $doctors->slug) }}">Modifica profilo</a></li>
+        <li><a class="dropdown-item" href="{{route('profile.show', $doctors->slug)}}">Profilo</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#">Sign out</a></li>
       </ul>

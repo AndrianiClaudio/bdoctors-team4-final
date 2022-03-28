@@ -23,7 +23,7 @@
             {{-- Modifica possibile solo a se stessi o se si é admin --}}
             @if ($doctor->id === Auth::id())
                 <div class="col">
-                    <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST">
+                    <form action="{{ route('doctors.update', $doctor) }}" method="POST">
                         @csrf
                         @method('PATCH')
 

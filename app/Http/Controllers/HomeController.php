@@ -24,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Auth::check() ? view('admin.home') : view('guest.home');
+        return view('guest.home');
     }
 }

@@ -26,11 +26,11 @@ class DoctorController extends Controller
 
     //doctor page 
     /*     public function userIndex()
-    {
-        $doctors = User::where('id', Auth::User()->id)->first();
-        //dd($doctors);
-        return view('admin.doctors.index', compact('doctors'));
-    } */
+     {
+     $doctors = User::where('id', Auth::User()->id)->first();
+     //dd($doctors);
+     return view('doctors.index', compact('doctors'));
+     } */
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +50,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //
     }
 
     /**

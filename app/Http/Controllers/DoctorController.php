@@ -108,7 +108,7 @@ class DoctorController extends Controller
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
             'email' => ['string', 'email', 'max:255'],
-            'specializations.*' => ['exists:App\Model\Specialization,id'],
+            'specializations.*' => ['required','exists:App\Model\Specialization,id'],
             'old-password' => ['nullable', 'min:8', new MatchOldPassword],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
@@ -116,6 +116,8 @@ class DoctorController extends Controller
         $user = User::where('slug', $slug)->first();
         $data['password'] = Hash::make($request['password']);
         $user->update($data);
+
+        // dd($request->all());
 
         $user->specializations()->sync($data['specializations']);
        

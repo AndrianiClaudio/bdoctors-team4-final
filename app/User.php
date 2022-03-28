@@ -31,7 +31,6 @@ class User extends Authenticatable
         'cv',
         'photo',
         'phone',
-        'is_admin',
     ];
 
     /**

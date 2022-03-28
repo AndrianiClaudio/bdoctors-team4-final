@@ -89,12 +89,12 @@ class DoctorController extends Controller
     {
         // dd($request->all());
         $data = $request->validate([
-            'firstname' => ['required', 'string', 'max:60'],
-            'lastname' => ['required', 'string', 'max:60'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'old-password' => ['required', 'string', 'min:8', new MatchOldPassword],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'address' => ['required', 'string', 'max:255'],
+            'firstname' => ['string', 'max:60'],
+            'lastname' => ['string', 'max:60'],
+            'email' => ['string', 'email', 'max:255'],
+            'old-password' => ['string', 'min:8', new MatchOldPassword],
+            'password' => ['string', 'min:8', 'confirmed'],
+            'address' => ['string', 'max:255'],
         ]);
         $user = User::find($id);
 

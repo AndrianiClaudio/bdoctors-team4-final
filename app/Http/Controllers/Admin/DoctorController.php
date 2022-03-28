@@ -18,8 +18,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::paginate(15);
-        return view('admin.doctors.index', compact('doctors'));
+        $doctors = User::where('id', Auth::User()->id)->first();
+        //dd($doctors);
+        return view('doctors.index', compact('doctors'));
     }
 
 
@@ -38,7 +39,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view("admin.doctors.create");
+        return view("doctors.create");
     }
 
     /**
@@ -62,7 +63,7 @@ class DoctorController extends Controller
     {
 
         $user = User::find($id);
-        return $user ? view('admin.doctors.show', ['doctor' => $user]) : view('admin.home');
+        return $user ? view('doctors.show', ['doctor' => $user]) : view('doctors.home');
     }
 
     /**
@@ -74,7 +75,7 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = User::find($id);
-        return view("admin.doctors.edit", compact("doctor"));
+        return view("doctors.edit", compact("doctor"));
     }
 
     /**
@@ -88,19 +89,19 @@ class DoctorController extends Controller
     {
         // dd($request->all());
         $data = $request->validate([
-            'firstname' => ['required', 'string', 'max:60'],
-            'lastname' => ['required', 'string', 'max:60'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'old-password' => ['required', 'string', 'min:8', new MatchOldPassword],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'address' => ['required', 'string', 'max:255'],
+            'firstname' => ['string', 'max:60'],
+            'lastname' => ['string', 'max:60'],
+            'email' => ['string', 'email', 'max:255'],
+            'old-password' => ['string', 'min:8', new MatchOldPassword],
+            'password' => ['string', 'min:8', 'confirmed'],
+            'address' => ['string', 'max:255'],
         ]);
         $user = User::find($id);
 
         $data['password'] = Hash::make($request['password']);
         $user->update($data);
         // dd($user);
-        return redirect()->route('admin.doctors.edit', $id)->with('edit_response', 'Modifica al profilo avvenuta con successo');
+        return redirect()->route('doctors.edit', $id)->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }
 
     /**
@@ -113,6 +114,6 @@ class DoctorController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('admin.doctors.index');
+        return redirect()->route('doctors.index');
     }
 }

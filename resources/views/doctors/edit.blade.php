@@ -21,7 +21,7 @@
                 </div>
             @endif
             {{-- Modifica possibile solo a se stessi o se si é admin --}}
-            @if ($doctor->id === Auth::id() || Auth::user()->is_admin)
+            @if ($doctor->id === Auth::id())
                 <div class="col">
                     <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST">
                         @csrf
@@ -51,6 +51,7 @@
                         {{-- TO-DO: 
                             inserito per evitare auto complete value in password --}}
                         <input type="password" class="d-none" name="" id="">
+
                         <div class="mb-3">
                             <label for="email" class="form-label">E-mail</label>
                             <input type="email" class="form-control" id="email" name="email"

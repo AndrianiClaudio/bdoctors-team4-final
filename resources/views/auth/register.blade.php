@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+        @foreach ($errors->all() as $err)
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $err }}</strong>
+            </div>
+        @endforeach
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -10,6 +15,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
+
 
                             {{-- FIRSTNAME --}}
                             <div class="form-group row">
@@ -20,12 +26,11 @@
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
                                         value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
-
-                                    @error('firstname')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    {{-- @error('firstname')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror --}}
                                 </div>
                             </div>
 
@@ -39,11 +44,11 @@
                                         class="form-control @error('lastname') is-invalid @enderror" name="lastname"
                                         value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
 
-                                    @error('lastname')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    {{-- @error('lastname')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror --}}
                                 </div>
                             </div>
 
@@ -56,11 +61,11 @@
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" autocomplete="email">
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    {{-- @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror --}}
                                 </div>
                             </div>
 
@@ -74,11 +79,11 @@
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         autocomplete="new-password">
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    {{-- @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror --}}
                                 </div>
                             </div>
 
@@ -93,32 +98,14 @@
                                 </div>
                             </div>
 
-                            {{-- ADDRESS --}}
-                            <div class="form-group row">
-                                <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="address" type="text"
-                                        class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" autocomplete="address" autofocus>
-
-                                    @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             {{-- SPECIALIZATIONS --}}
+
                             <div class="form-group row">
                                 <label for="specializations"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Specializations') }}</label>
 
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        {{-- @dd($spec) --}}
                                         @foreach ($spec as $spec_value)
                                             {{-- @dd($spec_value) --}}
                                             <div>
@@ -132,8 +119,33 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    @error('specializations')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
+
+
+                            {{-- ADDRESS --}}
+                            <div class="form-group row">
+                                <label for="address"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text"
+                                        class="form-control @error('address') is-invalid @enderror" name="address"
+                                        value="{{ old('address') }}" autocomplete="address" autofocus>
+
+                                    {{-- @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror --}}
+                                </div>
+                            </div>
+
                     </div>
                     {{-- SUBMIT --}}
                     <div class="form-group row mb-0">

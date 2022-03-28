@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:60'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'specializations.*' => ['required', 'exists:App\Model\Specialization,id'],
+            'specializations' => ['required', 'min:1', 'exists:App\Model\Specialization,id'],
             'address' => ['required', 'string', 'max:255'],
         ]);
     }
@@ -79,7 +79,7 @@ class RegisterController extends Controller
     {
 
         // SALVA SPECIALIZATIONS
-        $slug = Str::slug($data['firstname'] . '-' . $data['lastname'], '-');
+        $slug = User::createSlug($data['firstname'] . '-' . $data['lastname'], '-');
 
         $user = User::create([
             'firstname' => $data['firstname'],

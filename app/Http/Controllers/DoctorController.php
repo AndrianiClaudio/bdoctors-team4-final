@@ -96,10 +96,8 @@ class DoctorController extends Controller
     {
         // dd($request["specializations"]);
 
-        if (!empty($request['specializations'])) {
-            
-        } else {
-            $request['specializations'] = [];
+        if (empty($request['specializations'])) {
+            $request['specializations'] = [];   
         }
 
         // dd($request->all());

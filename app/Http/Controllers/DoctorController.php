@@ -96,7 +96,10 @@ class DoctorController extends Controller
             'password' => ['string', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
         ]);
+
         $user = User::find($id);
+
+        // $user->slug = $user->createSlug($user['firstname'] . '-' . $user['lastname']);
 
         $data['password'] = Hash::make($request['password']);
         $user->update($data);

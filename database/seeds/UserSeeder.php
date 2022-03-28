@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -20,6 +21,9 @@ class UserSeeder extends Seeder
             $newUser->firstname = $faker->firstName();
             $newUser->lastname = $faker->lastName();
             $newUser->email = $faker->email();
+            $newUser->slug = $newUser::createSlug($newUser['firstname'] . '-' . $newUser['lastname']);
+            // $newUser->slug = Str::slug($newUser['firstname'] . '-' . $newUser['lastname'], '-');
+
             $newUser->password = Hash::make('12345678');
             $newUser->address = $faker->address();
 

@@ -51,7 +51,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //
     }
 
     /**
@@ -65,7 +65,8 @@ class DoctorController extends Controller
 
         if (Auth::user()->slug != $slug) {
             abort('403');
-        } else {
+        }
+        else {
             $user = User::where('slug', $slug)->first();
             return $user ? view('doctors.show', ['doctor' => $user]) : view('doctors.home');
         }
@@ -109,7 +110,8 @@ class DoctorController extends Controller
 
         if (!empty($data['specialization_id'])) {
             $user->specializations()->sync($data['specialization_id']);
-        } else {
+        }
+        else {
             $user->tags()->detach();
         }
         // dd($user);

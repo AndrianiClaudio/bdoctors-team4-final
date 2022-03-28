@@ -21,6 +21,8 @@ Route::get('/', 'HomeController@index')->name('home');
  */
 Route::resource('profile', 'DoctorController')->middleware('auth');
 
+Route::resource('reviews', 'ReviewController')->middleware('auth');
+
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');

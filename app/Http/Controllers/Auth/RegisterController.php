@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Model\Specialization;
 
 class RegisterController extends Controller
 {
@@ -40,6 +41,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    // $this->spec = Specialization::all();
     }
 
     /**
@@ -55,8 +57,16 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:60'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'specializations.*' => ['required', 'exists:App\Model\Specialization,id'],
             'address' => ['required', 'string', 'max:255'],
         ]);
+    }
+
+    // NON CAMBIARE NOME!!!
+    public function showRegistrationForm()
+    {
+        $spec = Specialization::all();
+        return view('auth.register', compact('spec'));
     }
 
     /**
@@ -68,11 +78,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        // $slug = Str::slug($data['firstname'] . '-' . $data['lastname'], '-');
+        // SALVA SPECIALIZATIONS
+        $slug = Str::slug($data['firstname'] . '-' . $data['lastname'], '-');
 
-        $slug = User::createSlug($data['firstname'] . '-' . $data['lastname']);
-        // dd(User::createSlug($data['firstname'] . '-' . $data['lastname']));
-        return User::create([
+        $user = User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
@@ -80,5 +89,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'address' => $data['address'],
         ]);
+
+        $user->specializations()->attach($data['specializations']);
+
+        return $user;
     }
 }

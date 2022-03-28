@@ -32,14 +32,14 @@
                                 </td>
                                 <td>
 
-                                    <a class="btn btn-light" href="{{ route('doctors.show', $doctors) }}">details</a>
+                                    <a class="btn btn-light" href="{{ route('profile.show', $doctors) }}">details</a>
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('doctors.edit', $doctors) }}">edit</a>
+                                    <a class="btn btn-primary" href="{{ route('profile.edit', $doctors) }}">edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('doctors.destroy', $doctors->id) }}" method="post">
+                                    <form action="{{ route('profile.destroy', $doctors->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <input class="btn btn-danger" type="submit" value="delete"></input>

@@ -69,7 +69,7 @@
                                     class="d-none">
                                     @csrf
                                 </form>
-                                <a class="dropdown-item" href="{{ route('doctors.index') }}">My page</a>
+                                <a class="dropdown-item" href="{{ route('profile.index') }}">My page</a>
                             </div>
                         </li>
                     @endguest

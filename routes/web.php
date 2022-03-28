@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 /* Route::middleware('auth')
     ->namespace('Admin')
@@ -19,7 +19,7 @@ Route::get('/admin', 'HomeController@index')->name('home');
     ->group(function () {
     });
  */
-Route::resource('doctors', 'DoctorController')->middleware('auth');
+Route::resource('profile', 'DoctorController')->middleware('auth');
 
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");

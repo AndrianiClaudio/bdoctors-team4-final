@@ -11,6 +11,7 @@ use App\Model\Service;
 use App\Model\Message;
 use App\Model\Review;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 
 class User extends Authenticatable
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'email',
         'password',
         'address',
+        'slug',
         'cv',
         'photo',
         'phone',
@@ -70,5 +72,27 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public static function createSlug($title)
+    {
+        $slug = Str::slug($title, '-');
+
+        $oldSlug = User::where('slug', $slug)->first();
+
+        $counter = 1;
+        while ($oldSlug) {
+            $newSlug = $slug . '-' . $counter;
+            $oldSlug = User::where('slug', $newSlug)->first();
+            $counter++;
+        }
+
+        return (empty($newSlug)) ? $slug : $newSlug;
     }
 }

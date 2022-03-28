@@ -12,13 +12,14 @@ Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('home');
 
-Route::middleware('auth')
+/* Route::middleware('auth')
     ->namespace('Admin')
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::resource('doctors', 'DoctorController');
     });
+ */
+Route::resource('doctors', 'DoctorController')->middleware('auth');
 
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");

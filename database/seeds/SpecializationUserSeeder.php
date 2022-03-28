@@ -13,11 +13,12 @@ class SpecializationUserSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 5; $i++) {
-            $user = User::inRandomOrder()->first();
+        $users = User::all();
+        foreach ($users as  $user) {
             $sub = Specialization::inRandomOrder()->first();
-
+    
             $user->specializations()->attach($sub->id);
         }
+
     }
 }

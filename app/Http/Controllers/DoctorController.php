@@ -93,12 +93,21 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        // dd($request["specializations"]);
+
+        if (!empty($request['specializations'])) {
+            
+        } else {
+            $request['specializations'] = [];
+        }
+
         // dd($request->all());
+
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
             'email' => ['string', 'email', 'max:255'],
-            'specialization_id' => 'exists:App\Model\Specialization,id',
+            'specializations.*' => ['exists:App\Model\Specialization,id'],
             'old-password' => ['nullable', 'min:8', new MatchOldPassword],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
@@ -107,11 +116,8 @@ class DoctorController extends Controller
         $data['password'] = Hash::make($request['password']);
         $user->update($data);
 
-        if (!empty($data['specialization_id'])) {
-            $user->specializations()->sync($data['specialization_id']);
-        } else {
-            $user->tags()->detach();
-        }
+        $user->specializations()->sync($data['specializations']);
+       
         // dd($user);
         return redirect()->route('profile.edit', $slug)->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }

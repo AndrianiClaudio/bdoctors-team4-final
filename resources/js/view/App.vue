@@ -1,16 +1,16 @@
 <template>
-  <div class="container">
-    App
-    <router-view></router-view>
-  </div>
+    <div class="container">
+
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'App',
-}
+    export default {
+        name: 'App',
+    }
 </script>
 
 <style lang="scss" scoped>
-  @import '~bootstrap/scss/bootstrap';
+    @import '~bootstrap/scss/bootstrap';
 </style>

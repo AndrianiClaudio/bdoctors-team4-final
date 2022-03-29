@@ -27,12 +27,6 @@ const router = new VueRouter({
             component: Home,
             
         },
-        {
-            path: '/navbar',
-            name: 'navbar',
-            component: Navbar,
-            
-        },
     ]
 });
 

@@ -1,15 +1,20 @@
 <template>
-  <div class="container">
-    Home
-  </div>
+    <div class="container">
+        <Navbar />
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'Home'
-}
+    import Navbar from '../components/Navbar.vue'
+
+    export default {
+        name: 'Home',
+        components: {
+            Navbar,
+        }
+    }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

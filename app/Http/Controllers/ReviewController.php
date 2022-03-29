@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User;
 
 class ReviewController extends Controller
 {
@@ -16,7 +17,8 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::where('user_id', Auth::user()->id)->get();
-        return view('doctors.reviews.index', compact('reviews'));
+        $doctor = User::find(Auth::user()->id);
+        return view('doctors.reviews.index', compact('reviews'), compact('doctor'));
     }
 
     /**
@@ -26,7 +28,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+    //
     }
 
     /**
@@ -37,7 +39,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //
     }
 
     /**
@@ -49,7 +51,8 @@ class ReviewController extends Controller
     public function show($id)
     {
         $review = Review::find($id);
-        return view('doctors.reviews.show', compact('review'));
+        $doctor = User::find(Auth::user()->id);
+        return view('doctors.reviews.show', compact('review'), compact('doctor'));
     }
 
     /**
@@ -60,7 +63,7 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //
+    //
     }
 
     /**
@@ -72,7 +75,7 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    //
     }
 
     /**
@@ -83,6 +86,6 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+    //
     }
 }

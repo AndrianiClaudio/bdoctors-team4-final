@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Model\Service;
 use App\User;
-use App\Model\Message;
+use Illuminate\Support\Facades\Auth;
 
-
-class MessageController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::where('user_id', Auth::user()->id)->get();
+        $services = Service::where('user_id', Auth::user()->id)->get();
         $doctor = User::find(Auth::user()->id);
-        return view('doctors.messages.index', compact('messages', 'doctor'));
+        return view('doctors.services.index', compact('services', 'doctor'));
     }
 
     /**
@@ -51,9 +50,7 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        $message = Message::find($id);
-        $doctor = User::find(Auth::user()->id);
-        return view('doctors.messages.show', compact('message', 'doctor'));
+    //
     }
 
     /**
@@ -87,9 +84,6 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $msg = Message::find($id);
-        $msg->delete();
 
-        return redirect()->route('messages.index');
     }
 }

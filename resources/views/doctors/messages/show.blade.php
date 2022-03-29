@@ -20,6 +20,12 @@
 
                 <h3>{{ $message->created_at }}</h3>
                 <a class="btn btn-primary" href="{{ route('messages.index') }}">indietro</a>
+                <form action="{{ route('messages.destroy', $message->id) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+
+                </form>
             </div>
         </div>
     </div>

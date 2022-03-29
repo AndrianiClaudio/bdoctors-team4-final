@@ -25,6 +25,8 @@ Route::resource('reviews', 'ReviewController')->middleware('auth');
 
 Route::resource('messages', 'MessageController')->middleware('auth');
 
+Route::resource('services', 'ServiceController')->middleware('auth');
+
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');

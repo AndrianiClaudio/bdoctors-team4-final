@@ -23,6 +23,12 @@ Route::resource('profile', 'DoctorController')->middleware('auth');
 
 Route::resource('reviews', 'ReviewController')->middleware('auth');
 
+//fullcalender
+Route::get('fullcalendar','FullCalendarController@index');
+Route::post('fullcalendar/create','FullCalendarController@create');
+Route::post('fullcalendar/update','FullCalendarController@update');
+Route::post('fullcalendar/delete','FullCalendarController@destroy');
+
 Route::resource('messages', 'MessageController')->middleware('auth');
 
 Route::resource('services', 'ServiceController')->middleware('auth');
@@ -30,3 +36,5 @@ Route::resource('services', 'ServiceController')->middleware('auth');
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');
+
+

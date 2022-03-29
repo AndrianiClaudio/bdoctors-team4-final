@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\FullCalenderController;
 /* |-------------------------------------------------------------------------- | Web Routes |-------------------------------------------------------------------------- | | Here is where you can register web routes for your application. These | routes are loaded by the RouteServiceProvider within a group which | contains the "web" middleware group. Now create something great! | */
 
 // Route::get('/', function () {
@@ -24,10 +25,8 @@ Route::resource('profile', 'DoctorController')->middleware('auth');
 Route::resource('reviews', 'ReviewController')->middleware('auth');
 
 //fullcalender
-Route::get('fullcalendar','FullCalendarController@index')->middleware('auth')->name('calendar');
-Route::post('fullcalendar/create','FullCalendarController@create');
-Route::post('fullcalendar/update','FullCalendarController@update');
-Route::post('fullcalendar/delete','FullCalendarController@destroy');
+Route::get('fullcalender', [FullCalenderController::class, 'index']);
+Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
 
 Route::resource('messages', 'MessageController')->middleware('auth');
 

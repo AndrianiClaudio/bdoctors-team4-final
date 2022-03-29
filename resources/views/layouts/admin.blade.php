@@ -111,13 +111,25 @@
                             Le tue statistiche
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('reviews.index', $doctor->slug) }}" class="nav-link link-dark">
+                            <i class="fa-solid fa-star-half-stroke p-1"></i>
+                            Recensioni
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('reviews.index', $doctor->slug) }}" class="nav-link link-dark">
+                            <i class="fa-solid fa-calendar-days p-1"></i>
+                            Calendario
+                        </a>
+                    </li>
                 </ul>
                 <hr>
                 <div class="dropdown ps-3 pb-2">
                     <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong>mdo</strong>
+                        <img src="{{ $doctor->photo }}" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong> Dr. {{ $doctor->firstname }} {{ $doctor->lastname }} </strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                         <li><a class="dropdown-item" href="#">Gestisci le tue prestazioni</a></li>
@@ -133,6 +145,7 @@
                     </ul>
                 </div>
             </div>
+
 
             @yield('content')
         </main>

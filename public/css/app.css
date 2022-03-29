@@ -19956,7 +19956,6 @@ fieldset:disabled .btn {
   }
 }
 
-<<<<<<< HEAD
 @font-face {
   font-family: "bootstrap-icons";
   src: url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff2?1ed478a6b265d4b4f5c26bb063203588) format("woff2"), url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?e4cc83ddcec34db65724eb56c5230b4c) format("woff");
@@ -26707,7 +26706,8 @@ fieldset:disabled .btn {
 
 .bi-filetype-xlsx::before {
   content: "\F793";
-=======
+}
+
 main {
   height: calc(100vh - 56px);
 }
@@ -26724,6 +26724,5 @@ main {
 .nav-link:hover {
   background-color: #3490dc;
   color: #FFFFFF;
->>>>>>> test-dashboard
 }
 

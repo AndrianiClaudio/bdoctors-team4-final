@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('admin.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     @yield('script')
@@ -22,11 +22,11 @@
 </head>
 
 <body>
-    <div id="app">
+    <div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('admin.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -94,7 +94,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('messages.index', $doctor->slug) }}" class="nav-link link-dark">
+                        <a href="{{ route('profile.show', $doctor->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-comment-medical p-1"></i>
                             Messaggi
                         </a>
@@ -146,8 +146,9 @@
                 </div>
             </div>
 
-
-            @yield('content')
+            <div id="app">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

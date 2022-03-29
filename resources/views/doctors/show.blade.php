@@ -14,7 +14,7 @@
             <div class="col">
                 doctor name
                 <h1>{{ $doctor->firstname }} {{ $doctor->lastname }}</h1>
-                <img class="container-fluid" src="{{ $doctor->photo }}" alt="">
+                <img class="" src="{{ $doctor->photo }}" alt="">
             </div>
         </div>
         <div class="row">

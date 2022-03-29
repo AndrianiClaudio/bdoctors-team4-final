@@ -13,11 +13,11 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 /* Route::middleware('auth')
-    ->namespace('Admin')
-    ->name('admin.')
-    ->prefix('admin')
-    ->group(function () {
-    });
+ ->namespace('Admin')
+ ->name('admin.')
+ ->prefix('admin')
+ ->group(function () {
+ });
  */
 Route::resource('profile', 'DoctorController')->middleware('auth');
 
@@ -29,6 +29,9 @@ Route::post('fullcalendar/create','FullCalendarController@create');
 Route::post('fullcalendar/update','FullCalendarController@update');
 Route::post('fullcalendar/delete','FullCalendarController@destroy');
 
+Route::resource('messages', 'MessageController')->middleware('auth');
+
+Route::resource('services', 'ServiceController')->middleware('auth');
 
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");

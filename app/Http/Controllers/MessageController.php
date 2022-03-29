@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\User;
+use App\User;
+use App\Model\Message;
 
-class ReviewController extends Controller
+
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,9 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::where('user_id', Auth::user()->id)->get();
+        $messages = Message::where('user_id', Auth::user()->id)->get();
         $doctor = User::find(Auth::user()->id);
-        return view('doctors.reviews.index', compact('reviews', 'doctor'));
+        return view('doctors.messages.index', compact('messages', 'doctor'));
     }
 
     /**
@@ -50,10 +51,9 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        $review = Review::find($id);
+        $message = Message::find($id);
         $doctor = User::find(Auth::user()->id);
-        // return view('doctors.reviews.show', compact('review', 'doctor'));
-        return $review ? view('doctors.reviews.show', compact('review', 'doctor')) : redirect()->route('reviews.index');
+        return $message ? view('doctors.messages.show', compact('message', 'doctor')) : redirect()->route('messages.index');
     }
 
     /**
@@ -87,6 +87,9 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-    //
+        $msg = Message::find($id);
+        $msg->delete();
+
+        return redirect()->route('messages.index');
     }
 }

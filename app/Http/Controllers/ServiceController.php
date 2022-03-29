@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Review;
 use Illuminate\Http\Request;
+use App\Model\Service;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\User;
+use App\Model\Specialization;
 
-class ReviewController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,15 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::where('user_id', Auth::user()->id)->get();
+        $services = Service::where('user_id', Auth::user()->id)->get();
+
+
+        foreach ($services as $service) {
+            $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
+        }
+
         $doctor = User::find(Auth::user()->id);
-        return view('doctors.reviews.index', compact('reviews', 'doctor'));
+        return view('doctors.services.index', compact('services', 'doctor'));
     }
 
     /**
@@ -50,10 +57,13 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        $review = Review::find($id);
+        $service = Service::find($id);
         $doctor = User::find(Auth::user()->id);
-        // return view('doctors.reviews.show', compact('review', 'doctor'));
-        return $review ? view('doctors.reviews.show', compact('review', 'doctor')) : redirect()->route('reviews.index');
+
+        $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
+        // $specialization = Specialization::where('id', $service->specialization_id)->first();
+        return $service ? view('doctors.services.show', compact('service', 'doctor')) : redirect()->route('services.index', compact('specialization'));
+    // return $service ? view('doctors.services.show', compact('service', 'doctor', 'specialization')) : redirect()->route('services.index', compact('specialization'));
     }
 
     /**
@@ -87,6 +97,6 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-    //
+
     }
 }

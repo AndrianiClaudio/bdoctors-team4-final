@@ -94,7 +94,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show', $doctor->slug) }}" class="nav-link link-dark">
+                        <a href="{{ route('messages.index', $doctor->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-comment-medical p-1"></i>
                             Messaggi
                         </a>

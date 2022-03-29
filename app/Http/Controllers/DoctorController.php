@@ -19,9 +19,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('slug', Auth::User()->slug)->first();
+        $doctor = User::where('slug', Auth::User()->slug)->first();
         //dd($doctors);
-        return view('doctors.index', compact('doctors'));
+        return view('doctors.index', compact('doctor'));
     }
 
 
@@ -51,7 +51,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //
     }
 
     /**
@@ -65,7 +65,8 @@ class DoctorController extends Controller
 
         if (Auth::user()->slug != $slug) {
             abort('403');
-        } else {
+        }
+        else {
             $user = User::where('slug', $slug)->first();
             return $user ? view('doctors.show', ['doctor' => $user]) : view('doctors.home');
         }
@@ -93,12 +94,19 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        // dd($request["specializations"]);
+
+        if (empty($request['specializations'])) {
+            $request['specializations'] = [];
+        }
+
         // dd($request->all());
+
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
             'email' => ['string', 'email', 'max:255'],
-            'specialization_id' => 'exists:App\Model\Specialization,id',
+            'specializations' => ['required', 'exists:App\Model\Specialization,id'],
             'old-password' => ['nullable', 'min:8', new MatchOldPassword],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
@@ -107,11 +115,10 @@ class DoctorController extends Controller
         $data['password'] = Hash::make($request['password']);
         $user->update($data);
 
-        if (!empty($data['specialization_id'])) {
-            $user->specializations()->sync($data['specialization_id']);
-        } else {
-            $user->tags()->detach();
-        }
+        // dd($request->all());
+
+        $user->specializations()->sync($data['specializations']);
+
         // dd($user);
         return redirect()->route('profile.edit', $slug)->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }
@@ -125,6 +132,7 @@ class DoctorController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        $user->specializations()->detach();
         $user->delete();
         return redirect()->route('home');
     }

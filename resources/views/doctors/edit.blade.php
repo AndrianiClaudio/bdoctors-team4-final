@@ -51,22 +51,35 @@
                             @enderror
                         </div>
                         {{-- specialization --}}
-                        <div class="mb-3">
-                            <label for="specialization_id" class="form-label">Specializzazione</label>
-                            <select class="form-select" id="specialization_id" name="specialization_id">
-                                <option value="">Select a category</option>
-                                @foreach ($specializations as $specialization)
-                                    <option @if (old('specialization_id', $doctor->specializations()->first()->id) == $specialization->id) selected @endif value="{{ $specialization->id }}">
-                                        {{ $specialization->category }}</option>
-                                @endforeach
-                            </select>
-                            @error('specialization_id')
-                                <div class="alert alert-danger mt-3">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
+                        
+                      
+                        @error('specializations')
+                            <div class="alert alert-danger mt-3">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @if ($errors->any())
+                        @foreach ($specializations as $specialization)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}" name="specializations[]"
+                                    {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{ $specialization->category }}
+                                </label>
+                            </div>
+                        @endforeach
+                    @else
+                        {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
+                        @foreach ($specializations as $specialization)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}" name="specializations[]"
+                                    {{ $doctor->specializations()->get()->contains($specialization->id) ? 'checked': '' }}>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{ $specialization->category }}
+                                </label>
+                            </div>
+                         @endforeach
+                    @endif
                         {{-- TO-DO: 
                             inserito per evitare auto complete value in password --}}
                         <input type="password" class="d-none" name="" id="">

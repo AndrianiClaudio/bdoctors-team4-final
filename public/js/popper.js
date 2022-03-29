@@ -116,7 +116,11 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\php\bdoctors-team4-final\node_modules\popper.js\dist\popper.js */"./node_modules/popper.js/dist/popper.js");
+=======
+module.exports = __webpack_require__(/*! C:\classe49\lezione-40-php\progetto-finale\bdoctors-team4-final\node_modules\popper.js\dist\popper.js */"./node_modules/popper.js/dist/popper.js");
+>>>>>>> 8e71a4920375696a8ae2c36058a42a6cee5ed581
 
 
 /***/ })

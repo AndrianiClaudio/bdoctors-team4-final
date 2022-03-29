@@ -19,9 +19,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('slug', Auth::User()->slug)->first();
+        $doctor = User::where('slug', Auth::User()->slug)->first();
         //dd($doctors);
-        return view('doctors.index', compact('doctors'));
+        return view('doctors.index', compact('doctor'));
     }
 
 
@@ -132,6 +132,7 @@ class DoctorController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        $user->specializations()->detach();
         $user->delete();
         return redirect()->route('home');
     }

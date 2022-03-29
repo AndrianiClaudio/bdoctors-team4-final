@@ -53,7 +53,7 @@ class MessageController extends Controller
     {
         $message = Message::find($id);
         $doctor = User::find(Auth::user()->id);
-        return view('doctors.messages.show', compact('message', 'doctor'));
+        return $message ? view('doctors.messages.show', compact('message', 'doctor')) : redirect()->route('messages.index');
     }
 
     /**

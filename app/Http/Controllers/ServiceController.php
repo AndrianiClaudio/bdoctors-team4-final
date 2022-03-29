@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Service;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Specialization;
 
 class ServiceController extends Controller
 {
@@ -17,6 +18,12 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::where('user_id', Auth::user()->id)->get();
+
+
+        foreach ($services as $service) {
+            $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
+        }
+
         $doctor = User::find(Auth::user()->id);
         return view('doctors.services.index', compact('services', 'doctor'));
     }
@@ -50,7 +57,13 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-    //
+        $service = Service::find($id);
+        $doctor = User::find(Auth::user()->id);
+
+        $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
+        // $specialization = Specialization::where('id', $service->specialization_id)->first();
+        return $service ? view('doctors.services.show', compact('service', 'doctor')) : redirect()->route('services.index', compact('specialization'));
+    // return $service ? view('doctors.services.show', compact('service', 'doctor', 'specialization')) : redirect()->route('services.index', compact('specialization'));
     }
 
     /**

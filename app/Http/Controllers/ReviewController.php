@@ -52,7 +52,8 @@ class ReviewController extends Controller
     {
         $review = Review::find($id);
         $doctor = User::find(Auth::user()->id);
-        return view('doctors.reviews.show', compact('review', 'doctor'));
+        // return view('doctors.reviews.show', compact('review', 'doctor'));
+        return $review ? view('doctors.reviews.show', compact('review', 'doctor')) : redirect()->route('reviews.index');
     }
 
     /**

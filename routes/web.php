@@ -24,7 +24,7 @@ Route::resource('profile', 'DoctorController')->middleware('auth');
 Route::resource('reviews', 'ReviewController')->middleware('auth');
 
 //fullcalender
-Route::get('fullcalendar','FullCalendarController@index');
+Route::get('fullcalendar','FullCalendarController@index')->middleware('auth')->name('calendar');
 Route::post('fullcalendar/create','FullCalendarController@create');
 Route::post('fullcalendar/update','FullCalendarController@update');
 Route::post('fullcalendar/delete','FullCalendarController@destroy');

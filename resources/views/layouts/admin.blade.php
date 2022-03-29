@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('reviews.index', $doctor->slug) }}" class="nav-link link-dark">
+                        <a href="{{ route('calendar', $doctor->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-calendar-days p-1"></i>
                             Calendario
                         </a>

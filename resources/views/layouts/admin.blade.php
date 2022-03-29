@@ -61,7 +61,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -117,12 +117,12 @@
                             Recensioni
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('calendar', $doctor->slug) }}" class="nav-link link-dark">
+                    {{-- <li>
+                        <a href="{{ route('fullcalendrr', $doctor->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-calendar-days p-1"></i>
                             Calendario
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <hr>
                 <div class="dropdown ps-3 pb-2">

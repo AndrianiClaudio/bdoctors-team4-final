@@ -13,15 +13,17 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 /* Route::middleware('auth')
-    ->namespace('Admin')
-    ->name('admin.')
-    ->prefix('admin')
-    ->group(function () {
-    });
+ ->namespace('Admin')
+ ->name('admin.')
+ ->prefix('admin')
+ ->group(function () {
+ });
  */
 Route::resource('profile', 'DoctorController')->middleware('auth');
 
 Route::resource('reviews', 'ReviewController')->middleware('auth');
+
+Route::resource('messages', 'MessageController')->middleware('auth');
 
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");

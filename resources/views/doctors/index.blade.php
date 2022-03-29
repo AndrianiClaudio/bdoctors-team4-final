@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    index
+    pippo
 @endsection
 
 @section('script')
@@ -17,37 +17,33 @@
 
 @section('content')
 
-<div class="d-flex flex-column flex-shrink-0 bg-light side-sizes">
+{{-- <div class="d-flex flex-column flex-shrink-0 bg-light side-sizes"> --}}
     {{-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-4">Sidebar</span>
-    </a>
+      <span class="fs-4">Sidebar</span></a>
     <hr> --}}
-    <ul class="nav nav-pills flex-column mb-auto lh-5 fs-5">
+    
+    {{-- <ul class="nav nav-pills flex-column mb-auto lh-5 fs-5">
       <li class="nav-item">
         <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link active" aria-current="page">
-          {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg> --}}
           <i class="fa-solid fa-user-doctor p-1"></i>
           Il tuo profilo
         </a>
       </li>
       <li>
         <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link link-dark">
-          {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg> --}}
           <i class="fa-solid fa-comment-medical p-1"></i>
           Messaggi
         </a>
       </li>
       <li>
         <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link link-dark">
-          {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg> --}}
           <i class="fa-regular fa-star p-1"></i>
           Piani di abbonamento
         </a>
       </li>
       <li>
         <a href="{{route('profile.show', $doctors->slug)}}" class="nav-link link-dark">
-          {{-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> --}}
           <i class="fa-solid fa-chart-line p-1"></i>
           Le tue statistiche
         </a>
@@ -64,10 +60,12 @@
         <li><a class="dropdown-item" href="{{ route('profile.edit', $doctors->slug) }}">Modifica profilo</a></li>
         <li><a class="dropdown-item" href="{{route('profile.show', $doctors->slug)}}">Profilo</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"> Logout</a> </li>
       </ul>
     </div>
-  </div>
+  </div> --}}
 
     {{-- <div class="container">
         <div class="row">

@@ -35,7 +35,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-    //
+        $specs = Specialization::all();
+        return view('doctors.services.create', compact('specs'));
     }
 
     /**
@@ -46,7 +47,26 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-    //
+        // dd($request->all());
+
+        $data = $request->all();
+
+        $dataValidate = $request->validate([
+            'type' => 'required',
+            'description' => 'required',
+            'specialization_id' => 'required',
+        ]);
+
+        $data['user_id'] = Auth::user()->id;
+
+        $service = new Service();
+
+        $service->fill($data);
+        $service->specialization_id = (int)$data['specialization_id'];
+
+        $service->save();
+        return redirect()->route('services.show', $service->id);
+
     }
 
     /**
@@ -80,7 +100,7 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-    //
+
     }
 
     /**

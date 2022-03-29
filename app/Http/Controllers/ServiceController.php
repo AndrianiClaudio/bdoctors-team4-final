@@ -59,11 +59,17 @@ class ServiceController extends Controller
     {
         $service = Service::find($id);
         $doctor = User::find(Auth::user()->id);
+        if (!$service) {
+            return redirect()->route('services.index');
+        }
+        else if ($service->user_id !== Auth::user()->id) {
+            return redirect()->route('services.index');
+        }
+        else {
+            $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
+            return view('doctors.services.show', compact('service', 'doctor'));
+        }
 
-        $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
-        // $specialization = Specialization::where('id', $service->specialization_id)->first();
-        return $service ? view('doctors.services.show', compact('service', 'doctor')) : redirect()->route('services.index', compact('specialization'));
-    // return $service ? view('doctors.services.show', compact('service', 'doctor', 'specialization')) : redirect()->route('services.index', compact('specialization'));
     }
 
     /**

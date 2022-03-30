@@ -16,4 +16,6 @@ Route::namespace ('Api')
         Route::get('doctors/{slug}', 'DoctorController@show');
         Route::post('doctors/{slug}/message', 'DoctorController@newMessage');
         Route::post('doctors/{slug}/review', 'DoctorController@newReview');
+        
+        Route::get('specializations', 'SpecializationController@index');
     });

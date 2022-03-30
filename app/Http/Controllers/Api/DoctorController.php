@@ -14,16 +14,32 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctors = User::paginate(5);
-        $specializations = Specialization::all();
-        $services = Service::all();
-        $reviews = Review::all();
+        // $doctors = User::paginate(5);
+        // $specializations = Specialization::all();
+        // $services = Service::all();
+        // $reviews = Review::all();
+        // return response()->json([
+        //     'response' => true,
+        //     'results' => ['doctors' => $doctors, 'specializations' => $specializations, 'services' => $services, 'reviews' => $reviews],
+        // ]);
+
+        $doctors = User::where('id', '>', 1)->with('specializations', 'services', 'reviews', 'messages')->get();
+        // $specs = Specialization::all();
         return response()->json([
             'response' => true,
-            'results' => ['doctors' => $doctors, 'specializations' => $specializations, 'services' => $services, 'reviews' => $reviews],
+            // 'results' => compact('doctors', 'specs')
+            'results' => compact('doctors')
         ]);
     }
 
+    // public function getSpecializations()
+    // {
+    //     $specs = Specialization::all();
+    //     return response()->json([
+    //         'response' => true,
+    //         'results' => compact('specs')
+    //     ]);
+    // }
 
 
 
@@ -38,13 +54,13 @@ class DoctorController extends Controller
             $servs = [];
             foreach ($services as $service) {
                 if ($service->user_id == $doctor->id) {
-                    $servs [] = $service;
+                    $servs[] = $service;
                 }
             }
             $rews = [];
             foreach ($reviews as $review) {
                 if ($review->user_id == $doctor->id) {
-                    $rews [] = $review;
+                    $rews[] = $review;
                 }
             }
             $doctor->reviews = $rews;

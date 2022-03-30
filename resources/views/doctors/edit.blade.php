@@ -162,9 +162,9 @@
             @csrf
             @method('DELETE')
 
-            <button type="submit" class="btn btn-danger"
-                onclick="return 'Sei sicuro di voler eliminare il tuo profilo? Se clicchi OK Fulvio ti punirà e sappi che sei il peggior dottore del mondo. Vergognati. Lo sai che sei una merda?')">Elimina
-                il tuo profilo</button>
+            <input name="_method" type="hidden" value="DELETE">
+            <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip"
+                title='Delete'>Delete</button>
         </form>
     </div>
 @endsection

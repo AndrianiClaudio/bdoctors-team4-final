@@ -1,16 +1,16 @@
 <template>
-  <div class="container">
-    App
-    <router-view></router-view>
-  </div>
+    <div class="container-fluid p-0">
+
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'App',
-}
+    export default {
+        name: 'App',
+    }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

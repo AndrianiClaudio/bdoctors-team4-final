@@ -16,6 +16,8 @@ import Doctor from './pages/Doctor.vue';
 import Message from './pages/Message.vue';
 import Review from './pages/Review.vue';
 import ProvaApi from './pages/ProvaApi.vue';
+// import Navbar from './components/Navbar.vue';
+
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);

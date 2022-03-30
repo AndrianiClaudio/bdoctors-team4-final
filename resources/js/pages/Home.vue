@@ -1,6 +1,9 @@
 <template>
-    <div class="container">
-        Home
+    <div class="container-fluid p-0">
+        <Navbar />
+        <JumboT />
+        <Overview />
+        <Specializations />
         <div v-if="doctors">
             <div v-for="(doctor, index) in doctors" :key="index">
                 <h1>Dottore {{ doctor.id }}</h1>
@@ -37,8 +40,19 @@
 </template>
 
 <script>
+import Navbar from "../components/Navbar.vue";
+import JumboT from "../components/Jumbo-top.vue";
+import Overview from "../components/Overview.vue";
+import Specializations from "../components/Specializations.vue";
+
 export default {
     name: "Home",
+    components: {
+        Navbar,
+        JumboT,
+        Overview,
+        Specializations,
+    },
     data() {
         return {
             doctors: {
@@ -65,4 +79,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>

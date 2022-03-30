@@ -115,14 +115,16 @@ class DoctorController extends Controller
         $user = User::where('slug', $slug)->first();
 
         $data['password'] = Hash::make($request['password']);
-        $user->update($data);
         if (!empty($data['photo'])) {
             Storage::delete($user->photo);
-            dd($user->photo);
             $img_path = Storage::put('uploads/doctors/photo', $data['photo']);
-            // dd($img_path);
-            $user->photo = $img_path;
+            $data['photo'] = $img_path;
         }
+        else {
+            $data['photo'] = null;
+        }
+
+        $user->update($data);
 
         $user->specializations()->sync($data['specializations']);
 

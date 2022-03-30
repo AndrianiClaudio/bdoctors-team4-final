@@ -11,7 +11,7 @@
                 <div v-if="doctor.photo">
                     <b><em>Photo</em></b>
                     <img
-                        :src="doctor.photo"
+                        :src="/storage/ + doctor.photo"
                         :alt="doctor.firstname + ' ' + doctor.lastname"
                     />
                 </div>

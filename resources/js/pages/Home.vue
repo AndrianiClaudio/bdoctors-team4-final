@@ -29,7 +29,7 @@
                 <b><em>Telefono</em></b>
                 {{doctor.phone}}
             </div>
-             <router-link class="btn btn-info" :to="{ name: 'doctor', params: { id: doctor.id } }">View</router-link>
+             <router-link class="btn btn-info" :to="{ name: 'doctor', params: { slug: doctor.slug } }">View</router-link>
             <hr>
         </div>
     </div>

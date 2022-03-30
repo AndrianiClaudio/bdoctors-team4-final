@@ -16,9 +16,9 @@ class DoctorController extends Controller
             'doctors' => $doctors
         ]);
     }
-    public function show($id)
+    public function show($slug)
     {
-        $doctors = User::find($id);
+        $doctors = User::where('slug',$slug)->first();
 
         return response()->json([
             'response' => true,

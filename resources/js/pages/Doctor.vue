@@ -15,14 +15,14 @@ import Axios from "axios";
 
   export default {
     name: 'Doctor',
-    props: ['id'],
+    props: ['slug'],
     data() {
       return {
         doctor: []
       }
     },
     created() {
-      const url = 'http://127.0.0.1:8000/api/doctors/' + this.id;
+      const url = 'http://127.0.0.1:8000/api/doctors/' + this.slug;
       this.getProduct(url);
     },
     methods: {

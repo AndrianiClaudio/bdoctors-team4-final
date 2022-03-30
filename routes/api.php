@@ -22,5 +22,5 @@ route::namespace('Api')
     ->group(function () {
 
         Route::get('doctors', 'DoctorController@index');
-        Route::get('doctors/{id}', 'DoctorController@show');
+        Route::get('doctors/{slug}', 'DoctorController@show');
     });

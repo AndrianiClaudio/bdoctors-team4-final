@@ -10,8 +10,7 @@
             </div>
             <div v-if="doctor.photo">
                 <b><em>Photo</em></b>
-                <!-- da includere in tag img -->
-                {{doctor.photo}}
+                <img :src="doctor.photo" :alt="doctor.firstname + ' ' + doctor.lastname">
             </div>
             <div>
                 <b><em>Email</em></b>

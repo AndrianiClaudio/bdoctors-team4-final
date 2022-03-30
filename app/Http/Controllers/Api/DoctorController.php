@@ -30,18 +30,31 @@ class DoctorController extends Controller
     public function provaIndex()
     {
         $doctors = User::all();
-        $specializations = Specialization::all();
+        // $specializations = Specialization::all();
         $services = Service::all();
         $reviews = Review::all();
         foreach ($doctors as $doctor) {
-            foreach ($specializations as $specialization) {
-                if ($specialization['user_id'] == $doctor['id']) {
+            $doctor->specs = $doctor->specializations()->get();
+            $servs = [];
+            foreach ($services as $service) {
+                if ($service->user_id == $doctor->id) {
+                    $servs [] = $service;
                 }
             }
+            $rews = [];
+            foreach ($reviews as $review) {
+                if ($review->user_id == $doctor->id) {
+                    $rews [] = $review;
+                }
+            }
+            $doctor->reviews = $rews;
         }
         return response()->json([
             'response' => true,
-            'results' => ['doctors' => $doctors, 'specializations' => $specializations, 'services' => $services, 'reviews' => $reviews],
+            'results' => [
+                'doctors' => $doctors,
+                // 'specializations' => $specializations
+            ],
         ]);
     }
 

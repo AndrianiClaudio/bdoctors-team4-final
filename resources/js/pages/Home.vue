@@ -2,7 +2,7 @@
     <div class="container">
         Home
         <div v-if="doctors">
-            <div v-for="doctor in doctors" :key="doctor.id">
+            <div v-for="(doctor, index) in doctors" :key="index">
                 <h1>Dottore {{ doctor.id }}</h1>
                 <div>
                     <b><em>Nome</em></b>
@@ -51,7 +51,8 @@ export default {
             axios
                 .get("api/doctors")
                 .then((res) => {
-                    this.doctors = res.data.doctors;
+                    this.doctors = res.data.doctors.data;
+                    console.log(res);
                 })
                 .catch((err) => {
                     console.error(err);

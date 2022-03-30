@@ -60,8 +60,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                        document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -133,7 +134,9 @@
                         <strong> Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="#">Gestisci le tue prestazioni</a></li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('services.index', Auth::user()->slug) }}">Gestisci le tue
+                                prestazioni</a></li>
                         <li><a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->slug) }}">Modifica
                                 profilo</a></li>
                         <li><a class="dropdown-item"

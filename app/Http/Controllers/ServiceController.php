@@ -24,8 +24,9 @@ class ServiceController extends Controller
             $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
         }
 
-        $doctor = User::find(Auth::user()->id);
-        return view('doctors.services.index', compact('services', 'doctor'));
+        // $doctor = User::find(Auth::user()->id);
+        return view('doctors.services.index', compact('services'));
+    // return view('doctors.services.index', compact('services', 'doctor'));
     }
 
     /**
@@ -78,7 +79,7 @@ class ServiceController extends Controller
     public function show($id)
     {
         $service = Service::find($id);
-        $doctor = User::find(Auth::user()->id);
+        // $doctor = User::find(Auth::user()->id);
         if (!$service) {
             return redirect()->route('services.index');
         }
@@ -87,7 +88,8 @@ class ServiceController extends Controller
         }
         else {
             $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
-            return view('doctors.services.show', compact('service', 'doctor'));
+            return view('doctors.services.show', compact('service'));
+        // return view('doctors.services.show', compact('service', 'doctor'));
         }
 
     }

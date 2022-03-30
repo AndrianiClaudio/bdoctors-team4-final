@@ -12,6 +12,7 @@ window.Vue = require('vue');
 // IMPORT COMPONENTS
 import App from './view/App.vue';
 import Home from './pages/Home.vue';
+import Doctor from './pages/Doctor.vue';
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -23,6 +24,12 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
+            
+        },
+        {
+            path: '/doctor/:slug',
+            name: 'doctor',
+            component: Doctor,
             
         },
     ]

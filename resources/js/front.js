@@ -27,11 +27,13 @@ const router = new VueRouter({
             
         },
         {
-            path: '/doctor/:slug',
+            path: '/doctor/:id',
             name: 'doctor',
+            props: true,
             component: Doctor,
             
         },
+        
     ]
 });
 

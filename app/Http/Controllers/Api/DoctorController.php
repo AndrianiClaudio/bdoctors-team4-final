@@ -12,7 +12,8 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctors = User::all();
+        $doctors = User::paginate(5);
+       
         return response()->json([
             'response' => true,
             'doctors' => $doctors

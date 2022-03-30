@@ -52,4 +52,23 @@ class DoctorController extends Controller
 
         return redirect("/");
     }
+    public function newReview(Request $request, $slug)
+    {
+        $data = $request->all();
+
+        $request->validate([
+            'vote' => 'required | min:1 | max:5',
+            'username' => 'required | max:60',
+            'content' => 'required',
+        ]);
+
+        $msg = new Review();
+        $msg->fill($data);
+
+        $msg->user_id = User::where('slug', $slug)->first()->id;
+
+        $msg->save();
+
+        return redirect("/");
+    }
 }

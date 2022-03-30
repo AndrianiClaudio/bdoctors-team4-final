@@ -1,18 +1,19 @@
 <template>
-    <div class="container needs-validation" novalidate>
+    <div class="container">
         <form
-            :action="`http://localhost:8000/api/doctors/${doctor.slug}/new`"
+            :action="`http://localhost:8000/api/doctors/${doctor.slug}/message`"
             method="post"
             @submit="checkForm($event)"
         >
 
 
-          <p v-if="errors.length">
-    <b>Please correct the following error(s):</b>
-    <ul>
-      <li v-for="(error,index) in errors" :key="index">{{ error }}</li>
-    </ul>
-  </p>
+            <!-- Errors -->
+            <p v-if="errors.length">
+                <b>Please correct the following error(s):</b>
+                <ul>
+                <li v-for="(error,index) in errors" :key="index">{{ error }}</li>
+                </ul>
+            </p>
 
             <!-- FIRSTNAME -->
             <div class="mb-3">
@@ -25,8 +26,6 @@
                     name="firstname"
                     v-model="firstname"
                 />
-                <div class="invalid-feedback">Looks good!</div>
-                <!-- <div class="invalid-feedback">Please choose a username.</div> -->
             </div>
             <!-- LASTNAME -->
             <div class="mb-3">

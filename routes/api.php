@@ -9,10 +9,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-route::    namespace ('Api')
+route::
+namespace ('Api')
     ->group(function () {
-
         Route::get('doctors', 'DoctorController@index');
         Route::get('doctors/{slug}', 'DoctorController@show');
-        Route::post('doctors/{slug}/new', 'DoctorController@newMessage');
+        Route::post('doctors/{slug}/message', 'DoctorController@newMessage');
+        Route::post('doctors/{slug}/review', 'DoctorController@newReview');
     });

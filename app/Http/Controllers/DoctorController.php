@@ -72,7 +72,7 @@ class DoctorController extends Controller
             $doctor = User::where('slug', $slug)->first();
             // OTTENGO SPEC DI DOCTOR
             $doctor->specs = $doctor->specializations()->get();
-            // OTTENGO SPEC DI DOCTOR
+            // OTTENGO SERVICES DI DOCTOR
             $doctor->services = Service::where('user_id', $doctor->id)->get();
             return $doctor ? view('doctors.show', compact('doctor')) : view('doctors.home');
         }

@@ -51,7 +51,7 @@ export default {
             axios
                 .get("api/doctors")
                 .then((res) => {
-                    this.doctors = res.data.doctors.data;
+                    this.doctors = res.data.results.doctors.data;
                     console.log(res);
                 })
                 .catch((err) => {

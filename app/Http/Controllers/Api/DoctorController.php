@@ -6,16 +6,21 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use App\Model\Message;
+use App\Model\Review;
+use App\Model\Service;
+use App\Model\Specialization;
 
 class DoctorController extends Controller
 {
     public function index()
     {
         $doctors = User::paginate(5);
-       
+        $specializations = Specialization::all();
+        $services = Service::all();
+        $reviews = Review::all();
         return response()->json([
             'response' => true,
-            'doctors' => $doctors
+            'results' => ['doctors' => $doctors, 'specializations' => $specializations, 'services' => $services, 'reviews' => $reviews],
         ]);
     }
     public function show($slug)

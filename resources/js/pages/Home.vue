@@ -15,7 +15,11 @@
                         :alt="doctor.firstname + ' ' + doctor.lastname"
                     />
                 </div>
-
+                <router-link
+                    class="btn btn-success"
+                    :to="{ name: 'message', params: { slug: doctor.slug } }"
+                    >Send a message</router-link
+                >
                 <router-link
                     class="btn btn-info"
                     :to="{ name: 'doctor', params: { slug: doctor.slug } }"

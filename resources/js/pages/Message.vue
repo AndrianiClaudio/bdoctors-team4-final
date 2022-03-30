@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container needs-validation" novalidate>
         <form
             :action="`http://localhost:8000/api/doctors/${doctor.slug}/new`"
             method="post"
@@ -14,6 +14,8 @@
                     placeholder="firstname"
                     name="firstname"
                 />
+                <div class="invalid-feedback">Looks good!</div>
+                <!-- <div class="invalid-feedback">Please choose a username.</div> -->
             </div>
             <!-- LASTNAME -->
             <div class="mb-3">

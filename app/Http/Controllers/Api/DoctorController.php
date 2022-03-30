@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use App\Model\Message;
+use Illuminate\Support\Facades\Validator;
 
 class DoctorController extends Controller
 {
@@ -28,17 +29,16 @@ class DoctorController extends Controller
     }
     public function newMessage(Request $request, $slug)
     {
-        // $doctors = User::where('slug', $slug)->first();
         $data = $request->all();
 
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'firstname' => 'required | max:60',
             'lastname' => 'required | max:60',
-            'email' => 'required | max:255  | email'
+            'email' => 'required | max:255  | email',
+            'content' => 'required'
         ]);
-        // REDIRECT A HOME, NON A DOCTOR INFO, SE FALLISCE!!! DA CONTROLLARE (FORSE AUTOFIXATO)
-
-        // $data['user_id'] = User::where('slug', $slug)->first()->id;
+        dd($validator->fails());
 
         $msg = new Message();
         $msg->fill($data);

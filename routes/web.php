@@ -24,6 +24,10 @@ Route::resource('profile', 'DoctorController')->middleware('auth');
 
 Route::resource('reviews', 'ReviewController')->middleware('auth');
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> c2f3966bea645e47a0ec1eb7bc363b7e437ca94b
 Route::resource('messages', 'MessageController')->middleware('auth');
 
 Route::resource('services', 'ServiceController')->middleware('auth');

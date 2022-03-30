@@ -3,6 +3,7 @@
         <Navbar />
         <JumboT />
         <Overview />
+        <Specializations />
     </div>
 </template>
 
@@ -10,6 +11,7 @@
     import Navbar from '../components/Navbar.vue'
     import JumboT from '../components/Jumbo-top.vue'
     import Overview from '../components/Overview.vue'
+    import Specializations from '../components/Specializations.vue'
 
     export default {
         name: 'Home',
@@ -17,6 +19,7 @@
             Navbar,
             JumboT,
             Overview,
+            Specializations,
         }
     }
 </script>

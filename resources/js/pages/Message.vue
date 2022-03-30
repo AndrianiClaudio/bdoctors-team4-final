@@ -63,6 +63,9 @@
                 :to="{ name: 'doctor', params: { slug: doctor.slug } }"
                 >Back to Doctor info</router-link
             >
+            <router-link class="btn btn-info" :to="{ name: 'home' }"
+                >Back to Home</router-link
+            >
         </form>
     </div>
 </template>

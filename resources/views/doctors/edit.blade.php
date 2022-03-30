@@ -51,35 +51,37 @@
                             @enderror
                         </div>
                         {{-- specialization --}}
-                        
-                      
+
+
                         @error('specializations')
                             <div class="alert alert-danger mt-3">
                                 {{ $message }}
                             </div>
                         @enderror
                         @if ($errors->any())
-                        @foreach ($specializations as $specialization)
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}" name="specializations[]"
-                                    {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    {{ $specialization->category }}
-                                </label>
-                            </div>
-                        @endforeach
-                    @else
-                        {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
-                        @foreach ($specializations as $specialization)
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}" name="specializations[]"
-                                    {{ $doctor->specializations()->get()->contains($specialization->id) ? 'checked': '' }}>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    {{ $specialization->category }}
-                                </label>
-                            </div>
-                         @endforeach
-                    @endif
+                            @foreach ($specializations as $specialization)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                        name="specializations[]"
+                                        {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{ $specialization->category }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        @else
+                            {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
+                            @foreach ($specializations as $specialization)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                        name="specializations[]"
+                                        {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{ $specialization->category }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        @endif
                         {{-- TO-DO: 
                             inserito per evitare auto complete value in password --}}
                         <input type="password" class="d-none" name="" id="">
@@ -156,11 +158,13 @@
                 </div>
             @endif
         </div>
-        <form action="{{ route('profile.destroy',$doctor->id) }}" method="POST" >
-                @csrf
-                @method('DELETE')
+        <form action="{{ route('profile.destroy', $doctor->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
 
-        <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare il tuo profilo? Se clicchi OK Fulvio ti punirà e sappi che sei il peggior dottore del mondo. Vergognati. Lo sai che sei una merda?')">Elimina il tuo profilo</button>
-            </form>
+            <input name="_method" type="hidden" value="DELETE">
+            <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip"
+                title='Delete'>Delete</button>
+        </form>
     </div>
 @endsection

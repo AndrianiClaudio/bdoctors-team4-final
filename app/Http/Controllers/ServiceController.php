@@ -67,7 +67,6 @@ class ServiceController extends Controller
 
         $service->save();
         return redirect()->route('services.show', $service->id);
-
     }
 
     /**
@@ -82,16 +81,13 @@ class ServiceController extends Controller
         // $doctor = User::find(Auth::user()->id);
         if (!$service) {
             return redirect()->route('services.index');
-        }
-        else if ($service->user_id !== Auth::user()->id) {
+        } else if ($service->user_id !== Auth::user()->id) {
             return redirect()->route('services.index');
-        }
-        else {
+        } else {
             $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
             return view('doctors.services.show', compact('service'));
         // return view('doctors.services.show', compact('service', 'doctor'));
         }
-
     }
 
     /**
@@ -100,9 +96,13 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Service $service)
     {
-
+        if (Auth::user()->id != $service->user_id) {
+            return redirect()->route('services.edit', $service);
+        }
+        $specs = Specialization::all();
+        return view('doctors.services.edit', compact('specs', 'service'));
     }
 
     /**
@@ -112,9 +112,22 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Service $service)
     {
-    //
+        $data = $request->all();
+        if (Auth::user()->id != $service->user_id) {
+            return redirect()->route('services.edit', $service);
+        }
+        $postValidate = $request->validate([
+
+            'type' => 'required',
+            'description' => 'required',
+            'specialization_id' => 'exists:App\Model\Specialization,id',
+        ]);
+        if (Auth::user()->id == $service->user_id) {
+            $service->update($data);
+            return redirect()->route('services.show', $service);
+        }
     }
 
     /**
@@ -123,8 +136,12 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-
+        if (Auth::user()->id != $service->user_id) {
+            abort('403');
+        }
+        $service->delete();
+        return redirect()->route('services.index');
     }
 }

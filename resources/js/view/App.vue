@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container-fluid p-0">
 
         <router-view></router-view>
     </div>
@@ -12,5 +12,5 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '~bootstrap/scss/bootstrap';
+
 </style>

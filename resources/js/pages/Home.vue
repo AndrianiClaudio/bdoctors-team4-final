@@ -21,11 +21,15 @@
                     >Send a message</router-link
                 >
                 <router-link
+                    class="btn btn-secondary"
+                    :to="{ name: 'review', params: { slug: doctor.slug } }"
+                    >Write a review</router-link
+                >
+                <router-link
                     class="btn btn-info"
                     :to="{ name: 'doctor', params: { slug: doctor.slug } }"
                     >View</router-link
                 >
-
                 <hr />
             </div>
         </div>

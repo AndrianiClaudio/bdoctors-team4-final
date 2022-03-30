@@ -10,6 +10,7 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Model\Service;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
 {
@@ -99,28 +100,29 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        // dd($request["specializations"]);
-
-        if (empty($request['specializations'])) {
-            $request['specializations'] = [];
-        }
-
-        // dd($request->all());
-
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
+            'photo' => ['image'],
             'email' => ['string', 'email', 'max:255'],
             'specializations' => ['required', 'exists:App\Model\Specialization,id'],
             'old-password' => ['nullable', 'min:8', new MatchOldPassword],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
         ]);
+
+        // UPLOAD PHOTO
         $user = User::where('slug', $slug)->first();
+
         $data['password'] = Hash::make($request['password']);
         $user->update($data);
-
-        // dd($request->all());
+        if (!empty($data['photo'])) {
+            Storage::delete($user->photo);
+            dd($user->photo);
+            $img_path = Storage::put('uploads/doctors/photo', $data['photo']);
+            // dd($img_path);
+            $user->photo = $img_path;
+        }
 
         $user->specializations()->sync($data['specializations']);
 

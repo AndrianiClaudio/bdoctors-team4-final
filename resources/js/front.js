@@ -13,6 +13,7 @@ window.Vue = require('vue');
 import App from './view/App.vue';
 import Home from './pages/Home.vue';
 import Doctor from './pages/Doctor.vue';
+import Message from './pages/Message.vue';
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -31,6 +32,13 @@ const router = new VueRouter({
             name: 'doctor',
             props: true,
             component: Doctor,
+            
+        },
+        {
+            path: '/doctor/:slug/message',
+            name: 'message',
+            props: true,
+            component: Message,
             
         },
         

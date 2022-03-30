@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Model\Service;
 
 class DoctorController extends Controller
 {
@@ -67,8 +68,12 @@ class DoctorController extends Controller
             abort('403');
         }
         else {
-            $user = User::where('slug', $slug)->first();
-            return $user ? view('doctors.show', ['doctor' => $user]) : view('doctors.home');
+            $doctor = User::where('slug', $slug)->first();
+            // OTTENGO SPEC DI DOCTOR
+            $doctor->specs = $doctor->specializations()->get();
+            // OTTENGO SPEC DI DOCTOR
+            $doctor->services = Service::where('user_id', $doctor->id)->get();
+            return $doctor ? view('doctors.show', compact('doctor')) : view('doctors.home');
         }
     }
 

@@ -25,15 +25,15 @@ Route::resource('profile', 'DoctorController')->middleware('auth');
 Route::resource('reviews', 'ReviewController')->middleware('auth');
 
 //fullcalender
-Route::get('fullcalender', [FullCalenderController::class, 'index']);
-Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+Route::get('fullcalender', [FullCalenderController::class , 'index']);
+Route::post('fullcalenderAjax', [FullCalenderController::class , 'ajax']);
 
 Route::resource('messages', 'MessageController')->middleware('auth');
 
 Route::resource('services', 'ServiceController')->middleware('auth');
 
+Route::resource('specializations', 'SpecializationController')->middleware('auth');
+
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');
-
-

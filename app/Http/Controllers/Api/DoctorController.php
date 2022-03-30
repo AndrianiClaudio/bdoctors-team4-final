@@ -23,6 +23,31 @@ class DoctorController extends Controller
             'results' => ['doctors' => $doctors, 'specializations' => $specializations, 'services' => $services, 'reviews' => $reviews],
         ]);
     }
+
+
+
+
+    public function provaIndex()
+    {
+        $doctors = User::all();
+        $specializations = Specialization::all();
+        $services = Service::all();
+        $reviews = Review::all();
+        foreach ($doctors as $doctor) {
+            foreach ($specializations as $specialization) {
+                if ($specialization['user_id'] == $doctor['id']) {
+                }
+            }
+        }
+        return response()->json([
+            'response' => true,
+            'results' => ['doctors' => $doctors, 'specializations' => $specializations, 'services' => $services, 'reviews' => $reviews],
+        ]);
+    }
+
+
+
+
     public function show($slug)
     {
         $doctors = User::where('slug', $slug)->first();

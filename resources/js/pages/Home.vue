@@ -25,6 +25,7 @@
                     :to="{ name: 'doctor', params: { slug: doctor.slug } }"
                     >View</router-link
                 >
+
                 <hr />
             </div>
         </div>

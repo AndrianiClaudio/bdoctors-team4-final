@@ -39,7 +39,9 @@ class DoctorController extends Controller
 
         $msg = new Message();
         $msg->fill($data);
+
         $msg->user_id = User::where('slug', $slug)->first()->id;
+
         $msg->save();
 
         return redirect("/");

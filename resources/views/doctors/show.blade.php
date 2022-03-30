@@ -50,7 +50,7 @@
                                 </ul>
                             </li>
                         @endif
-                        @if ($doctor->specs)
+                        @if ($doctor->services)
                             <li>
                                 <p>
                                     I tuoi servizi

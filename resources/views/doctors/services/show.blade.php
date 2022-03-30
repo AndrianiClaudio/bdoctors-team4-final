@@ -18,6 +18,12 @@
                 {{-- SPECIALIZZAZIONE --}}
                 <h2> {{ $service->category_name }}</h2>
                 <a class="btn btn-primary" href="{{ route('services.index') }}">indietro</a>
+                <a class="btn btn-primary" href="{{ route('services.edit', $service->id) }}">edit</a>
+                 <form action="{{ route('services.destroy', $service->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input class="btn btn-danger" type="submit" value="delete"></input>
+                        </form>
             </div>
         </div>
     </div>

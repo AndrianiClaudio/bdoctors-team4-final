@@ -19,22 +19,15 @@
                         >
                             <h3>{{ spec.category }}</h3>
                         </li>
-                        <!-- <li class="list-group-item"><h3>Cardiologia</h3></li>
-                        <li class="list-group-item"><h3>Cardiologia</h3></li>
-                        <li class="list-group-item"><h3>Cardiologia</h3></li>
-                        <li class="list-group-item"><h3>Cardiologia</h3></li>
-                        <li class="list-group-item"><h3>Cardiologia</h3></li>
-                        <li class="list-group-item"><h3>Cardiologia</h3></li>
-                        <li class="list-group-item"><h3>Cardiologia</h3></li> -->
                     </ul>
                 </div>
                 <div class="pic">
                     <div class="img">Placeholder</div>
                 </div>
                 <div class="dpec-desc">
-                    <h2>{{ specs[0].category }}</h2>
                     <!-- Specializzazione active in quel momento -->
-                    <p></p>
+                    <h2>Specializzazione</h2>
+                    <p>Descrizione</p>
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Title</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titolo servizio"
-                            name="type">
+                            name="type" value="{{ old('type') }}">
                         @error('type')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -27,7 +27,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Descrizione</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            name="description">{{ old('description') }}</textarea>
                         @error('description')
                             <div class="alert alert-danger">
                                 {{ $message }}

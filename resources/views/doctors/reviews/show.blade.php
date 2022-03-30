@@ -23,6 +23,8 @@
                 </h2>
                 @if ($review->content)
                     <p>{{ $review->content }}</p>
+                @else
+                    <p>Questa recensione non ha un testo</p>
                 @endif
                 <h3>{{ $review->created_at }}</h3>
                 <a class="btn btn-primary" href="{{ route('reviews.index') }}">indietro</a>

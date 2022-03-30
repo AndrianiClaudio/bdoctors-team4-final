@@ -109,7 +109,7 @@ export default {
     methods: {
         getProduct(url) {
             axios.get(url).then((res) => {
-                console.log(res.data.doctors);
+                // console.log(res.data.doctors);
                 this.doctor = res.data.doctors;
             });
         },
@@ -134,7 +134,7 @@ export default {
                 this.errors.push("content required.");
             }
 
-console.log(this.errors);
+            // console.log(this.errors);
             e.preventDefault();
         },
     },

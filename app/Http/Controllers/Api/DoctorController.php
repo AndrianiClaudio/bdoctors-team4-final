@@ -14,7 +14,7 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctors = User::where('id', '>', 1)->with('specializations', 'services', 'reviews', 'messages')->get();
+        $doctors = User::where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages')->get();
         // $specs = Specialization::all();
         return response()->json([
             'response' => true,
@@ -25,7 +25,7 @@ class DoctorController extends Controller
 
     public function show($slug)
     {
-        $doctors = User::where('slug', $slug)->first();
+        $doctors = User::where('slug', $slug)->with('specializations', 'services', 'reviews', 'messages')->first();
 
         return response()->json([
             'response' => true,

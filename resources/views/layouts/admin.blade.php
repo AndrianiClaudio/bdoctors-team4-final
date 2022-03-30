@@ -63,7 +63,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -118,6 +118,12 @@
                         <a href="{{ route('reviews.index', Auth::user()->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-star-half-stroke p-1"></i>
                             Recensioni
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('services.index', Auth::user()->slug) }}" class="nav-link link-dark">
+                            <i class="fa-solid fa-star-half-stroke p-1"></i>
+                            Servizi
                         </a>
                     </li>
                     {{-- <li>

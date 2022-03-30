@@ -156,5 +156,11 @@
                 </div>
             @endif
         </div>
+        <form action="{{ route('profile.destroy',$doctor->id) }}" method="POST" >
+                @csrf
+                @method('DELETE')
+
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare il tuo profilo? Se clicchi OK Fulvio ti punirà e sappi che sei il peggior dottore del mondo. Vergognati. Lo sai che sei una merda?')">Elimina il tuo profilo</button>
+            </form>
     </div>
 @endsection

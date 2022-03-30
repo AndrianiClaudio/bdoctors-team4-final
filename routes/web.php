@@ -24,9 +24,6 @@ Route::resource('profile', 'DoctorController')->middleware('auth');
 
 Route::resource('reviews', 'ReviewController')->middleware('auth');
 
-//fullcalender
-Route::get('fullcalender', [FullCalenderController::class , 'index']);
-Route::post('fullcalenderAjax', [FullCalenderController::class , 'ajax']);
 
 Route::resource('messages', 'MessageController')->middleware('auth');
 

@@ -63,7 +63,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -95,12 +95,9 @@
                             Il tuo profilo
                         </a>
                     </li>
+
                     <li>
                         <a href="{{ route('messages.index', Auth::user()->slug) }}" class="nav-link link-dark">
-
-                    </li>
-                    <li>
-                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-comment-medical p-1"></i>
                             Messaggi
                         </a>

@@ -52,12 +52,16 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // if (empty($data["specializations"])) {
+        //     $data["specializations"] = [];
+        // }
+        // dd($data);
         return Validator::make($data, [
             'firstname' => ['required', 'string', 'max:60'],
             'lastname' => ['required', 'string', 'max:60'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'specializations' => ['required', 'min:1', 'exists:App\Model\Specialization,id'],
+            'specializations' => ['required','exists:App\Model\Specialization,id'],
             'address' => ['required', 'string', 'max:255'],
         ]);
     }

@@ -100,6 +100,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],

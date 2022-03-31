@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container">
-        @foreach ($errors->all() as $err)
+        {{-- @foreach ($errors->all() as $err)
             <div class="alert alert-danger" role="alert">
                 <strong>{{ $err }}</strong>
             </div>
-        @endforeach
+        @endforeach --}}
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -23,14 +23,14 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Firstname') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="firstname" type="text"
+                                    <input id="firstname" type="text" 
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
-                                    {{-- @error('firstname')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror --}}
+                                        value="{{ old('firstname') }}" autocomplete="firstname" autofocus required>
+                                    @error('firstname')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -40,15 +40,15 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Lastname') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="firstname" type="text"
+                                    <input id="lastname" type="text"
                                         class="form-control @error('lastname') is-invalid @enderror" name="lastname"
-                                        value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
+                                        value="{{ old('lastname') }}" autocomplete="lastname" autofocus required>
 
-                                    {{-- @error('lastname')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror --}}
+                                    @error('lastname')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -59,13 +59,13 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" autocomplete="email">
+                                        name="email" value="{{ old('email') }}" autocomplete="email" required>
 
-                                    {{-- @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror --}}
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -77,13 +77,13 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        autocomplete="new-password">
+                                        autocomplete="new-password" required>
 
-                                    {{-- @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror --}}
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -138,11 +138,11 @@
                                         class="form-control @error('address') is-invalid @enderror" name="address"
                                         value="{{ old('address') }}" autocomplete="address" autofocus>
 
-                                    {{-- @error('address')
+                                    @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror --}}
+                                    @enderror
                                 </div>
                             </div>
 

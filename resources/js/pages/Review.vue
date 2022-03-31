@@ -68,7 +68,7 @@
             </div>
             <router-link
                 class="btn btn-info"
-                :to="{ name: 'doctor', params: { slug: doctor.slug } }"
+                :to="{ name: 'doctor', params: { slug: doctor.slug } }" v-if="doctor.slug"
                 >Back to Doctor info</router-link
             >
             <router-link class="btn btn-info" :to="{ name: 'home' }"

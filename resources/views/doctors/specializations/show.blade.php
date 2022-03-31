@@ -22,7 +22,7 @@
                             {{ $spec->description }}
                         </em>
                     </p>
-                    <a class="btn btn-primary" href="{{ route('profile.show', Auth::user()->slug) }}">indietro</a>
+                    <a class="btn btn-primary" href="{{ route('profile.show') }}">indietro</a>
                     <form action="{{ route('specializations.destroy', $spec->id) }}" method="POST">
                         @method('DELETE')
                         @csrf

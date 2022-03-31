@@ -74,11 +74,13 @@
                     <router-link
                         class="btn btn-success"
                         :to="{ name: 'message', params: { slug: doctor.slug } }"
+                        v-if="doctor.slug"
                         >Send a message</router-link
                     >
                     <router-link
                         class="btn btn-success"
                         :to="{ name: 'review', params: { slug: doctor.slug } }"
+                        v-if="doctor.slug"
                         >Send a Review</router-link
                     >
                     <router-link class="btn btn-info" :to="{ name: 'home' }"

@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid p-0">
         <div class="overlay">
-            <img src="../../../storage/app/public/images/jumbo-top.jpg" alt="">
+            <!-- <img src="../../../storage/app/public/images/jumbo-top.jpg" alt=""> -->
             <div class="introduction-jumbo d-flex flex-column">
                 <div class="card2 text-jumbo text-center">
                     <h1 class="mt-4 ms-3 text-white pb-2">

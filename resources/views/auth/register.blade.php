@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('script')
+
+@endsection
+
 @section('content')
     <div class="container">
         {{-- @foreach ($errors->all() as $err)
@@ -13,7 +17,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" onsubmit="return handleData()">
                             @csrf
 
 
@@ -94,7 +98,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" autocomplete="new-password">
+                                        name="password_confirmation" autocomplete="new-password" required>
                                 </div>
                             </div>
 
@@ -119,6 +123,9 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <div style="visibility:hidden; color:red; " id="chk_option_error">
+                                        Please select at least one option.
+                                    </div>
                                     @error('specializations')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -136,7 +143,7 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" autocomplete="address" autofocus>
+                                        value="{{ old('address') }}" autocomplete="address" autofocus required>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">

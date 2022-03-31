@@ -1,4 +1,6 @@
 <template>
+<div class="container-fluid p-0">
+    <Navbar />
     <div class="container">
         <form
             :action="`http://localhost:8000/api/doctors/${doctor.slug}/message`"
@@ -85,11 +87,14 @@
             >
         </form>
     </div>
+</div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 export default {
     name: "Message",
+    components: {Navbar},
     props: ["slug"],
     data() {
         return {

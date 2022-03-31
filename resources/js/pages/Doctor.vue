@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="container-fluid p-0">
+        <Navbar />
         <div class="row row-cols-1 row-cols-md-4 g-4" v-if="doctor">
             <div class="card">
                 <div class="card-body">
@@ -86,10 +87,13 @@
 </template>
 
 <script>
-// import Axios from "axios";
+import Navbar from "../components/Navbar.vue";
 
 export default {
     name: "Doctor",
+    components: {
+        Navbar,
+    },
     props: ["slug"],
     data() {
         return {

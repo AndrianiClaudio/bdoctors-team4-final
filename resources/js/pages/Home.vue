@@ -1,12 +1,12 @@
 <template>
     <div class="container-fluid p-0">
         <Navbar />
-        <!-- <JumboT @filterSpec = "filteredSpec($event)"/> -->
+        <!-- <JumboT @filterSpec="filteredSpec($event)" /> -->
         <JumboT />
         <Overview />
         <Specializations />
         <DoctorOv />
-        <div v-if="doctors">
+        <!-- <div v-if="doctors">
             <div v-for="(doctor, index) in doctors" :key="index">
                 <h1>Dottore {{ doctor.id }}</h1>
                 <div>
@@ -37,7 +37,7 @@
                 >
                 <hr />
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -62,9 +62,6 @@ export default {
             doctors: {
                 type: Array,
             },
-            // specs: {
-            //     type: Array,
-            // },
         };
     },
 
@@ -74,18 +71,22 @@ export default {
                 .get("api/doctors")
                 .then((res) => {
                     this.doctors = res.data.results.doctors;
-                    // this.specs = res.data.results.specs;
-                    // console.log(res.data.results.specs);
-                    // console.log(this.doctors);
                 })
                 .catch((err) => {
                     console.error(err);
                 });
         },
         // filteredSpec(e) {
-
-        //     console.log(e);
-        // }
+        //     // console.log(e);
+        //     axios
+        //         .post(`/api/doctors?specialization=${e}`)
+        //         .then((res) => {
+        //             this.doctors = res.data.results.doctors;
+        //         })
+        //         .catch((err) => {
+        //             console.error(err);
+        //         });
+        // },
     },
     created() {
         this.getAllDoctors();

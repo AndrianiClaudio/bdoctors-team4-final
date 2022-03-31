@@ -59,7 +59,9 @@ class DoctorController extends Controller
         else {
             return response()->json([
                 'response' => false,
-                'doctors' => null,
+                'results' => [
+                    'doctors' => null,
+                ]
             ]);
 
         }

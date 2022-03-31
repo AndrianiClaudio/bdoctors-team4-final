@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col d-flex">
+            <div class="col d-flex justify-content-center mt-5">
                 <div class="specs">
                     <ul class="list-group">
                         <li
@@ -21,13 +21,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="pic">
+                <div class="pic rounded-3">
                     <div class="img">Placeholder</div>
                 </div>
-                <div class="dpec-desc">
+                <div class="spec-desc">
                     <!-- Specializzazione active in quel momento -->
                     <h2>Specializzazione</h2>
-                    <p>Descrizione</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, delectus. Aliquid cupiditate, quisquam amet harum, praesentium iste nobis neque a impedit repellendus amet, consectetur adipisicing elit. Odio quod facilis incidunt qui id. Dolorum beatae facilis quasi! Reprehenderit natus dolore perferendis quia illum at voluptate tempore.</p>
                 </div>
             </div>
         </div>
@@ -84,7 +84,10 @@ export default {
             .pic {
                 background-color: gray;
                 width: 250px;
-                height: 400px;
+                height: 418px;
+            }
+            .spec-desc {
+                width: 200px;
             }
         }
     }

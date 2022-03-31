@@ -4,7 +4,8 @@
         <JumboT />
         <Overview />
         <Specializations />
-        <div v-if="doctors">
+        <DoctorOv />
+        <!-- <div v-if="doctors">
             <div v-for="(doctor, index) in doctors" :key="index">
                 <h1>Dottore {{ doctor.id }}</h1>
                 <div>
@@ -13,10 +14,10 @@
                 </div>
                 <div v-if="doctor.photo">
                     <b><em>Photo</em></b>
-                    <!-- <img
+                    <img
                         :src="/storage/ + doctor.photo"
                         :alt="doctor.firstname + ' ' + doctor.lastname"
-                    /> -->
+                    />
                 </div>
                 <router-link
                     class="btn btn-success"
@@ -35,7 +36,7 @@
                 >
                 <hr />
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -44,6 +45,7 @@ import Navbar from "../components/Navbar.vue";
 import JumboT from "../components/Jumbo-top.vue";
 import Overview from "../components/Overview.vue";
 import Specializations from "../components/Specializations.vue";
+import DoctorOv from "../components/Doctor-ov.vue";
 
 export default {
     name: "Home",
@@ -52,6 +54,7 @@ export default {
         JumboT,
         Overview,
         Specializations,
+        DoctorOv,
     },
     data() {
         return {

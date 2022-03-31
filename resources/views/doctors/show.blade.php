@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         @if (Auth::user()->id)
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col">
                     doctor name
                     <h1>{{ $doctor->firstname }} {{ $doctor->lastname }}</h1>

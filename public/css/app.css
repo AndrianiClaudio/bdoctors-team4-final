@@ -25507,7 +25507,27 @@ main {
 }
 
 .nav-link:hover {
-  background-color: #3490dc;
+  background-color: #505DA8;
   color: #FFFFFF;
+}
+
+.bg-side {
+  background-color: #3C4996;
+}
+
+.side-vh {
+  height: 100vh;
+}
+
+.fs-side {
+  font-size: small;
+}
+
+.radious {
+  border-radius: 15px;
+}
+
+.main-vh {
+  height: 100vh;
 }
 

@@ -29,7 +29,11 @@ Route::middleware('auth')
     ->prefix('dashboard')
     ->group(function () {
         Route::resource('profile', 'DoctorController');
-
+        // Route::get('profile/edit', 'DoctorController@edit')->name('profile.edit');
+        // Route::patch('profile', 'DoctorController@update')->name('profile.update');
+        // Route::get('profile', 'DoctorController@index')->name('profile.show');
+        // Route::delete('profile/delete/${id}', 'DoctorController@destroy')->name('profile.destroy');
+    
         Route::resource('reviews', 'ReviewController');
 
         Route::resource('messages', 'MessageController');

@@ -1212,17 +1212,8 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\php\bdoctors-team4-final\resources\js\admin.js */"./resources/js/admin.js");
 module.exports = __webpack_require__(/*! C:\php\bdoctors-team4-final\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\classe49\lezione-40-php\progetto-finale\bdoctors-team4-final\resources\js\admin.js */"./resources/js/admin.js");
-module.exports = __webpack_require__(/*! C:\classe49\lezione-40-php\progetto-finale\bdoctors-team4-final\resources\sass\app.scss */"./resources/sass/app.scss");
-<<<<<<< HEAD
->>>>>>> 8e71a4920375696a8ae2c36058a42a6cee5ed581
-=======
->>>>>>> 7fd94b7f2fd11ff099c47bfb0373db9986f866f5
->>>>>>> origin/develop
 
 
 /***/ })

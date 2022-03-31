@@ -14,7 +14,7 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctors = User::where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages')->get();
+        $doctors = User::where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
         // $specs = Specialization::all();
         return response()->json([
             'response' => true,

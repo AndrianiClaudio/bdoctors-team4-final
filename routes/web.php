@@ -20,16 +20,24 @@ Route::get('/', 'HomeController@index')->name('home');
  ->group(function () {
  });
  */
-Route::resource('profile', 'DoctorController')->middleware('auth');
 
-Route::resource('reviews', 'ReviewController')->middleware('auth');
+Route::prefix('dashboard')
+    ->group(function () {
+    });
 
-Route::resource('messages', 'MessageController')->middleware('auth');
+Route::middleware('auth')
+    ->prefix('dashboard')
+    ->group(function () {
+        Route::resource('profile', 'DoctorController');
 
-Route::resource('services', 'ServiceController')->middleware('auth');
+        Route::resource('reviews', 'ReviewController');
 
-Route::resource('specializations', 'SpecializationController')->middleware('auth');
+        Route::resource('messages', 'MessageController');
 
+        Route::resource('services', 'ServiceController');
+
+        Route::resource('specializations', 'SpecializationController');
+    });
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');

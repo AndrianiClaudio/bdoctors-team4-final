@@ -2,20 +2,33 @@
 
 @section('script')
     <script>
-        function validateRegisterForm(e) {
-            e.preventDefault();
-            // console.log(e);
+        function handleData() {
+            var form_data = new FormData(document.querySelector("form"));
+            if (!form_data.has("specializations[]")) {
+                document.getElementById("chk_option_error").style.visibility = "visible";
+            } else {
+                document.getElementById("chk_option_error").style.visibility = "hidden";
+                return true
+            }
+            return false;
+        }
 
+        function validateRegisterForm(e) {
             let errors = [];
 
             // firstname
             let firstname = document.getElementById('firstname');
-            console.log(firstname.value);
+            // console.log(firstname.value);
             if (firstname.value == "") {
                 let check = document.getElementById('firstname_validate');
                 check.style.display = "block";
                 firstname.classList.add('is-invalid');
                 errors.push('firstname');
+                // console.log(errors);
+            } else {
+                let check = document.getElementById('firstname_validate');
+                check.style.display = "none";
+                firstname.classList.remove('is-invalid');
             }
 
             // lastname
@@ -25,6 +38,11 @@
                 let check = document.getElementById('lastname_validate');
                 check.style.display = "block";
                 lastname.classList.add('is-invalid');
+                errors.push('lastname');
+            } else {
+                let check = document.getElementById('lastname_validate');
+                check.style.display = "none";
+                lastname.classList.remove('is-invalid');
             }
 
             // email
@@ -33,6 +51,11 @@
                 let check = document.getElementById('email_validate');
                 check.style.display = "block";
                 email.classList.add('is-invalid');
+                errors.push('email');
+            } else {
+                let check = document.getElementById('email_validate');
+                check.style.display = "none";
+                email.classList.remove('is-invalid');
             }
             // password
             let password = document.getElementById('password');
@@ -40,6 +63,11 @@
                 let check = document.getElementById('password_validate');
                 check.style.display = "block";
                 password.classList.add('is-invalid');
+                errors.push('password');
+            } else {
+                let check = document.getElementById('password_validate');
+                check.style.display = "none";
+                password.classList.remove('is-invalid');
             }
             // password_confirm
             let password_confirm = document.getElementById('password-confirm');
@@ -47,6 +75,11 @@
                 let check = document.getElementById('password_confirm_validate');
                 check.style.display = "block";
                 password_confirm.classList.add('is-invalid');
+                errors.push('password_confirm');
+            } else {
+                let check = document.getElementById('password_confirm_validate');
+                check.style.display = "none";
+                password_confirm.classList.remove('is-invalid');
             }
 
             // var form_data = new FormData(document.querySelector("form"));
@@ -67,25 +100,35 @@
                 let check = document.getElementById('address_validate');
                 check.style.display = "block";
                 address.classList.add('is-invalid');
+                errors.push('address');
+            } else {
+                let check = document.getElementById('address_validate');
+                check.style.display = "none";
+                address.classList.remove('is-invalid');
             }
 
 
-            return errors.lenght > 0 ? true : false;
+            // console.log(errors);
+            // console.log(errors.length);
+            console.log(errors.length);
+            if (errors.length > 0) {
+                console.log(true);
+                return false;
+            } else {
+                if (handleData()) {
+                    console.log('handle');
+                    // e.submit();
+                    return true;
+                    // document.getElementById('submit').submit();
+                } else {
+                    console.log('non handle');
+                    return false;
+                }
+                // console.log(false);
+                // return true
+            }
         }
     </script>
-
-    {{-- <script type="text/javascript">
-        function handleData() {
-            var form_data = new FormData(document.querySelector("form"));
-            if (!form_data.has("specializations[]")) {
-                document.getElementById("chk_option_error").style.visibility = "visible";
-            } else {
-                document.getElementById("chk_option_error").style.visibility = "hidden";
-                return true
-            }
-            return false;
-        }
-    </script> --}}
 @endsection
 
 @section('content')
@@ -102,7 +145,7 @@
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}"
-                            onsubmit="return handleData(),validateRegisterForm(event);">
+                            onsubmit="return handleData(),validateRegisterForm(event)">
                             @csrf
 
 
@@ -266,7 +309,7 @@
                     {{-- SUBMIT --}}
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button id="submit" type="submit" class="btn btn-primary">
                                 {{ __('Register') }}
                             </button>
                         </div>

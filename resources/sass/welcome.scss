@@ -16,3 +16,19 @@
 .data-abs {
     top: 30px;
 }
+
+.profile-sizes {
+    height: calc(250px - 60px);
+    width: 350px;
+    background-color: white;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.profile-title {
+    height: 60px;
+    width: 350px;
+    background-color: #3C4996;
+    border-radius: 15px;
+    line-height: 60px;
+
+}

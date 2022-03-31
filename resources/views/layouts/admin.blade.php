@@ -45,7 +45,14 @@
                             </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link mt-5 text-white"
+                        <a href="{{ route('profile.index', Auth::user()->slug) }}" class="nav-link mt-5 text-white"
+                            aria-current="page">
+                            <i class="fa-solid fa-igloo p-1"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link  text-white"
                             aria-current="page">
                             <i class="fa-solid fa-user-doctor p-1"></i>
                             Il tuo profilo
@@ -82,36 +89,39 @@
                             Servizi
                         </a>
                     </li>
-                </ul>
+                
                 <hr>
-                <div class="dropdown ps-3  pb-2">
-                    <a href="#" class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
-                        id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img :src="'/storage/'+{{ Auth::user()->photo }}" alt="" width="32" height="32"
-                            class="rounded-circle me-2">
-                        <strong class="text-white text-capitalize" > Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </strong>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item"
-                                href="{{ route('services.index', Auth::user()->slug) }}">Gestisci le tue
-                                prestazioni</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->slug) }}">Modifica
-                                profilo</a></li>
-                        <li><a class="dropdown-item"
-                                href="{{ route('profile.show', Auth::user()->slug) }}">Profilo</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"> Logout</a>
-                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form> 
-                        </li>
-                    </ul>
-                </div>
+                <li>
+                    <div class="dropdown ps-3 pb-2">
+                        <a href="#" class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
+                            id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img :src="'/storage/'+{{ Auth::user()->photo }}" alt="" width="32" height="32"
+                                class="rounded-circle me-2">
+                            <strong class="text-white text-capitalize" > Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </strong>
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                            <li><a class="dropdown-item"
+                                    href="{{ route('services.index', Auth::user()->slug) }}">Gestisci le tue
+                                    prestazioni</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->slug) }}">Modifica
+                                    profilo</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{{ route('profile.show', Auth::user()->slug) }}">Profilo</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"> Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form> 
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                </ul>
             </div>
 
             <div id="app">

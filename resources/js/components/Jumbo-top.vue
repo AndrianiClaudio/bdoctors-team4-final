@@ -54,6 +54,7 @@ export default {
                 Type: Array,
             },
             filterSelected: null,
+            filtered: [],
         };
     },
     methods: {
@@ -63,17 +64,24 @@ export default {
                 .then((res) => {
                     this.specs = res.data.results.specs;
                 })
-                .catch((err) => {});
+                .catch((err) => {
+                    console.error(err);
+                });
         },
         filter() {
             if(this.filterSelected) {
-                console.log(this.filterSelected);
+                // console.log(this.filterSelected);
 
-            //     axios.post('/api/doctors/',{this.filterSelected}).then((res) => {
-            //         console.log('res.data',res.data);
-            // }).catch((err) => {
-            //     console.error(err);
-            // });
+                axios.post(`/api/doctors/${this.filterSelected}`)
+                .then((res) => {
+                    console.log(res);
+                    this.filtered = res.data.results.doctors;
+                    // console.log(this.filtered);
+                    // this.$router.go({ name: "filter"},{specialiations: this.filtered})
+                    // router.push("filter",this.filtered);
+                }).catch((err) => {
+                    console.error(err);
+                });
 
             }
         },

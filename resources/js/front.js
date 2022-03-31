@@ -14,6 +14,10 @@ import App from './view/App.vue';
 import Home from './pages/Home.vue';
 import Doctor from './pages/Doctor.vue';
 import Message from './pages/Message.vue';
+import Review from './pages/Review.vue';
+import ProvaApi from './pages/ProvaApi.vue';
+// import Navbar from './components/Navbar.vue';
+
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -39,6 +43,20 @@ const router = new VueRouter({
             name: 'message',
             props: true,
             component: Message,
+            
+        },
+        {
+            path: '/doctor/:slug/review',
+            name: 'review',
+            props: true,
+            component: Review,
+            
+        },
+        {
+            path: '/provaApi',
+            name: 'ProvaApi',
+            props: true,
+            component: ProvaApi,
             
         },
         

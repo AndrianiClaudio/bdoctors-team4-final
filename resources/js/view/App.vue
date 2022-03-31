@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="container">
     App
     <router-view></router-view>
@@ -14,8 +15,20 @@ export default {
   //   },
   name: 'App',
 }
+=======
+    <div class="container-fluid p-0">
+
+        <router-view></router-view>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'App',
+    }
+>>>>>>> origin/develop
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

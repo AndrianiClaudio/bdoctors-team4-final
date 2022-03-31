@@ -6,27 +6,76 @@
                     <h5 class="card-title">
                         {{ doctor.firstname }} {{ doctor.lastname }}
                     </h5>
-                    <div>
-                        <b><em>Email</em></b>
-                        {{ doctor.email }}
-                    </div>
-                    <div>
-                        <b><em>Address</em></b>
-                        {{ doctor.address }}
-                    </div>
+                    <hr />
+                    <b><em>Email</em></b>
+                    {{ doctor.email }}
+                    <hr />
+                    <b><em>Address</em></b>
+                    {{ doctor.address }}
                     <div v-if="doctor.cv">
+                        <hr />
                         <b><em>Curriculum Vitae</em></b>
                         {{ doctor.address }}
                     </div>
                     <div v-if="doctor.phone">
+                        <hr />
                         <b><em>Telefono</em></b>
                         {{ doctor.phone }}
+                    </div>
+                    <!-- RECENSIONI DEL DOTTORE -->
+                    <div v-if="doctor.reviews">
+                        <hr />
+                        <b><em>Reviews</em></b>
+                        <ul>
+                            <li
+                                v-for="(review, index) in doctor.reviews"
+                                :key="`review-${index}`"
+                            >
+                                <div v-if="review.username">
+                                    <b> {{ review.username }}</b>
+                                </div>
+                                <div v-else>
+                                    <b> Utente anonimo</b>
+                                </div>
+                                <b>Voto: </b>{{ review.vote }}
+                            </li>
+                        </ul>
+                        <!-- <div
+                            v-for="(review, index) in doctor.reviews"
+                            :key="`review-${index}`"
+                        > -->
+                    </div>
+                    <!-- SPECIALIZZAZIONI -->
+                    <hr />
+                    <div v-if="doctor.specializations">
+                        <b><em>Specializations</em></b>
+                        <div
+                            v-for="(spec, index) in doctor.specializations"
+                            :key="`spec-${index}`"
+                        >
+                            {{ spec.category }}
+                        </div>
+                    </div>
+                    <!-- SERVIZI -->
+                    <div v-if="doctor.services">
+                        <b><em>Services</em></b>
+                        <div
+                            v-for="(service, index) in doctor.services"
+                            :key="`service-${index}`"
+                        >
+                            {{ service.type }}
+                        </div>
                     </div>
                 </div>
                 <router-link
                     class="btn btn-success"
                     :to="{ name: 'message', params: { slug: doctor.slug } }"
                     >Send a message</router-link
+                >
+                <router-link
+                    class="btn btn-success"
+                    :to="{ name: 'review', params: { slug: doctor.slug } }"
+                    >Send a Review</router-link
                 >
                 <router-link class="btn btn-info" :to="{ name: 'home' }"
                     >Back to Home</router-link
@@ -54,7 +103,7 @@ export default {
     methods: {
         getProduct(url) {
             axios.get(url).then((result) => {
-                console.log(result.data.doctors);
+                // console.log(result.data.doctors);
                 this.doctor = result.data.doctors;
             });
         },

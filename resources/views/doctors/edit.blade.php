@@ -23,7 +23,8 @@
             {{-- Modifica possibile solo a se stessi o se si é admin --}}
             @if ($doctor->id === Auth::id())
                 <div class="col">
-                    <form action="{{ route('profile.update', $doctor->slug) }}" method="POST">
+                    <form action="{{ route('profile.update', $doctor->slug) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 
@@ -51,6 +52,17 @@
                             @enderror
                         </div>
                         {{-- specialization --}}
+
+                        {{-- EDIT UPLOAD --}}
+                        <div class="mb-3">
+                            <label for="photo" class="form-label">Photo</label>
+                            <input type="file" name="photo" value="">
+                            @error('photo')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
 
                         @error('specializations')

@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid p-0">
         <div class="overlay">
-            <img src="/images/jumbo-top.jpg" alt="">
+            <img src="/images/jumbo-top.jpg" alt="" />
             <div class="introduction-jumbo d-flex flex-column">
                 <div class="card2 text-jumbo text-center">
                     <h1 class="mt-4 ms-3 text-white pb-2">
@@ -26,7 +26,7 @@
                             <option
                                 v-for="spec in specs"
                                 :key="spec.id"
-                                :value="spec.id"
+                                :value="spec.category"
                             >
                                 <!-- :value="spec.id" -->
                                 {{ spec.category }}
@@ -53,8 +53,12 @@ export default {
             specs: {
                 Type: Array,
             },
-            filterSelected: null,
-            filtered: [],
+            filterSelected: {
+                Type: String,
+            },
+            filtered: {
+                Type: Array,
+            },
         };
     },
     methods: {
@@ -68,21 +72,27 @@ export default {
                     console.error(err);
                 });
         },
-        filter() {
-            if(this.filterSelected) {
-                // console.log(this.filterSelected);
+        filter(specialization) {
+            if (specialization) {
+                // console.log(specialization);
 
-                axios.post(`/api/doctors/${this.filterSelected}`)
-                .then((res) => {
-                    console.log(res);
-                    this.filtered = res.data.results.doctors;
-                    // console.log(this.filtered);
-                    // this.$router.go({ name: "filter"},{specialiations: this.filtered})
-                    // router.push("filter",this.filtered);
-                }).catch((err) => {
-                    console.error(err);
-                });
+                axios
+                    .post(`/api/doctors?specialization=${specialization}`)
+                    .then((res) => {
+                        // console.log(res);
+                        this.filtered = res.data.results.doctors;
+                        // this.$emit('filterSpec',this.filtered);
+                        this.$router.push({
+                            path: "/filter",
+                            query: { specialization: specialization },
+                        });
 
+                        // let routeData = this.$router.resolve({name: 'routeName', query: {data: "someData"}});
+                        // window.open(routeData.href, '_blank');
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    });
             }
         },
     },

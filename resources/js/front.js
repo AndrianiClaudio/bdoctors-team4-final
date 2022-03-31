@@ -16,7 +16,7 @@ import Doctor from './pages/Doctor.vue';
 import Message from './pages/Message.vue';
 import Review from './pages/Review.vue';
 import ProvaApi from './pages/ProvaApi.vue';
-import Filter from './pages/Filter.vue';
+import FilterSpec from './pages/Filter.vue';
 // import Navbar from './components/Navbar.vue';
 
 // IMPORT ROUTER ... NEXT
@@ -61,10 +61,10 @@ const router = new VueRouter({
             
         },
         {
-            path: '/filter/:specialization',
+            path: '/filter',
             name: 'filter',
-            props: true,
-            component: Filter,
+            query: true,
+            component: FilterSpec,
             
         },
         

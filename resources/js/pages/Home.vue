@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid p-0">
         <Navbar />
+        <!-- <JumboT @filterSpec = "filteredSpec($event)"/> -->
         <JumboT />
         <Overview />
         <Specializations />
@@ -66,6 +67,7 @@ export default {
             // },
         };
     },
+
     methods: {
         getAllDoctors() {
             axios
@@ -80,6 +82,10 @@ export default {
                     console.error(err);
                 });
         },
+        // filteredSpec(e) {
+
+        //     console.log(e);
+        // }
     },
     created() {
         this.getAllDoctors();

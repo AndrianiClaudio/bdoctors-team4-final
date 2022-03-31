@@ -23,13 +23,17 @@ class DoctorController extends Controller
         ]);
     }
     
-    public function filterSpec(Request $request,$id)
+    public function filterSpec(Request $request)
     {
         $data = $request->all();
+        // dd($data);
         $doctors = User::orderBy('id','asc')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
         // $doctors;
 
         $filtered_doctors = [];
+        // dd($data['specialization']);
+        $id = Specialization::where('category',$data['specialization'])->first()->id;
+        // dd($id);
         foreach ($doctors as $doctor) {
             $specs = $doctor->specializations()->get();
             foreach ($specs as $spec) {

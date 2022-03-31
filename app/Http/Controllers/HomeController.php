@@ -25,8 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $date = Carbon::now()->format('Y-m-d');
-        dd($date);
         return view('guest.home');
     }
 }

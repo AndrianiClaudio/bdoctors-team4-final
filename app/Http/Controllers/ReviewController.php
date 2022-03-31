@@ -17,8 +17,9 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::where('user_id', Auth::user()->id)->get();
-        $doctor = User::find(Auth::user()->id);
-        return view('doctors.reviews.index', compact('reviews', 'doctor'));
+        // $doctor = User::find(Auth::user()->id);
+        return view('doctors.reviews.index', compact('reviews'));
+    // return view('doctors.reviews.index', compact('reviews', 'doctor'));
     }
 
     /**
@@ -51,8 +52,10 @@ class ReviewController extends Controller
     public function show($id)
     {
         $review = Review::find($id);
-        $doctor = User::find(Auth::user()->id);
-        return view('doctors.reviews.show', compact('review', 'doctor'));
+        // $doctor = User::find(Auth::user()->id);
+        // return view('doctors.reviews.show', compact('review', 'doctor'));
+        return $review ? view('doctors.reviews.show', compact('review')) : redirect()->route('reviews.index');
+    // return $review ? view('doctors.reviews.show', compact('review', 'doctor')) : redirect()->route('reviews.index');
     }
 
     /**

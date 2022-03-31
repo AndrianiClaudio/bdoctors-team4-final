@@ -18,8 +18,9 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::where('user_id', Auth::user()->id)->get();
-        $doctor = User::find(Auth::user()->id);
-        return view('doctors.messages.index', compact('messages', 'doctor'));
+        // $doctor = User::find(Auth::user()->id);
+        return view('doctors.messages.index', compact('messages'));
+    // return view('doctors.messages.index', compact('messages', 'doctor'));
     }
 
     /**
@@ -52,8 +53,9 @@ class MessageController extends Controller
     public function show($id)
     {
         $message = Message::find($id);
-        $doctor = User::find(Auth::user()->id);
-        return view('doctors.messages.show', compact('message', 'doctor'));
+        // $doctor = User::find(Auth::user()->id);
+        return $message ? view('doctors.messages.show', compact('message')) : redirect()->route('messages.index');
+    // return $message ? view('doctors.messages.show', compact('message', 'doctor')) : redirect()->route('messages.index');
     }
 
     /**

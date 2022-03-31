@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     @yield('script')
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -60,8 +61,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -87,55 +89,59 @@
 
                 <ul class="nav nav-pills flex-column mb-auto lh-5 fs-5">
                     <li class="nav-item">
-                        <a href="{{ route('profile.show', $doctor->slug) }}" class="nav-link active"
+                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link active"
                             aria-current="page">
                             <i class="fa-solid fa-user-doctor p-1"></i>
                             Il tuo profilo
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show', $doctor->slug) }}" class="nav-link link-dark">
+                        <a href="{{ route('messages.index', Auth::user()->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-comment-medical p-1"></i>
                             Messaggi
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show', $doctor->slug) }}" class="nav-link link-dark">
+                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link link-dark">
                             <i class="fa-regular fa-star p-1"></i>
                             Piani di abbonamento
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show', $doctor->slug) }}" class="nav-link link-dark">
+                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-chart-line p-1"></i>
                             Le tue statistiche
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('reviews.index', $doctor->slug) }}" class="nav-link link-dark">
+                        <a href="{{ route('reviews.index', Auth::user()->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-star-half-stroke p-1"></i>
                             Recensioni
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('reviews.index', $doctor->slug) }}" class="nav-link link-dark">
+                    {{-- <li>
+                        <a href="{{ route('fullcalendrr', Auth::user()->slug) }}" class="nav-link link-dark">
                             <i class="fa-solid fa-calendar-days p-1"></i>
                             Calendario
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <hr>
                 <div class="dropdown ps-3 pb-2">
                     <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ $doctor->photo }}" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong> Dr. {{ $doctor->firstname }} {{ $doctor->lastname }} </strong>
+                        <img src="{{ Auth::user()->photo }}" alt="" width="32" height="32"
+                            class="rounded-circle me-2">
+                        <strong> Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="#">Gestisci le tue prestazioni</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.edit', $doctor->slug) }}">Modifica
+                        <li><a class="dropdown-item"
+                                href="{{ route('services.index', Auth::user()->slug) }}">Gestisci le tue
+                                prestazioni</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->slug) }}">Modifica
                                 profilo</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.show', $doctor->slug) }}">Profilo</a>
+                        <li><a class="dropdown-item"
+                                href="{{ route('profile.show', Auth::user()->slug) }}">Profilo</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -151,5 +157,26 @@
         </main>
     </div>
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+ 
+    $('.show_confirm').click(function(event) {
+         var form =  $(this).closest("form");
+         var name = $(this).data("name");
+         event.preventDefault();
+         swal({
+             title: `Are you sure you want to delete this record?`,
+             text: "If you delete this, it will be gone forever.",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             form.submit();
+           }
+         });
+     });
+ 
+</script>
 </html>

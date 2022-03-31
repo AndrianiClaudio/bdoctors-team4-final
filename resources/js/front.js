@@ -12,7 +12,12 @@ window.Vue = require('vue');
 // IMPORT COMPONENTS
 import App from './view/App.vue';
 import Home from './pages/Home.vue';
+<<<<<<< HEAD
 import  EventCalendar from './components/EventCalendar.vue'
+=======
+import Doctor from './pages/Doctor.vue';
+import Message from './pages/Message.vue';
+>>>>>>> origin/develop
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -27,11 +32,28 @@ const router = new VueRouter({
             
         },
         {
+<<<<<<< HEAD
             path: '/calendar',
             name: 'calendar',
             component: EventCalendar,
             
         },
+=======
+            path: '/doctor/:slug',
+            name: 'doctor',
+            props: true,
+            component: Doctor,
+            
+        },
+        {
+            path: '/doctor/:slug/message',
+            name: 'message',
+            props: true,
+            component: Message,
+            
+        },
+        
+>>>>>>> origin/develop
     ]
 });
 

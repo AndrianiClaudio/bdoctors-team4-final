@@ -1,7 +1,10 @@
 <template>
     <div class="container-fluid p-0">
         <div class="overlay">
-            <img src="../../../storage/app/public/images/jumbo-top.jpg" alt="">
+            <img
+                src="../../../storage/app/public/images/jumbo-top.jpg"
+                alt=""
+            />
             <div class="introduction-jumbo d-flex flex-column">
                 <div class="card2 text-jumbo text-center">
                     <h1 class="mt-4 ms-3 text-white pb-2">
@@ -19,19 +22,24 @@
                         class="d-flex mt-4 mb-4 justify-content-center"
                         action=""
                     >
-                        <select name="" id="">
+                        <select name="" id="" v-model="filterSelected">
                             <option value="" disabled selected>
                                 Seleziona una specializzazione
                             </option>
                             <option
                                 v-for="spec in specs"
                                 :key="spec.id"
-                                value=""
+                                :value="spec.id"
                             >
+                                <!-- :value="spec.id" -->
                                 {{ spec.category }}
                             </option>
                         </select>
-                        <input type="submit" value="search" />
+                        <input
+                            type="submit"
+                            value="search"
+                            @click.prevent="filter(filterSelected)"
+                        />
                     </form>
                 </div>
             </div>
@@ -48,6 +56,7 @@ export default {
             specs: {
                 Type: Array,
             },
+            filterSelected: null,
         };
     },
     methods: {
@@ -58,6 +67,18 @@ export default {
                     this.specs = res.data.results.specs;
                 })
                 .catch((err) => {});
+        },
+        filter() {
+            if(this.filterSelected) {
+                console.log(this.filterSelected);
+
+            //     axios.post('/api/doctors/',{this.filterSelected}).then((res) => {
+            //         console.log('res.data',res.data);
+            // }).catch((err) => {
+            //     console.error(err);
+            // });
+
+            }
         },
     },
     created() {

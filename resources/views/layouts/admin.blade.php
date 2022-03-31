@@ -94,8 +94,8 @@
                     <a href="#"
                         class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32" height="32"
-                            class="rounded-circle me-2">
+                        <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32"
+                            height="32" class="rounded-circle me-2">
                         <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
                             {{ Auth::user()->lastname }} </strong>
                     </a>

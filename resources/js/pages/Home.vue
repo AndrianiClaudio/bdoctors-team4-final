@@ -5,7 +5,7 @@
         <Overview />
         <Specializations />
         <DoctorOv />
-        <!-- <div v-if="doctors">
+        <div v-if="doctors">
             <div v-for="(doctor, index) in doctors" :key="index">
                 <h1>Dottore {{ doctor.id }}</h1>
                 <div>
@@ -36,7 +36,7 @@
                 >
                 <hr />
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 

@@ -1,0 +1,39 @@
+main {
+  height: calc(100vh - 56px);
+  display: flex;
+}
+
+.side-sizes {
+  width: 280px;
+  height: calc(100vh - 56px);
+}
+
+.lh-5 {
+  line-height: 5em;
+}
+
+.nav-link:hover {
+  background-color: #505DA8;
+  color: #FFFFFF;
+}
+
+.bg-side {
+  background-color: #3C4996;
+}
+
+.side-vh {
+  height: 100vh;
+}
+
+.fs-side {
+  font-size: small;
+}
+
+.radious {
+  border-radius: 15px;
+}
+
+.main-vh {
+  height: 100vh;
+}
+

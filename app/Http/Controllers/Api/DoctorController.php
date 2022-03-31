@@ -14,56 +14,18 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctors = User::paginate(5);
-        $specializations = Specialization::all();
-        $services = Service::all();
-        $reviews = Review::all();
+        $doctors = User::where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages')->get();
+        // $specs = Specialization::all();
         return response()->json([
             'response' => true,
-            'results' => ['doctors' => $doctors, 'specializations' => $specializations, 'services' => $services, 'reviews' => $reviews],
+            // 'results' => compact('doctors', 'specs')
+            'results' => compact('doctors')
         ]);
     }
-
-
-
-
-    public function provaIndex()
-    {
-        $doctors = User::all();
-        // $specializations = Specialization::all();
-        $services = Service::all();
-        $reviews = Review::all();
-        foreach ($doctors as $doctor) {
-            $doctor->specs = $doctor->specializations()->get();
-            $servs = [];
-            foreach ($services as $service) {
-                if ($service->user_id == $doctor->id) {
-                    $servs [] = $service;
-                }
-            }
-            $rews = [];
-            foreach ($reviews as $review) {
-                if ($review->user_id == $doctor->id) {
-                    $rews [] = $review;
-                }
-            }
-            $doctor->reviews = $rews;
-        }
-        return response()->json([
-            'response' => true,
-            'results' => [
-                'doctors' => $doctors,
-                // 'specializations' => $specializations
-            ],
-        ]);
-    }
-
-
-
 
     public function show($slug)
     {
-        $doctors = User::where('slug', $slug)->first();
+        $doctors = User::where('slug', $slug)->with('specializations', 'services', 'reviews', 'messages')->first();
 
         return response()->json([
             'response' => true,

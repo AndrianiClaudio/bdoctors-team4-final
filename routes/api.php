@@ -12,8 +12,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace ('Api')
     ->group(function () {
         Route::get('doctors', 'DoctorController@index');
-        Route::get('doctors/v2', 'DoctorController@provaindex');
         Route::get('doctors/{slug}', 'DoctorController@show');
         Route::post('doctors/{slug}/message', 'DoctorController@newMessage');
         Route::post('doctors/{slug}/review', 'DoctorController@newReview');
+
+        Route::get('specializations', 'SpecializationController@index');
     });

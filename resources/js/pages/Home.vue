@@ -58,6 +58,9 @@ export default {
             doctors: {
                 type: Array,
             },
+            // specs: {
+            //     type: Array,
+            // },
         };
     },
     methods: {
@@ -65,8 +68,10 @@ export default {
             axios
                 .get("api/doctors")
                 .then((res) => {
-                    this.doctors = res.data.results.doctors.data;
-                    console.log(res);
+                    this.doctors = res.data.results.doctors;
+                    // this.specs = res.data.results.specs;
+                    // console.log(res.data.results.specs);
+                    // console.log(this.doctors);
                 })
                 .catch((err) => {
                     console.error(err);

@@ -119,7 +119,7 @@ export default {
                 this.errors.push("content required.");
             }
 
-console.log(this.errors);
+            console.log(this.errors);
             e.preventDefault();
         },
     },

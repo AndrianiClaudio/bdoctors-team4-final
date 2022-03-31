@@ -47,22 +47,21 @@ export default {
         return {
             specs: {
                 Type: Array,
-            }
-        }
+            },
+        };
     },
     methods: {
         getSpecs() {
-            axios.get("api/specializations")
-            .then((res) => {
-                this.specs = res.data.results.specs;
-            }).catch((err) => {
-                
-            });
-
-        }
+            axios
+                .get("api/specializations")
+                .then((res) => {
+                    this.specs = res.data.results.specs;
+                })
+                .catch((err) => {});
+        },
     },
     created() {
-        this.getSpecs() ;
+        this.getSpecs();
     },
 };
 </script>

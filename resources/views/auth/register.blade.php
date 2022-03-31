@@ -27,7 +27,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Firstname') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="firstname" type="text" 
+                                    <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
                                         value="{{ old('firstname') }}" autocomplete="firstname" autofocus required>
                                     @error('firstname')
@@ -109,7 +109,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Specializations') }}</label>
 
                                 <div class="col-md-6">
-                                    <div class="form-check">
+                                    <div class="form-control @error('specializations') is-invalid @enderror">
                                         @foreach ($spec as $spec_value)
                                             {{-- @dd($spec_value) --}}
                                             <div>
@@ -127,7 +127,9 @@
                                         Please select at least one option.
                                     </div>
                                     @error('specializations')
-                                        <span class="invalid-feedback" role="alert">
+                                        {{-- @dd($errors->any())
+                                        @dd($message) --}}
+                                        <span class="invalid-feedback" id="InvalidCheck3Feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -162,6 +164,7 @@
                             </button>
                         </div>
                     </div>
+                    {{-- @dd($errors) --}}
                     </form>
                 </div>
             </div>

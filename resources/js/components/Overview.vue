@@ -94,7 +94,7 @@ export default {
                 height: 250px;
 
                 .mask-img {
-                    background-image: url('../../../storage/app/public/images/doctor1.jpg');
+                    background-image: url("../../../storage/app/public/images/doctor1.jpg");
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center;

@@ -60,7 +60,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -83,22 +83,17 @@
         </main>
     </div>
 </body>
-
 <script type="text/javascript">
-    function handleData()
-{
-    var form_data = new FormData(document.querySelector("form"));
-    if(!form_data.has("specializations[]"))
-    {
-        document.getElementById("chk_option_error").style.visibility = "visible";
+    function handleData() {
+        var form_data = new FormData(document.querySelector("form"));
+        if (!form_data.has("specializations[]")) {
+            document.getElementById("chk_option_error").style.visibility = "visible";
+        } else {
+            document.getElementById("chk_option_error").style.visibility = "hidden";
+            return true
+        }
+        return false;
     }
-    else
-    {
-        document.getElementById("chk_option_error").style.visibility = "hidden";
-        return true
-    }
-    return false;
-}
 </script>
 
 </html>

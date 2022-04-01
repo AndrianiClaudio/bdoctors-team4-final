@@ -8,7 +8,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-
 // IMPORT COMPONENTS
 import App from './view/App.vue';
 import Home from './pages/Home.vue';
@@ -18,6 +17,7 @@ import Review from './pages/Review.vue';
 import ProvaApi from './pages/ProvaApi.vue';
 import FilterSpec from './pages/Filter.vue';
 // import Navbar from './components/Navbar.vue';
+
 
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';

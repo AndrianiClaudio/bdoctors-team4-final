@@ -29,7 +29,11 @@
                 </div>
                 <div class="col">
                     <div class=" text-black ">
-                        <h3 class="profile-title text-white text-center m-0 d-inline-block">Profile</h3>
+                        <h6 class="profile-title text-white m-0 d-inline-block ps-2">IL TUO PROFILO</h6>
+                        <div class="edit-profile text-white">
+                            <a class="text-white" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                                <i class="fa-solid fa-pen-to-square"></i></a>
+                            </div>
                         <div class="profile-sizes">
                             maron com'è bell stu caz
                         </div>

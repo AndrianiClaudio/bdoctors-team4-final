@@ -26747,6 +26747,10 @@ main {
   width: 100px;
 }
 
+.edit-profile {
+  position: absolute;
+}
+
 .welcome-sizes {
   width: 780px;
   height: 250px;
@@ -26779,5 +26783,15 @@ main {
   background-color: #3C4996;
   border-radius: 15px;
   line-height: 60px;
+}
+
+.edit-profile {
+  position: absolute;
+  border-radius: 5px;
+  background-color: #58C1F9;
+  top: 17%;
+  right: 3.6%;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
 }
 

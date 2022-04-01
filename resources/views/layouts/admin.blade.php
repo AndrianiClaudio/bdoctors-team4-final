@@ -51,44 +51,46 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('profile.index') }}" class="nav-link mt-5 text-white" aria-current="page">
+                        <a href="{{ route('profile.index', Auth::user()->slug) }}" class="nav-link mt-5 text-white"
+                            aria-current="page">
                             <i class="fa-solid fa-igloo p-1"></i>
                             Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('profile.show') }}" class="nav-link mt-5 text-white" aria-current="page">
+                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link  text-white"
+                            aria-current="page">
                             <i class="fa-solid fa-user-doctor p-1"></i>
-                            Il tuo profilo
+                            Il tuo Profilo
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ route('messages.index') }}" class="nav-link  text-white">
+                        <a href="{{ route('messages.index', Auth::user()->slug) }}" class="nav-link  text-white">
                             <i class="fa-solid fa-comment-medical p-1"></i>
                             Messaggi
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show') }}" class="nav-link text-white">
+                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link text-white">
                             <i class="fa-regular fa-star p-1"></i>
                             Piani di abbonamento
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show') }}" class="nav-link text-white">
+                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link text-white">
                             <i class="fa-solid fa-chart-line p-1"></i>
                             Le tue statistiche
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('reviews.index') }}" class="nav-link text-white">
+                        <a href="{{ route('reviews.index', Auth::user()->slug) }}" class="nav-link text-white">
                             <i class="fa-solid fa-star-half-stroke p-1"></i>
                             Recensioni
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('services.index') }}" class="nav-link text-white">
+                        <a href="{{ route('services.index', Auth::user()->slug) }}" class="nav-link text-white">
                             <i class="fa-solid fa-star-half-stroke p-1"></i>
                             Servizi
                         </a>
@@ -129,45 +131,16 @@
                         </div>
                     </li>
                 </ul>
-                <hr>
-                {{-- <div class="dropdown ps-3  pb-2">
-                    <a href="#"
-                        class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
-                        id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32"
-                            height="32" class="rounded-circle me-2">
-                        <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
-                            {{ Auth::user()->lastname }} </strong>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
-                                prestazioni</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
-                                profilo</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"> Logout</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-                </div> --}}
             </div>
 
-            <div id="app">
+            <div id="app" style="width:100%">
                 @yield('content')
             </div>
         </main>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-{{-- <script type="text/javascript">
+<script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
         var name = $(this).data("name");
@@ -185,6 +158,6 @@
                 }
             });
     });
-</script> --}}
+</script>
 
 </html>

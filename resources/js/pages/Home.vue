@@ -6,38 +6,6 @@
         <Overview />
         <Specializations />
         <DoctorOv />
-        <!-- <div v-if="doctors">
-            <div v-for="(doctor, index) in doctors" :key="index">
-                <h1>Dottore {{ doctor.id }}</h1>
-                <div>
-                    <b><em>Nome</em></b>
-                    {{ doctor.firstname }} {{ doctor.lastname }}
-                </div>
-                <div v-if="doctor.photo">
-                    <b><em>Photo</em></b>
-                    <img
-                        :src="/storage/ + doctor.photo"
-                        :alt="doctor.firstname + ' ' + doctor.lastname"
-                    />
-                </div>
-                <router-link
-                    class="btn btn-success"
-                    :to="{ name: 'message', params: { slug: doctor.slug } }"
-                    >Send a message</router-link
-                >
-                <router-link
-                    class="btn btn-secondary"
-                    :to="{ name: 'review', params: { slug: doctor.slug } }"
-                    >Write a review</router-link
-                >
-                <router-link
-                    class="btn btn-info"
-                    :to="{ name: 'doctor', params: { slug: doctor.slug } }"
-                    >View</router-link
-                >
-                <hr />
-            </div>
-        </div> -->
     </div>
 </template>
 
@@ -76,17 +44,6 @@ export default {
                     console.error(err);
                 });
         },
-        // filteredSpec(e) {
-        //     // console.log(e);
-        //     axios
-        //         .post(`/api/doctors?specialization=${e}`)
-        //         .then((res) => {
-        //             this.doctors = res.data.results.doctors;
-        //         })
-        //         .catch((err) => {
-        //             console.error(err);
-        //         });
-        // },
     },
     created() {
         this.getAllDoctors();

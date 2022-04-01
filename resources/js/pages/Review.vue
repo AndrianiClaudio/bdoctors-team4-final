@@ -147,7 +147,7 @@ export default {
             if (!this.vote) {
                 this.errors.vote = true;
                 vote.classList.add("is-invalid");
-                console.log(this.errors.vote);
+                // console.log(this.errors.vote);
             } else {
                 vote.classList.remove("is-invalid");
             }

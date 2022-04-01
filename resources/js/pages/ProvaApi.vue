@@ -17,10 +17,10 @@ export default {
             axios
                 .get("api/doctors/v2")
                 .then((res) => {
-                    console.log(res);
+                    // console.log(res);
                 })
                 .catch((err) => {
-                    console.error(err);
+                    // console.error(err);
                 });
         },
     },

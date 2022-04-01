@@ -126,10 +126,10 @@ export default {
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
                     this.doctors = res.data.results.doctors;
-                    console.log(this.doctors);
+                    // console.log(this.doctors);
                 })
                 .catch((err) => {
-                    console.error(err);
+                    // console.error(err);
                 });
         },
     },

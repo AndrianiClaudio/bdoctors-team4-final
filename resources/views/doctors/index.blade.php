@@ -36,7 +36,7 @@
                     </div>
                     <div class="profile-sizes d-flex">
                         <div class="profile-picture-preview mt-3 ms-3">
-                            <img :src="'/storage/'+{{ Auth::user()->photo }}" alt="" width="100%" height ="100%"
+                            <img src="http://localhost:8000/storage/{{Auth::user()->photo }}" alt="" width="100%" height ="100%"
                                     class="rounded-circle me-2">
                         </div>
                         <div class="text-black ms-2 mt-4 text-capitalize">

@@ -6,6 +6,112 @@
 
 @section('script')
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script>
+        // function handleData() {
+        //     var form_data = new FormData(document.querySelector("form"));
+        //     if (!form_data.has("specializations[]")) {
+        //         document.getElementById("chk_option_error").style.visibility = "visible";
+        //     } else {
+        //         document.getElementById("chk_option_error").style.visibility = "hidden";
+        //         return true
+        //     }
+
+        //     return false;
+        // }
+
+        function validateEditForm(e) {
+            // console.log(e.target.value);
+            e.preventDefault();
+            let errors = [];
+
+            // firstname
+            let firstname = document.getElementById('firstname');
+            // console.log(firstname.value);
+            if (firstname.value == "") {
+                // let check = document.getElementById('firstname_validate');
+                // check.style.display = "block";
+                firstname.classList.add('is-invalid');
+                errors.push('firstname');
+            } else {
+                let check = document.getElementById('firstname_validate');
+                check.style.display = "none";
+                firstname.classList.remove('is-invalid');
+            }
+
+            // lastname
+            let lastname = document.getElementById('lastname');
+
+            if (lastname.value == "") {
+                // let check = document.getElementById('lastname_validate');
+                // check.style.display = "block";
+                lastname.classList.add('is-invalid');
+                errors.push('lastname');
+            } else {
+                let check = document.getElementById('lastname_validate');
+                check.style.display = "none";
+                lastname.classList.remove('is-invalid');
+            }
+
+            // email
+            let email = document.getElementById('email');
+            if (email.value == "") {
+                // let check = document.getElementById('email_validate');
+                // check.style.display = "block";
+                email.classList.add('is-invalid');
+                errors.push('email');
+            } else {
+                let check = document.getElementById('email_validate');
+                check.style.display = "none";
+                email.classList.remove('is-invalid');
+            }
+
+            // address_confirm
+            let address = document.getElementById('address');
+            if (address.value == "") {
+                // let check = document.getElementById('address_validate');
+                // check.style.display = "block";
+                address.classList.add('is-invalid');
+                errors.push('address');
+            } else {
+                let check = document.getElementById('address_validate');
+                check.style.display = "none";
+                address.classList.remove('is-invalid');
+            }
+
+
+
+            if (errors.length > 0) {
+                // console.log(true);
+                // e.currentTarget.submit();
+                return false;
+            }
+            //  else {
+            //     if (handleData()) {
+            //         // console.log('handle');
+            //         // e.submit();
+            //         return true;
+            //         // document.getElementById('submit').submit();
+            //     } else {
+            //         // console.log('non handle');
+            //         return false;
+            //     }
+            //     // console.log(false);
+            //     // return true
+            // }
+            else {
+
+                e.currentTarget.submit();
+                return true
+            }
+
+            // console.log(errors.length);
+            // if (errors.length > 0) {
+            //     return false;
+            // } else {
+            //     return true;
+            // }
+        }
+    </script>
 @endsection
 
 @section('content')
@@ -23,7 +129,8 @@
             {{-- Modifica possibile solo a se stessi o se si é admin --}}
             @if ($doctor->id === Auth::id())
                 <div class="col">
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"
+                        onsubmit="return validateEditForm(event)">
                         @csrf
                         @method('PATCH')
 
@@ -37,6 +144,9 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            <span id="firstname_validate" class="invalid-feedback" role="alert">
+                                <strong>Compila questo campo </strong>
+                            </span>
                         </div>
 
                         {{-- lastname --}}
@@ -49,6 +159,9 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            <span id="lastname_validate" class="invalid-feedback" role="alert">
+                                <strong>Compila questo campo </strong>
+                            </span>
                         </div>
                         {{-- specialization --}}
 
@@ -64,11 +177,6 @@
                         </div>
 
 
-                        @error('specializations')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
-                            </div>
-                        @enderror
                         @if ($errors->any())
                             @foreach ($specializations as $specialization)
                                 <div class="form-check">
@@ -80,6 +188,11 @@
                                     </label>
                                 </div>
                             @endforeach
+                            @error('specializations')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
                             @foreach ($specializations as $specialization)
@@ -106,6 +219,9 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            <span id="email_validate" class="invalid-feedback" role="alert">
+                                <strong>Compila questo campo </strong>
+                            </span>
                         </div>
                         {{-- CURRENT PASSWORD --}}
                         <div class="mb-3">
@@ -120,6 +236,9 @@
                                     {{-- </span> --}}
                                 </div>
                             @enderror
+                            {{-- <span id="password_confirm_validate" class="invalid-feedback" role="alert">
+                                <strong>Compila questo campo </strong>
+                            </span> --}}
                         </div>
                         {{-- NEW PASSWORD --}}
                         <div class="mb-3">
@@ -135,6 +254,9 @@
                                     {{-- </span> --}}
                                 </div>
                             @enderror
+                            {{-- <span id="password_validate" class="invalid-feedback" role="alert">
+                                <strong>Compila questo campo </strong>
+                            </span> --}}
                         </div>
                         {{-- NEW PASSWORD CONFIRM --}}
                         <div class="mb-3">
@@ -153,6 +275,9 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            <span id="address_validate" class="invalid-feedback" role="alert">
+                                <strong>Compila questo campo </strong>
+                            </span>
                         </div>
                         <input class="btn btn-primary" type="submit" value="Salva">
                     </form>

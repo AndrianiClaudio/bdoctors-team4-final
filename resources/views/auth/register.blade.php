@@ -144,8 +144,11 @@
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
+                                    @else
+                                        <span id="firstname_validate" class="invalid-feedback" role="alert">
+                                            <strong>Compila questo campo </strong>
+                                        </span>
                                     @enderror
-
                                 </div>
                             </div>
 
@@ -163,10 +166,11 @@
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
+                                    @else
+                                        <span id="lastname_validate" class="invalid-feedback" role="alert">
+                                            <strong>Compila questo campo </strong>
+                                        </span>
                                     @enderror
-                                    <span id="lastname_validate" class="invalid-feedback" role="alert">
-                                        <strong>Compila questo campo </strong>
-                                    </span>
                                 </div>
                             </div>
 
@@ -183,10 +187,11 @@
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
+                                    @else
+                                        <span id="email_validate" class="invalid-feedback" role="alert">
+                                            <strong>Compila questo campo </strong>
+                                        </span>
                                     @enderror
-                                    <span id="email_validate" class="invalid-feedback" role="alert">
-                                        <strong>Compila questo campo </strong>
-                                    </span>
                                 </div>
                             </div>
 
@@ -204,10 +209,11 @@
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
+                                    @else
+                                        <span id="password_validate" class="invalid-feedback" role="alert">
+                                            <strong>Compila questo campo </strong>
+                                        </span>
                                     @enderror
-                                    <span id="password_validate" class="invalid-feedback" role="alert">
-                                        <strong>Compila questo campo </strong>
-                                    </span>
                                 </div>
                             </div>
 
@@ -276,10 +282,11 @@
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
+                                    @else
+                                        <span id="address_validate" class="invalid-feedback" role="alert">
+                                            <strong>Compila questo campo </strong>
+                                        </span>
                                     @enderror
-                                    <span id="address_validate" class="invalid-feedback" role="alert">
-                                        <strong>Compila questo campo </strong>
-                                    </span>
                                 </div>
                             </div>
 

@@ -26744,14 +26744,6 @@ main {
 }
 
 .welcome-sizes {
-  width: 100px;
-}
-
-.edit-profile {
-  position: absolute;
-}
-
-.welcome-sizes {
   width: 100%;
   height: 250px;
 }
@@ -26791,6 +26783,7 @@ main {
 .profile-preview h6,
 .profile-preview .h6 {
   margin-left: 0.5em;
+  margin-bottom: 0px;
 }
 
 .profile-preview a {
@@ -26804,10 +26797,6 @@ main {
   height: 20px;
 }
 
-.w-100 {
-  width: 100%;
-}
-
 .h6-sizes {
   display: inline-block;
   width: 50%;
@@ -26815,5 +26804,38 @@ main {
 
 .v-al-icon {
   vertical-align: 2em;
+}
+
+.profile-picture-preview {
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+}
+
+.bold-prev {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.ul-spec {
+  list-style-type: none;
+}
+
+.ul-spec li a {
+  text-transform: uppercase;
+  color: #bdbdbd;
+  text-decoration: none;
+}
+
+.ul-spec li a:hover {
+  color: black;
+}
+
+.icon-color {
+  color: #58C1F9;
+}
+
+.address-color {
+  color: #8e8e8e;
 }
 

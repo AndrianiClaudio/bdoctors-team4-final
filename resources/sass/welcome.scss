@@ -24,26 +24,41 @@
     border-radius: 0px 0px 15px 15px;
 }
 
-.profile-title {
+.profile-preview {
     height: 60px;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #3C4996;
     border-radius: 15px;
     line-height: 60px;
+    h6{
+        margin-left: 0.5em;
+    }
+    a {
+        margin-right: 0.5em;
+    }
 
 }
 
-.edit-profile {
-    position:absolute;
+.edit-icon {
     border-radius: 5px;
     background-color: #58C1F9;
-    top: 17%;
-    right: 3.6%;
-    padding-right: 0.5em;
-    padding-left: 0.5em;
+    padding: 2px;
+    height: 20px;
 
 }
 
 .w-100 {
     width: 100%;
+}
+
+.h6-sizes {
+    display: inline-block;
+    width: 50%;
+}
+
+.v-al-icon {
+    vertical-align: 1.5em;
 }

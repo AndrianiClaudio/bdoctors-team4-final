@@ -28,15 +28,11 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class=" text-black" style = "width:100%">
-                        <h6 class="profile-title text-white m-0 d-inline-block ps-2" style = "width:100%"">IL TUO PROFILO</h6>
-                        <div class="edit-profile text-white ">
-                            <a class="text-white" href="{{ route('profile.edit', Auth::user()->slug) }}">
-                                <i class="fa-solid fa-pen-to-square"></i></a>
-                            </div>
-                        <div class="profile-sizes" >
-                            maron com'è bell stu caz
-                        </div>
+                    <div class="profile-preview">
+                        <h6>profilo</h6>
+                        <a class="edit-icon" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                            <i class="fa-solid fa-pen-to-square v-al-icon"></i>
+                        </a>
                     </div>
                 </div>
             </div>

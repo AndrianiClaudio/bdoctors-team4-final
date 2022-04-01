@@ -26715,7 +26715,6 @@ main {
 
 .side-sizes {
   width: 280px;
-  height: calc(100vh - 56px);
 }
 
 .lh-5 {
@@ -26731,10 +26730,6 @@ main {
   background-color: #3C4996;
 }
 
-.side-vh {
-  height: 100vh;
-}
-
 .fs-side {
   font-size: small;
 }
@@ -26744,6 +26739,103 @@ main {
 }
 
 .main-vh {
-  height: 100vh;
+  height: 100%;
+  background-color: #F5F6F8;
+}
+
+.welcome-sizes {
+  width: 100%;
+  height: 250px;
+}
+
+.welcome-bg {
+  background-color: #3C4996;
+  border-radius: 15px;
+}
+
+.data-sizes {
+  border-radius: 5px;
+  background-color: #58C1F9;
+}
+
+.data-abs {
+  top: 30px;
+}
+
+.profile-sizes {
+  height: 190px;
+  width: 100%;
+  background-color: white;
+  border-radius: 0px 0px 15px 15px;
+}
+
+.profile-preview {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3C4996;
+  border-radius: 15px;
+  line-height: 60px;
+}
+
+.profile-preview h6,
+.profile-preview .h6 {
+  margin-left: 0.5em;
+  margin-bottom: 0px;
+}
+
+.profile-preview a {
+  margin-right: 0.5em;
+}
+
+.edit-icon {
+  border-radius: 5px;
+  background-color: #58C1F9;
+  padding: 3px;
+  height: 20px;
+}
+
+.h6-sizes {
+  display: inline-block;
+  width: 50%;
+}
+
+.v-al-icon {
+  vertical-align: 2em;
+}
+
+.profile-picture-preview {
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+}
+
+.bold-prev {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.ul-spec {
+  list-style-type: none;
+}
+
+.ul-spec li a {
+  text-transform: uppercase;
+  color: #bdbdbd;
+  text-decoration: none;
+}
+
+.ul-spec li a:hover {
+  color: black;
+}
+
+.icon-color {
+  color: #58C1F9;
+}
+
+.address-color {
+  color: #8e8e8e;
 }
 

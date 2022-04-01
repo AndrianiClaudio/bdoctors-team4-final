@@ -21,7 +21,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = User::where('slug', Auth::User()->slug)->first();
+        $doctor = User::where('slug', Auth::User()->slug)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->first();
         //dd($doctors);
         return view('doctors.index', compact('doctor'));
     }

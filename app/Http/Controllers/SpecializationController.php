@@ -7,7 +7,8 @@ use App\Model\Specialization;
 use Illuminate\Support\Facades\Auth;
 
 class SpecializationController extends Controller
-{
+{   
+
     public function show($id)
     {
         $spec = Specialization::find($id);

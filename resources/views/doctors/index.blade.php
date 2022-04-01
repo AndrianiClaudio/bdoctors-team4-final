@@ -10,7 +10,6 @@
 
 {{-- -) Pagina informazioni (Il tuo profilo)
     {{-- 
-         <!-- home -->
         -) Pagina informazioni (Il tuo profilo)
         -) Pagina messaggi ricevuti
         -) Pagina sponsorizzazione (Panoramica piani di abbonamento)

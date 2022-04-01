@@ -4,7 +4,7 @@
         <div class="container" v-if="doctors.length > 0">
             <h3>
                 Ecco i dottori con specializzazione
-                {{ $route.query.specialization }}
+                {{ $route.query.specialization.split("_").join(" ") }}
             </h3>
             <ul>
                 <li v-for="doctor in doctors" :key="doctor.id">
@@ -121,20 +121,20 @@ export default {
     },
     methods: {
         getFilterDoctors(specialization) {
-            console.log("getFilterDoctors");
+            // console.log(specialization);
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
                     this.doctors = res.data.results.doctors;
-                    // console.log(this.doctors);
                 })
                 .catch((err) => {
-                    // console.error(err);
+                    console.error(err);
                 });
         },
     },
     created() {
         this.getFilterDoctors(this.$route.query.specialization);
+        console.log($route.query.specialization.split("_").join(" "));
     },
 };
 </script>

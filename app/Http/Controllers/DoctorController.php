@@ -121,9 +121,6 @@ class DoctorController extends Controller
             $img_path = Storage::put('uploads/doctors/photo', $data['photo']);
             $data['photo'] = $img_path;
         }
-        else {
-            $data['photo'] = null;
-        }
 
         $user->update($data);
 

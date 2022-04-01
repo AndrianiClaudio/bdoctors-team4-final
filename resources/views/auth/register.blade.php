@@ -8,7 +8,7 @@
                 document.getElementById("chk_option_error").style.visibility = "visible";
             } else {
                 document.getElementById("chk_option_error").style.visibility = "hidden";
-                return true
+                return true;
             }
 
             return false;
@@ -96,25 +96,18 @@
                 address.classList.remove('is-invalid');
             }
 
-
-            // console.log(errors);
-            // console.log(errors.length);
-            console.log(errors.length);
             if (errors.length > 0) {
-                // console.log(true);
+                if (!handleData()) {
+                    (document.querySelector('#specializations.form-control')).classList.add('is-invalid');
+                }
                 return false;
             } else {
                 if (handleData()) {
-                    // console.log('handle');
-                    // e.submit();
+                    // console.log(document.querySelector('#specializations.form-control'));
                     return true;
-                    // document.getElementById('submit').submit();
                 } else {
-                    // console.log('non handle');
                     return false;
                 }
-                // console.log(false);
-                // return true
             }
         }
     </script>
@@ -241,8 +234,9 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Specializations') }}</label>
 
                                 <div class="col-md-6">
-                                    <div id="specializations"
-                                        class="form-control @error('specializations') is-invalid @enderror">
+                                    <div id="specializations" class="form-control">
+                                        {{-- <div id="specializations"
+                                        class="form-control @error('specializations') is-invalid @enderror"> --}}
                                         @foreach ($spec as $spec_value)
                                             {{-- @dd($spec_value) --}}
                                             <div>
@@ -255,20 +249,17 @@
                                                 </label>
                                             </div>
                                         @endforeach
+                                        <div style="visibility:hidden; color:red; " id="chk_option_error">
+                                            Please select at least one option.
+                                        </div>
+                                        @error('specializations')
+                                            {{-- @dd($errors->any())
+                                            @dd($message) --}}
+                                            <span class="invalid-feedback" id="InvalidCheck3Feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
-                                    <div style="visibility:hidden; color:red; " id="chk_option_error">
-                                        Please select at least one option.
-                                    </div>
-                                    @error('specializations')
-                                        {{-- @dd($errors->any())
-                                        @dd($message) --}}
-                                        <span class="invalid-feedback" id="InvalidCheck3Feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <span id="specializations_validate" class="invalid-feedback" role="alert">
-                                        <strong>Compila questo campo </strong>
-                                    </span>
                                 </div>
                             </div>
 

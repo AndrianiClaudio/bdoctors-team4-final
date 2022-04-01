@@ -31,7 +31,7 @@ class DoctorController extends Controller
         // $doctors;
 
         $filtered_doctors = [];
-        // dd($data['specialization']);
+        $data['specialization'] = (str_replace('_', ' ', $data['specialization']));
         if (Specialization::where('category', $data['specialization'])->first()) {
             $id = Specialization::where('category', $data['specialization'])->first()->id;
             // dd($id);

@@ -83,18 +83,6 @@
                 password_confirm.classList.remove('is-invalid');
             }
 
-            // var form_data = new FormData(document.querySelector("form"));
-            // if (!form_data.has("specializations[]")) {
-            //     document.getElementById("chk_option_error").style.visibility = "visible";
-            //     errors.push('specializations')
-            //     let check = document.getElementById('specializations_confirm_validate');
-            //     check.style.display = "block";
-            //     let specializations = document.getElementById('specializations');
-            //     specializations.classList.add('is-invalid');
-            // } else {
-            //     document.getElementById("chk_option_error").style.visibility = "hidden";
-            // }
-
             // address_confirm
             let address = document.getElementById('address');
             if (address.value == "") {
@@ -113,16 +101,16 @@
             // console.log(errors.length);
             console.log(errors.length);
             if (errors.length > 0) {
-                console.log(true);
+                // console.log(true);
                 return false;
             } else {
                 if (handleData()) {
-                    console.log('handle');
+                    // console.log('handle');
                     // e.submit();
                     return true;
                     // document.getElementById('submit').submit();
                 } else {
-                    console.log('non handle');
+                    // console.log('non handle');
                     return false;
                 }
                 // console.log(false);

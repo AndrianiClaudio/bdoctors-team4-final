@@ -29,6 +29,14 @@
                     name="vote"
                     v-model="vote"
                 />
+                <span
+                    id="vote_validate"
+                    class="invalid-feedback"
+                    role="alert"
+                    v-if="errors.vote"
+                >
+                    <strong>Compila questo campo </strong>
+                </span>
             </div>
             <!-- USERNAME -->
             <div class="mb-3">
@@ -41,6 +49,14 @@
                     name="username"
                     v-model="username"
                 />
+                <span
+                    id="username_validate"
+                    class="invalid-feedback"
+                    role="alert"
+                    v-if="errors.username"
+                >
+                    <strong>Compila questo campo </strong>
+                </span>
             </div>
             <!-- CONTENT -->
             <div class="mb-3">
@@ -52,6 +68,14 @@
                     name="content"
                     v-model="content"
                 ></textarea>
+                <span
+                    id="content_validate"
+                    class="invalid-feedback"
+                    role="alert"
+                    v-if="errors.content"
+                >
+                    <strong>Compila questo campo </strong>
+                </span>
             </div>
 
             <!-- BUTTONS -->
@@ -89,7 +113,11 @@ export default {
         return {
             doctor: [],
             // v-model
-            errors: [],
+            errors: {
+                vote: false,
+                username: false,
+                content: false,
+            },
             vote: null,
             username: null,
             content: null,
@@ -107,25 +135,44 @@ export default {
             });
         },
         checkForm(e) {
-            if (this.vote && this.username && this.content) {
-                return true;
+    e.preventDefault();
+
+            // reset errors
+            for (const key in this.errors) {
+                this.errors[key] = false;
             }
 
-
-            this.errors = [];
-
+            // validate form
+            let vote = document.getElementById("vote");
             if (!this.vote) {
-                this.errors.push("vote required.");
-            }
-            if (!this.username) {
-                this.errors.push("username required.");
-            }
-            if (!this.content) {
-                this.errors.push("content required.");
+                this.errors.vote = true;
+                vote.classList.add("is-invalid");
+                console.log(this.errors.vote);
+            } else {
+                vote.classList.remove("is-invalid");
             }
 
-            console.log(this.errors);
-            e.preventDefault();
+            let username = document.getElementById("username");
+            if (!this.username) {
+                this.errors.username = true;
+                username.classList.add("is-invalid");
+            } else {
+                username.classList.remove("is-invalid");
+            }
+
+            let content = document.getElementById("content");
+            if (!this.content) {
+                this.errors.content = true;
+                content.classList.add("is-invalid");
+            } else {
+                content.classList.remove("is-invalid");
+            }
+            // se tutto ok submit form
+            if (this.vote && this.username && this.content) {
+                //continue submitting
+                e.currentTarget.submit();
+            }
+            return false;
         },
     },
 };

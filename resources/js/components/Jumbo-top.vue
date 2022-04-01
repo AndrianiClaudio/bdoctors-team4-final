@@ -20,7 +20,7 @@
                         action=""
                     >
                         <select name="" id="" v-model="filterSelected">
-                            <option value="" disabled selected>
+                            <option value="all" disabled selected>
                                 Seleziona una specializzazione
                             </option>
                             <option
@@ -53,9 +53,7 @@ export default {
             specs: {
                 Type: Array,
             },
-            filterSelected: {
-                Type: String,
-            },
+            filterSelected: "all",
             filtered: {
                 Type: Array,
             },
@@ -73,7 +71,7 @@ export default {
                 });
         },
         filter(specialization) {
-            if (specialization) {
+            if (specialization !== "all") {
                 // console.log(specialization);
 
                 this.$router.push({

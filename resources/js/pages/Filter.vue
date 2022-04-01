@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid p-0">
         <Navbar />
-        <div class="container">
+        <div class="container" v-if="doctors.length > 0">
             <h3>
                 Ecco i dottori con specializzazione
                 {{ $route.query.specialization }}
@@ -90,6 +90,12 @@
                 </li>
             </ul>
             <!-- {{ doctors }} -->
+        </div>
+        <div class="container" v-else>
+            <b
+                >Non ci sono dottori con specializzazione =
+                {{ $route.query.specialization }}</b
+            >
         </div>
     </div>
 </template>

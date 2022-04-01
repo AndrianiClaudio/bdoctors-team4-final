@@ -26752,7 +26752,7 @@ main {
 }
 
 .welcome-sizes {
-  width: 780px;
+  width: 100%;
   height: 250px;
 }
 
@@ -26772,14 +26772,14 @@ main {
 
 .profile-sizes {
   height: 190px;
-  width: 350px;
+  width: 100%;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
 }
 
 .profile-title {
   height: 60px;
-  width: 350px;
+  width: 100%;
   background-color: #3C4996;
   border-radius: 15px;
   line-height: 60px;
@@ -26793,5 +26793,9 @@ main {
   right: 3.6%;
   padding-right: 0.5em;
   padding-left: 0.5em;
+}
+
+.w-100 {
+  width: 100%;
 }
 

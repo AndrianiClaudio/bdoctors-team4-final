@@ -17,9 +17,9 @@
     --}}
 
 @section('content')
-        <div class="container mt-3 text-white">
+        <div class="container-fluid mt-3 text-white">
             <div class="row">
-                <div class="col ms-3">
+                <div class="col-7 ms-3">
                     <div class="welcome-sizes welcome-bg d-flex flex-column justify-content-end ps-2">
                         <div class="data-sizes position-absolute data-abs ms-2 ps-1 pe-1">
                         <i class="fa-solid fa-calendar-days"></i> {{  now('Europe/Rome')->toDateString() }}</div>
@@ -27,14 +27,14 @@
                         <p>Si ricordi sempre di respirare</p>
                     </div>
                 </div>
-                <div class="col">
-                    <div class=" text-black ">
-                        <h6 class="profile-title text-white m-0 d-inline-block ps-2">IL TUO PROFILO</h6>
-                        <div class="edit-profile text-white">
+                <div class="col-4">
+                    <div class=" text-black" style = "width:100%">
+                        <h6 class="profile-title text-white m-0 d-inline-block ps-2" style = "width:100%"">IL TUO PROFILO</h6>
+                        <div class="edit-profile text-white ">
                             <a class="text-white" href="{{ route('profile.edit', Auth::user()->slug) }}">
                                 <i class="fa-solid fa-pen-to-square"></i></a>
                             </div>
-                        <div class="profile-sizes">
+                        <div class="profile-sizes" >
                             maron com'è bell stu caz
                         </div>
                     </div>

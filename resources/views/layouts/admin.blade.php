@@ -124,7 +124,7 @@
                 </ul>
             </div>
 
-            <div id="app">
+            <div id="app" style = "width:100%">
                 @yield('content')
             </div>
         </main>

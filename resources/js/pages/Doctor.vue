@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="container-fluid p-0">
+        <Navbar />
         <div class="row row-cols-1 row-cols-md-4 g-4" v-if="doctor">
             <div class="card">
                 <div class="card-body">
@@ -70,11 +71,13 @@
                 <router-link
                     class="btn btn-success"
                     :to="{ name: 'message', params: { slug: doctor.slug } }"
+                    v-if="doctor.slug"
                     >Send a message</router-link
                 >
                 <router-link
                     class="btn btn-success"
                     :to="{ name: 'review', params: { slug: doctor.slug } }"
+                    v-if="doctor.slug"
                     >Send a Review</router-link
                 >
                 <router-link class="btn btn-info" :to="{ name: 'home' }"
@@ -86,10 +89,13 @@
 </template>
 
 <script>
-// import Axios from "axios";
+import Navbar from "../components/Navbar.vue";
 
 export default {
     name: "Doctor",
+    components: {
+        Navbar,
+    },
     props: ["slug"],
     data() {
         return {

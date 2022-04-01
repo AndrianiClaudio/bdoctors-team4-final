@@ -23,8 +23,54 @@ class DoctorController extends Controller
         ]);
     }
 
+    public function filterSpec(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $doctors = User::orderBy('id', 'asc')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+        // $doctors;
+
+        $filtered_doctors = [];
+        // dd($data['specialization']);
+        if (Specialization::where('category', $data['specialization'])->first()) {
+            $id = Specialization::where('category', $data['specialization'])->first()->id;
+            // dd($id);
+            foreach ($doctors as $doctor) {
+                $specs = $doctor->specializations()->get();
+                foreach ($specs as $spec) {
+                    if ($spec->id == $id) {
+                        $filtered_doctors[] = $doctor;
+                        break;
+                    }
+                }
+            }
+
+            // dd($doctors);
+
+            return response()->json([
+                'response' => true,
+                // 'results' => compact('doctors', 'specs')
+                'results' => [
+                    'count' => count($filtered_doctors),
+                    'doctors' => $filtered_doctors
+                ]
+            ]);
+        }
+        else {
+            return response()->json([
+                'response' => false,
+                'results' => [
+                    'doctors' => null,
+                ]
+            ]);
+
+        }
+    // dd($data);
+    }
+
     public function show($slug)
     {
+
         $doctors = User::where('slug', $slug)->with('specializations', 'services', 'reviews', 'messages')->first();
 
         return response()->json([

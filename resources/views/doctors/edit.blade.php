@@ -23,8 +23,7 @@
             {{-- Modifica possibile solo a se stessi o se si é admin --}}
             @if ($doctor->id === Auth::id())
                 <div class="col">
-                    <form action="{{ route('profile.update', $doctor->slug) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 

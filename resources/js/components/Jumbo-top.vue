@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid p-0">
         <div class="overlay">
-            <img src="../../../storage/app/public/images/jumbo-top.jpg" alt="">
+            <img src="/images/jumbo-top.jpg" alt="" />
             <div class="introduction-jumbo d-flex flex-column">
                 <div class="card2 text-jumbo text-center">
                     <h1 class="mt-4 ms-3 text-white pb-2">
@@ -19,19 +19,24 @@
                         class="d-flex mt-4 mb-4 justify-content-center"
                         action=""
                     >
-                        <select name="" id="">
+                        <select name="" id="" v-model="filterSelected">
                             <option value="" disabled selected>
                                 Seleziona una specializzazione
                             </option>
                             <option
                                 v-for="spec in specs"
                                 :key="spec.id"
-                                value=""
+                                :value="spec.category"
                             >
+                                <!-- :value="spec.id" -->
                                 {{ spec.category }}
                             </option>
                         </select>
-                        <input type="submit" value="search" />
+                        <input
+                            type="submit"
+                            value="search"
+                            @click.prevent="filter(filterSelected)"
+                        />
                     </form>
                 </div>
             </div>
@@ -48,6 +53,12 @@ export default {
             specs: {
                 Type: Array,
             },
+            filterSelected: {
+                Type: String,
+            },
+            filtered: {
+                Type: Array,
+            },
         };
     },
     methods: {
@@ -57,7 +68,32 @@ export default {
                 .then((res) => {
                     this.specs = res.data.results.specs;
                 })
-                .catch((err) => {});
+                .catch((err) => {
+                    console.error(err);
+                });
+        },
+        filter(specialization) {
+            if (specialization) {
+                // console.log(specialization);
+
+                this.$router.push({
+                    path: "/filter",
+                    query: { specialization: specialization },
+                });
+                // axios
+                //     .post(`/api/doctors?specialization=${specialization}`)
+                //     .then((res) => {
+                //         // console.log(res);
+                //         this.filtered = res.data.results.doctors;
+                //         // this.$emit('filterSpec',this.filtered);
+
+                //         // let routeData = this.$router.resolve({name: 'routeName', query: {data: "someData"}});
+                //         // window.open(routeData.href, '_blank');
+                //     })
+                //     .catch((err) => {
+                //         console.error(err);
+                //     });
+            }
         },
     },
     created() {

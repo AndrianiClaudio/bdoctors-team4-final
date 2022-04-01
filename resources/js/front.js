@@ -16,6 +16,7 @@ import Doctor from './pages/Doctor.vue';
 import Message from './pages/Message.vue';
 import Review from './pages/Review.vue';
 import ProvaApi from './pages/ProvaApi.vue';
+import FilterSpec from './pages/Filter.vue';
 // import Navbar from './components/Navbar.vue';
 
 // IMPORT ROUTER ... NEXT
@@ -57,6 +58,13 @@ const router = new VueRouter({
             name: 'ProvaApi',
             props: true,
             component: ProvaApi,
+            
+        },
+        {
+            path: '/filter',
+            name: 'filter',
+            query: true,
+            component: FilterSpec,
             
         },
         

@@ -1,29 +1,34 @@
 <template>
     <div class="container-fluid p-0">
         <div class="row m-0">
-            <div class="col p-0">
+            <div class="col p-5">
                 <div class="all-product d-flex">
                     <div class="all-product-container w-90 d-flex">
-                    <div
-                        v-for="(counter, index) in counters"
-                        :key="index"
-                        class="all-product-box d-flex">
-                        <img
-                            :src="productArray[counter.counter].photo"
-                            alt=""
-                            />
-                            <div class="filter">
-                            <h5>select options / quick view</h5>
-                            </div>
-                            <h3>{{ productArray[counter.counter].firstname }}</h3>
-                            <p>{{ productArray[counter.counter].lastname }}</p>
-                            <div @click="prev()" class="left-arrow">
-                            <i class="fas fa-chevron-left"></i>
-                            </div>
-                            <div @click="next()" class="right-arrow">
-                            <i class="fas fa-chevron-right"></i>
-                            </div>
-                    </div>
+                        <div
+                            v-for="(counter, index) in counters"
+                            :key="index"
+                            class="all-product-box d-flex card">
+                            <img
+                                :src="productArray[counter.counter].photo"
+                                alt=""
+                                />
+                                <div class="filter">
+                                    <h5 v-for="(specialization,index) in productArray[counter.counter].specializations"
+                                    :key="index">
+                                    {{specialization.category}}
+                                    
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ productArray[counter.counter].firstname }}</h5>
+                                    <div @click="prev()" class="left-arrow">
+                                         <i class="fas fa-chevron-left"></i>
+                                    </div>
+                                    <div @click="next()" class="right-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,46 +97,64 @@
 </script>
 
 <style lang="scss" scoped>
-   .all-product {
-  margin-top: 12em;
-  .heading {
-    h5 {
-      line-height: 2em;
-    }
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 2em 1em;
+  background-color: purple;
+  color: white;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
   }
+}
+
+.left-arrow {
+  left: 0;
+  z-index: 5;
+}
+.right-arrow {
+  right: 0;
+  z-index: 5;
+}
+
+   .all-product {
+
   .all-product-container {
-    margin: auto;
+    width: 100%;
     gap: 1.5em;
 
     .all-product-box {
       flex-basis: calc(100% / 4);
-      height: 500px;
-      position: relative;
       text-align: center;
-      flex-direction: column;
       justify-content: center;
       .filter {
         display: none;
         width: 100%;
-        height: 82%;
+        height: 84.5%;
         position: absolute;
         top: 0;
         left: 0;
         z-index: 2;
       }
-      &:nth-of-type(3),
-      &:nth-of-type(4) {
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
         .left-arrow,
         .right-arrow {
           display: none;
         }
       }
-      &:nth-of-type(2) {
+      &:nth-of-type(1) {
         .right-arrow {
           display: none;
         }
       }
-      &:nth-of-type(5) {
+      &:nth-of-type(4) {
         .left-arrow {
           display: none;
         }
@@ -152,11 +175,6 @@
       }
       p {
         font-size: 1.2em;
-      }
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
       }
     }
   }

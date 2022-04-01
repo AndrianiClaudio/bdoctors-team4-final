@@ -22,7 +22,7 @@
                 <div class="col ms-3">
                     <div class="welcome-sizes welcome-bg d-flex flex-column justify-content-end ps-2">
                         <div class="data-sizes position-absolute data-abs ms-2 ps-1 pe-1">
-                        <i class="fa-solid fa-calendar-days"></i> {{  now('Europe/Rome')->toDateTimeString() }}</div>
+                        <i class="fa-solid fa-calendar-days"></i> {{  now('Europe/Rome')->toDateString() }}</div>
                         <h1 class="text-capitalize">Buongiorno Dr. {{ $doctor->firstname }} {{ $doctor->lastname }}</h1>
                         <p>Si ricordi sempre di respirare</p>
                     </div>

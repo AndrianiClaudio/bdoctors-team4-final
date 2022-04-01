@@ -145,9 +145,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <span id="firstname_validate" class="invalid-feedback" role="alert">
-                                        <strong>Compila questo campo </strong>
-                                    </span>
+
                                 </div>
                             </div>
 

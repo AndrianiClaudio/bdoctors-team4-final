@@ -29,7 +29,7 @@
                     class="collapse navbar-collapse justify-content-end"
                     id="navbarNav"
                 >
-                    <h4 class="text-white pr-2 my-0">Sei un medico?</h4>
+                    <h4 class="text-white pe-2 my-0">Sei un medico?</h4>
                     <ul class="navbar-nav">
                         <li class="nav-item sign-in me-2">
                             <a

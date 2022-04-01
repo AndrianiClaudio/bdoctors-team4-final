@@ -34,8 +34,26 @@
                             <i class="fa-solid fa-pen-to-square v-al-icon"></i>
                         </a>
                     </div>
-                    <div class="profile-sizes">
-
+                    <div class="profile-sizes d-flex">
+                        <div class="profile-picture-preview mt-3 ms-3">
+                            <img src="http://localhost:8000/storage/{{Auth::user()->photo }}" alt="" width="100%" height ="100%"
+                                    class="rounded-circle me-2">
+                        </div>
+                        <div class="text-black ms-2 mt-4 text-capitalize">
+                            <h6 class="bold-prev">Dr. {{ $doctor->firstname }} {{ $doctor->lastname }}</h6>
+                            <ul class="ul-spec mb-1 p-0">
+                                @foreach ($doctor->specializations as $spec)
+                                    <li>
+                                        <a href="{{ route('specializations.show', $spec->id) }}">
+                                            <em>{{ $spec->category }}</em>
+                                         </a>
+                                     </li>
+                                   @endforeach
+                            </ul>
+                            <p class="pb-1 address-color"><i class="fa-solid fa-location-dot icon-color"></i>  Via {{ $doctor->address }}</p>
+                            <hr>
+                           
+                        
                     </div>
                 </div>
             </div>

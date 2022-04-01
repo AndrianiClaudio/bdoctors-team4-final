@@ -51,39 +51,38 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link mt-5 text-white"
-                            aria-current="page">
+                        <a href="{{ route('profile.show') }}" class="nav-link mt-5 text-white" aria-current="page">
                             <i class="fa-solid fa-user-doctor p-1"></i>
                             Il tuo profilo
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ route('messages.index', Auth::user()->slug) }}" class="nav-link  text-white">
+                        <a href="{{ route('messages.index') }}" class="nav-link  text-white">
                             <i class="fa-solid fa-comment-medical p-1"></i>
                             Messaggi
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link text-white">
+                        <a href="{{ route('profile.show') }}" class="nav-link text-white">
                             <i class="fa-regular fa-star p-1"></i>
                             Piani di abbonamento
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show', Auth::user()->slug) }}" class="nav-link text-white">
+                        <a href="{{ route('profile.show') }}" class="nav-link text-white">
                             <i class="fa-solid fa-chart-line p-1"></i>
                             Le tue statistiche
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('reviews.index', Auth::user()->slug) }}" class="nav-link text-white">
+                        <a href="{{ route('reviews.index') }}" class="nav-link text-white">
                             <i class="fa-solid fa-star-half-stroke p-1"></i>
                             Recensioni
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('services.index', Auth::user()->slug) }}" class="nav-link text-white">
+                        <a href="{{ route('services.index') }}" class="nav-link text-white">
                             <i class="fa-solid fa-star-half-stroke p-1"></i>
                             Servizi
                         </a>
@@ -100,13 +99,11 @@
                             {{ Auth::user()->lastname }} </strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item"
-                                href="{{ route('services.index', Auth::user()->slug) }}">Gestisci le tue
+                        <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
                                 prestazioni</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->slug) }}">Modifica
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
                                 profilo</a></li>
-                        <li><a class="dropdown-item"
-                                href="{{ route('profile.show', Auth::user()->slug) }}">Profilo</a>
+                        <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

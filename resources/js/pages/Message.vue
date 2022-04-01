@@ -1,4 +1,6 @@
 <template>
+<div class="container-fluid p-0">
+    <Navbar />
     <div class="container">
         <form
             :action="`http://localhost:8000/api/doctors/${doctor.slug}/message`"
@@ -77,7 +79,7 @@
             </div>
             <router-link
                 class="btn btn-info"
-                :to="{ name: 'doctor', params: { slug: doctor.slug } }"
+                :to="{ name: 'doctor', params: { slug: doctor.slug } }" v-if="doctor.slug"
                 >Back to Doctor info</router-link
             >
             <router-link class="btn btn-info" :to="{ name: 'home' }"
@@ -85,11 +87,14 @@
             >
         </form>
     </div>
+</div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 export default {
     name: "Message",
+    components: {Navbar},
     props: ["slug"],
     data() {
         return {

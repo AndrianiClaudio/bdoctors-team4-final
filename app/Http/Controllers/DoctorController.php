@@ -62,14 +62,14 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show()
     {
-
-        if (Auth::user()->slug != $slug) {
+        // dd(Auth::user()->slug);
+        if (!Auth::user()->slug) {
             abort('403');
         }
         else {
-            $doctor = User::where('slug', $slug)->first();
+            $doctor = User::where('slug', Auth::user()->slug)->first();
             // OTTENGO SPEC DI DOCTOR
             $doctor->specs = $doctor->specializations()->get();
             // OTTENGO SERVICES DI DOCTOR
@@ -84,9 +84,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit()
     {
-        $doctor = User::where('slug', $slug)->first();
+        $doctor = User::where('slug', Auth::user()->slug)->first();
         $specializations = Specialization::all();
         return view("doctors.edit", ["doctor" => $doctor, "specializations" => $specializations]);
     }
@@ -98,9 +98,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request)
     {
-        
+
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
@@ -113,7 +113,7 @@ class DoctorController extends Controller
         ]);
 
         // UPLOAD PHOTO
-        $user = User::where('slug', $slug)->first();
+        $user = User::where('slug', Auth::user()->slug)->first();
 
         $data['password'] = Hash::make($request['password']);
         if (!empty($data['photo'])) {
@@ -130,7 +130,7 @@ class DoctorController extends Controller
         $user->specializations()->sync($data['specializations']);
 
         // dd($user);
-        return redirect()->route('profile.edit', $slug)->with('edit_response', 'Modifica al profilo avvenuta con successo');
+        return redirect()->route('profile.edit')->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }
 
     /**

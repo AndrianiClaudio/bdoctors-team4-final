@@ -34,11 +34,11 @@
                         <li>
                             <p>phone: {{ $doctor->phone }}</p>
                         </li>
-                        @if ($doctor->specs)
-                            <li>
-                                <p>
-                                    Le tue specializzazioni
-                                </p>
+                        <li>
+                            <p>
+                                Le tue specializzazioni
+                            </p>
+                            @if (count($doctor->specs) > 0)
                                 <ul>
                                     @foreach ($doctor->specs as $spec)
                                         <li>
@@ -48,13 +48,15 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                            </li>
-                        @endif
-                        @if ($doctor->services)
-                            <li>
-                                <p>
-                                    I tuoi servizi
-                                </p>
+                            @else
+                                <a href="{{ route('profile.edit') }}">Inserisci specializzazioni nel tuo profilo</a>
+                            @endif
+                        </li>
+                        <li>
+                            <p>
+                                I tuoi servizi
+                            </p>
+                            @if (count($doctor->services) > 0)
                                 <ul>
                                     @foreach ($doctor->services as $service)
                                         <li>
@@ -64,8 +66,10 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                            </li>
-                        @endif
+                            @else
+                                <a href="{{ route('services.create') }}">Inserisci un tuo servizio</a>
+                            @endif
+                        </li>
                     </ul>
                 </div>
             </div>

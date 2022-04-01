@@ -29,10 +29,13 @@
                 </div>
                 <div class="col-4">
                     <div class="profile-preview">
-                        <h6>profilo</h6>
-                        <a class="edit-icon" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                        <h6>Il tuo Profilo</h6>
+                        <a class="edit-icon text-white text-center" href="{{ route('profile.edit', Auth::user()->slug) }}">
                             <i class="fa-solid fa-pen-to-square v-al-icon"></i>
                         </a>
+                    </div>
+                    <div class="profile-sizes">
+
                     </div>
                 </div>
             </div>

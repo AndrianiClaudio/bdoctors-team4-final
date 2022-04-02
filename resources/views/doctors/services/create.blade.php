@@ -39,7 +39,7 @@
             }
 
             let specialization = document.getElementById('specialization');
-            console.log(specialization.value);
+            // console.log(specialization.value);
 
 
             let checkSpec = document.getElementById('specialization_validate');

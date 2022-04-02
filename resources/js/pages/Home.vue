@@ -5,7 +5,9 @@
         <JumboT />
         <Overview />
         <Specializations />
-        <DoctorOv />
+        <!-- <DoctorOv />  ... commentato per rimuovere errori console, ma funziona-->
+        <!-- TEST SLIDER -->
+        <SliderPaginate />
     </div>
 </template>
 
@@ -14,7 +16,8 @@ import Navbar from "../components/Navbar.vue";
 import JumboT from "../components/Jumbo-top.vue";
 import Overview from "../components/Overview.vue";
 import Specializations from "../components/Specializations.vue";
-import DoctorOv from "../components/Doctor-ov.vue";
+// import DoctorOv from "../components/Doctor-ov.vue"; ... commentato per rimuovere errori console, ma funziona
+import SliderPaginate from "../components/SliderPaginate.vue";
 
 export default {
     name: "Home",
@@ -23,7 +26,8 @@ export default {
         JumboT,
         Overview,
         Specializations,
-        DoctorOv,
+        // DoctorOv, ... commentato per rimuovere errori console, ma funziona
+        SliderPaginate,
     },
     data() {
         return {

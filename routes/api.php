@@ -9,7 +9,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::namespace ('Api')
+Route::middleware('api')->namespace('Api')
     ->group(function () {
         Route::get('doctors', 'DoctorController@index');
         Route::get('doctors/{slug}', 'DoctorController@show');
@@ -18,4 +18,6 @@ Route::namespace ('Api')
         Route::post('doctors', 'DoctorController@filterSpec');
 
         Route::get('specializations', 'SpecializationController@index');
+
+        Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');
     });

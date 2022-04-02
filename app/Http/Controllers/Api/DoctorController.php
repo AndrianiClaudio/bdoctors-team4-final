@@ -117,4 +117,20 @@ class DoctorController extends Controller
 
         return redirect("/");
     }
+
+    // TEST SLIDER CLAUDIO
+    public function SliderPaginate()
+    {
+        $doctors_paginate = User::where('id', '>', 0)->with('specializations', 'reviews', 'subscriptions', 'services')->paginate(3);
+
+        // dd($doctors_paginate['data']);
+        // $doctors = $doctors_paginate['data'];
+        // dd($doctors);
+        return response()->json([
+            'response' => true,
+            'results' => [
+                'pagination' => $doctors_paginate,
+            ]
+        ]);
+    }
 }

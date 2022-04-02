@@ -14,8 +14,9 @@
                     <ul class="list-group">
                         <li
                             class="list-group-item"
-                            v-for="spec in specs"
+                            v-for="(spec, index) in specs"
                             :key="spec.id"
+                            v-on:click="counter = index"
                         >
                             <h3>{{ spec.category }}</h3>
                         </li>
@@ -26,8 +27,10 @@
                 </div>
                 <div class="spec-desc">
                     <!-- Specializzazione active in quel momento -->
-                    <h2>Specializzazione</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, delectus. Aliquid cupiditate, quisquam amet harum, praesentium iste nobis neque a impedit repellendus amet, consectetur adipisicing elit. Odio quod facilis incidunt qui id. Dolorum beatae facilis quasi! Reprehenderit natus dolore perferendis quia illum at voluptate tempore.</p>
+                    <h2>{{ specs[counter].category }}</h2>
+                    <p>
+                        {{ specs[counter].description }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -39,6 +42,7 @@ export default {
     name: "Specializations",
     data() {
         return {
+            counter: 0,
             specs: {
                 Type: Array,
             },

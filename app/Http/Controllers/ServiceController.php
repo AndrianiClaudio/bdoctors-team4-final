@@ -36,8 +36,15 @@ class ServiceController extends Controller
      */
     public function create()
     {
+        $user = User::where('slug', Auth::user()->slug)->first();
+        // dd($user);
+        $tmp = $user->specializations()->get();
+        $user_specs = [];
+        foreach ($tmp as $spec) {
+            $user_specs[] = $spec->category;
+        }
         $specs = Specialization::all();
-        return view('doctors.services.create', compact('specs'));
+        return view('doctors.services.create', compact('specs', 'user_specs'));
     }
 
     /**
@@ -52,7 +59,7 @@ class ServiceController extends Controller
 
         $data = $request->all();
 
-        $dataValidate = $request->validate([
+        $request->validate([
             'type' => 'required',
             'description' => 'required',
             'specialization_id' => 'required',
@@ -64,8 +71,9 @@ class ServiceController extends Controller
 
         $service->fill($data);
         $service->specialization_id = (int)$data['specialization_id'];
-
         $service->save();
+        Auth::user()->specializations()->attach((int)$data['specialization_id']);
+
         return redirect()->route('services.show', $service->id);
     }
 
@@ -81,9 +89,11 @@ class ServiceController extends Controller
         // $doctor = User::find(Auth::user()->id);
         if (!$service) {
             return redirect()->route('services.index');
-        } else if ($service->user_id !== Auth::user()->id) {
+        }
+        else if ($service->user_id !== Auth::user()->id) {
             return redirect()->route('services.index');
-        } else {
+        }
+        else {
             $service['category_name'] = Specialization::where('id', $service->specialization_id)->first()->category;
             return view('doctors.services.show', compact('service'));
         // return view('doctors.services.show', compact('service', 'doctor'));

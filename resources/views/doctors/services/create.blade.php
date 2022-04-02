@@ -101,7 +101,8 @@
                         <select class="form-select" id="specialization" name="specialization_id">
                             <option value="">choose a specialization</option>
                             @foreach ($specs as $spec)
-                                <option @if (old('specialization_id') == $spec->id) selected @endif value="{{ $spec->id }}">
+                                <option @if (old('specialization_id') == $spec->id) selected @endif value="{{ $spec->id }}"
+                                    @if (in_array($spec->category, $user_specs)) class="bg-success" @endif>
                                     {{ $spec->category }}
                                 </option>
                             @endforeach

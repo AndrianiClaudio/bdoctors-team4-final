@@ -14,6 +14,7 @@
                     <ul class="list-group">
                         <li
                             class="list-group-item"
+                            :class="counter == index ? 'selected' : ''"
                             v-for="(spec, index) in specs"
                             :key="spec.id"
                             v-on:click="counter = index"
@@ -95,5 +96,9 @@ export default {
             }
         }
     }
+}
+
+.selected {
+    background-color: #5161b9;
 }
 </style>

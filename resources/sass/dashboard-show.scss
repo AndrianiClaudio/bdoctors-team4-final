@@ -1,0 +1,31 @@
+.container-show {
+    border: 1px solid green;
+    background-color: #fff;
+    height: 100%;
+    border-radius: 19px;
+    .show-title {
+        background-color: #3C4996;
+        height: 70px;
+        border-radius: 19px;
+    }
+    .row {
+        .col-2{
+            img {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    }
+    .row {
+        .col {
+            h4 {
+                font-size: 1.4em;
+                .icon-opt {
+                    color: #738DE5;
+                    font-size: 1.4em;
+                }
+            }
+        }
+    }
+
+}

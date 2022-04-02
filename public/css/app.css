@@ -26709,7 +26709,6 @@ fieldset:disabled .btn {
 }
 
 main {
-  height: calc(100vh - 56px);
   display: flex;
 }
 
@@ -26739,8 +26738,8 @@ main {
 }
 
 .main-vh {
-  height: 100%;
-  background-color: #F5F6F8;
+  height: 100vh;
+  background-color: #f6f5f8;
 }
 
 .welcome-sizes {
@@ -26837,5 +26836,34 @@ main {
 
 .address-color {
   color: #8e8e8e;
+}
+
+.container-show {
+  border: 1px solid green;
+  background-color: #fff;
+  height: 100%;
+  border-radius: 19px;
+}
+
+.container-show .show-title {
+  background-color: #3C4996;
+  height: 70px;
+  border-radius: 19px;
+}
+
+.container-show .row .col-2 img {
+  width: 220px;
+  height: 220px;
+}
+
+.container-show .row .col h4,
+.container-show .row .col .h4 {
+  font-size: 1.4em;
+}
+
+.container-show .row .col h4 .icon-opt,
+.container-show .row .col .h4 .icon-opt {
+  color: #738DE5;
+  font-size: 1.4em;
 }
 

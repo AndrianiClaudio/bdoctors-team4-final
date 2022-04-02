@@ -8,9 +8,74 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-show ms-3 me-3">
         @if (Auth::user()->id)
-            <div class="row mt-3">
+        
+        <div class="show-title d-flex align-items-center">
+            <h4 class="text-uppercase text-white mb-0 ms-3">Il tuo profilo</h4>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-2 d-flex justify-content-center">
+                <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-circle" alt="">
+            </div>
+            <div class="col d-flex flex-column justify-content-between">
+                <div class="row">
+                    <div class="col">
+                        <h1> Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-uppercase text-secondary">
+                            @if (count($doctor->specs) > 0)
+                            @foreach ($doctor->specs as $spec)
+                                    <a class="text-reset" href="{{ route('specializations.show', $spec->id) }}">{{ $spec->category }}{{ !($loop->last) ? ',' : '' }}</a>
+                            @endforeach
+                            @else
+                                <a href="{{ route('profile.edit') }}">Inserisci una specializzazione</a>
+                            @endif
+                        </h3>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="text-uppercase fw-bold">Email</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="text-secondary">{{ $doctor->email }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="text-uppercase fw-bold">Telefono</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="text-secondary">{{ $doctor->phone }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <h4 class="d-flex align-items-center text-secondary">
+                            <i class="fa-solid me-2 fa-location-dot icon-opt"></i> {{ $doctor->address }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+
+
+            {{-- <div class="row mt-3">
                 <div class="col">
                     doctor name
                     <h1>{{ $doctor->firstname }} {{ $doctor->lastname }}</h1>
@@ -72,7 +137,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         @endif
     </div>
 @endsection

@@ -11,68 +11,114 @@
     <div class="container-show ms-3 me-3">
         @if (Auth::user()->id)
         
-        <div class="show-title d-flex align-items-center">
-            <h4 class="text-uppercase text-white mb-0 ms-3">Il tuo profilo</h4>
-        </div>
-
-        <div class="row mt-3">
-            <div class="col-2 d-flex justify-content-center">
-                <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-circle" alt="">
+            <div class="show-title d-flex align-items-center justify-content-between">
+                <h4 class="text-uppercase text-white mb-0 ms-3">Il tuo profilo</h4>
+                <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
             </div>
-            <div class="col d-flex flex-column justify-content-between">
-                <div class="row">
-                    <div class="col">
-                        <h1> Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </h1>
+
+            <div class="row mt-5">
+                <div class="col-2 d-flex justify-content-center">
+                    <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-circle" alt="">
+                </div>
+                <div class="col d-flex flex-column justify-content-between">
+                    <div class="row">
+                        <div class="col">
+                            <h1> Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="text-uppercase text-secondary">
+                                @if (count($doctor->specs) > 0)
+                                @foreach ($doctor->specs as $spec)
+                                        <a class="text-reset" href="{{ route('specializations.show', $spec->id) }}">{{ $spec->category }}{{ !($loop->last) ? ',' : '' }}</a>
+                                @endforeach
+                                @else
+                                    <a href="{{ route('profile.edit') }}">Inserisci una specializzazione</a>
+                                @endif
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="text-uppercase fw-bold">Email</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="text-secondary">{{ $doctor->email }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="text-uppercase fw-bold">Telefono</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="text-secondary">{{ $doctor->phone }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <h4 class="d-flex align-items-center text-secondary">
+                                <i class="fa-solid me-2 fa-location-dot icon-opt"></i> {{ $doctor->address }}
+                            </h4>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <h3 class="text-uppercase text-secondary">
-                            @if (count($doctor->specs) > 0)
-                            @foreach ($doctor->specs as $spec)
-                                    <a class="text-reset" href="{{ route('specializations.show', $spec->id) }}">{{ $spec->category }}{{ !($loop->last) ? ',' : '' }}</a>
-                            @endforeach
+            </div>
+
+            <div class="row mt-pers">
+                <div class="col ms-3 mt-5">
+                    <div class="row">
+                        <div class="col d-flex align-items-center justify-content-between">
+                            <h2 class="text-uppercase fw-bold ms-3">Prestazioni in evidenza</h2>
+                            <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 mb-3" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 d-flex flex-wrap">
+
+                            @if (count($doctor->services) > 0)
+                                @foreach ($doctor->services as $service)
+                                <div class="service m-3">
+                                    <div class="service-title d-flex justify-content-center align-items-center">
+                                        <h5 class="text-uppercase text-white m-0"> Rubo </h5>
+                                    </div>
+                                    <p class="service-desc px-3 pt-2">
+                                        Descrizione di come penso di derubare le mille mamme pancine che mi fanno domande idiote.
+                                    </p>
+                                </div>
+                                @endforeach
                             @else
-                                <a href="{{ route('profile.edit') }}">Inserisci una specializzazione</a>
+                                <a href="{{ route('profile.edit') }}">Inserisci un servizio</a>
                             @endif
-                        </h3>
-
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <h4 class="text-uppercase fw-bold">Email</h4>
-                            </div>
+                        
+                <div class="col me-3  d-flex justify-content-center align-items-end mb-3">
+                    <div class="container-cv">
+                        <div class="content-cv">
+
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="text-secondary">{{ $doctor->email }}</h5>
-                            </div>
+                        <div class="title-cv d-flex align-items-center">
+                            <h5 class="text-uppercase text-white mb-0 ms-3"> Il tuo curriculum </h5>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <h4 class="text-uppercase fw-bold">Telefono</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="text-secondary">{{ $doctor->phone }}</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-center">
-                        <h4 class="d-flex align-items-center text-secondary">
-                            <i class="fa-solid me-2 fa-location-dot icon-opt"></i> {{ $doctor->address }}
-                        </h4>
                     </div>
                 </div>
             </div>
-        </div>
-            
 
 
             {{-- <div class="row mt-3">

@@ -106,13 +106,11 @@
                             {{ Auth::user()->lastname }} </strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item"
-                                href="{{ route('services.index', Auth::user()->slug) }}">Gestisci le tue
+                        <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
                                 prestazioni</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->slug) }}">Modifica
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
                                 profilo</a></li>
-                        <li><a class="dropdown-item"
-                                href="{{ route('profile.show', Auth::user()->slug) }}">Profilo</a>
+                        <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

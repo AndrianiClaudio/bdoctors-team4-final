@@ -28,10 +28,12 @@
                 </div>
                 <div class="spec-desc">
                     <!-- Specializzazione active in quel momento -->
-                    <h2>{{ specs[counter].category }}</h2>
-                    <p>
-                        {{ specs[counter].description }}
-                    </p>
+                    <div v-if="specs[counter]">
+                        <h2>{{ specs[counter].category }}</h2>
+                        <p>
+                            {{ specs[counter].description }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

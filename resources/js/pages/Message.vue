@@ -147,7 +147,7 @@ export default {
             // reset errors
             for (const key in this.errors) {
                 this.errors[key] = false;
-                console.log(this.errors[key]);
+                // console.log(this.errors[key]);
             }
 
             // validate form
@@ -155,7 +155,7 @@ export default {
             if (!this.firstname) {
                 this.errors.firstname = true;
                 firstname.classList.add("is-invalid");
-                console.log(this.errors.firstname);
+                // console.log(this.errors.firstname);
             } else {
                 firstname.classList.remove("is-invalid");
             }

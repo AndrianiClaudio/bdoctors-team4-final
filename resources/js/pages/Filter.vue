@@ -1,11 +1,11 @@
 <template>
     <div class="container-fluid p-0">
         <Navbar />
-        <div class="container" v-if="doctors.length > 0">
+        <div class="container" v-if="filteredDoctor.length > 0">
             <div class="filter-container">
                 <label for="vote">ordina per miglior voto</label>
                 <select
-                    @change="getFilterDoctors(selectedVote)"
+                    @change="getFilterDoctors($route.query.specialization)"
                     v-model="selectedVote"
                 >
                     <option value="5">5 stelle</option>
@@ -21,7 +21,7 @@
                 {{ $route.query.specialization.split("_").join(" ") }}
             </h3>
             <ul>
-                <li v-for="doctor in doctors" :key="doctor.id">
+                <li v-for="doctor in filteredDoctor" :key="doctor.id">
                     <h5 class="card-title">
                         {{ doctor.firstname }} {{ doctor.lastname }}
                     </h5>
@@ -124,10 +124,8 @@ export default {
     data() {
         return {
             selectedVote: "",
-            filteredDoctor: null,
-            doctors: {
-                Type: Array,
-            },
+            filteredDoctor: [],
+            doctors: [],
         };
     },
     props: {
@@ -140,9 +138,19 @@ export default {
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
-                    if (this.selectedVote == "5") {
+                    this.filteredDoctor = 0;
+                    if (parseInt(this.selectedVote) == 4) {
+                        this.doctors.forEach((doctor) => {
+                            if (
+                                doctor.reviews[0].vote >= 4 &&
+                                doctor.reviews[0].vote < 5
+                            ) {
+                                this.filteredDoctor = res.data.results.doctors;
+                            }
+                            //console.log(doctor.reviews[0].vote);
+                        });
                     }
-                    this.doctors = res.data.results.doctors;
+                    this.filteredDoctor = res.data.results.doctors;
                     //console.log(this.doctors);
                 })
                 .catch((err) => {

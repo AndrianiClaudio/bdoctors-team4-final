@@ -3,13 +3,18 @@
         <Navbar />
         <div class="container" v-if="doctors.length > 0">
             <div class="filter-container">
-                <input
-                    type="checkbox"
-                    id="filterVote"
-                    value="filterVote"
-                    v-model="filterVote"
-                />
-                <label for="vote">filtra per voto</label>
+                <label for="vote">ordina per miglior voto</label>
+                <select
+                    @change="getFilterDoctors(selectedVote)"
+                    v-model="selectedVote"
+                >
+                    <option value="5">5 stelle</option>
+                    <option value="4">4 stelle</option>
+                    <option value="3">3 stelle</option>
+                    <option value="2">2 stelle</option>
+                    <option value="1">1 stelle</option>
+                </select>
+                <p>{{ selectedVote }}</p>
             </div>
             <h3>
                 Ecco i dottori con specializzazione
@@ -118,8 +123,9 @@ export default {
     },
     data() {
         return {
+            selectedVote: "",
+            filteredDoctor: null,
             doctors: {
-                filterVote: [],
                 Type: Array,
             },
         };
@@ -131,13 +137,13 @@ export default {
     },
     methods: {
         getFilterDoctors(specialization) {
-            // console.log(specialization);
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
-                    /* if (condition) {
-                    } */
+                    if (this.selectedVote == "5") {
+                    }
                     this.doctors = res.data.results.doctors;
+                    //console.log(this.doctors);
                 })
                 .catch((err) => {
                     console.error(err);
@@ -145,9 +151,8 @@ export default {
         },
     },
     created() {
-        console.log(this.filterVote);
         this.getFilterDoctors(this.$route.query.specialization);
-        console.log($route.query.specialization.split("_").join(" "));
+        //console.log($route.query.specialization.split("_").join(" "));
     },
 };
 </script>

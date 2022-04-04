@@ -1,0 +1,94 @@
+.container-show {
+    background-color: #fff;
+    height: 100%;
+    border-radius: 19px;
+    .show-title {
+        background-color: #3C4996;
+        height: 70px;
+        border-radius: 19px;
+        .edit-icon {
+            background-color: #718bdd;
+            border-radius: 10px;
+            top: 0;
+            right: 0;
+            width: 35px;
+            height: 35px;
+        } 
+    }
+    .row {
+        .col-2{
+            img {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    }
+    .row.mt-pers {
+        margin-top: 4.5em;
+        .col {
+            .row {
+                .col {
+                    .edit-icon {
+                        background-color: #718bdd;
+                        border-radius: 10px;
+                        top: 0;
+                        right: 0;
+                        width: 30px;
+                        height: 30px;
+                    } 
+                }
+            }
+        }
+    }
+    .row {
+        .col {
+            h4 {
+                font-size: 1.4em;
+                .icon-opt {
+                    color: #738DE5;
+                    font-size: 1.4em;
+                }
+            }
+        }
+    }
+    .row {
+        .col-12 {
+            .service {
+                background-color: #F6F5F8;
+                border: 2px solid #3C4996;
+                border-radius: 19px;
+                width: 210px;
+                height: 150px;
+                .service-title {
+                    background-color: #3C4996;
+                    border-radius: 19px;
+                    width: 206px;
+                    height: 30px;
+                }
+                .service-desc {
+                    width: 210px;
+                    height: calc(150px - 30px);
+                }
+            }
+        }
+        .col {
+            .container-cv {
+                background-color: #fff;
+                border-radius: 28px;
+                border: 5px solid #3C4996;
+                width: 500px;
+                height: 348px;
+                .content-cv {
+                    height: 270px;
+                }
+                .title-cv {
+                    background-color: #3C4996;
+                    height: 70px;
+                    border-radius: 19px;
+                }
+            }
+        }
+
+    }
+}
+

@@ -72,7 +72,18 @@ class ServiceController extends Controller
         $service->fill($data);
         $service->specialization_id = (int)$data['specialization_id'];
         $service->save();
-        Auth::user()->specializations()->attach((int)$data['specialization_id']);
+
+
+        $user_spec = (Auth::user()->specializations()->get());
+        $spec_id = [];
+        foreach ($user_spec as $spec) {
+            $spec_id[] = $spec->id;
+        }
+
+        if (!in_array((int)$data['specialization_id'], $spec_id)) {
+            Auth::user()->specializations()->attach((int)$data['specialization_id']);
+        }
+
 
         return redirect()->route('services.show', $service->id);
     }

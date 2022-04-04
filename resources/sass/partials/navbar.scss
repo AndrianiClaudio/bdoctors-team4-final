@@ -1,0 +1,32 @@
+.container-fluid {
+    .bg-color {
+        background-color: #3c4996;
+        .container-fluid {
+            .navbar-brand {
+                svg {
+                    width: 85%;
+                    margin: 0;
+                    padding: 0 0 0 1em;
+                }
+            }
+            #navbarNav {
+                .navbar-nav {
+                    .nav-item.sign-in {
+                        background-color: #505da8;
+                        border-radius: 25px;
+                        .nav-link:hover {
+                            background-color: #3c4996;
+                        }
+                    }
+                    .nav-item.register {
+                        background-color: #4553a5;
+                        border-radius: 25px;
+                        .nav-link:hover {
+                            background-color: #3c4996;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

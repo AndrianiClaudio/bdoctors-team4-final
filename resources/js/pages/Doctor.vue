@@ -110,7 +110,7 @@ export default {
         getProduct(url) {
             axios.get(url).then((result) => {
                 // console.log(result.data.doctors);
-                this.doctor = result.data.doctors;
+                this.doctor = result.data.results.doctors;
             });
         },
     },

@@ -131,7 +131,7 @@ export default {
         getProduct(url) {
             axios.get(url).then((res) => {
                 // console.log(res.data.doctors);
-                this.doctor = res.data.doctors;
+                this.doctor = res.data.results.doctors;
             });
         },
         checkForm(e) {

@@ -111,7 +111,7 @@
                 <div class="col me-3  d-flex justify-content-center align-items-end mb-3">
                     <div class="container-cv">
                         <div class="content-cv">
-                            {{-- <img src="{{ asset('images/doctorDashboard.png') }}" alt=""> --}}
+                            <img src="{{ asset('images/doctorDashboard.png') }}" alt="">
                             {{-- <img src="../../../public/images/doctorDashboard.png"> --}}
                             {{-- <img class="" src="{{ asset('/storage/default_images/my-deliveboo.gif') }}" alt=""> --}}
                             {{-- <img class="" src="{{ asset('/storage/images/doctorDashboard.png') }}" alt=""> --}}

@@ -102,7 +102,7 @@
                                 </div>
                                 @endforeach
                             @else
-                                <a href="{{ route('profile.edit') }}">Inserisci un servizio</a>
+                                <a class="ms-3" href="{{ route('profile.edit') }}">Inserisci un servizio</a>
                             @endif
                         </div>
                     </div>
@@ -111,7 +111,10 @@
                 <div class="col me-3  d-flex justify-content-center align-items-end mb-3">
                     <div class="container-cv">
                         <div class="content-cv">
-
+                            {{-- <img src="{{ asset('images/doctorDashboard.png') }}" alt=""> --}}
+                            {{-- <img src="../../../public/images/doctorDashboard.png"> --}}
+                            {{-- <img class="" src="{{ asset('/storage/default_images/my-deliveboo.gif') }}" alt=""> --}}
+                            {{-- <img class="" src="{{ asset('/storage/images/doctorDashboard.png') }}" alt=""> --}}
                         </div>
                         <div class="title-cv d-flex align-items-center">
                             <h5 class="text-uppercase text-white mb-0 ms-3"> Il tuo curriculum </h5>

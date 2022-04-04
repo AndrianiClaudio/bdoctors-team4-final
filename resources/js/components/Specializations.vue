@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col d-flex justify-content-center mt-5">
-                <div class="specs">
+                <div class="specs me-3">
                     <ul class="list-group">
                         <li
                             class="list-group-item"
@@ -23,19 +23,24 @@
                         </li>
                     </ul>
                 </div>
-                <div class="pic rounded-3">
-                    <img class="img-spec" v-if="specs[counter].category == 'Neurology'" src="https://www.centromedicosantanna.com/images/Immagini/ImmaginiSito/img_articoli/02_neurologia.jpg" alt="">
-                    <img class="img-spec" v-if="specs[counter].category == 'Ophthalmology'" src="https://cdn.diabetesselfmanagement.com/2006/05/dsm-what-is-an-ophthalmologist-shutterstock_1038422095-1000x667.jpg" alt="">
-                    <img class="img-spec" v-if="specs[counter].category == 'Nuclear Magnetic'" src="https://www.my-personaltrainer.it/2020/04/16/risonanza-magnetica_900x760.jpeg" alt="">
-                    <img class="img-spec" v-if="specs[counter].category == 'X-Ray'" src="https://healthviewdiagnosticcentre.advertroindia.co.in/uploads-advertro-03-08-2019/healthviewdiagnosticcentre/products/33062/doctors-watching-x-ray-shot_23-2147763766.jpg" alt="">
-                    <img class="img-spec" v-if="specs[counter].category == 'Surgical'" src="https://images.theconversation.com/files/277995/original/file-20190604-69087-6q2xjq.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop" alt="">
-                    <img class="img-spec" v-if="specs[counter].category == 'Cardiology'" src="https://static.medmonks.com/home/img/blog/cardiologist-india.jpg" alt="">
-                    <img class="img-spec" v-if="specs[counter].category == 'Dental Clinic'" src="https://carrumdownsdentist.com.au/wp-content/uploads/2021/08/dentist-langwarrin.jpg" alt="">
+                <div class="pic rounded-3 me-3">
+                    <img class="img-spec ten" v-show="specs[counter].category == 'Allergologia'" src="https://www.clinicaguarnieri.it/wp-content/uploads/2018/04/allergologia-2.jpg" alt="">
+                    <img class="img-spec twenty" v-show="specs[counter].category == 'Cardiologia'" src="https://meditronsrl.it/wp-content/uploads/2021/08/Monitor-paziente-per-ospedale.jpg" alt="">
+                    <img class="img-spec thirty" v-show="specs[counter].category == 'Dermatologia'" src="https://www.clinicamedicasanluca.it/wp-content/uploads/2018/07/dermatologia.jpg" alt="">
+                    <img class="img-spec" v-show="specs[counter].category == 'Ecografia'" src="https://images.pexels.com/photos/7088841/pexels-photo-7088841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                    <img class="img-spec twenty" v-show="specs[counter].category == 'Immunologia'" src="https://www.dire.it/wp-content/uploads/2020/10/medici-laboratorio.jpg" alt="">
+                    <img class="img-spec twenty" v-show="specs[counter].category == 'Medicina dello Sport'" src="https://www.sanlucapadova.it/wp-content/uploads/2020/01/visita-medico-sportiva-padova.jpg" alt="">
+                    <img class="img-spec" v-show="specs[counter].category == 'Neurologia'" src="https://cdn.pixabay.com/photo/2021/12/02/22/15/x-ray-6841384_960_720.jpg" alt="">
+                    <img class="img-spec fourFive" v-show="specs[counter].category == 'Oculistica'" src="https://www.saluteecultura.it/wp-content/uploads/2018/07/oculistica-occhio-visita-specialistica.jpg" alt="">
+                    <img class="img-spec" v-show="specs[counter].category == 'Pediatria'" src="https://nubramedica.it/wp-content/uploads/2017/02/pediatria.jpg" alt="">
+                    <img class="img-spec seventy" v-show="specs[counter].category == 'Psicologia'" src="https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                    <img class="img-spec ten" v-show="specs[counter].category == 'Radiologia e Risonanza'" src="https://www.istitutocicio.it/prestazioni_specialistiche-radiodiagnostica-tradizionale/images/istituto-cicio-radiologia-04.jpg" alt="">
+
                 </div>
                 <div class="spec-desc">
                     <!-- Specializzazione active in quel momento -->
                     <div v-if="specs[counter]">
-                        <h2>{{ specs[counter].category }}</h2>
+                        <h2 class="fw-bold">{{ specs[counter].category }}</h2>
                         <p v-html="specs[counter].description">
                             
                         </p>
@@ -91,21 +96,26 @@ export default {
         .col {
             .specs {
                 .list-group {
-                    width: 300px;
+                    width: 400px;
                 }
             }
             .pic {
                 background-color: gray;
-                width: 470px;
+                max-width: 470px;
                 overflow: hidden;
                 .img-spec {
-                    width: 470px;
-                    height: 418px;
+                    object-fit: cover;
+                    max-width: 100%;
+                    height: 100%;
                 }
+                .img-spec.ten { object-position: 10%; }
+                .img-spec.twenty { object-position: 20%; }
+                .img-spec.thirty { object-position: 30%; }
+                .img-spec.fourFive { object-position: 45%; }
+                .img-spec.seventy { object-position: 70%; }
             }
             .spec-desc {
-                width: 300px;
-                // width: 400px;
+                width: 400px;
             }
         }
     }

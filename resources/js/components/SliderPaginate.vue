@@ -25,12 +25,6 @@
                 alt="Immagine non caricata correttamente."
                 v-if="doctor.photo"
             />
-            <img
-                class="card-img-top img img-fluid mx-auto py-2"
-                src="../../../public/images/doctor.jpg"
-                alt="Immagine non caricata non esistente."
-                v-else
-            />
             <div class="card-body">
                 <!-- FULLNAME -->
                 <h5 class="card-title">

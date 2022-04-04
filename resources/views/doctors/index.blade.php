@@ -30,7 +30,7 @@
             </div>
             <div class="col-4">
                 <div class="profile-preview">
-                    <h5 class="ps-2">Il tuo Bedge</h5>
+                    <h5 class="ps-2 pt-2">Il tuo Bedge</h5>
                     <a class="edit-icon text-white text-center" href="{{ route('profile.edit', Auth::user()->slug) }}">
                         <i class="fa-solid fa-pen-to-square v-al-icon"></i>
                     </a>
@@ -63,21 +63,65 @@
         <div class="row">
             <div class="col-7 ms-3 mt-3">
                 <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2">
-                      <h5>Messaggi</h5>
+                      <h5>I tuoi ultimi messaggi</h5>
                 </div>
                 <div class="preview-message text-black">
-                    @foreach ($doctor->messages as $message)
-                                    <li>
-                                        {{ $message->email }}
-                                    </li>
-                                    <hr>
-                    @endforeach
+                    <ul class="ul-message">
+                        @foreach ($doctor->messages as $message)
+                                        <li class="pt-2">
+                                            Inviato da: <p class="bold-p">{{ $message->email }}</p>
+                                            <p class="message mt-3 text-white ps-1 pe-1">{{ $message->content }}</p>
+                                            
+                                        </li>
+                                        <hr>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
             <div class="col-4">
-                <div class="profile-preview">
+                <div class="profile-preview pt-2 mt-3">
                     <h5 class="ps-2">I tuoi Servizi</h5>
                 </div>  
+                <div class="service text-black">
+                    <ul class="pt-2 ul-message">
+                        @foreach ($doctor->services as $service)
+                        <li>
+                            <h2> {{ $service->type }} </h2>
+                            <p>{{ $service->description }}</p>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7  ms-3 mt-3">
+                <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2 ">
+                        <h5>Le tue ultime recensioni</h5>
+                </div>
+                <div class="review text-black">
+                    <ul class="ul-message">
+                        @foreach ($doctor->reviews as $review)
+                        <li class="pt-2">
+                            Scritto dall'utente: <p class="bold-p">{{ $review->username }}</p>
+                            @if ($review->content)
+                            <p>
+                                @for ($i = 1; $i <= $review->vote; $i++)
+                                    <i class="bi bi-star-fill"></i>
+                                @endfor
+                                @for ($i = $review->vote; $i < 5; $i++)
+                                    <i class="bi bi-star"></i>
+                                @endfor
+                            </p>
+                                <p class=" message mt-3 text-white ps-1 pe-1">{{ $review->content }}</p>
+                            @else
+                                <p>Questa recensione non ha un testo</p>
+                            @endif
+                            <hr>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
 </div>

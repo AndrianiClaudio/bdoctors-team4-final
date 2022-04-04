@@ -65,7 +65,7 @@
                 <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2">
                       <h5>Messaggi</h5>
                 </div>
-                <div class="preview-message">
+                <div class="preview-message text-black">
                     @foreach ($doctor->messages as $message)
                                     <li>
                                         {{ $message->email }}

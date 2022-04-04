@@ -17,3 +17,4 @@ mix.js('resources/js/admin.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     // .sass('resources/sass/dashboard.scss', 'public/css')
     .copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
+    

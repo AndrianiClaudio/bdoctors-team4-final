@@ -22,13 +22,15 @@
                     <div class="data-sizes position-absolute data-abs ms-2 ps-1 pe-1">
                         <i class="fa-solid fa-calendar-days"></i> {{ now('Europe/Rome')->toDateString() }}
                     </div>
+                    <img class="img-sizes align-self-end" src="{{ asset('images/doctorDashboard.png') }}" alt="">
                     <h1 class="text-capitalize">Buongiorno Dr. {{ $doctor->firstname }} {{ $doctor->lastname }}</h1>
                     <p>Si ricordi sempre di respirare</p>
                 </div>
+                
             </div>
             <div class="col-4">
                 <div class="profile-preview">
-                    <h6>Il tuo Profilo</h6>
+                    <h5 class="ps-2">Il tuo Bedge</h5>
                     <a class="edit-icon text-white text-center" href="{{ route('profile.edit', Auth::user()->slug) }}">
                         <i class="fa-solid fa-pen-to-square v-al-icon"></i>
                     </a>
@@ -51,11 +53,32 @@
                         </ul>
                         <p class="pb-1 address-color"><i class="fa-solid fa-location-dot icon-color"></i> Via
                             {{ $doctor->address }}</p>
-                        <hr>
-
-
+                        <hr class="mb-hr">
+                        <p class="text-black mb-1"><i class="fa-solid fa-mobile color-phone"></i> {{$doctor->phone}}</p>
+                        <p><i class="fa-solid fa-envelope email"></i>  {{ $doctor->email }}</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-7 ms-3 mt-3">
+                <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2">
+                      <h5>Messaggi</h5>
+                </div>
+                <div class="preview-message text-black">
+                    @foreach ($doctor->messages as $message)
+                                    <li>
+                                        {{ $message->email }}
+                                    </li>
+                                    <hr>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="profile-preview">
+                    <h5 class="ps-2">I tuoi Servizi</h5>
+                </div>  
+            </div>
+        </div>
+</div>
     @endsection

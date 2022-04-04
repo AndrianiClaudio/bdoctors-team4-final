@@ -70,6 +70,17 @@ export default {
         };
     },
     methods: {
+        getDoctor() {
+            axios
+                .get("api/doctors")
+                .then((res) => {
+                    this.productArray = res.data.results.doctors;
+                    console.log(this.productArray);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        },
         prev(index) {
             this.counters.forEach((element, countIndex) => {
                 countIndex == index;
@@ -94,15 +105,7 @@ export default {
         },
     },
     created() {
-        axios
-            .get("api/doctors")
-            .then((res) => {
-                this.productArray = res.data.results.doctors;
-                console.log(this.productArray);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        this.getDoctor();
     },
 };
 </script>

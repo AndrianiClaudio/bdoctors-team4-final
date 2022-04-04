@@ -2,6 +2,15 @@
     <div class="container-fluid p-0">
         <Navbar />
         <div class="container" v-if="doctors.length > 0">
+            <div class="filter-container">
+                <input
+                    type="checkbox"
+                    id="filterVote"
+                    value="filterVote"
+                    v-model="filterVote"
+                />
+                <label for="vote">filtra per voto</label>
+            </div>
             <h3>
                 Ecco i dottori con specializzazione
                 {{ $route.query.specialization.split("_").join(" ") }}
@@ -110,6 +119,7 @@ export default {
     data() {
         return {
             doctors: {
+                filterVote: [],
                 Type: Array,
             },
         };
@@ -125,6 +135,8 @@ export default {
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
+                    /* if (condition) {
+                    } */
                     this.doctors = res.data.results.doctors;
                 })
                 .catch((err) => {
@@ -133,6 +145,7 @@ export default {
         },
     },
     created() {
+        console.log(this.filterVote);
         this.getFilterDoctors(this.$route.query.specialization);
         console.log($route.query.specialization.split("_").join(" "));
     },

@@ -75,7 +75,8 @@ class DoctorController extends Controller
 
         return response()->json([
             'response' => true,
-            'doctors' => $doctors,
+            // 'doctors' => $doctors,
+            'results' => compact('doctors')
         ]);
     }
     public function newMessage(Request $request, $slug)

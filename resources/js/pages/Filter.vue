@@ -45,7 +45,9 @@
                     <div v-if="doctor.reviews">
                         <hr />
                         <b><em>Reviews</em></b>
-                        <ul>
+                        <p>{{ doctor.review_mean.toFixed(1) }}</p>
+
+                        <!-- <ul>
                             <li
                                 v-for="(review, index) in doctor.reviews"
                                 :key="`review-${index}`"
@@ -58,11 +60,7 @@
                                 </div>
                                 <b>Voto: </b>{{ review.vote }}
                             </li>
-                        </ul>
-                        <!-- <div
-                            v-for="(review, index) in doctor.reviews"
-                            :key="`review-${index}`"
-                        > -->
+                        </ul> -->
                     </div>
                     <!-- SPECIALIZZAZIONI -->
                     <hr />

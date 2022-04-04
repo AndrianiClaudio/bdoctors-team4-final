@@ -4,13 +4,17 @@
         <div class="container" v-if="doctors.length > 0">
             <div class="filter-container">
                 <label for="vote">ordina per miglior voto</label>
-                <select v-model="selectedVote">
+                <select
+                    @change="getFilterDoctors(selectedVote)"
+                    v-model="selectedVote"
+                >
                     <option value="5">5 stelle</option>
                     <option value="4">4 stelle</option>
                     <option value="3">3 stelle</option>
                     <option value="2">2 stelle</option>
                     <option value="1">1 stelle</option>
                 </select>
+                <p>{{ selectedVote }}</p>
             </div>
             <h3>
                 Ecco i dottori con specializzazione
@@ -120,6 +124,7 @@ export default {
     data() {
         return {
             selectedVote: "",
+            filteredDoctor: null,
             doctors: {
                 Type: Array,
             },
@@ -135,8 +140,7 @@ export default {
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
-                    if (this.selectedVote == 5) {
-                        console.log("ciao");
+                    if (this.selectedVote == "5") {
                     }
                     this.doctors = res.data.results.doctors;
                     //console.log(this.doctors);
@@ -147,7 +151,6 @@ export default {
         },
     },
     created() {
-        console.log(this.selectedVote);
         this.getFilterDoctors(this.$route.query.specialization);
         //console.log($route.query.specialization.split("_").join(" "));
     },

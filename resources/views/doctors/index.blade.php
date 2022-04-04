@@ -123,6 +123,14 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="profile-preview pt-2 mt-3">
+                        <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
+                </div>  
+                <div class="service text-black">
+                    DOTTOOOOOO'!
+                </div>
+            </div>
         </div>
 </div>
     @endsection

@@ -43,13 +43,18 @@ class DoctorController extends Controller
                         break;
                     }
                 }
+                $sum = 0;
+                foreach ($doctor->reviews as $review) {
+                    $sum += $review->vote;
+                }
+                $doctor->review_mean = $sum / count($doctor->reviews);
+            // dd(round($doctor->review_mean, 2));
             }
 
             // dd($doctors);
 
             return response()->json([
                 'response' => true,
-                // 'results' => compact('doctors', 'specs')
                 'results' => [
                     'count' => count($filtered_doctors),
                     'doctors' => $filtered_doctors

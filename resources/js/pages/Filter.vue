@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid p-0">
         <Navbar />
-        <div class="container" v-if="filteredDoctor.length > 0">
+        <div class="container">
             <div class="filter-container">
                 <label for="vote">ordina per miglior voto</label>
                 <select
@@ -20,7 +20,7 @@
                 Ecco i dottori con specializzazione
                 {{ $route.query.specialization.split("_").join(" ") }}
             </h3>
-            <ul>
+            <ul v-if="filteredDoctor.length > 0">
                 <li v-for="doctor in filteredDoctor" :key="doctor.id">
                     <h5 class="card-title">
                         {{ doctor.firstname }} {{ doctor.lastname }}
@@ -103,11 +103,14 @@
             </ul>
             <!-- {{ doctors }} -->
         </div>
-        <div class="container" v-else>
+        <div class="container" v-if="doctors.length === 0">
             <b
                 >Non ci sono dottori con specializzazione =
                 {{ $route.query.specialization }}</b
             >
+        </div>
+        <div class="container" v-if="check_filter">
+            <b>Non ci sono dottori.</b>
         </div>
     </div>
 </template>
@@ -124,6 +127,7 @@ export default {
             selectedVote: "",
             filteredDoctor: [],
             doctors: [],
+            check_filter: false,
         };
     },
     props: {
@@ -136,20 +140,26 @@ export default {
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
-                    this.filteredDoctor = 0;
-                    if (parseInt(this.selectedVote) == 4) {
+                    this.doctors = res.data.results.doctors;
+                    this.filteredDoctor = res.data.results.doctors;
+                    // console.log(this.filteredDoctor);
+                    if (!isNaN(parseInt(this.selectedVote))) {
+                        this.check_filter = false;
+                        this.filteredDoctor = [];
                         this.doctors.forEach((doctor) => {
                             if (
-                                doctor.reviews[0].vote >= 4 &&
-                                doctor.reviews[0].vote < 5
+                                doctor.review_mean >=
+                                    parseInt(this.selectedVote) &&
+                                doctor.review_mean <
+                                    parseInt(this.selectedVote) + 1
                             ) {
-                                this.filteredDoctor = res.data.results.doctors;
+                                this.filteredDoctor.push(doctor);
                             }
-                            //console.log(doctor.reviews[0].vote);
                         });
+                        if (this.filteredDoctor.length === 0) {
+                            this.check_filter = true;
+                        }
                     }
-                    this.filteredDoctor = res.data.results.doctors;
-                    //console.log(this.doctors);
                 })
                 .catch((err) => {
                     console.error(err);

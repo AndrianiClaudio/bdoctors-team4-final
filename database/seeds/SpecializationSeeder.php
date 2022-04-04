@@ -13,13 +13,17 @@ class SpecializationSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'Neurology',
-            'Ophthalmology',
-            'Nuclear Magnetic',
-            'X-Ray',
-            'Surgical',
-            'Cardiology',
-            'Dental Clinic',
+            'Allergologia',
+            'Cardiologia',
+            'Dermatologia',
+            'Ecografia',
+            'Immunologia',
+            'Medicina dello Sport',
+            'Neurologia',
+            'Oculistica',
+            'Pediatria',
+            'Psicologia',
+            'Radiologia e Risonanza',
         ];
 
         foreach ($categories as $cat) {

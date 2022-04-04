@@ -13,8 +13,7 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
-        foreach ($users as $user) {
+        foreach (User::all() as $user) {
             $review = new Review();
             $review->vote = 5;
             $review->user_id = $user->id;

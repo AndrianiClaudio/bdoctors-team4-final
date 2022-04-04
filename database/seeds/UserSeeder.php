@@ -16,22 +16,27 @@ class UserSeeder extends Seeder
     public function run(Faker $faker)
     {
         for ($i = 0; $i < 15; $i++) {
-            $newUser = new User();
+            // firstname, lastname inseriti prima per permettere slug
+            $data = [
+                'firstname' => $faker->firstName(),
+                'lastname' => $faker->lastName(),
+            ];
 
-            $newUser->firstname = $faker->firstName();
-            $newUser->lastname = $faker->lastName();
-            $newUser->email = $faker->email();
-            $newUser->slug = $newUser::createSlug($newUser['firstname'] . '-' . $newUser['lastname']);
-            // $newUser->slug = Str::slug($newUser['firstname'] . '-' . $newUser['lastname'], '-');
+            User::create(
+            [
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
 
-            $newUser->password = Hash::make('12345678');
-            $newUser->address = $faker->address();
-
-            $newUser->phone = $faker->phoneNumber();
-            $newUser->photo = $faker->imageUrl(200, 200, 'doctors', true);
-            $newUser->cv = $faker->imageUrl(200, 200);
-
-            $newUser->save();
+                'email' => $faker->email(),
+                'slug' => User::createSlug($data['firstname'] . '-' . $data['lastname']),
+                'password' => Hash::make('12345678'),
+                'address' => $faker->address(),
+                // NULLABLE
+                'phone' => $faker->phoneNumber(),
+                'photo' => $faker->imageUrl(200, 200, 'doctors', true),
+                'cv' => $faker->imageUrl(200, 200),
+            ]
+            );
         }
     }
 }

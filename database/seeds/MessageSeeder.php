@@ -15,8 +15,7 @@ class MessageSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $users = User::all();
-        foreach ($users as $user) {
+        foreach (User::all() as $user) {
             $msg = new Message();
 
             $msg->firstname = $faker->firstName();

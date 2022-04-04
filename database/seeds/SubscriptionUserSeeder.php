@@ -17,8 +17,13 @@ class SubscriptionUserSeeder extends Seeder
             $user = User::inRandomOrder()->first();
             $sub = Subscription::inRandomOrder()->first();
 
+            // SET TIMEZONE & NOW + SUB DURATION
+            date_default_timezone_set('Europe/Rome');
+            $now = new DateTime();
+            $now_clone = clone $now;
+            $now_clone->add(new DateInterval('PT' . $sub->duration . 'H'));
             $user->subscriptions()->attach($sub->id, [
-                'expires_date' => '2022-03-23 15:28:35'
+                'expires_date' => $now_clone,
             ]);
 
         }

@@ -26727,7 +26727,7 @@ main {
 }
 
 .bg-side {
-  background-color: #3C4996;
+  background-color: #4263d0;
 }
 
 .fs-side {
@@ -26749,13 +26749,14 @@ main {
 }
 
 .welcome-bg {
-  background-color: #3C4996;
+  background-color: #4263d0;
   border-radius: 15px;
 }
 
 .data-sizes {
   border-radius: 5px;
   background-color: #58C1F9;
+  margin-top: 0.5em;
 }
 
 .data-abs {
@@ -26775,7 +26776,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #3C4996;
+  background-color: #4263d0;
   border-radius: 15px;
   line-height: 60px;
 }
@@ -26837,5 +26838,37 @@ main {
 
 .address-color {
   color: #8e8e8e;
+}
+
+.img-sizes {
+  width: 185px;
+}
+
+.color-phone {
+  color: #58C1F9;
+  font-size: large;
+}
+
+.phone {
+  margin-top: 2em;
+  margin-left: 2em;
+}
+
+.email {
+  color: #58C1F9;
+  font-size: large;
+}
+
+.mb-hr {
+  margin-bottom: 0.6em;
+}
+
+.message-sizes {
+  height: 60px;
+}
+
+.preview-message {
+  height: 300px;
+  background-color: white;
 }
 

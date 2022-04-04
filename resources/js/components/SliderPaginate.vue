@@ -1,5 +1,5 @@
 <template>
-    <div class="cards d-flex justify-content-between">
+    <div class="cards d-flex justify-content-between mb-5">
         <hr class="hr" />
         <!-- PREV PAGE CLICK -->
         <div class="d-flex align-items-center left-arrow">
@@ -19,12 +19,21 @@
             style="width: 25rem"
         >
             <!-- IMAGE -->
-            <img
-                class="card-img-top img img-fluid mx-auto py-2"
+            <!-- Dynamic (Upload profile pics FIRST) -->
+            <!-- <img class="card-img-top img img-fluid mx-auto py-2"
                 :src="`http://localhost:8000/storage/${doctor.photo}`"
-                alt="Immagine non caricata correttamente."
+                alt="Immagine profilo del dottore."
+                v-if="doctor.photo"
+            /> -->
+            <!-- Static -->
+            <img class="card-img-top img img-fluid mx-auto py-2"
+                src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+                alt="Immagine profilo del dottore."
                 v-if="doctor.photo"
             />
+            <!-- Else -->
+            <img v-else class="card-img-top img img-fluid mx-auto py-2"
+                src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png">
             <div class="card-body">
                 <!-- FULLNAME -->
                 <h5 class="card-title">

@@ -5,9 +5,10 @@
         <JumboT />
         <Overview />
         <Specializations />
-        <!-- <DoctorOv />  ... commentato per rimuovere errori console, ma funziona-->
+        <!-- <DoctorOv />  ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]-->
         <!-- TEST SLIDER -->
         <SliderPaginate />
+        <OverallRev />
     </div>
 </template>
 
@@ -16,8 +17,9 @@ import Navbar from "../components/Navbar.vue";
 import JumboT from "../components/Jumbo-top.vue";
 import Overview from "../components/Overview.vue";
 import Specializations from "../components/Specializations.vue";
-// import DoctorOv from "../components/Doctor-ov.vue"; ... commentato per rimuovere errori console, ma funziona
+// import DoctorOv from "../components/Doctor-ov.vue"; ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]
 import SliderPaginate from "../components/SliderPaginate.vue";
+import OverallRev from "../components/Overall-rev.vue";
 
 export default {
     name: "Home",
@@ -26,8 +28,9 @@ export default {
         JumboT,
         Overview,
         Specializations,
-        // DoctorOv, ... commentato per rimuovere errori console, ma funziona
+        // DoctorOv, ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]
         SliderPaginate,
+        OverallRev,
     },
     data() {
         return {

@@ -3,7 +3,7 @@
         <Navbar />
         <div class="container">
             <div class="filter-container">
-                <label for="vote">ordina per miglior voto</label>
+                <label for="vote">Filtra per voto</label>
                 <select
                     @change="getFilterDoctors($route.query.specialization)"
                     v-model="selectedVote"

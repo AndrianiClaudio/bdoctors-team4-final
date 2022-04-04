@@ -81,19 +81,6 @@ export default {
                     path: "/filter",
                     query: { specialization: specialization },
                 });
-                // axios
-                //     .post(`/api/doctors?specialization=${specialization}`)
-                //     .then((res) => {
-                //         // console.log(res);
-                //         this.filtered = res.data.results.doctors;
-                //         // this.$emit('filterSpec',this.filtered);
-
-                //         // let routeData = this.$router.resolve({name: 'routeName', query: {data: "someData"}});
-                //         // window.open(routeData.href, '_blank');
-                //     })
-                //     .catch((err) => {
-                //         console.error(err);
-                //     });
             }
         },
     },

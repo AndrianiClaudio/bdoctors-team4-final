@@ -43,20 +43,20 @@ Route::middleware('auth')
 
         Route::resource('specializations', 'SpecializationController');
 
-        // Route::resource('subscriptions', 'SubscriptionController');
-        Route::get('subscriptions', 'SubscriptionController@index')->name('subscriptions.index');
-        Route::post('subscriptions', 'SubscriptionController@confirm')->name('payment.form');
+    // Route::resource('subscriptions', 'SubscriptionController');
+    // Route::get('subscriptions', 'SubscriptionController@index')->name('subscriptions.index');
+    // Route::post('subscriptions', 'SubscriptionController@confirm')->name('payment.form');
     });
-
-Route::get("{any?}", function ($name = null) {
-    return view("guest.home");
-})->where("any", ".*")->name('default');
-
-Route::get("{any?}", function ($name = null) {
-    return view("doctors.subscriptions.index");
-})->where("any", ".*")->name('default');
 
 
 Route::get('checkout', function () {
-    return view("guest.home");
+    return view("doctors.subscriptions.index");
 });
+Route::get("{any?}", function ($name = null) {
+    return view("guest.home");
+})->where("any", ".*")->name('default');
+
+// Route::get("{any?}", function ($name = null) {
+//     return view("doctors.subscriptions.index");
+// })->where("any", ".*")->name('default');
+

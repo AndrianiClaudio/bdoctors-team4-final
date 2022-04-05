@@ -18,6 +18,8 @@ import ProvaApi from './pages/ProvaApi.vue';
 import FilterSpec from './pages/Filter.vue';
 // import Navbar from './components/Navbar.vue';
 
+import Checkout from './view/checkout.vue';
+
 
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';
@@ -66,7 +68,13 @@ const router = new VueRouter({
             query: true,
             component: FilterSpec,
             
-        },
+            },
+            {
+                // se funziona cambierei in dashboard/subscriptions
+                path: '/checkout',
+                name: 'checkout',
+                component: Checkout,
+            },
         
     ]
 });

@@ -1,8 +1,28 @@
 <template>
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 d-flex">
         <div class="overlay">
-            <!-- <img src="https://hatatpolyclinicoman.com/wp-content/uploads/2017/12/Doctors-banner.jpg" alt=""> -->
-            <img src="https://www.mediyos.com/assets/web/img/bg-special.png" alt="">
+            <div class="row align-items-center m-0 p-0">
+                <div class="col d-flex justify-content-center m-0 p-0">
+                    <div class="card-rev">
+                        
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center m-0 p-0">
+                    <div class="card-rev">
+
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center m-0 p-0">
+                    <div class="card-rev">
+
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center m-0 p-0">
+                    <div class="card-rev">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -15,17 +35,31 @@
 
 <style lang="scss" scoped>
     .container-fluid {
-        height: 100%;
-        // border: 1px solid green;
+        position: relative;
+        height: 450px;
+        background: url('https://www.mediyos.com/assets/web/img/bg-special.png');
+        background-repeat: no-repeat;
+        background-size: cover;
         .overlay {
-            position: relative;
+            background-color: rgba($color: #418ed6, $alpha: 0.75);
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba($color: #418ed6, $alpha: 0.75);
-            img {
-                max-width: 100%;
-                opacity: 0.45;
+            .row {
+                height: 450px;
+                .col {
+                    .card-rev {
+                        background-color: #ffffff;
+                        border-radius: 12px;
+                        height: 200px;
+                        width: 280px;
+                    }
+                }
             }
+            
         }
+
     }
 </style>

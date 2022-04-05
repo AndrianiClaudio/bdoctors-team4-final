@@ -19,7 +19,7 @@
                         class="d-flex mt-4 mb-4 justify-content-center"
                         action=""
                     >
-                        <select name="" id="" v-model="filterSelected">
+                        <select class="ps-3" name="" id="" v-model="filterSelected">
                             <option value="all" disabled selected>
                                 Seleziona una specializzazione
                             </option>
@@ -34,7 +34,7 @@
                         </select>
                         <input
                             type="submit"
-                            value="search"
+                            value="cerca"
                             @click.prevent="filter(filterSelected)"
                         />
                     </form>
@@ -159,6 +159,9 @@ export default {
                         height: 2.5em;
                         border: 0;
                         border-radius: 25px;
+                        &:focus {
+                            outline: none;
+                        }
                     }
                     input {
                         background-color: #58c1f9;

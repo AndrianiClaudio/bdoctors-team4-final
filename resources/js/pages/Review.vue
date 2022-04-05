@@ -1,6 +1,5 @@
 <template>
 <div class="container-fluid p-0">
-    <Navbar />
     <div class="container">
         <form
             :action="`http://localhost:8000/api/doctors/${doctor.slug}/review`"

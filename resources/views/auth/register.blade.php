@@ -4,112 +4,143 @@
     <script>
         function handleData() {
             var form_data = new FormData(document.querySelector("form"));
+            const div = document.getElementById('specializations')
+
             if (!form_data.has("specializations[]")) {
                 document.getElementById("chk_option_error").style.visibility = "visible";
             } else {
+                div.classList.remove('is-invalid')
                 document.getElementById("chk_option_error").style.visibility = "hidden";
                 return true;
             }
 
+            div.classList.add('is-invalid')
             return false;
         }
 
-        function validateRegisterForm(e) {
-            let errors = [];
+        function setError(div, el_error, msg) {
+            // console.log(div, el_error, msg);
+            div.classList.add('is-invalid');
+            el_error.style.display = 'block'
+            el_error.innerHTML = `<strong>${msg}</strong>`;
+        }
 
-            // firstname
-            let firstname = document.getElementById('firstname');
-            // console.log(firstname.value);
-            if (firstname.value == "") {
-                let check = document.getElementById('firstname_validate');
-                check.style.display = "block";
-                firstname.classList.add('is-invalid');
-                errors.push('firstname');
-                // console.log(errors);
+        function removeError(div, el_error) {
+            div.classList.remove('is-invalid');
+            el_error.style.display = 'none';
+
+        }
+
+        function defaultError(div, el_error, msg) {
+            if (div.value === '') {
+                div.classList.add('is-invalid');
+                setError(div, el_error, msg);
+                return false
             } else {
-                let check = document.getElementById('firstname_validate');
-                check.style.display = "none";
-                firstname.classList.remove('is-invalid');
+                el_error.style.display = 'none';
+                return true;
             }
 
-            // lastname
-            let lastname = document.getElementById('lastname');
+        }
 
-            if (lastname.value == "") {
-                let check = document.getElementById('lastname_validate');
-                check.style.display = "block";
-                lastname.classList.add('is-invalid');
-                errors.push('lastname');
-            } else {
-                let check = document.getElementById('lastname_validate');
-                check.style.display = "none";
-                lastname.classList.remove('is-invalid');
-            }
+        function isMailValue(val) {
+            if (val.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-            // email
-            let email = document.getElementById('email');
-            if (email.value == "") {
-                let check = document.getElementById('email_validate');
-                check.style.display = "block";
-                email.classList.add('is-invalid');
-                errors.push('email');
-            } else {
-                let check = document.getElementById('email_validate');
-                check.style.display = "none";
-                email.classList.remove('is-invalid');
-            }
-            // password
-            let password = document.getElementById('password');
-            if (password.value == "") {
-                let check = document.getElementById('password_validate');
-                check.style.display = "block";
-                password.classList.add('is-invalid');
-                errors.push('password');
-            } else {
-                let check = document.getElementById('password_validate');
-                check.style.display = "none";
-                password.classList.remove('is-invalid');
-            }
-            // password_confirm
-            let password_confirm = document.getElementById('password-confirm');
-            if (password_confirm.value == "") {
-                let check = document.getElementById('password_confirm_validate');
-                check.style.display = "block";
-                password_confirm.classList.add('is-invalid');
-                errors.push('password_confirm');
-            } else {
-                let check = document.getElementById('password_confirm_validate');
-                check.style.display = "none";
-                password_confirm.classList.remove('is-invalid');
-            }
 
-            // address_confirm
-            let address = document.getElementById('address');
-            if (address.value == "") {
-                let check = document.getElementById('address_validate');
-                check.style.display = "block";
-                address.classList.add('is-invalid');
-                errors.push('address');
-            } else {
-                let check = document.getElementById('address_validate');
-                check.style.display = "none";
-                address.classList.remove('is-invalid');
-            }
+    function validateRegisterForm(e) {
+        const checkSub = {
+            firstname: false,
+            lastname: false,
+            email: false,
+            password: false,
+            address: false,
+        };
 
-            if (errors.length > 0) {
-                if (!handleData()) {
-                    (document.querySelector('#specializations.form-control')).classList.add('is-invalid');
+        for (const key in checkSub) {
+            const el = checkSub[key];
+
+            const div = document.getElementById(key);
+            const el_error = document.getElementById(`${key}_validate`);
+
+            let res = defaultError(div, el_error, 'Campo obbligatorio!');
+
+            if (res) {
+                checkSub[key] = true;
+                removeError(div, el_error);
+                if (key === 'password') {
+                    if (div.value.length < 8) {
+                        setError(div, el_error, 'La password deve contenere almeno 8 caratteri');
+                        // checkSub[index] = false;
+                        checkSub[key] = false
+                    } else {
+                        removeError(div, el_error);
+                        // checkSub[index] = true;
+                        checkSub[key] = true
+                    }
                 }
-                return false;
-            } else {
-                if (handleData()) {
-                    // console.log(document.querySelector('#specializations.form-control'));
-                    return true;
-                } else {
-                    return false;
+                if (key === 'email') {
+                    if (!isMailValue(div.value)) {
+                        setError(div, el_error, 'Inserire un indirizzo email valido');
+                        checkSub[key] = false
+                        // checkSub[index] = false
+                    } else {
+                        removeError(div, el_error);
+                        checkSub[key] = true
+                        // checkSub[index] = true;
+                    }
                 }
+            } else {
+                checkSub[key] = false;
             }
         }
+
+        if (!Object.values(checkSub).includes(false)) {
+            return handleData();
+        }
+        return false;
+    }
+
+
+    // validate.foreach()
+    // validate.forEach((el, index) => {
+    //     const div = document.getElementById(el);
+    //     const el_error = document.getElementById(`${el}_validate`);
+
+        //         if (defaultError(div, el_error, 'Campo obbligatorio!')) {
+        //             checkSub[index] = false;
+        //         } else {
+        //             if (el === 'password') {
+        //                 if (div.value.length < 8) {
+        //                     setError(div, el_error, 'La password deve contenere almeno 8 caratteri');
+        //                     checkSub[index] = false;
+        //                 } else {
+        //                     removeError(el_error);
+        //                     checkSub[index] = true;
+        //                 }
+        //             }
+        //             if (el === 'email') {
+        //                 if (!isMailValue(div.value)) {
+        //                     setError(div, el_error, 'Inserire un indirizzo email valido');
+        //                     checkSub[index] = false
+        //                 } else {
+        //                     removeError(el_error);
+        //                     checkSub[index] = true;
+        //                 }
+        //             }
+        //         }
+
+
+        //     });
+        //     checkSub.forEach(el => {
+        //         console.log(el);
+        //     });
+        //     return false;
+        // }
     </script>
 @endsection
 
@@ -127,7 +158,7 @@
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}"
-                            onsubmit="return handleData(),validateRegisterForm(event)">
+                            onsubmit="return validateRegisterForm(event)">
                             @csrf
 
 
@@ -146,7 +177,7 @@
                                         </span>
                                     @else
                                         <span id="firstname_validate" class="invalid-feedback" role="alert">
-                                            <strong>Compila questo campo </strong>
+
                                         </span>
                                     @enderror
                                 </div>
@@ -168,7 +199,7 @@
                                         </span>
                                     @else
                                         <span id="lastname_validate" class="invalid-feedback" role="alert">
-                                            <strong>Compila questo campo </strong>
+
                                         </span>
                                     @enderror
                                 </div>
@@ -180,7 +211,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" autocomplete="email">
 
                                     @error('email')
@@ -189,7 +220,7 @@
                                         </span>
                                     @else
                                         <span id="email_validate" class="invalid-feedback" role="alert">
-                                            <strong>Compila questo campo </strong>
+
                                         </span>
                                     @enderror
                                 </div>
@@ -211,7 +242,7 @@
                                         </span>
                                     @else
                                         <span id="password_validate" class="invalid-feedback" role="alert">
-                                            <strong>Compila questo campo </strong>
+
                                         </span>
                                     @enderror
                                 </div>
@@ -223,10 +254,10 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
+                                    <input id="password_confirmation" type="password" class="form-control"
                                         name="password_confirmation" autocomplete="new-password">
                                     <span id="password_confirm_validate" class="invalid-feedback" role="alert">
-                                        <strong>Compila questo campo </strong>
+
                                     </span>
                                 </div>
                             </div>
@@ -284,7 +315,7 @@
                                         </span>
                                     @else
                                         <span id="address_validate" class="invalid-feedback" role="alert">
-                                            <strong>Compila questo campo </strong>
+
                                         </span>
                                     @enderror
                                 </div>

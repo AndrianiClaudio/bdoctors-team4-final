@@ -2,45 +2,125 @@
 
 @section('script')
     <script>
-        function validateLoginForm(e) {
-            // e.preventDefault();
-            // console.log('ciao');
-            let errors = [];
+        function setError(div, el_error, msg) {
+            // console.log(div, el_error, msg);
+            div.classList.add('is-invalid');
+            el_error.style.display = 'block'
+            el_error.innerHTML = `<strong>${msg}</strong>`;
+        }
 
+        function removeError(div, el_error) {
+            div.classList.remove('is-invalid');
+            el_error.style.display = 'none';
 
-            let email = document.getElementById('email');
-            let checkMail = document.getElementById('email_validate');
-            if (email.value == "") {
-                // let check = document.getElementById('email_validate');
-                if (checkMail) {
-                    checkMail.style.display = "block";
-                    email.classList.add('is-invalid');
-                    errors.push('email');
-                }
+        }
+
+        function defaultError(div, el_error, msg) {
+            if (div.value === '') {
+                div.classList.add('is-invalid');
+                setError(div, el_error, msg);
+                return false
             } else {
-                checkMail.style.display = "none";
-                email.classList.remove('is-invalid');
-            }
-
-
-            let password = document.getElementById('password');
-            let checkPsw = document.getElementById('password_validate');
-            if (password.value == "") {
-                checkPsw.style.display = "block";
-                password.classList.add('is-invalid');
-                errors.push('password');
-            } else {
-                // let checkPsw = document.getElementById('password_validate');
-                checkPsw.style.display = "none";
-                password.classList.remove('is-invalid');
-            }
-
-            if (errors.length > 0) {
-                return false;
-            } else {
-
+                el_error.style.display = 'none';
                 return true;
             }
+
+        }
+
+        function isMailValue(val) {
+            if (val.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validateLoginForm(e) {
+        const checkSub = {
+            email: false,
+            password: false,
+        };
+
+        for (const key in checkSub) {
+            const el = checkSub[key];
+
+            const div = document.getElementById(key);
+            const el_error = document.getElementById(`${key}_validate`);
+
+                let res = defaultError(div, el_error, 'Campo obbligatorio!');
+
+                if (res) {
+                    checkSub[key] = true;
+                    removeError(div, el_error);
+                    if (key === 'password') {
+                        if (div.value.length < 8) {
+                            setError(div, el_error, 'La password deve contenere almeno 8 caratteri');
+                            // checkSub[index] = false;
+                            checkSub[key] = false
+                        } else {
+                            removeError(div, el_error);
+                            // checkSub[index] = true;
+                            checkSub[key] = true
+                        }
+                    }
+                    if (key === 'email') {
+                        if (!isMailValue(div.value)) {
+                            setError(div, el_error, 'Inserire un indirizzo email valido');
+                            checkSub[key] = false
+                            // checkSub[index] = false
+                        } else {
+                            removeError(div, el_error);
+                            checkSub[key] = true
+                            // checkSub[index] = true;
+                        }
+                    }
+                } else {
+                    checkSub[key] = false;
+                }
+            }
+
+            if (!Object.values(checkSub).includes(false)) {
+                return true;
+            }
+            return false;
+            //     // e.preventDefault();
+            //     // console.log('ciao');
+            //     let errors = [];
+
+
+            //     let email = document.getElementById('email');
+            //     let checkMail = document.getElementById('email_validate');
+            //     if (email.value == "") {
+            //         // let check = document.getElementById('email_validate');
+            //         if (checkMail) {
+            //             checkMail.style.display = "block";
+            //             email.classList.add('is-invalid');
+            //             errors.push('email');
+            //         }
+            //     } else {
+            //         checkMail.style.display = "none";
+            //         email.classList.remove('is-invalid');
+            //     }
+
+
+            //     let password = document.getElementById('password');
+            //     let checkPsw = document.getElementById('password_validate');
+            //     if (password.value == "") {
+            //         checkPsw.style.display = "block";
+            //         password.classList.add('is-invalid');
+            //         errors.push('password');
+            //     } else {
+            //         // let checkPsw = document.getElementById('password_validate');
+            //         checkPsw.style.display = "none";
+            //         password.classList.remove('is-invalid');
+            //     }
+
+            //     if (errors.length > 0) {
+            //         return false;
+            //     } else {
+
+            //         return true;
+            //     }
         }
     </script>
 @endsection

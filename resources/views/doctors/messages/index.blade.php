@@ -18,7 +18,7 @@
             <div class="col-12">
                  @foreach ($messages as $message)
                     <p class="pt-3 d-inline fs-4">Messaggio arrivato il {{ $message->created_at }} dall'utente:</p>
-                    <p class="user-email-b fs-4">{{ $message->email }}<p>
+                    <p class="user-email-b fs-4"> {{ $message->email }}<p>
                     <a class="btn btn-primary text-white" href="{{ route('messages.show', $message->id) }}">Dettagli</a>
                     <hr>
                 @endforeach

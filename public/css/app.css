@@ -27237,3 +27237,11 @@ main {
   text-decoration: underline;
 }
 
+.show-message-w {
+  width: 80%;
+  margin: auto;
+  border-radius: 15px;
+  color: white;
+  background-color: #5274e1;
+}
+

@@ -23,16 +23,9 @@
 </head>
 
 <body>
-    <div>
-
         <main class="main-vh">
 
-            <div
-                class="d-flex flex-column justify-content-between flex-shrink-0 bg-side side-vh ms-3 mt-3 mb-3 radious side-sizes">
-                {{-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-                <span class="fs-4">Sidebar</span></a>
-                <hr> --}}
+            <div class="d-flex flex-column justify-content-between flex-shrink-0 bg-side side-vh ms-3 mt-3 mb-3 radious side-sizes">
 
                 <a href="{{ url('/') }}" class="ps-3 active" aria-current="page">
                     <svg width="150" height="70" viewBox="0 0 214 62" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +55,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="nav-item">
                         <a href="{{ route('messages.index') }}" class="nav-link  text-white">
                             <i class="fa-solid fa-comment-medical p-1"></i>
                             Messaggi
@@ -131,7 +124,6 @@
                 @yield('content')
             </div>
         </main>
-    </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 <script type="text/javascript">

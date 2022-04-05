@@ -26714,6 +26714,8 @@ main {
 
 .side-sizes {
   width: 280px;
+  height: 100vh;
+  min-height: 798px;
 }
 
 .lh-5 {
@@ -26875,6 +26877,7 @@ main {
 .ul-message {
   list-style-type: none;
   padding-right: 2rem;
+  margin-bottom: 0rem;
 }
 
 .message {
@@ -26985,5 +26988,233 @@ main {
   background-color: #3C4996;
   height: 70px;
   border-radius: 19px;
+}
+
+.container-fluid .bg-color,
+.container-sm .bg-color,
+.container-md .bg-color,
+.container-lg .bg-color,
+.container-xl .bg-color,
+.container-xxl .bg-color {
+  background-color: #3c4996;
+}
+
+.container-fluid .bg-color .container-fluid .navbar-brand svg,
+.container-sm .bg-color .container-fluid .navbar-brand svg,
+.container-md .bg-color .container-fluid .navbar-brand svg,
+.container-lg .bg-color .container-fluid .navbar-brand svg,
+.container-xl .bg-color .container-fluid .navbar-brand svg,
+.container-xxl .bg-color .container-fluid .navbar-brand svg,
+.container-fluid .bg-color .container-sm .navbar-brand svg,
+.container-sm .bg-color .container-sm .navbar-brand svg,
+.container-md .bg-color .container-sm .navbar-brand svg,
+.container-lg .bg-color .container-sm .navbar-brand svg,
+.container-xl .bg-color .container-sm .navbar-brand svg,
+.container-xxl .bg-color .container-sm .navbar-brand svg,
+.container-fluid .bg-color .container-md .navbar-brand svg,
+.container-sm .bg-color .container-md .navbar-brand svg,
+.container-md .bg-color .container-md .navbar-brand svg,
+.container-lg .bg-color .container-md .navbar-brand svg,
+.container-xl .bg-color .container-md .navbar-brand svg,
+.container-xxl .bg-color .container-md .navbar-brand svg,
+.container-fluid .bg-color .container-lg .navbar-brand svg,
+.container-sm .bg-color .container-lg .navbar-brand svg,
+.container-md .bg-color .container-lg .navbar-brand svg,
+.container-lg .bg-color .container-lg .navbar-brand svg,
+.container-xl .bg-color .container-lg .navbar-brand svg,
+.container-xxl .bg-color .container-lg .navbar-brand svg,
+.container-fluid .bg-color .container-xl .navbar-brand svg,
+.container-sm .bg-color .container-xl .navbar-brand svg,
+.container-md .bg-color .container-xl .navbar-brand svg,
+.container-lg .bg-color .container-xl .navbar-brand svg,
+.container-xl .bg-color .container-xl .navbar-brand svg,
+.container-xxl .bg-color .container-xl .navbar-brand svg,
+.container-fluid .bg-color .container-xxl .navbar-brand svg,
+.container-sm .bg-color .container-xxl .navbar-brand svg,
+.container-md .bg-color .container-xxl .navbar-brand svg,
+.container-lg .bg-color .container-xxl .navbar-brand svg,
+.container-xl .bg-color .container-xxl .navbar-brand svg,
+.container-xxl .bg-color .container-xxl .navbar-brand svg {
+  width: 85%;
+  margin: 0;
+  padding: 0 0 0 1em;
+}
+
+.container-fluid .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in,
+.container-sm .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in,
+.container-md .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in,
+.container-lg .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xxl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in,
+.container-fluid .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in,
+.container-sm .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in,
+.container-md .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in,
+.container-lg .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xxl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in,
+.container-fluid .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in,
+.container-sm .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in,
+.container-md .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in,
+.container-lg .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xl .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xxl .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in,
+.container-fluid .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in,
+.container-sm .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in,
+.container-md .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in,
+.container-lg .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xxl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in,
+.container-fluid .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-sm .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-md .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-lg .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xxl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-fluid .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-sm .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-md .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-lg .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in,
+.container-xxl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in {
+  background-color: #505da8;
+  border-radius: 25px;
+}
+
+.container-fluid .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-sm .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-md .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-lg .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xxl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-fluid .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-sm .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-md .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-lg .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xxl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-fluid .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-sm .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-md .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-lg .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xl .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xxl .bg-color .container-md #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-fluid .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-sm .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-md .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-lg .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xxl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-fluid .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-sm .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-md .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-lg .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xxl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-fluid .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-sm .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-md .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-lg .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover,
+.container-xxl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.sign-in .nav-link:hover {
+  background-color: #3c4996;
+}
+
+.container-fluid .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register,
+.container-sm .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register,
+.container-md .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register,
+.container-lg .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register,
+.container-xl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register,
+.container-xxl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register,
+.container-fluid .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register,
+.container-sm .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register,
+.container-md .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register,
+.container-lg .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register,
+.container-xl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register,
+.container-xxl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register,
+.container-fluid .bg-color .container-md #navbarNav .navbar-nav .nav-item.register,
+.container-sm .bg-color .container-md #navbarNav .navbar-nav .nav-item.register,
+.container-md .bg-color .container-md #navbarNav .navbar-nav .nav-item.register,
+.container-lg .bg-color .container-md #navbarNav .navbar-nav .nav-item.register,
+.container-xl .bg-color .container-md #navbarNav .navbar-nav .nav-item.register,
+.container-xxl .bg-color .container-md #navbarNav .navbar-nav .nav-item.register,
+.container-fluid .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register,
+.container-sm .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register,
+.container-md .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register,
+.container-lg .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register,
+.container-xl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register,
+.container-xxl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register,
+.container-fluid .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register,
+.container-sm .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register,
+.container-md .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register,
+.container-lg .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register,
+.container-xl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register,
+.container-xxl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register,
+.container-fluid .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register,
+.container-sm .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register,
+.container-md .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register,
+.container-lg .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register,
+.container-xl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register,
+.container-xxl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register {
+  background-color: #4553a5;
+  border-radius: 25px;
+}
+
+.container-fluid .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-sm .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-md .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-lg .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xxl .bg-color .container-fluid #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-fluid .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-sm .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-md .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-lg .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xxl .bg-color .container-sm #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-fluid .bg-color .container-md #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-sm .bg-color .container-md #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-md .bg-color .container-md #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-lg .bg-color .container-md #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xl .bg-color .container-md #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xxl .bg-color .container-md #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-fluid .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-sm .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-md .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-lg .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xxl .bg-color .container-lg #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-fluid .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-sm .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-md .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-lg .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xxl .bg-color .container-xl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-fluid .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-sm .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-md .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-lg .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
+.container-xxl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover {
+  background-color: #3c4996;
+}
+
+.edit-title {
+  color: white;
+  width: 80%;
+  margin: auto;
+}
+
+.w-row-name {
+  margin: auto;
+  width: 75%;
+  background-color: white;
+}
+
+.check-style {
+  list-style-type: none;
+}
+
+.item-spec {
+  display: inline-block;
 }
 

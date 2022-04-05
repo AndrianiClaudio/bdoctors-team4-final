@@ -5,6 +5,7 @@ namespace App\Providers;
 use Braintree\Gateway;
 
 use Illuminate\Support\ServiceProvider;
+use Braintree\Gateway;
 
 class AppServiceProvider extends ServiceProvider
 {

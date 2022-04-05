@@ -24,3 +24,6 @@ Route::middleware('api')->namespace('Api')
 
         Route::post('orders/makePayment', 'SubscriptionController@payment');
     });
+
+
+Route::get('subscription/generate', 'Api\SubscriptionController@generate');

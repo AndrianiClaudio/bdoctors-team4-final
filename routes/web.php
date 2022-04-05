@@ -28,8 +28,6 @@ Route::prefix('dashboard')
 Route::middleware('auth')
     ->prefix('dashboard')
     ->group(function () {
-        // Route::resource('profile', 'DoctorController');
-    
         Route::get('profile', 'DoctorController@index')->name('profile.index');
         Route::get('profile/edit', 'DoctorController@edit')->name('profile.edit');
         Route::patch('profile', 'DoctorController@update')->name('profile.update');

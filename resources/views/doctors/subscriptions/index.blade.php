@@ -17,7 +17,7 @@
                     <b>{{ $sub->name }}</b>
                     <em>{{ $sub->price }} &euro;</em>
                 </div>
-                <a class="btn btn-success" type="submit">Iscriviti</a>
+                <button class="btn btn-success" type="submit">Iscriviti</a>
             </div>
         </form>
     @endforeach

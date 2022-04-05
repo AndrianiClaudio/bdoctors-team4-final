@@ -43,15 +43,11 @@ Route::middleware('auth')
 
         Route::resource('specializations', 'SpecializationController');
 
-        Route::resource('subscriptions', 'SubscriptionController');
+        // Route::resource('subscriptions', 'SubscriptionController');
+        Route::get('subscriptions', 'SubscriptionController@index')->name('subscriptions.index');
+        Route::post('subscriptions', 'SubscriptionController@confirm')->name('payment.form');
     });
 
-
-
-
-Route::post('payment/form', function (Subscription $sub) {
-    return view('payments.form', $sub);
-})->name('payment.form');
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');

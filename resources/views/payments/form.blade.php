@@ -1,11 +1,6 @@
-@extends('layouts.admin')
-@section('script')
-    {{-- <link rel="stylesheet" href="dashboard.scss"> --}}
-    <script src="{{ asset('js/admin.js') }}" defer></script>
-    <script src="{{ asset('js/payment.js') }}" defer></script>
-@endsection
+@extends('doctors.subscriptions.index')
 
-@section('content')
+@section('paymentForm')
     <!-- Bootstrap inspired Braintree Hosted Fields example -->
     <div class="bootstrap-basic">
         <form class="needs-validation" novalidate="" method="GET">

@@ -20,10 +20,9 @@ Route::middleware('api')->namespace('Api')
         Route::get('specializations', 'SpecializationController@index');
 
         Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');
-        Route::get('orders/generate', 'SubscriptionController@generate');
 
-        Route::post('orders/makePayment', 'SubscriptionController@payment');
+        // Route::get('orders/generate', 'SubscriptionController@generate');
+        Route::get('subscription/generate', 'SubscriptionController@generate');
+        Route::post('subscription/payment/make', 'SubscriptionController@payment');
+    // Route::post('orders/makePayment', 'SubscriptionController@payment');
     });
-
-
-Route::get('subscription/generate', 'Api\SubscriptionController@generate');

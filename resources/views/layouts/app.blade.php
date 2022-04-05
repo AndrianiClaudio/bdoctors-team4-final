@@ -38,6 +38,7 @@
                     </svg>
                 </a>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    @if (!Auth::user())
                     <h4 class="text-white pr-2 my-0">Sei un medico?</h4>
                     <ul class="navbar-nav">
                         <li class="nav-item sign-in me-2">
@@ -47,8 +48,15 @@
                         <li class="nav-item register">
                             <a class="nav-link text-white px-3" href="http://localhost:8000/register">Registrati</a>
                         </li>
-                    </ul>
+                    </ul>   
+                    @else
+                        <div>
+                            <a class="nav-link text-white px-3" href="http://localhost:8000/login">vai al profilo</a>
+                        </div>
+                    @endif
+                    
                 </div>
+                
             </div>
         </nav>
     </div>

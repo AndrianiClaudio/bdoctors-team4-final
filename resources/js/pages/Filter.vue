@@ -146,6 +146,7 @@ export default {
                     if (!isNaN(parseInt(this.selectedVote))) {
                         this.check_filter = false;
                         this.filteredDoctor = [];
+                        console.log(this.doctors);
                         this.doctors.forEach((doctor) => {
                             if (
                                 doctor.review_mean >=

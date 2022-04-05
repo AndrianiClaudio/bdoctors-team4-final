@@ -43,11 +43,14 @@ class DoctorController extends Controller
                         break;
                     }
                 }
-                $sum = 0;
-                foreach ($doctor->reviews as $review) {
-                    $sum += $review->vote;
+
+                if (count($doctor->reviews) > 0) {
+                    $sum = 0;
+                    foreach ($doctor->reviews as $review) {
+                        $sum += $review->vote;
+                    }
+                    $doctor->review_mean = $sum / count($doctor->reviews);
                 }
-                $doctor->review_mean = $sum / count($doctor->reviews);
             // dd(round($doctor->review_mean, 2));
             }
 

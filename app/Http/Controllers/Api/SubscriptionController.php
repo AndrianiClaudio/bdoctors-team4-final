@@ -51,23 +51,29 @@ class SubscriptionController extends Controller
         $now_clone->add(new DateInterval('PT' . $sub->duration . 'H'));
         $sub_id = $sub->id;
 
-        $auth->subscriptions()->attach($sub_id, [
-            'expires_date' => $now_clone,
-        ]);
+        // $auth->subscriptions()->attach($sub_id, [
+        //     'expires_date' => $now_clone,
+        // ]);
 
         if ($result->success) {
-            $data = [
-                'success' => true,
-                'message' => "Transazione eseguita."
-            ];
-            return response()->json($data, 200);
+
+            $auth->subscriptions()->attach($sub_id, [
+                'expires_date' => $now_clone,
+            ]);
+            // $data = [
+            //     'success' => true,
+            //     'message' => "Transazione eseguita."
+            // ];
+            return redirect()->route('subscriptions.index');
+        // return response()->json($data, 200);
         }
         else {
-            $data = [
-                'success' => false,
-                'message' => "Transazione fallita."
-            ];
-            return response()->json($data, 200);
+            return redirect()->route('subscriptions.index');
+        // $data = [
+        //     'success' => false,
+        //     'message' => "Transazione fallita."
+        // ];
+        // return response()->json($data, 200);
 
         }
     }

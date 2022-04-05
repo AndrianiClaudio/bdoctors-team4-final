@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid p-0">
-        <Navbar />
+        <!-- <Navbar /> -->
         <!-- <JumboT @filterSpec="filteredSpec($event)" /> -->
         <JumboT />
         <Overview />

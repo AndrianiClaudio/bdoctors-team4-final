@@ -13,6 +13,14 @@ use DateInterval;
 
 class SubscriptionController extends Controller
 {
+    public function index()
+    {
+        $subscriptions = Subscription::all();
+        return response()->json([
+            'response' => true,
+            'results' => compact('subscriptions')
+        ]);
+    }
     public function generate(Request $request, Gateway $gateway)
     {
         // GENERO TOKEN BRAINTREE
@@ -65,19 +73,18 @@ class SubscriptionController extends Controller
             //     'message' => "Transazione eseguita."
             // ];
             return redirect()->route('subscriptions.index');
-        // return response()->json($data, 200);
-        }
-        else {
+            // return response()->json($data, 200);
+        } else {
             return redirect()->route('subscriptions.index');
-        // $data = [
-        //     'success' => false,
-        //     'message' => "Transazione fallita."
-        // ];
-        // return response()->json($data, 200);
+            // $data = [
+            //     'success' => false,
+            //     'message' => "Transazione fallita."
+            // ];
+            // return response()->json($data, 200);
 
         }
     }
-/* public function payment(OrdersRequest $request, Gateway $gateway)
+    /* public function payment(OrdersRequest $request, Gateway $gateway)
  {
  $product = Product::find($request->product);
  $result = $gateway->transaction()->sale([

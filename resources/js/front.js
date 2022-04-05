@@ -19,6 +19,7 @@ import FilterSpec from './pages/Filter.vue';
 // import Navbar from './components/Navbar.vue';
 
 import Checkout from './view/checkout.vue';
+import Subscriptions from './pages/Subscriptions.vue';
 
 
 // IMPORT ROUTER ... NEXT
@@ -74,6 +75,12 @@ const router = new VueRouter({
                 path: '/checkout',
                 name: 'checkout',
                 component: Checkout,
+            },
+            {
+                // se funziona cambierei in dashboard/subscriptions
+                path: '/dashboard/subscriptions',
+                name: 'subscriptions',
+                component: Subscriptions,
             },
         
     ]

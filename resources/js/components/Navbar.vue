@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid p-0 sticky-top">
+    <div id="Navbar" class="container-fluid p-0 sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-color p-0 m-0">
             <div class="container-fluid p-0 m-0 pe-3">
                 <a class="navbar-brand px-0 py-1 m-0" href="/">

@@ -9,7 +9,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p>La tua salute &eacute; la nostra priorit&aacute;</p>
+                        <p>La tua salute &egrave; la nostra priorit&agrave;</p>
                     </div>
                 </div>
                 <div class="row">
@@ -50,12 +50,11 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <li><a href="">Top</a></li>
-                        <li><a href="">Ricerca</a></li>
-                        <li><a href="">Panormaica sito</a></li>
-                        <li><a href="">Panoramica Specializzazioni</a></li>
-                        <li><a href="">Panoramica Dottori</a></li>
-                        <li><a href="">Le nostre recensioni</a></li>
+                        <li><a href="#Jumbo-top">Ricerca</a></li>
+                        <li><a href="#Overview">Panormaica sito</a></li>
+                        <li><a href="#Specializations">Panoramica Specializzazioni</a></li>
+                        <li><a href="#SliderPaginate">Panoramica Dottori</a></li>
+                        <li><a href="#Overall-rev">Le nostre recensioni</a></li>
                     </div>
                 </div>
             </div>

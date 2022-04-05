@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div id="Specializations" class="container-fluid">
         <div class="row">
             <div class="col text-center mt-5">
                 <h1 class="title-section">

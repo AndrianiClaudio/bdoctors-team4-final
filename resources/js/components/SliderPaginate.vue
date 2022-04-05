@@ -1,5 +1,5 @@
 <template>
-    <div class="cards d-flex justify-content-between mb-5">
+    <div id="SliderPaginate" class="cards d-flex justify-content-between mb-5">
         <hr class="hr" />
         <!-- PREV PAGE CLICK -->
         <div class="d-flex align-items-center left-arrow">

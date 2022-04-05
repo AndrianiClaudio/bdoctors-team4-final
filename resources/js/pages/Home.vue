@@ -11,6 +11,7 @@
         <OverallRev />
         <footer>
             <FooterTop />
+            <FooterBot />
         </footer>
     </div>
 </template>
@@ -24,6 +25,7 @@ import Specializations from "../components/Specializations.vue";
 import SliderPaginate from "../components/SliderPaginate.vue";
 import OverallRev from "../components/Overall-rev.vue";
 import FooterTop from "../components/Footer-top.vue";
+import FooterBot from "../components/Footer-bot.vue";
 
 export default {
     name: "Home",
@@ -36,6 +38,7 @@ export default {
         SliderPaginate,
         OverallRev,
         FooterTop,
+        FooterBot,
     },
     data() {
         return {

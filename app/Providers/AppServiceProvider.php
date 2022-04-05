@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Braintree\Gateway;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // SINGLETON! Permetto unica istanza
+        $this->app->singleton(Gateway::class, function ($app) {
+            // CHIAVI BRAINTREE (NON MODIFICARE LE CHIAVI! SONO SPECIFICHE DI BRAINTREE)
+            return new Gateway([
+                'environment' => env('BRAINTREE_ENV'),
+                'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+                'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+                'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
+            ]);
+        });
     }
 }

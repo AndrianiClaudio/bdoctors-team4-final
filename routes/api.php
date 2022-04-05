@@ -20,4 +20,7 @@ Route::middleware('api')->namespace('Api')
         Route::get('specializations', 'SpecializationController@index');
 
         Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');
+        Route::get('orders/generate', 'SubscriptionController@generate');
+
+        Route::post('orders/makePayment', 'SubscriptionController@payment');
     });

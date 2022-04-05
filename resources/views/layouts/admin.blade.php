@@ -69,7 +69,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile.show') }}" class="nav-link text-white">
+                        <a href="{{ route('subscriptions.index') }}" class="nav-link text-white">
                             <i class="fa-regular fa-star p-1"></i>
                             Piani di abbonamento
                         </a>

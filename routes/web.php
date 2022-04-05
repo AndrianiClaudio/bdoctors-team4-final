@@ -43,6 +43,8 @@ Route::middleware('auth')
         Route::resource('services', 'ServiceController');
 
         Route::resource('specializations', 'SpecializationController');
+
+        Route::resource('subscriptions', 'SubscriptionController');
     });
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");

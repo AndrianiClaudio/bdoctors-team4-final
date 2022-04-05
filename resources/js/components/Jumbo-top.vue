@@ -72,14 +72,13 @@ export default {
         },
         filter(specialization) {
             if (specialization !== "all") {
-                // console.log(specialization);
                 specialization = specialization
                     .split(" ")
                     .join("_")
                     .toLowerCase();
                 this.$router.push({
-                    path: "/filter",
-                    query: { specialization: specialization },
+                    name: "filter",
+                    params: { specialization: specialization },
                 });
             }
         },

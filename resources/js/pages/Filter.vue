@@ -5,7 +5,7 @@
             <div class="filter-container">
                 <label for="vote">Filtra per voto</label>
                 <select
-                    @change="getFilterDoctors($route.query.specialization)"
+                    @change="getFilterDoctors($route.params.specialization)"
                     v-model="selectedVote"
                 >
                     <option value="5">5 stelle</option>
@@ -18,7 +18,7 @@
             </div>
             <h3>
                 Ecco i dottori con specializzazione
-                {{ $route.query.specialization.split("_").join(" ") }}
+                {{ $route.params.specialization.split("_").join(" ") }}
             </h3>
             <ul v-if="filteredDoctor.length > 0">
                 <li v-for="doctor in filteredDoctor" :key="doctor.id">
@@ -106,7 +106,7 @@
         <div class="container" v-if="doctors.length === 0">
             <b
                 >Non ci sono dottori con specializzazione =
-                {{ $route.query.specialization }}</b
+                {{ $route.params.specialization.split("_").join(" ") }}</b
             >
         </div>
         <div class="container" v-if="check_filter">
@@ -168,8 +168,7 @@ export default {
         },
     },
     created() {
-        this.getFilterDoctors(this.$route.query.specialization);
-        //console.log($route.query.specialization.split("_").join(" "));
+        this.getFilterDoctors(this.$route.params.specialization);
     },
 };
 </script>

@@ -9,14 +9,18 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col">
-                I tuoi messaggi
-                @foreach ($messages as $message)
-                    <h2>scritto dall'utente: {{ $message->email }}
-                    </h2>
-                    <h2>{{ $message->created_at }}</h2>
-                    <a class="btn btn-primary" href="{{ route('messages.show', $message->id) }}">avanti</a>
+        <div class="row welcome-bg w-title-message text-white">
+            <div class="col-12">
+                <h1>I tuoi messaggi</h1>
+            </div>
+        </div>
+        <div class="row w-title-message bg-message">
+            <div class="col-12">
+                 @foreach ($messages as $message)
+                    <p class="pt-3 d-inline fs-4">Messaggio arrivato il {{ $message->created_at }} dall'utente:</p>
+                    <p class="user-email-b fs-4">{{ $message->email }}<p>
+                    <a class="btn btn-primary text-white" href="{{ route('messages.show', $message->id) }}">Dettagli</a>
+                    <hr>
                 @endforeach
             </div>
         </div>

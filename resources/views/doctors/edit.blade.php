@@ -117,7 +117,7 @@
 @section('content')
     <div class="container">
         <div class="row edit-title">
-            <div class="col-12 welcome-bg justify-content-center d-flex align-items-center">
+            <div class="col-12 welcome-bg justify-content-center d-flex align-items-center text-white">
                 <h1>Modifica il tuo profilo</h1>
             </div>
         </div>

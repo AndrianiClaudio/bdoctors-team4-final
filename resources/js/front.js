@@ -31,7 +31,6 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'home',
-            props:true,
             component: Home,
             
         },
@@ -66,7 +65,7 @@ const router = new VueRouter({
         {
             path: '/filter',
             name: 'filter',
-            props: true,
+            query: true,
             component: FilterSpec,
             
             },

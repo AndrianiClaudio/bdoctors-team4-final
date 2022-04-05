@@ -28,6 +28,7 @@
                                 :key="spec.id"
                                 :value="spec.category"
                             >
+                                <!-- :value="spec.id" -->
                                 {{ spec.category }}
                             </option>
                         </select>
@@ -76,7 +77,10 @@ export default {
                     .split(" ")
                     .join("_")
                     .toLowerCase();
-                this.$emit("filterSelected", this.filterSelected);
+                this.$router.push({
+                    path: "/filter",
+                    query: { specialization: specialization },
+                });
             }
         },
     },

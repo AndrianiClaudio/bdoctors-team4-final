@@ -48,16 +48,10 @@ Route::middleware('auth')
     // Route::post('subscriptions', 'SubscriptionController@confirm')->name('payment.form');
     });
 
-// VUE ROUTES
-// ----TEST----
+
 Route::get('checkout', function () {
     return view("doctors.subscriptions.index");
-})->name('router.checkout');
-Route::get('filter', function () {
-    return view("doctors.filter");
-})->name('router.filter');
-
-// DEFAULT ROUTE
+});
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');

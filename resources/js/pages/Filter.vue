@@ -5,7 +5,7 @@
             <div class="filter-container">
                 <label for="vote">Filtra per voto</label>
                 <select
-                    @change="getFilterDoctors(specialization)"
+                    @change="getFilterDoctors($route.query.specialization)"
                     v-model="selectedVote"
                 >
                     <option value="5">5 stelle</option>
@@ -16,9 +16,9 @@
                 </select>
                 <p>{{ selectedVote }}</p>
             </div>
-            <h3 v-if="specialization">
+            <h3>
                 Ecco i dottori con specializzazione
-                {{ explode("_", specialization) }}
+                {{ $route.query.specialization.split("_").join(" ") }}
             </h3>
             <ul v-if="filteredDoctor.length > 0">
                 <li v-for="doctor in filteredDoctor" :key="doctor.id">
@@ -64,7 +64,6 @@
                     </div>
                     <!-- SPECIALIZZAZIONI -->
                     <hr />
-                    <!-- <div v-if="doctor.specializations"> -->
                     <div v-if="doctor.specializations">
                         <b><em>Specializations</em></b>
                         <div
@@ -123,18 +122,20 @@ export default {
     components: {
         Navbar,
     },
-    props: ["specialization"],
     data() {
         return {
             selectedVote: "",
             filteredDoctor: [],
             doctors: [],
             check_filter: false,
-            specs: [],
         };
     },
+    props: {
+        specializations: {
+            type: String,
+        },
+    },
     methods: {
-        // FILTRA I DOTTORI PER SPECIALIZZATIONE
         getFilterDoctors(specialization) {
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
@@ -165,24 +166,9 @@ export default {
                     console.error(err);
                 });
         },
-        // OTTIENI ARRAY DI SPECIALIZZAZIONI
-        getSpecs() {
-            axios
-                .get("api/specializations")
-                .then((res) => {
-                    this.specs = res.data.results.specs;
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-        },
     },
     created() {
-        this.getSpecs();
-        if (this.specialization) {
-            this.getFilterDoctors(this.specialization);
-        }
-        console.log(this.specialization);
+        this.getFilterDoctors(this.$route.query.specialization);
         //console.log($route.query.specialization.split("_").join(" "));
     },
 };

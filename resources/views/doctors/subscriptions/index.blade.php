@@ -7,14 +7,18 @@
 
 @section('content')
     @foreach ($subs as $sub)
-        <div class="card p-3">
-            <div class="card-title">
+        <form
+            action='http://localhost:8000/api/subscription/payment/make?token=fake-valid-nonce&amount={{ $sub->price }}&user_id={{ Auth::id() }}'
+            method="post">
+            <div class="card p-3">
+                <div class="card-title">
+                </div>
+                <div class="card-body">
+                    <b>{{ $sub->name }}</b>
+                    <em>{{ $sub->price }} &euro;</em>
+                </div>
+                <a class="btn btn-success" type="submit">Iscriviti</a>
             </div>
-            <div class="card-body">
-                <b>{{ $sub->name }}</b>
-                <em>{{ $sub->price }} &euro;</em>
-            </div>
-            <a href="#">Iscriviti</a>
-        </div>
+        </form>
     @endforeach
 @endsection

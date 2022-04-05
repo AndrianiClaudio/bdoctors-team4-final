@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Orders\OrdersRequest;
 use Braintree\Gateway;
+use App\User;
+use App\Model\Subscription;
+use DateTime;
+use DateInterval;
 
 class SubscriptionController extends Controller
 {
@@ -25,13 +29,30 @@ class SubscriptionController extends Controller
 
     public function payment(Request $request, Gateway $gateway)
     {
+        $data = $request->all();
         // request token fake-valid-nonce
+        $data['amount'] = floatval($data['amount']);
+        $data['user_id'] = intval($data['user_id']);
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
-            'paymentMethodNonce' => $request->token,
+            'amount' => $data['amount'],
+            'paymentMethodNonce' => $data['token'],
             'options' => [
                 'submitForSettlement' => true
             ]
+        ]);
+
+        $auth = User::find($data['user_id']);
+        $sub = Subscription::where('price', $data['amount'])->first();
+
+        // FDURATION
+        date_default_timezone_set('Europe/Rome');
+        $now = new DateTime();
+        $now_clone = clone $now;
+        $now_clone->add(new DateInterval('PT' . $sub->duration . 'H'));
+        $sub_id = $sub->id;
+
+        $auth->subscriptions()->attach($sub_id, [
+            'expires_date' => $now_clone,
         ]);
 
         if ($result->success) {

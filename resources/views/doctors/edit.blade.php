@@ -121,7 +121,7 @@
                 <h1>Modifica il tuo profilo</h1>
             </div>
         </div>
-        <div class="row justify-item-center w-row-name pt-2">
+        <div class="row justify-item-center w-row-name pt-2 radious-row">
             <div class="col-6">
                 @if (session('edit_response'))
                     <div class="alert alert-success" role="alert">
@@ -299,7 +299,7 @@
         <div class="row">
             <col class="col-12">
                         <div class="mb-3">
-                            <label for="photo" class="form-label">Photo</label>
+                            <label for="photo" class="form-label fs-4">Inserisci la tua foto</label>
                             <input type="file" name="photo" value="">
                             @error('photo')
                                 <div class="alert alert-danger">
@@ -309,7 +309,7 @@
                         </div>                   
             </div>
         </div>
-        <div class="row">
+        <div class="row pb-3">
             <div class="col-6">
                     <input class="btn btn-primary" type="submit" value="Salva">
                 </form>

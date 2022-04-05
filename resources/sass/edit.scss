@@ -6,7 +6,7 @@
 
 .w-row-name {
     margin: auto;
-    width: 75%;
+    width: 80%;
     background-color: white;
 }
 
@@ -17,4 +17,8 @@
 
 .item-spec {
     display: inline-block;
+}
+
+.radious-row {
+    border-radius: 0px 0px 15px 15px;
 }

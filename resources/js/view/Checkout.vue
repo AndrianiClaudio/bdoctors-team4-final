@@ -1,7 +1,5 @@
 <template>
     <div>
-        checkout
-
         <div v-if="test">
             <!-- Bootstrap inspired Braintree Hosted Fields example -->
             <div class="bootstrap-basic">

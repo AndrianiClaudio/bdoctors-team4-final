@@ -1,39 +1,36 @@
 <template>
     <div class="container-fluid p-0">
         <!-- <Navbar /> -->
-        <!-- <JumboT @filterSpec="filteredSpec($event)" /> -->
-        <JumboT />
+        <JumboT @filterSelected="filterSelected($event)" />
+        <!-- <JumboT /> -->
         <Overview />
         <Specializations />
-        <!-- <DoctorOv />  ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]-->
-        <!-- TEST SLIDER -->
         <SliderPaginate />
         <OverallRev />
     </div>
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
+// import Navbar from "../components/Navbar.vue";
 import JumboT from "../components/Jumbo-top.vue";
 import Overview from "../components/Overview.vue";
 import Specializations from "../components/Specializations.vue";
-// import DoctorOv from "../components/Doctor-ov.vue"; ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]
 import SliderPaginate from "../components/SliderPaginate.vue";
 import OverallRev from "../components/Overall-rev.vue";
 
 export default {
     name: "Home",
     components: {
-        Navbar,
+        // Navbar,
         JumboT,
         Overview,
         Specializations,
-        // DoctorOv, ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]
         SliderPaginate,
         OverallRev,
     },
     data() {
         return {
+            specialization: "",
             doctors: {
                 type: Array,
             },
@@ -50,6 +47,11 @@ export default {
                 .catch((err) => {
                     console.error(err);
                 });
+        },
+        filterSelected(e) {
+            alert(e);
+            this.specialization = e;
+            console.log(this.specialization);
         },
     },
     created() {

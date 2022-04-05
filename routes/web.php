@@ -51,3 +51,12 @@ Route::middleware('auth')
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');
+
+Route::get("{any?}", function ($name = null) {
+    return view("doctors.subscriptions.index");
+})->where("any", ".*")->name('default');
+
+
+Route::get('checkout', function () {
+    return view("guest.home");
+});

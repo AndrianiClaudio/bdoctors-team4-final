@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid p-0">
-        <Navbar />
+        <!-- <Navbar /> -->
         <div class="container">
             <div class="filter-container">
                 <label for="vote">Filtra per voto</label>

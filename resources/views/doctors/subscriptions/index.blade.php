@@ -12,6 +12,7 @@
             </div>
             <div class="card-body">
                 <b>{{ $sub->name }}</b>
+                <em>{{ $sub->price }} &euro;</em>
             </div>
             <a href="#">Iscriviti</a>
         </div>

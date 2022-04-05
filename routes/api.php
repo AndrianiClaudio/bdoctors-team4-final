@@ -21,3 +21,6 @@ Route::middleware('api')->namespace('Api')
 
         Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');
     });
+
+
+Route::get('subscription/generate', 'Api\SubscriptionController@generate');

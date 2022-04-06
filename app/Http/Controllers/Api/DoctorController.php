@@ -31,7 +31,7 @@ class DoctorController extends Controller
         // $doctors;
 
         $filtered_doctors = [];
-        $data['specialization'] = (str_replace('_', ' ', $data['specialization']));
+        // $data['specialization'] = (str_replace('_', ' ', $data['specialization']));
 
 
         // -----TEST----

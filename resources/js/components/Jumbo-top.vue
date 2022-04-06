@@ -78,8 +78,8 @@ export default {
         filter(specialization) {
             if (specialization !== "all") {
                 specialization = specialization
-                    .split(" ")
-                    .join("_")
+                    // .split(" ")
+                    // .join("_")
                     .toLowerCase();
                 this.$router.push({
                     name: "filter",

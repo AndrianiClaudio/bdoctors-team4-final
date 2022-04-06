@@ -38,7 +38,7 @@
                 </div>
             @endif
             <div class="mb-3">
-                <a class="btn btn-primary" href="{{ route('services.create') }}">Inserisci un nuovo
+                <a class="btn btn-primary text-white" href="{{ route('services.create') }}">Inserisci un nuovo
                     servizio</a>
             </div>
         </div>

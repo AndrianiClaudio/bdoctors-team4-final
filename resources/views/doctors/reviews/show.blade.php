@@ -24,15 +24,16 @@
                     @endfor
                 </h2>
 
-                <p>{{ $review->username }}</p>
+                <p>Username: {{ $review->username }}</p>
 
                 @if ($review->content)
                     <p>{{ $review->content }}</p>
+                    <hr>
                 @else
                     <p>Questa recensione non ha un testo</p>
                 @endif
 
-                <a class="btn btn-primary" href="{{ route('reviews.index') }}">indietro</a>
+                <a class="btn btn-primary text-white" href="{{ route('reviews.index') }}">indietro</a>
                 {{-- <form action="{{ route('review.destroy', $review->id) }}" method="POST">
                     @method('DELETE')
                     @csrf

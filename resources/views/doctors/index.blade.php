@@ -54,7 +54,10 @@
                         <p class="pb-1 address-color"><i class="fa-solid fa-location-dot icon-color"></i> Via
                             {{ $doctor->address }}</p>
                         <hr class="mb-hr">
-                        <p class="text-black mb-1"><i class="fa-solid fa-mobile color-phone"></i> {{$doctor->phone}}</p>
+                        @if($doctor->phone)
+                        <p class="text-black mb-1"><i class="fa-solid fa-mobile color-phone">{{$doctor->phone}}</i> 
+                        </p>
+                        @endif
                         <p><i class="fa-solid fa-envelope email"></i>  {{ $doctor->email }}</p>
                     </div>
                 </div>
@@ -80,7 +83,7 @@
             </div>
             <div class="col-4">
                 <div class="profile-preview pt-2 mt-3">
-                    <h5 class="ps-2">I tuoi Servizi</h5>
+                    <h5 class="ps-2">I tuoi servizi</h5>
                 </div>  
                 <div class="service text-black">
                     <ul class="pt-2 ul-message">

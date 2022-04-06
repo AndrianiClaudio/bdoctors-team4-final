@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="row w-title-message bg-message">
-            <div class="col-12">
+            <div class="col-12 pt-2">
                  @foreach ($reviews as $review)
                     <p class="pt-3 d-inline fs-4">Recensione dall'utente: 
                         @if (!$review->username)

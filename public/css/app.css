@@ -26740,6 +26740,7 @@ main {
 }
 
 .main-vh {
+  height: 100vh;
   background-color: #f6f5f8;
 }
 
@@ -26900,20 +26901,20 @@ main {
   border-radius: 0px 0px 15px 15px;
 }
 
-.container {
+.container-show {
   background-color: #fff;
   height: 100%;
   width: 90%;
   border-radius: 15px;
 }
 
-.container .show-title {
+.container-show .show-title {
   background-color: #4263d0;
   height: 70px;
   border-radius: 15px;
 }
 
-.container .show-title .edit-icon {
+.container-show .show-title .edit-icon {
   background-color: #718bdd;
   border-radius: 10px;
   top: 0;
@@ -26922,16 +26923,16 @@ main {
   height: 35px;
 }
 
-.container .row .col-2 img {
+.container-show .row .col-2 img {
   width: 220px;
   height: 220px;
 }
 
-.container .row.mt-pers {
+.container-show .row.mt-pers {
   margin-top: 4.5em;
 }
 
-.container .row.mt-pers .col .row .col .edit-icon {
+.container-show .row.mt-pers .col .row .col .edit-icon {
   background-color: #718bdd;
   border-radius: 10px;
   top: 0;
@@ -26940,18 +26941,18 @@ main {
   height: 30px;
 }
 
-.container .row .col h4,
-.container .row .col .h4 {
+.container-show .row .col h4,
+.container-show .row .col .h4 {
   font-size: 1.4em;
 }
 
-.container .row .col h4 .icon-opt,
-.container .row .col .h4 .icon-opt {
+.container-show .row .col h4 .icon-opt,
+.container-show .row .col .h4 .icon-opt {
   color: #738DE5;
   font-size: 1.4em;
 }
 
-.container .row .col-12 .service {
+.container-show .row .col-12 .service {
   background-color: #F6F5F8;
   border: 2px solid #3C4996;
   border-radius: 19px;
@@ -26959,19 +26960,19 @@ main {
   height: 150px;
 }
 
-.container .row .col-12 .service .service-title {
+.container-show .row .col-12 .service .service-title {
   background-color: #3C4996;
   border-radius: 19px;
   width: 206px;
   height: 30px;
 }
 
-.container .row .col-12 .service .service-desc {
+.container-show .row .col-12 .service .service-desc {
   width: 210px;
   height: 120px;
 }
 
-.container .row .col .container-cv {
+.container-show .row .col .container-cv {
   background-color: #fff;
   border-radius: 28px;
   border: 5px solid #3C4996;
@@ -26979,11 +26980,11 @@ main {
   height: 348px;
 }
 
-.container .row .col .container-cv .content-cv {
+.container-show .row .col .container-cv .content-cv {
   height: 270px;
 }
 
-.container .row .col .container-cv .title-cv {
+.container-show .row .col .container-cv .title-cv {
   background-color: #3C4996;
   height: 70px;
   border-radius: 19px;

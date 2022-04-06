@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <div class="container ms-3 me-3">
+    <div class="container-show ms-3 me-3">
         @if (Auth::user()->id)
         
             <div class="show-title d-flex align-items-center justify-content-between">

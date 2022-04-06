@@ -20,7 +20,7 @@
                                 >{{ subscription.duration }} ore;
                             </b>
                         </div>
-                        <div id="submit" class="submit"></div>
+                        <Subscriptions :authorization="tokenApi" />
                     </div>
                 </div>
             </li>
@@ -28,12 +28,18 @@
     </div>
 </template>
 <script>
+import Subscriptions from "../pages/Subscriptions.vue";
+
 export default {
     name: "Checkout",
     data() {
         return {
             subscriptions: null,
+            tokenApi: "",
         };
+    },
+    components: {
+        Subscriptions,
     },
     created() {
         this.subCall();
@@ -50,6 +56,17 @@ export default {
                     console.error(err);
                 });
         },
+    },
+    mounted() {
+        axios
+            .get("/api/subscription/generate")
+            .then((res) => {
+                this.tokenApi = res.data.token;
+                //console.log(res.data.token);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     },
 };
 </script>

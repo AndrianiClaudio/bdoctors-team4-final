@@ -16,15 +16,21 @@ import Message from './pages/Message.vue';
 import Review from './pages/Review.vue';
 import ProvaApi from './pages/ProvaApi.vue';
 import FilterSpec from './pages/Filter.vue';
+import Checkout from './pages/Checkout.vue';
 // import Navbar from './components/Navbar.vue';
 
-import Checkout from './view/checkout.vue';
 import Subscriptions from './pages/Subscriptions.vue';
 
 
 // IMPORT ROUTER ... NEXT
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
+
+
+import Vue from 'vue'
+import vuebraintree from 'vue-braintree'
+
+Vue.use(vuebraintree)
 
 const router = new VueRouter({
     mode: 'history',
@@ -72,7 +78,7 @@ const router = new VueRouter({
             },
             {
                 // se funziona cambierei in dashboard/subscriptions
-                path: '/checkout',
+                path: '/dashboard/checkout',
                 name: 'checkout',
                 component: Checkout,
             },

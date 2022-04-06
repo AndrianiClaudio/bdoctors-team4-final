@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-// window.Vue = require('vue');
+/* // window.Vue = require('vue');
 
 // import Checkout from './view/checkout.vue';
 
@@ -29,4 +29,4 @@ require('./bootstrap');
 //     el: '#checkout',
 //     render: h => h(Checkout),
 //     router
-// });
+// }); */

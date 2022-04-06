@@ -44,6 +44,7 @@ Route::middleware('auth')
 
 
 
+
 Route::get("{any?}", function ($name = null) {
     return view("guest.home");
 })->where("any", ".*")->name('default');

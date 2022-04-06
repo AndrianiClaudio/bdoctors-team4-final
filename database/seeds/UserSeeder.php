@@ -15,6 +15,19 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        // for test login_logout
+        User::create([
+            'firstname' => 'admin',
+            'lastname' => 'admin',
+
+            'email' => 'admin@admin.it',
+            'slug' => User::createSlug('admin' . '-' . 'admin'),
+            'password' => Hash::make('12345678'),
+            'address' => 'via dell\'admin, 23',
+            'phone' => '3339876543',
+            'photo' => null,
+        ]);
+
         for ($i = 0; $i < 15; $i++) {
             // firstname, lastname inseriti prima per permettere slug
             $data = [
@@ -34,6 +47,7 @@ class UserSeeder extends Seeder
                 // NULLABLE
                 'phone' => $faker->phoneNumber(),
                 'photo' => $faker->imageUrl(200, 200, 'doctors', true),
+                'cv' => $faker->imageUrl(200, 200),
                 'cv' => $faker->imageUrl(200, 200),
             ]
             );

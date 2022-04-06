@@ -47,7 +47,7 @@
                             @change="getFilterDoctors(test_v_model)"
                             v-model="selectedVote"
                         >
-                            <option value="all" selected>Tutte</option>
+                            <option value="all">Tutte</option>
                             <option value="5">5 Stelle</option>
                             <option value="4">4 Stelle</option>
                             <option value="3">3 Stelle</option>
@@ -68,21 +68,7 @@
                             @change="getFilterDoctors(test_v_model)"
                             v-model="selectedReviews"
                         >
-                            <!-- <option
-                                v-for="(val, index) in reviewsCount"
-                                :key="`val-${index}`"
-                                :value="index"
-                            >
-                                <span v-if="!reviewsCount[index - 1]"
-                                    >&#62; {{ val }}</span
-                                >
-                                <span v-else-if="reviewsCount[index + 1]">
-                                    {{ val }} - {{ reviewsCount[index + 1] }}
-                                </span>
-                                <span v-else-if="!reviewsCount[index + 1]"
-                                    >&#60; {{ val }}</span
-                                >
-                            </option> -->
+                            <option value="all">Tutte</option>
                             <option value="25">&#62; 25</option>
                             <option value="20">20-25</option>
                             <option value="15">15-20</option>
@@ -223,118 +209,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="container">
-            <div class="filter-container">
-                <label for="vote">Filtra per voto</label>
-                <select
-                    @change="getFilterDoctors($route.params.specialization)"
-                    v-model="selectedVote"
-                >
-                    <option value="5">5 stelle</option>
-                    <option value="4">4 stelle</option>
-                    <option value="3">3 stelle</option>
-                    <option value="2">2 stelle</option>
-                    <option value="1">1 stelle</option>
-                </select>
-                <p>{{ selectedVote }}</p>
-            </div>
-            <h3>
-                Ecco i dottori con specializzazione
-                {{ $route.params.specialization.split("_").join(" ") }}
-            </h3>
-            <ul v-if="filteredDoctor.length > 0">
-                <li v-for="doctor in filteredDoctor" :key="doctor.id">
-                    <h5 class="card-title">
-                        {{ doctor.firstname }} {{ doctor.lastname }}
-                    </h5>
-                    <hr />
-                    <b><em>Email</em></b>
-                    {{ doctor.email }}
-                    <hr />
-                    <b><em>Address</em></b>
-                    {{ doctor.address }}
-                    <div v-if="doctor.cv">
-                        <hr />
-                        <b><em>Curriculum Vitae</em></b>
-                        {{ doctor.address }}
-                    </div>
-                    <div v-if="doctor.phone">
-                        <hr />
-                        <b><em>Telefono</em></b>
-                        {{ doctor.phone }}
-                    </div> -->
-        <!-- RECENSIONI DEL DOTTORE -->
-        <!-- <div v-if="doctor.reviews">
-                        <hr />
-                        <b><em>Reviews</em></b>
-                        <p>{{ doctor.review_mean.toFixed(1) }}</p> -->
-
-        <!-- nope <ul>
-                            <li
-                                v-for="(review, index) in doctor.reviews"
-                                :key="`review-${index}`"
-                            >
-                                <div v-if="review.username">
-                                    <b> {{ review.username }}</b>
-                                </div>
-                                <div v-else>
-                                    <b> Utente anonimo</b>
-                                </div>
-                                <b>Voto: </b>{{ review.vote }}
-                            </li>
-                        </ul> nope -->
-        <!-- </div> -->
-        <!-- SPECIALIZZAZIONI -->
-        <!-- <hr />
-                    <div v-if="doctor.specializations">
-                        <b><em>Specializations</em></b>
-                        <div
-                            v-for="(spec, index) in doctor.specializations"
-                            :key="`spec-${index}`"
-                        >
-                            {{ spec.category }}
-                        </div>
-                    </div> -->
-        <!-- SERVIZI -->
-        <!-- <div v-if="doctor.services">
-                        <b><em>Services</em></b>
-                        <div
-                            v-for="(service, index) in doctor.services"
-                            :key="`service-${index}`"
-                        >
-                            {{ service.type }}
-                        </div>
-                    </div>
-                    <router-link
-                        class="btn btn-success"
-                        :to="{ name: 'message', params: { slug: doctor.slug } }"
-                        v-if="doctor.slug"
-                        >Send a message</router-link
-                    >
-                    <router-link
-                        class="btn btn-success"
-                        :to="{ name: 'review', params: { slug: doctor.slug } }"
-                        v-if="doctor.slug"
-                        >Send a Review</router-link
-                    >
-                    <router-link class="btn btn-info" :to="{ name: 'home' }"
-                        >Back to Home</router-link
-                    >
-                    <hr />
-                </li>
-            </ul> -->
-        <!-- {{ doctors }} -->
-        <!-- </div>
-        <div class="container" v-if="doctors.length === 0">
-            <b
-                >Non ci sono dottori con specializzazione =
-                {{ $route.params.specialization.split("_").join(" ") }}</b
-            >
-        </div>
-        <div class="container" v-if="check_filter">
-            <b>Non ci sono dottori.</b>
-        </div> -->
     </div>
 </template>
 
@@ -349,18 +223,13 @@ export default {
         return {
             test_v_model: "all",
             selectedVote: "all",
-            selectedReviews: "25",
+            selectedReviews: "all",
             specs: [],
             filteredDoctor: [],
             doctors: [],
             check_filter: false,
         };
     },
-    // props: {
-    //     specializations: {
-    //         type: String,
-    //     },
-    // },
     methods: {
         getFilterDoctors(specialization) {
             axios
@@ -388,57 +257,40 @@ export default {
                         }
                     }
 
-                    if (this.selectedReviews === "25") {
-                        this.filteredDoctor = this.filteredDoctor.filter(
-                            (doctor) => {
-                                return (
-                                    doctor.reviews.length >
-                                    parseInt(this.selectedReviews)
-                                );
-                            }
-                        );
-                    } else if (this.selectedReviews === "5") {
-                        //
-                        this.filteredDoctor = this.filteredDoctor.filter(
-                            (doctor) => {
-                                return (
-                                    doctor.reviews.length <
-                                    parseInt(this.selectedReviews)
-                                );
-                            }
-                        );
-                    } else {
-                        // VALORI DI MEZZO
-                        this.filteredDoctor = this.filteredDoctor.filter(
-                            (doctor) => {
-                                console.log(
-                                    doctor.reviews.length,
-                                    parseInt(this.selectedReviews),
-                                    parseInt(this.selectedReviews) + 5
-                                );
-                                return (
-                                    doctor.reviews.length >=
-                                        parseInt(this.selectedReviews) &&
-                                    doctor.reviews.length <=
+                    if (this.selectedReviews != "all") {
+                        if (this.selectedReviews === "25") {
+                            this.filteredDoctor = this.filteredDoctor.filter(
+                                (doctor) => {
+                                    return (
+                                        doctor.reviews.length >
+                                        parseInt(this.selectedReviews)
+                                    );
+                                }
+                            );
+                        } else if (this.selectedReviews === "5") {
+                            //
+                            this.filteredDoctor = this.filteredDoctor.filter(
+                                (doctor) => {
+                                    return (
+                                        doctor.reviews.length <
                                         parseInt(this.selectedReviews) + 5
-                                );
-                            }
-                        );
+                                    );
+                                }
+                            );
+                        } else {
+                            // VALORI DI MEZZO
+                            this.filteredDoctor = this.filteredDoctor.filter(
+                                (doctor) => {
+                                    return (
+                                        doctor.reviews.length >=
+                                            parseInt(this.selectedReviews) &&
+                                        doctor.reviews.length <=
+                                            parseInt(this.selectedReviews) + 5
+                                    );
+                                }
+                            );
+                        }
                     }
-                    // this.filteredDoctor.forEach((doctor, index) => {
-                    //     // console.log(
-                    //     //     this.reviewsCount[this.selectedReviews]
-                    //     // );
-                    //     if (this.selectedReviews === "25") {
-                    //         // console.log(doctor.reviews.length);
-
-                    //         if (
-                    //             doctor.reviews.length <
-                    //             parseInt(this.selectedReviews)
-                    //         ) {
-                    //         }
-                    //     }
-                    // });
                 })
                 .catch((err) => {
                     console.error(err);

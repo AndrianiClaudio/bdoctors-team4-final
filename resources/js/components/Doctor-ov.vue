@@ -75,7 +75,7 @@ export default {
                 .get("api/doctors")
                 .then((res) => {
                     this.productArray = res.data.results.doctors;
-                    console.log(this.productArray);
+                    // console.log(this.productArray);
                 })
                 .catch((err) => {
                     console.error(err);

@@ -66,9 +66,9 @@
             } else {
                 // ===========new
 
-                if (email.value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-                    email.classList.add('is-invalid');
-                    check.innerHTML = "Inserisci un indirizzo email valido"
+                if (!email.value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+                email.classList.add('is-invalid');
+                check.innerHTML = `<strong>Inserisci un indirizzo email valido</strong>`
                     check.style.display = "block"
                     errors.push('email');
                     // return true;
@@ -235,7 +235,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label fs-4">E-mail</label>
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input type="text" class="form-control" id="email" name="email"
                                 value="{{ old('email', $doctor->email) }}">
                             @error('email')
                                 <div class="alert alert-danger">
@@ -358,17 +358,17 @@
             @endif
             <!-- ? cosa essere questa copia? -->
             <!-- <div class="mb-3">
-                                                                                                                <label for="address" class="form-label fs-4">Indirizzo</label>
-                                                                                                                <input type="address" class="form-control" id="address" name="address"
-                                                                                                                    value="{{ old('address', $doctor->address) }}">
-                                                                                                                @error('address')
+                                                                                                                            <label for="address" class="form-label fs-4">Indirizzo</label>
+                                                                                                                            <input type="address" class="form-control" id="address" name="address"
+                                                                                                                                value="{{ old('address', $doctor->address) }}">
+                                                                                                                            @error('address')
         <div class="alert alert-danger">
-                                                                                                                                                                                                            {{ $message }}
-                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    {{ $message }}
+                                                                                                                                                                                                                                </div>
     @enderror
-                                                                                                                <span id="address_validate" class="invalid-feedback" role="alert">
-                                                                                                                    <strong>Compila questo campo </strong>
-                                                                                                                </span>
-                                                                                                            </div> -->
+                                                                                                                            <span id="address_validate" class="invalid-feedback" role="alert">
+                                                                                                                                <strong>Compila questo campo </strong>
+                                                                                                                            </span>
+                                                                                                                        </div> -->
         </div>
     @endsection

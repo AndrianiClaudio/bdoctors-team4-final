@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/checkout" class="nav-link text-white">
+                    <a href="/dashboard/subscriptions" class="nav-link text-white">
                         <i class="fa-regular fa-star p-1"></i>
                         Piani di abbonamento
                     </a>

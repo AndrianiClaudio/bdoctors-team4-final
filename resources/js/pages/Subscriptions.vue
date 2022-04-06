@@ -1,36 +1,59 @@
 <template>
     <div>
-        checkout
-
-        <v-braintree
-            authorization="xxxxxxxxxxxxxxxxxxxxxx"
-            @success="onSuccess"
-            @error="onError"
-        ></v-braintree>
+        <ul class="list-group">
+            <li
+                v-for="(subscription, index) in subscriptions"
+                :key="index"
+                :id="subscription.id"
+                class="list-group-item list-group-item-info"
+                :name="subscription.id"
+            >
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ subscription.name }}</h4>
+                        <div class="d-flex justify-content-between">
+                            <b>
+                                <em>Price: </em>{{ subscription.price }} &euro;
+                            </b>
+                            <b>
+                                <em>Durata abbonamento: </em
+                                >{{ subscription.duration }} ore;
+                            </b>
+                        </div>
+                        <router-link
+                            :to="`/dashboard/checkout/${subscription.name}`"
+                            >sgancia i soldi</router-link
+                        >
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </template>
-
 <script>
 export default {
-    name: "Checkout",
+    name: "Subscriptions",
     data() {
-        return {};
+        return {
+            subscriptions: null,
+            tokenApi: "",
+        };
     },
-    props: {
-        authorization: {
-            required: true,
-            type: String,
-        },
+    components: {},
+    created() {
+        this.subCall();
     },
-    created() {},
     methods: {
-        onSuccess(payload) {
-            let nonce = payload.nonce;
-            // Do something great with the nonce...
-        },
-        onError(error) {
-            let message = error.message;
-            // Whoops, an error has occured while trying to get the nonce
+        subCall() {
+            axios
+                .get("/api/subscriptions")
+                .then((res) => {
+                    this.subscriptions = res.data.results.subscriptions;
+                    //console.log(this.subscriptions);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
         },
     },
 };

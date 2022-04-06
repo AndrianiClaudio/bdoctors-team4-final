@@ -78,15 +78,16 @@ const router = new VueRouter({
             },
             {
                 // se funziona cambierei in dashboard/subscriptions
-                path: '/dashboard/checkout',
-                name: 'checkout',
-                component: Checkout,
-            },
-            {
-                // se funziona cambierei in dashboard/subscriptions
                 path: '/dashboard/subscriptions',
                 name: 'subscriptions',
                 component: Subscriptions,
+            },
+            {
+                // se funziona cambierei in dashboard/subscriptions
+                path: '/dashboard/checkout/:name',
+                name: 'checkout',
+                props: true,
+                component: Checkout,
             },
         
     ]

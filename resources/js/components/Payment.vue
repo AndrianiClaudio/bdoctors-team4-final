@@ -27,7 +27,10 @@ export default {
             type: String,
         },
     },
-    created() {},
+    created() {
+        this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
+        document.querySelector("#fulvio").remove();
+    },
     methods: {
         onSuccess(payload) {
             let nonce = payload.nonce;
@@ -39,12 +42,6 @@ export default {
                 )
                 .then((res) => {
                     this.amount = res.data.amount;
-                    console.log(this.amount);
-                    console.log(res.data);
-                    this.user_id = parseInt(
-                        document.querySelector("#fulvio").innerHTML
-                    );
-                    console.log(this.user_id);
                 })
                 .catch((err) => {
                     console.error(err);

@@ -27,53 +27,51 @@ class DoctorController extends Controller
     {
         $data = $request->all();
         // dd($data);
-        $doctors = User::orderBy('id', 'asc')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+        $doctors = User::orderBy('id', 'desc')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
         // $doctors;
 
         $filtered_doctors = [];
         $data['specialization'] = (str_replace('_', ' ', $data['specialization']));
-        if (Specialization::where('category', $data['specialization'])->first()) {
-            $id = Specialization::where('category', $data['specialization'])->first()->id;
-            // dd($id);
-            foreach ($doctors as $doctor) {
-                $specs = $doctor->specializations()->get();
-                foreach ($specs as $spec) {
-                    if ($spec->id == $id) {
-                        $filtered_doctors[] = $doctor;
-                        break;
-                    }
-                }
 
-                if (count($doctor->reviews) > 0) {
-                    $sum = 0;
-                    foreach ($doctor->reviews as $review) {
-                        $sum += $review->vote;
-                    }
-                    $doctor->review_mean = $sum / count($doctor->reviews);
-                }
-            // dd(round($doctor->review_mean, 2));
+
+        // -----TEST----
+        // return response()->json([
+        //     'response' => true,
+        //     'results' => [
+        //         'count' => count($filtered_doctors),
+        //         'doctors' => Specialization::where('category', $data['specialization'])->first()
+        //     ]
+        // ]);
+        foreach ($doctors as $doctor) {
+            $doctor_spec = [];
+
+            foreach ($doctor->specializations()->get() as $doct_spec) {
+                $doctor_spec[] = strtolower($doct_spec->category);
             }
 
-            // dd($doctors);
 
-            return response()->json([
-                'response' => true,
-                'results' => [
-                    'count' => count($filtered_doctors),
-                    'doctors' => $filtered_doctors
-                ]
-            ]);
-        }
-        else {
-            return response()->json([
-                'response' => false,
-                'results' => [
-                    'doctors' => null,
-                ]
-            ]);
+            // dd($doctor_spec, $data['specialization']);
 
+            if (in_array($data['specialization'], $doctor_spec)) {
+                $filtered_doctors[] = $doctor;
+            }
+
+            if (count($doctor->reviews) > 0) {
+                $sum = 0;
+                foreach ($doctor->reviews as $review) {
+                    $sum += $review->vote;
+                }
+                $doctor->review_mean = $sum / count($doctor->reviews);
+            }
         }
-    // dd($data);
+
+
+        return response()->json([
+            'response' => true,
+            'results' => [
+                'count' => count($filtered_doctors),
+                'doctors' => $filtered_doctors
+            ]]);
     }
 
     public function show($slug)

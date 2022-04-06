@@ -28,53 +28,78 @@ class DoctorController extends Controller
         $data = $request->all();
         // dd($data);
         $doctors = User::orderBy('id', 'desc')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
-        // $doctors;
-
-        $filtered_doctors = [];
-        // $data['specialization'] = (str_replace('_', ' ', $data['specialization']));
 
 
-        // -----TEST----
-        // return response()->json([
-        //     'response' => true,
-        //     'results' => [
-        //         'count' => count($filtered_doctors),
-        //         'doctors' => Specialization::where('category', $data['specialization'])->first()
-        //     ]
-        // ]);
-        foreach ($doctors as $doctor) {
-            $doctor_spec = [];
+        if (strtolower($data['specialization']) !== "all") {
+            $filtered_doctors = [];
 
-            foreach ($doctor->specializations()->get() as $doct_spec) {
-                $doctor_spec[] = strtolower($doct_spec->category);
-            }
+            foreach ($doctors as $doctor) {
+                $doctor_spec = [];
 
-
-            // dd($doctor_spec, $data['specialization']);
-
-            if (in_array($data['specialization'], $doctor_spec)) {
-                $filtered_doctors[] = $doctor;
-            }
-
-            if (count($doctor->reviews) > 0) {
-                $sum = 0;
-                foreach ($doctor->reviews as $review) {
-                    $sum += $review->vote;
+                foreach ($doctor->specializations()->get() as $doct_spec) {
+                    $doctor_spec[] = strtolower($doct_spec->category);
                 }
-                $doctor->review_mean = $sum / count($doctor->reviews);
+
+
+                // dd($doctor_spec, $data['specialization']);
+
+                if (in_array($data['specialization'], $doctor_spec)) {
+                    $filtered_doctors[] = $doctor;
+                }
+
+                if (count($doctor->reviews) > 0) {
+                    $sum = 0;
+                    foreach ($doctor->reviews as $review) {
+                        $sum += $review->vote;
+                    }
+                    $doctor->review_mean = $sum / count($doctor->reviews);
+                }
+                else {
+                    $doctor->review_mean = null;
+                }
             }
-            else {
-                $doctor->review_mean = 0;
+            return response()->json([
+                'response' => true,
+                'results' => [
+                    'count' => count($filtered_doctors),
+                    'doctors' => $filtered_doctors
+                ]]);
+        }
+        else {
+            foreach ($doctors as $doctor) {
+                $doctor_spec = [];
+
+                foreach ($doctor->specializations()->get() as $doct_spec) {
+                    $doctor_spec[] = strtolower($doct_spec->category);
+                }
+
+
+                // dd($doctor_spec, $data['specialization']);
+
+                if (in_array($data['specialization'], $doctor_spec)) {
+                    $filtered_doctors[] = $doctor;
+                }
+
+                if (count($doctor->reviews) > 0) {
+                    $sum = 0;
+                    foreach ($doctor->reviews as $review) {
+                        $sum += $review->vote;
+                    }
+                    $doctor->review_mean = $sum / count($doctor->reviews);
+                }
+                else {
+                    $doctor->review_mean = null;
+                }
             }
+            return response()->json([
+                'response' => true,
+                'results' => [
+                    'count' => count($doctors),
+                    'doctors' => $doctors
+                ]]);
         }
 
 
-        return response()->json([
-            'response' => true,
-            'results' => [
-                'count' => count($filtered_doctors),
-                'doctors' => $filtered_doctors
-            ]]);
     }
 
     public function show($slug)

@@ -44,9 +44,7 @@
                     <div class="col m-0 px-3">
                         <select
                             class="select-spec m-0 mb-3"
-                            @change="
-                                getFilterDoctors($route.query.specialization)
-                            "
+                            @change="getFilterDoctors(test_v_model)"
                             v-model="selectedVote"
                         >
                             <option value="all" selected>Tutte</option>
@@ -313,7 +311,7 @@ export default {
         return {
             test_v_model: "all",
             specs: [],
-            selectedVote: null,
+            selectedVote: "all",
             filteredDoctor: [],
             doctors: [],
             check_filter: false,
@@ -329,11 +327,11 @@ export default {
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
-                    this.doctors = res.data.results.doctors;
                     this.filteredDoctor = res.data.results.doctors;
                     // console.log(this.filteredDoctor);
-                    if (!isNaN(parseInt(this.selectedVote))) {
+                    if (this.selectedVote && this.selectedVote !== "all") {
                         this.check_filter = false;
+                        this.doctors = this.filteredDoctor;
                         this.filteredDoctor = [];
                         console.log(this.doctors);
                         this.doctors.forEach((doctor) => {
@@ -361,7 +359,7 @@ export default {
                 .then((res) => {
                     // console.log(res.data.results.specs);
                     this.specs = res.data.results.specs;
-                    console.log(this.specs);
+                    // console.log(this.specs);
                 })
                 .catch((err) => {
                     console.error(err);
@@ -372,8 +370,10 @@ export default {
         this.getSpecs();
     },
     mounted() {
-        this.test_v_model = this.$route.params.specialization;
-        this.getFilterDoctors(this.$route.params.specialization);
+        if (this.$route.params.specialization) {
+            this.test_v_model = this.$route.params.specialization;
+        }
+        this.getFilterDoctors(this.test_v_model);
     },
 };
 </script>

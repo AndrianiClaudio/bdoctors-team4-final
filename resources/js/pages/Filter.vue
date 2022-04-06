@@ -56,6 +56,41 @@
                         </select>
                     </div>
                 </div>
+                <div class="row m-0 p-0">
+                    <div class="col">
+                        <h5 class="m-2 pb-1">Numero recensioni:</h5>
+                    </div>
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col m-0 px-3">
+                        <select
+                            class="select-spec m-0 mb-3"
+                            @change="getFilterDoctors(test_v_model)"
+                            v-model="selectedReviews"
+                        >
+                            <!-- <option
+                                v-for="(val, index) in reviewsCount"
+                                :key="`val-${index}`"
+                                :value="index"
+                            >
+                                <span v-if="!reviewsCount[index - 1]"
+                                    >&#62; {{ val }}</span
+                                >
+                                <span v-else-if="reviewsCount[index + 1]">
+                                    {{ val }} - {{ reviewsCount[index + 1] }}
+                                </span>
+                                <span v-else-if="!reviewsCount[index + 1]"
+                                    >&#60; {{ val }}</span
+                                >
+                            </option> -->
+                            <option value="25">&#62; 25</option>
+                            <option value="20">20-25</option>
+                            <option value="15">15-20</option>
+                            <option value="10">10-15</option>
+                            <option value="5">&#60; 10</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="col-10 m-0 p-0">
                 <div class="row m-0 mt-3 me-3 p-0">
@@ -313,8 +348,9 @@ export default {
     data() {
         return {
             test_v_model: "all",
-            specs: [],
             selectedVote: "all",
+            selectedReviews: "25",
+            specs: [],
             filteredDoctor: [],
             doctors: [],
             check_filter: false,
@@ -351,6 +387,58 @@ export default {
                             this.check_filter = true;
                         }
                     }
+
+                    if (this.selectedReviews === "25") {
+                        this.filteredDoctor = this.filteredDoctor.filter(
+                            (doctor) => {
+                                return (
+                                    doctor.reviews.length >
+                                    parseInt(this.selectedReviews)
+                                );
+                            }
+                        );
+                    } else if (this.selectedReviews === "5") {
+                        //
+                        this.filteredDoctor = this.filteredDoctor.filter(
+                            (doctor) => {
+                                return (
+                                    doctor.reviews.length <
+                                    parseInt(this.selectedReviews)
+                                );
+                            }
+                        );
+                    } else {
+                        // VALORI DI MEZZO
+                        this.filteredDoctor = this.filteredDoctor.filter(
+                            (doctor) => {
+                                console.log(
+                                    doctor.reviews.length,
+                                    parseInt(this.selectedReviews),
+                                    parseInt(this.selectedReviews) + 5
+                                );
+                                return (
+                                    doctor.reviews.length >=
+                                        parseInt(this.selectedReviews) &&
+                                    doctor.reviews.length <=
+                                        parseInt(this.selectedReviews) + 5
+                                );
+                            }
+                        );
+                    }
+                    // this.filteredDoctor.forEach((doctor, index) => {
+                    //     // console.log(
+                    //     //     this.reviewsCount[this.selectedReviews]
+                    //     // );
+                    //     if (this.selectedReviews === "25") {
+                    //         // console.log(doctor.reviews.length);
+
+                    //         if (
+                    //             doctor.reviews.length <
+                    //             parseInt(this.selectedReviews)
+                    //         ) {
+                    //         }
+                    //     }
+                    // });
                 })
                 .catch((err) => {
                     console.error(err);

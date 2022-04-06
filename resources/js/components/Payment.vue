@@ -5,7 +5,8 @@
             locale="it_IT"
             @success="onSuccess"
             @error="onError"
-            btnText="Invia"
+            btnText="Completa il pagamento"
+            btnClass="btn btn-success"
         >
         </v-braintree>
     </div>
@@ -29,6 +30,9 @@ export default {
     created() {
         this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
         document.querySelector("#fulvio").remove();
+    },
+    mounted() {
+        document.querySelector("button.btn.btn-primary").remove();
     },
     methods: {
         onSuccess(payload) {

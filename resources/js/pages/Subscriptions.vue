@@ -44,6 +44,7 @@ export default {
     },
     components: {},
     created() {
+        // this.getUser();
         this.subCall();
     },
     methods: {
@@ -58,11 +59,6 @@ export default {
                     console.error(err);
                 });
         },
-    },
-    async mounted() {
-        await function getUser() {
-            let user = sessionStorage.getItem("key");
-        };
     },
 };
 </script>

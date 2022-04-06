@@ -13,6 +13,15 @@ use DateInterval;
 
 class SubscriptionController extends Controller
 {
+    public function priceName(Request $request)
+    {
+        $amount = Subscription::where('name', $request['name'])->first()->price;
+
+        return response()->json([
+            'success' => true,
+            'amount' => $amount
+        ]);
+    }
     public function index()
     {
         $subscriptions = Subscription::all();
@@ -49,7 +58,6 @@ class SubscriptionController extends Controller
             ]
         ]);
 
-        $auth = User::find($data['user_id']);
         $sub = Subscription::where('price', $data['amount'])->first();
 
         // FDURATION
@@ -59,32 +67,31 @@ class SubscriptionController extends Controller
         $now_clone->add(new DateInterval('PT' . $sub->duration . 'H'));
         $sub_id = $sub->id;
 
-        // $auth->subscriptions()->attach($sub_id, [
-        //     'expires_date' => $now_clone,
-        // ]);
 
         if ($result->success) {
+            $auth = User::find($data['user_id']);
 
             $auth->subscriptions()->attach($sub_id, [
                 'expires_date' => $now_clone,
             ]);
-            // $data = [
-            //     'success' => true,
-            //     'message' => "Transazione eseguita."
-            // ];
-            return redirect()->route('subscriptions.index');
-            // return response()->json($data, 200);
-        } else {
-            return redirect()->route('subscriptions.index');
-            // $data = [
-            //     'success' => false,
-            //     'message' => "Transazione fallita."
-            // ];
-            // return response()->json($data, 200);
+            $data = [
+                'success' => true,
+                'message' => "Transazione eseguita."
+            ];
+            // return redirect()->route('subscriptions.index');
+            return response()->json($data, 200);
+        }
+        else {
+            // return redirect()->route('subscriptions.index');
+            $data = [
+                'success' => false,
+                'message' => "Transazione fallita."
+            ];
+            return response()->json($data, 200);
 
         }
     }
-    /* public function payment(OrdersRequest $request, Gateway $gateway)
+/* public function payment(OrdersRequest $request, Gateway $gateway)
  {
  $product = Product::find($request->product);
  $result = $gateway->transaction()->sale([

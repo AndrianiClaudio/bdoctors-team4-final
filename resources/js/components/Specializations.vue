@@ -23,7 +23,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="pic rounded-3 me-3">
+                <div class="pic rounded-3 me-3" v-if="specs[counter]">
                     <img
                         class="img-spec ten"
                         v-show="specs[counter].category == 'Allergologia'"

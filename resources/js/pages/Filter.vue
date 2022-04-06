@@ -151,6 +151,21 @@
                                                 >
                                             </div>
                                         </div>
+                                        <div class="row m-0 p-0">
+                                            <div class="col">
+                                                <router-link
+                                                    class="btn rounded-pill btn-color-b"
+                                                    :to="{
+                                                        name: 'doctor',
+                                                        params: {
+                                                            slug: doctor.slug,
+                                                        },
+                                                    }"
+                                                    v-if="doctor.slug"
+                                                    >View Profile</router-link
+                                                >
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>

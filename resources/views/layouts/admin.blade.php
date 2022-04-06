@@ -89,7 +89,7 @@
 
 
                 <div class="dropdown ps-3 pb-2">
-                    <hr>
+                    <hr class="text-white  me-3">
                     <a href="#"
                         class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">

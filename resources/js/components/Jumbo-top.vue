@@ -19,7 +19,12 @@
                         class="d-flex mt-4 mb-4 justify-content-center"
                         action=""
                     >
-                        <select class="ps-3" name="" id="" v-model="filterSelected">
+                        <select
+                            class="ps-3"
+                            name=""
+                            id=""
+                            v-model="filterSelected"
+                        >
                             <option value="all" disabled selected>
                                 Seleziona una specializzazione
                             </option>

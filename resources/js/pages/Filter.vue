@@ -17,8 +17,21 @@
                 </div>
                 <div class="row m-0 p-0">
                     <div class="col m-0 px-3">
-                        <select class="select-spec m-0 mb-3" name="" id="">
-                            <option value="">Cardiologia</option>
+                        <select
+                            class="select-spec m-0 mb-3"
+                            name=""
+                            id=""
+                            v-model="test_v_model"
+                            @change="getFilterDoctors(test_v_model)"
+                        >
+                            <option value="all">Tutti</option>
+                            <option
+                                v-for="(spec, index) in specs"
+                                :key="`spec-${index}`"
+                                :value="spec.category.toLowerCase()"
+                            >
+                                {{ spec.category }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -298,17 +311,19 @@ export default {
     },
     data() {
         return {
-            selectedVote: "",
+            test_v_model: "all",
+            specs: [],
+            selectedVote: null,
             filteredDoctor: [],
             doctors: [],
             check_filter: false,
         };
     },
-    props: {
-        specializations: {
-            type: String,
-        },
-    },
+    // props: {
+    //     specializations: {
+    //         type: String,
+    //     },
+    // },
     methods: {
         getFilterDoctors(specialization) {
             axios
@@ -340,8 +355,24 @@ export default {
                     console.error(err);
                 });
         },
+        getSpecs() {
+            axios
+                .get("api/specializations")
+                .then((res) => {
+                    // console.log(res.data.results.specs);
+                    this.specs = res.data.results.specs;
+                    console.log(this.specs);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        },
+    },
+    created() {
+        this.getSpecs();
     },
     mounted() {
+        this.test_v_model = this.$route.params.specialization;
         this.getFilterDoctors(this.$route.params.specialization);
     },
 };

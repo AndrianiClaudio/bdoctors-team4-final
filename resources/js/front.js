@@ -30,6 +30,7 @@ Vue.use(VueRouter);
 import Vue from 'vue'
 import vuebraintree from 'vue-braintree'
 
+
 Vue.use(vuebraintree)
 
 const router = new VueRouter({
@@ -75,20 +76,20 @@ const router = new VueRouter({
             query: true,
             component: FilterSpec,
             
-            },
-            {
-                // se funziona cambierei in dashboard/subscriptions
-                path: '/dashboard/subscriptions',
-                name: 'subscriptions',
-                component: Subscriptions,
-            },
-            {
-                // se funziona cambierei in dashboard/subscriptions
-                path: '/dashboard/checkout/:name',
-                name: 'checkout',
-                props: true,
-                component: Checkout,
-            },
+        },
+        {
+            // se funziona cambierei in dashboard/subscriptions
+            path: '/dashboard/subscriptions',
+            name: 'subscriptions',
+            component: Subscriptions,
+        },
+        {
+            // se funziona cambierei in dashboard/subscriptions
+            path: '/dashboard/subscriptions/:name',
+            name: 'checkout',
+            params: true,
+            component: Checkout,
+        },
         
     ]
 });

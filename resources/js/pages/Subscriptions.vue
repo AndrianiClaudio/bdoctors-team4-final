@@ -22,6 +22,7 @@
                         </div>
                         <router-link
                             :to="`/dashboard/checkout/${subscription.name}`"
+                            :user="user"
                             >sgancia i soldi</router-link
                         >
                     </div>
@@ -37,6 +38,8 @@ export default {
         return {
             subscriptions: null,
             tokenApi: "",
+            // //
+            user: null,
         };
     },
     components: {},
@@ -55,6 +58,11 @@ export default {
                     console.error(err);
                 });
         },
+    },
+    async mounted() {
+        await function getUser() {
+            let user = sessionStorage.getItem("key");
+        };
     },
 };
 </script>

@@ -5,7 +5,7 @@
 
 @section('content')
     {{-- @dd(App\Model\Subscription::all()); --}}
-   {{--  @foreach (App\Model\Subscription::all() as $sub)
+    {{-- @foreach (App\Model\Subscription::all() as $sub)
         <ul class="list-group">
             <li id="subscription-{{ $sub->id }}" class="list-group-item list-group-item-info"
                 name="subscription-{{ $sub->id }}">
@@ -29,4 +29,3 @@
         </ul>
     @endforeach --}}
 @endsection
-

@@ -38,7 +38,12 @@ Route::middleware('auth')
         // Route::post('subscriptions', 'SubscriptionController@confirm')->name('payment.form');
         Route::get('subscriptions', function () {
             return view("doctors.subscriptions.index");
-        });
+        }
+        )->name('subscription.index');
+        Route::get('checkout/{any}', function () {
+            return view("doctors.subscriptions.index");
+        }
+        )->name('subscription.payment');
     });
 
 

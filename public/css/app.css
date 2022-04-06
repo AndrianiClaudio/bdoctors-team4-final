@@ -26765,7 +26765,8 @@ main {
 }
 
 .profile-sizes {
-  height: 190px;
+  min-height: 190px;
+  height: 100%;
   width: 100%;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
@@ -27243,5 +27244,9 @@ main {
   border-radius: 15px;
   color: white;
   background-color: #5274e1;
+}
+
+.b-service {
+  font-weight: bold;
 }
 

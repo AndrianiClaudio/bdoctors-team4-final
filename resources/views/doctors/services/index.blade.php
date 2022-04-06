@@ -9,25 +9,36 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            @if (count($services) > 0)
-                <div class="col">
-                    I tuoi servizi
-                    @foreach ($services as $service)
-                        <h2> {{ $service->type }} </h2>
-                        <h3> {{ $service->category_name }}</h3>
-                        <a class="btn btn-primary" href="{{ route('services.show', $service->id) }}">avanti</a>
+        <div class="row welcome-bg w-title-message text-white">
+            <div class="col-12">
+                <h1>I tuoi servizi</h1>
+            </div>
+        </div>
+        <div class="row w-title-message bg-message">
+            <div class="col-12">
+                 @if (count($services) > 0)
+                 @foreach ($services as $service)
+                 <div class="pt-3">
+                    <p class="b-service d-inline">Servizio:</p> 
 
-                        {{-- SPECIALIZZAZIONE --}}
-                    @endforeach
+                    <p class="d-inline">{{ $service->category_name }} </p>
                 </div>
+                <div class="pt-2 pb-2">
+                    <p class="b-service d-inline">Descrizione:</p>
+                    <p class="d-inline">{{ $service->type }}</p>
+                </div>
+                       
+                    <a class="btn btn-primary text-white" href="{{ route('services.show', $service->id) }}">Dettagli</a>
+                    <hr>
+                @endforeach
+            </div>
             @else
                 <div class="col">
                     <h2>Non hai ancora servizi inseriti!</h2>
                 </div>
             @endif
             <div class="mb-3">
-                <a class="btn btn-primary" href="{{ route('services.create') }}">Inserisci un tuo
+                <a class="btn btn-primary" href="{{ route('services.create') }}">Inserisci un nuovo
                     servizio</a>
             </div>
         </div>

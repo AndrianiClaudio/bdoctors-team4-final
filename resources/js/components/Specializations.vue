@@ -13,7 +13,7 @@
                 <div class="specs me-3">
                     <ul class="list-group">
                         <li
-                            class="list-group-item"
+                            class="list-group-item list-hov-none"
                             :class="counter == index ? 'selected' : ''"
                             v-for="(spec, index) in specs"
                             :key="spec.id"
@@ -27,7 +27,7 @@
                     <img class="img-spec ten" v-show="specs[counter].category == 'Allergologia'" src="https://www.clinicaguarnieri.it/wp-content/uploads/2018/04/allergologia-2.jpg" alt="">
                     <img class="img-spec twenty" v-show="specs[counter].category == 'Cardiologia'" src="https://meditronsrl.it/wp-content/uploads/2021/08/Monitor-paziente-per-ospedale.jpg" alt="">
                     <img class="img-spec thirty" v-show="specs[counter].category == 'Dermatologia'" src="https://www.clinicamedicasanluca.it/wp-content/uploads/2018/07/dermatologia.jpg" alt="">
-                    <img class="img-spec" v-show="specs[counter].category == 'Ecografia'" src="https://images.pexels.com/photos/7088841/pexels-photo-7088841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                    <img class="img-spec" v-show="specs[counter].category == 'Ecografia'" src="https://www.cmsanmarco.com/wp-content/uploads/2017/08/GINECOLOGIA3-1024x640.jpg" alt="">
                     <img class="img-spec twenty" v-show="specs[counter].category == 'Immunologia'" src="https://www.dire.it/wp-content/uploads/2020/10/medici-laboratorio.jpg" alt="">
                     <img class="img-spec twenty" v-show="specs[counter].category == 'Medicina dello Sport'" src="https://www.sanlucapadova.it/wp-content/uploads/2020/01/visita-medico-sportiva-padova.jpg" alt="">
                     <img class="img-spec" v-show="specs[counter].category == 'Neurologia'" src="https://cdn.pixabay.com/photo/2021/12/02/22/15/x-ray-6841384_960_720.jpg" alt="">
@@ -97,6 +97,9 @@ export default {
             .specs {
                 .list-group {
                     width: 400px;
+                    .list-hov-none:hover {
+                        cursor: pointer;
+                    }
                 }
             }
             .pic {

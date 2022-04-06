@@ -19,10 +19,10 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-2 d-flex justify-content-center">
-                    <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-circle" alt="">
+                <div class="col-3 d-flex justify-content-center">
+                    <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-photo" alt="">
                 </div>
-                <div class="col d-flex flex-column justify-content-between">
+                <div class="col-9 d-flex flex-column justify-content-between">
                     <div class="row">
                         <div class="col">
                             <h1> Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </h1>
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="row mt-pers">
+            <div class="row ">
                 <div class="col ms-3 mt-5">
                     <div class="row">
                         <div class="col d-flex align-items-center justify-content-between">
@@ -88,16 +88,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 d-flex flex-wrap">
+                        <div class="col-12 d-flex flex-wrap mt-3">
 
                             @if (count($doctor->services) > 0)
                                 @foreach ($doctor->services as $service)
                                 <div class="service m-3">
                                     <div class="service-title d-flex justify-content-center align-items-center">
-                                        <h5 class="text-uppercase text-white m-0"> Rubo </h5>
+                                        <h5 class="text-uppercase text-white m-0"> {{$doctor->service}} </h5>
                                     </div>
                                     <p class="service-desc px-3 pt-2">
-                                        Descrizione di come penso di derubare le mille mamme pancine che mi fanno domande idiote.
+                                        {{$doctor->service}}
                                     </p>
                                 </div>
                                 @endforeach
@@ -108,13 +108,9 @@
                     </div>
                 </div>
                         
-                <div class="col me-3  d-flex justify-content-center align-items-end mb-3">
+                <div class="col me-3  d-flex justify-content-center align-items-end mt-5">
                     <div class="container-cv">
                         <div class="content-cv">
-                            <img src="{{ asset('images/doctorDashboard.png') }}" alt="">
-                            {{-- <img src="../../../public/images/doctorDashboard.png"> --}}
-                            {{-- <img class="" src="{{ asset('/storage/default_images/my-deliveboo.gif') }}" alt=""> --}}
-                            {{-- <img class="" src="{{ asset('/storage/images/doctorDashboard.png') }}" alt=""> --}}
                         </div>
                         <div class="title-cv d-flex align-items-center">
                             <h5 class="text-uppercase text-white mb-0 ms-3"> Il tuo curriculum </h5>

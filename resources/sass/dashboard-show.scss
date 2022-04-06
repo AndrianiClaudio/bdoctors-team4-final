@@ -1,11 +1,12 @@
 .container-show {
     background-color: #fff;
     height: 100%;
-    border-radius: 19px;
+    width: 90%;
+    border-radius: 15px;
     .show-title {
-        background-color: #3C4996;
+        background-color: #4263d0;
         height: 70px;
-        border-radius: 19px;
+        border-radius: 15px;
         .edit-icon {
             background-color: #718bdd;
             border-radius: 10px;
@@ -90,5 +91,10 @@
         }
 
     }
+}
+.rounded-photo{
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
 }
 

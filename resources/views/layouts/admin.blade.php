@@ -23,15 +23,10 @@
 </head>
 
 <body>
-
     <main class="main-vh">
 
         <div
             class="d-flex flex-column justify-content-between flex-shrink-0 bg-side side-vh ms-3 mt-3 mb-3 radious side-sizes">
-            {{-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-            <span class="fs-4">Sidebar</span></a>
-            <hr> --}}
 
             <a href="{{ url('/') }}" class="ps-3 active" aria-current="page">
                 <svg width="150" height="70" viewBox="0 0 214 62" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,20 +90,33 @@
             </ul>
 
             <div class="dropdown ps-3 pb-2">
-                <hr>
-                <a href="#" class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
+                {{-- <a href="#" class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
                     id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32" height="32"
                         class="rounded-circle me-2">
                     <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
                         {{ Auth::user()->lastname }} </strong>
                 </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
-                            prestazioni</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
-                            profilo</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
+
+                <ul class="nav nav-pills flex-column lh-5 fs-side">
+                    <li class="nav-item">
+                        <a href="{{ route('profile.index') }}" class="nav-link text-white" aria-current="page">
+                            <i class="fa-solid fa-igloo p-1"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('profile.show') }}" class="nav-link  text-white" aria-current="page">
+                            <i class="fa-solid fa-user-doctor p-1"></i>
+                            Il tuo Profilo
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('messages.index') }}" class="nav-link  text-white">
+                            <i class="fa-solid fa-comment-medical p-1"></i>
+                            Messaggi
+                        </a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -119,7 +127,38 @@
                             @csrf
                         </form>
                     </li>
-                </ul>
+                </ul> --}}
+
+                <div class="dropdown ps-3 pb-2">
+                    <hr class="text-white  me-3">
+                    <a href="#"
+                        class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
+                        id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32"
+                            height="32" class="rounded-circle me-2">
+                        <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
+                            {{ Auth::user()->lastname }} </strong>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                        <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
+                                prestazioni</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
+                                profilo</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"> Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
@@ -131,7 +170,6 @@
             <div id="app" class="py-3" style="width:100%">
                 {{-- @yield('content') --}}
             </div>
-        </div>
     </main>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>

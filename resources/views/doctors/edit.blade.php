@@ -116,27 +116,29 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1>Modify Doctor</h1>
+        <div class="row edit-title">
+            <div class="col-12 welcome-bg justify-content-center d-flex align-items-center text-white">
+                <h1>Modifica il tuo profilo</h1>
             </div>
-
-            @if (session('edit_response'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('edit_response') }}
-                </div>
-            @endif
-            {{-- Modifica possibile solo a se stessi o se si é admin --}}
-            @if ($doctor->id === Auth::id())
-                <div class="col">
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"
-                        onsubmit="return validateEditForm(event)">
-                        @csrf
-                        @method('PATCH')
-
-                        {{-- firstname --}}
+        </div>
+        <div class="row justify-item-center w-row-name pt-2 radious-row">
+            <div class="col-6">
+                @if (session('edit_response'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('edit_response') }}
+                    </div>
+                @endif
+                {{-- Modifica possibile solo a se stessi o se si é admin --}}
+                @if ($doctor->id === Auth::id())
+                    <div class="col">
+                        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"
+                            onsubmit="return validateEditForm(event)">
+                            @csrf
+                            @method('PATCH')
+                    </div>
+                    <!-- NOME -->
                         <div class="mb-3">
-                            <label for="firstname" class="form-label">Nome</label>
+                            <label for="firstname" class="form-label fs-4">Nome</label>
                             <input type="text" class="form-control" id="firstname" name="firstname"
                                 value="{{ old('firstname', $doctor->firstname) }}">
                             @error('firstname')
@@ -148,10 +150,12 @@
                                 <strong>Compila questo campo </strong>
                             </span>
                         </div>
+            </div>
+            <div class="col-6">
 
-                        {{-- lastname --}}
-                        <div class="mb-3">
-                            <label for="lastname" class="form-label">Cognome</label>
+                 <!-- COGNOME -->
+                    <div class="mb-3">
+                            <label for="lastname" class="form-label fs-4">Cognome</label>
                             <input type="text" class="form-control" id="lastname" name="lastname"
                                 value="{{ old('lastname', $doctor->lastname) }}">
                             @error('lastname')
@@ -162,32 +166,26 @@
                             <span id="lastname_validate" class="invalid-feedback" role="alert">
                                 <strong>Compila questo campo </strong>
                             </span>
+                    </div>
+            </div>
+        <div>
+        <div class="row">
+            <div class="col-12">
+                    @if ($errors->any())
+                        <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
+                            
+                                @foreach ($specializations as $specialization)
+                                            <li class="item-spec">
+                                                <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                                    name="specializations[]"
+                                                    {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    {{ $specialization->category }}
+                                                </label>
+                                            </li>
+                                @endforeach
+                            
                         </div>
-                        {{-- specialization --}}
-
-                        {{-- EDIT UPLOAD --}}
-                        <div class="mb-3">
-                            <label for="photo" class="form-label">Photo</label>
-                            <input type="file" name="photo" value="">
-                            @error('photo')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-
-                        @if ($errors->any())
-                            @foreach ($specializations as $specialization)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
-                                        name="specializations[]"
-                                        {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        {{ $specialization->category }}
-                                    </label>
-                                </div>
-                            @endforeach
                             @error('specializations')
                                 <div class="alert alert-danger">
                                     {{ $message }}
@@ -195,23 +193,29 @@
                             @enderror
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
-                            @foreach ($specializations as $specialization)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
-                                        name="specializations[]"
-                                        {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        {{ $specialization->category }}
-                                    </label>
-                                </div>
-                            @endforeach
+                            <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
+                                
+                                    @foreach ($specializations as $specialization)
+                                                <li class="item-spec">
+                                                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                                    name="specializations[]"
+                                                    {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                    {{ $specialization->category }}
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                    @endforeach
+                            </div>
                         @endif
-                        {{-- TO-DO: 
-                            inserito per evitare auto complete value in password --}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                         <input type="password" class="d-none" name="" id="">
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">E-mail</label>
+                            <label for="email" class="form-label fs-4">E-mail</label>
                             <input type="email" class="form-control" id="email" name="email"
                                 value="{{ old('email', $doctor->email) }}">
                             @error('email')
@@ -223,9 +227,13 @@
                                 <strong>Compila questo campo </strong>
                             </span>
                         </div>
-                        {{-- CURRENT PASSWORD --}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                 {{-- CURRENT PASSWORD --}}
                         <div class="mb-3">
-                            <label for="old-password" class="form-label text-md-right">Old Password</label>
+                            <label for="old-password" class="form-label text-md-right fs-4">Vecchia Password</label>
 
                             <input id="old-password" type="password" class="form-control" name="old-password">
 
@@ -240,34 +248,97 @@
                                 <strong>Compila questo campo </strong>
                             </span> --}}
                         </div>
-                        {{-- NEW PASSWORD --}}
-                        <div class="mb-3">
-                            <label for="password" class="form-label text-md-right">Password</label>
+            </div>
+            <div class="col-3">
+                {{-- NEW PASSWORD --}}
+                            <div class="mb-3">
+                                <label for="password" class="form-label text-md-right fs-4">Nuova Password</label>
 
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password">
 
-                            @error('password')
-                                {{-- <span class="invalid-feedback" role="alert"> --}}
+                                @error('password')
+                                    {{-- <span class="invalid-feedback" role="alert"> --}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ $message }}</strong>
+                                        {{-- </span> --}}
+                                    </div>
+                                @enderror
+                                {{-- <span id="password_validate" class="invalid-feedback" role="alert">
+                                    <strong>Compila questo campo </strong>
+                                </span> --}}
+                            </div>                   
+            </div>
+            <div class="col-3">
+                        {{-- NEW PASSWORD CONFIRM --}}
+                            <div class="mb-3">
+                                <label for="password-confirm" class="col-form-label text-md-right pt-0 fs-4">Conferma Password</label>
+
+                                <input id="password-confirm" type="password" class="form-control"
+                                    name="password_confirmation">
+                            </div>                   
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="address" class="form-label fs-4">Indirizzo</label>
+                        <input type="address" class="form-control" id="address" name="address"
+                                value="{{ old('address', $doctor->address) }}">
+                            @error('address')
                                 <div class="alert alert-danger">
-                                    <strong>{{ $message }}</strong>
-                                    {{-- </span> --}}
+                                    {{ $message }}
                                 </div>
                             @enderror
-                            {{-- <span id="password_validate" class="invalid-feedback" role="alert">
+                            <span id="address_validate" class="invalid-feedback" role="alert">
                                 <strong>Compila questo campo </strong>
-                            </span> --}}
-                        </div>
-                        {{-- NEW PASSWORD CONFIRM --}}
+                            </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <col class="col-12">
                         <div class="mb-3">
-                            <label for="password-confirm" class="col-form-label text-md-right">Confirm Password</label>
+                            <label for="photo" class="form-label fs-4">Inserisci la tua foto</label>
+                            <input type="file" name="photo" value="">
+                            @error('photo')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>                   
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="col-6">
+                    <input class="btn btn-primary" type="submit" value="Salva">
+                </form>
+            </div>
+            <div class="col-6">
+                     <form action="{{ route('profile.destroy', $doctor->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
 
-                            <input id="password-confirm" type="password" class="form-control"
-                                name="password_confirmation">
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip"
+                            title='Delete'>Delete</button>
+                    </form> 
+            </div>
+        </div>
+            @else
+                    {{-- Messaggio di errore --}}
+                    <div class="col">
+                        <div class="container">
+                            <div class="alert alert-danger" role="alert">
+                                Stai tentando di modificare un altro utente!
+                                <a class="text-danger" href="{{ route('default') }}">Back to Home</a>
+                            </div>
                         </div>
-                        <div class="mb-3"></div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
+                    </div>
+                @endif
+                                   <!-- ? cosa essere questa copia? -->
+                        <!-- <div class="mb-3">
+                            <label for="address" class="form-label fs-4">Indirizzo</label>
                             <input type="address" class="form-control" id="address" name="address"
                                 value="{{ old('address', $doctor->address) }}">
                             @error('address')
@@ -278,29 +349,6 @@
                             <span id="address_validate" class="invalid-feedback" role="alert">
                                 <strong>Compila questo campo </strong>
                             </span>
-                        </div>
-                        <input class="btn btn-primary" type="submit" value="Salva">
-                    </form>
-                </div>
-            @else
-                {{-- Messaggio di errore --}}
-                <div class="col">
-                    <div class="container">
-                        <div class="alert alert-danger" role="alert">
-                            Stai tentando di modificare un altro utente!
-                            <a class="text-danger" href="{{ route('default') }}">Back to Home</a>
-                        </div>
-                    </div>
-                </div>
-            @endif
-        </div>
-        <form action="{{ route('profile.destroy', $doctor->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-
-            <input name="_method" type="hidden" value="DELETE">
-            <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip"
-                title='Delete'>Delete</button>
-        </form>
+                        </div> -->
     </div>
 @endsection

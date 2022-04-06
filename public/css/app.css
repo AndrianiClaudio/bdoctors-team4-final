@@ -26714,6 +26714,8 @@ main {
 
 .side-sizes {
   width: 280px;
+  height: 100vh;
+  min-height: 798px;
 }
 
 .lh-5 {
@@ -26721,7 +26723,7 @@ main {
 }
 
 .nav-link:hover {
-  background-color: #505DA8;
+  background-color: #8a95d5;
   color: #FFFFFF;
 }
 
@@ -26763,7 +26765,7 @@ main {
 }
 
 .profile-sizes {
-  height: 190px;
+  min-height: 190px;
   width: 100%;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
@@ -26793,8 +26795,7 @@ main {
 .edit-icon {
   border-radius: 5px;
   background-color: #58C1F9;
-  padding: 3px;
-  height: 20px;
+  padding: 10px;
 }
 
 .h6-sizes {
@@ -26875,6 +26876,7 @@ main {
 .ul-message {
   list-style-type: none;
   padding-right: 2rem;
+  margin-bottom: 0rem;
 }
 
 .message {
@@ -26902,13 +26904,14 @@ main {
 .container-show {
   background-color: #fff;
   height: 100%;
-  border-radius: 19px;
+  width: 90%;
+  border-radius: 15px;
 }
 
 .container-show .show-title {
-  background-color: #3C4996;
+  background-color: #4263d0;
   height: 70px;
-  border-radius: 19px;
+  border-radius: 15px;
 }
 
 .container-show .show-title .edit-icon {
@@ -26985,6 +26988,12 @@ main {
   background-color: #3C4996;
   height: 70px;
   border-radius: 19px;
+}
+
+.rounded-photo {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
 }
 
 .container-fluid .bg-color,
@@ -27193,5 +27202,56 @@ main {
 .container-xl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover,
 .container-xxl .bg-color .container-xxl #navbarNav .navbar-nav .nav-item.register .nav-link:hover {
   background-color: #3c4996;
+}
+
+.edit-title {
+  color: white;
+  width: 80%;
+  margin: auto;
+}
+
+.w-row-name {
+  margin: auto;
+  width: 80%;
+  background-color: white;
+}
+
+.check-style {
+  list-style-type: none;
+}
+
+.item-spec {
+  display: inline-block;
+}
+
+.radious-row {
+  border-radius: 0px 0px 15px 15px;
+}
+
+.w-title-message {
+  width: 80%;
+  margin: auto;
+}
+
+.bg-message {
+  background-color: white;
+  border-radius: 0px 0px 15px 15px;
+}
+
+.user-email-b {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.show-message-w {
+  width: 80%;
+  margin: auto;
+  border-radius: 15px;
+  color: white;
+  background-color: #5274e1;
+}
+
+.b-service {
+  font-weight: bold;
 }
 

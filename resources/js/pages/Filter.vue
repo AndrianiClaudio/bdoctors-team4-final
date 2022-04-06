@@ -137,11 +137,9 @@ export default {
     },
     methods: {
         getFilterDoctors(specialization) {
-            alert(specialization);
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
-                    alert(res.data.results.doctors);
                     this.doctors = res.data.results.doctors;
                     this.filteredDoctor = res.data.results.doctors;
                     // console.log(this.filteredDoctor);

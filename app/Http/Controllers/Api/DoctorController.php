@@ -63,6 +63,9 @@ class DoctorController extends Controller
                 }
                 $doctor->review_mean = $sum / count($doctor->reviews);
             }
+            else {
+                $doctor->review_mean = 0;
+            }
         }
 
 

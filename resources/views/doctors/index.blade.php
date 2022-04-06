@@ -31,8 +31,8 @@
             <div class="col-4">
                 <div class="profile-preview">
                     <h5 class="ps-2 pt-2">Il tuo Bedge</h5>
-                    <a class="edit-icon text-white text-center" href="{{ route('profile.edit', Auth::user()->slug) }}">
-                        <i class="fa-solid fa-pen-to-square v-al-icon"></i>
+                    <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                        <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>
                 <div class="profile-sizes d-flex">

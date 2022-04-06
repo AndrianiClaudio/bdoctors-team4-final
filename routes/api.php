@@ -17,6 +17,8 @@ Route::middleware('api')->namespace('Api')
         Route::post('doctors/{slug}/review', 'DoctorController@newReview');
         Route::post('doctors', 'DoctorController@filterSpec');
 
+        Route::get('reviews/random', 'ReviewController@random');
+
         Route::get('specializations', 'SpecializationController@index');
 
         Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');

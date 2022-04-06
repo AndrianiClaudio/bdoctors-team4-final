@@ -63,7 +63,9 @@
                         class="col m-0 p-0 d-flex justify-content-end align-items-center"
                     >
                         <h5 class="m-0 mb-3">
-                            <strong> <em> Numero </em> dottori </strong>
+                            <strong>
+                                <em> {{ filteredDoctor.length }} </em> dottori
+                            </strong>
                             rispettano i filtri selezionati
                         </h5>
                     </div>
@@ -112,8 +114,9 @@
                                         </div>
                                         <div class="row m-0 p-0">
                                             <div class="col m-0 p-0">
-                                                Votazione (<em>numero</em>
-                                                recensioni)
+                                                Media: {{ doctor.review_mean }}
+                                                <em># recensioni: </em>
+                                                {{ doctor.reviews.length }}
                                             </div>
                                         </div>
                                     </div>

@@ -1,9 +1,13 @@
 @extends('layouts.admin')
 @section('script')
     <script src="{{ asset('js/front.js') }}" defer></script>
+    <script>
+        // 
+    </script>
 @endsection
 
 @section('content')
+    <h2>Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h2>
     {{-- @dd(App\Model\Subscription::all()); --}}
     {{-- @foreach (App\Model\Subscription::all() as $sub)
         <ul class="list-group">

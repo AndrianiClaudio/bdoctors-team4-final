@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-braintree
-            authorization="xxxxxxxxxxxxxxxxxxxxxx"
+            authorization="sandbox_bnx5zq54_q4c7qxjt9k79ssbk"
             locale="it_IT"
             @success="onSuccess"
             @error="onError"

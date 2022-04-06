@@ -85,7 +85,7 @@ const router = new VueRouter({
         },
         {
             // se funziona cambierei in dashboard/subscriptions
-            path: '/dashboard/subscriptions/:name',
+            path: '/dashboard/checkout/:name',
             name: 'checkout',
             params: true,
             component: Checkout,

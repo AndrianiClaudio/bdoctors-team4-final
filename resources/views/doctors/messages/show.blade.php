@@ -13,6 +13,8 @@
             <div class="col pb-2">
                 <h1>Dettagli messaggio</h1>
 
+                <hr>
+
                 <h3>Email: {{ $message->email }}</h3>
 
                 <p>Ricevuto da: {{ $message->firstname }} {{ $message->lastname }}</p>

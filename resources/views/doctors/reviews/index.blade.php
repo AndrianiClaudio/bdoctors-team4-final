@@ -9,19 +9,22 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col">
-                le tue reviews
-
-                @foreach ($reviews as $review)
-                    <h2>scritto dall'utente: @if (!$review->username)
-                            anonimo
+        <div class="row welcome-bg w-title-message text-white">
+            <div class="col-12">
+                <h1>Le tue recensioni</h1>
+            </div>
+        </div>
+        <div class="row w-title-message bg-message">
+            <div class="col-12">
+                 @foreach ($reviews as $review)
+                    <p class="pt-3 d-inline fs-4">Recensione dall'utente: 
+                        @if (!$review->username)
+                            Utente
                         @else
                             {{ $review->username }}
-                        @endif
-                    </h2>
-                    <h2>{{ $review->created_at }}</h2>
-                    <a class="btn btn-primary" href="{{ route('reviews.show', $review->id) }}">avanti</a>
+                        @endif</p>
+                    <a class="btn btn-primary text-white" href="{{ route('reviews.show', $review->id) }}">Dettagli</a>
+                    <hr>
                 @endforeach
             </div>
         </div>

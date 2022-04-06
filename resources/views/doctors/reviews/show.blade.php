@@ -8,11 +8,13 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                review details
-                <h1>{{ $review->username }}</h1>
+  <div class="container show-message-w pt-1 pb-1">
+        <div class="row ">
+            <div class="col pb-2">
+                <h1>Dettagli recensioni</h1>
+
+                <hr>
+
                 <h2>
                     @for ($i = 1; $i <= $review->vote; $i++)
                         <i class="bi bi-star-fill"></i>
@@ -21,13 +23,22 @@
                         <i class="bi bi-star"></i>
                     @endfor
                 </h2>
+
+                <p>{{ $review->username }}</p>
+
                 @if ($review->content)
                     <p>{{ $review->content }}</p>
                 @else
                     <p>Questa recensione non ha un testo</p>
                 @endif
-                <h3>{{ $review->created_at }}</h3>
+
                 <a class="btn btn-primary" href="{{ route('reviews.index') }}">indietro</a>
+                {{-- <form action="{{ route('review.destroy', $review->id) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+
+                </form> --}}
             </div>
         </div>
     </div>

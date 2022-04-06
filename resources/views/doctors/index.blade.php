@@ -55,7 +55,7 @@
                             {{ $doctor->address }}</p>
                         <hr class="mb-hr">
                         @if($doctor->phone)
-                        <p class="text-black mb-1"><i class="fa-solid fa-mobile color-phone">{{$doctor->phone}}</i> 
+                        <p class="text-black mb-1"><i class="fa-solid fa-mobile color-phone"></i> {{$doctor->phone}}
                         </p>
                         @endif
                         <p><i class="fa-solid fa-envelope email"></i>  {{ $doctor->email }}</p>

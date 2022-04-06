@@ -44,6 +44,7 @@ Route::middleware('auth')
             return view("doctors.subscriptions.index");
         }
         )->name('subscription.payment');
+
     });
 
 

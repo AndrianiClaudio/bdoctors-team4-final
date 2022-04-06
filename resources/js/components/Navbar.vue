@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid p-0 sticky-top">
+    <div id="Navbar" class="container-fluid p-0 sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-color p-0 m-0">
             <div class="container-fluid p-0 m-0 pe-3">
                 <a class="navbar-brand px-0 py-1 m-0" href="/">
@@ -29,7 +29,7 @@
                     class="collapse navbar-collapse justify-content-end"
                     id="navbarNav"
                 >
-                    <h4 class="text-white pr-2 my-0">Sei un medico?</h4>
+                    <h4 class="text-white pe-2 my-0">Sei un medico?</h4>
                     <ul class="navbar-nav">
                         <li class="nav-item sign-in me-2">
                             <a

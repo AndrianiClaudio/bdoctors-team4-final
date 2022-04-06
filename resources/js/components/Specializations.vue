@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div id="Specializations" class="container-fluid">
         <div class="row">
             <div class="col text-center mt-5">
                 <h1 class="title-section">
@@ -13,7 +13,7 @@
                 <div class="specs me-3">
                     <ul class="list-group">
                         <li
-                            class="list-group-item"
+                            class="list-group-item list-hov-none"
                             :class="counter == index ? 'selected' : ''"
                             v-for="(spec, index) in specs"
                             :key="spec.id"
@@ -23,7 +23,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="pic rounded-3 me-3" v-if="specs[counter]">
+                <div class="pic rounded-3 me-3">
                     <img
                         class="img-spec ten"
                         v-show="specs[counter].category == 'Allergologia'"
@@ -45,7 +45,7 @@
                     <img
                         class="img-spec"
                         v-show="specs[counter].category == 'Ecografia'"
-                        src="https://images.pexels.com/photos/7088841/pexels-photo-7088841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                        src="https://www.cmsanmarco.com/wp-content/uploads/2017/08/GINECOLOGIA3-1024x640.jpg"
                         alt=""
                     />
                     <img
@@ -153,6 +153,9 @@ export default {
             .specs {
                 .list-group {
                     width: 400px;
+                    .list-hov-none:hover {
+                        cursor: pointer;
+                    }
                 }
             }
             .pic {

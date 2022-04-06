@@ -1,7 +1,166 @@
 <template>
-    <div class="container-fluid p-0">
+    <div class="container-fluid m-0 p-0">
         <!-- <Navbar /> -->
-        <div class="container">
+        <div class="row page m-0 p-0">
+            <div class="col-2 m-0 p-0">
+                <div class="row m-0 p-0">
+                    <div class="col">
+                        <h4 class="fw-bold border-bottom m-2 pb-2">
+                            Filtra per:
+                        </h4>
+                    </div>
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col">
+                        <h5 class="m-2 pb-1">Specializzazione:</h5>
+                    </div>
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col m-0 px-3">
+                        <select class="select-spec m-0 mb-3" name="" id="">
+                            <option value="">Cardiologia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col">
+                        <h5 class="m-2 pb-1">Votazione:</h5>
+                    </div>
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col m-0 px-3">
+                        <select
+                            class="select-spec m-0 mb-3"
+                            @change="
+                                getFilterDoctors($route.query.specialization)
+                            "
+                            v-model="selectedVote"
+                        >
+                            <option value="all" selected>Tutte</option>
+                            <option value="5">5 Stelle</option>
+                            <option value="4">4 Stelle</option>
+                            <option value="3">3 Stelle</option>
+                            <option value="2">2 Stelle</option>
+                            <option value="1">1 Stella</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 m-0 p-0">
+                <div class="row m-0 mt-3 me-3 p-0">
+                    <div
+                        class="col m-0 p-0 d-flex justify-content-end align-items-center"
+                    >
+                        <h5 class="m-0 mb-3">
+                            <strong> <em> Numero </em> dottori </strong>
+                            rispettano i filtri selezionati
+                        </h5>
+                    </div>
+                </div>
+                <div class="row m-0 p-0 mx-3">
+                    <div class="col m-0 p-0">
+                        <ul class="list-group" v-if="filteredDoctor.length > 0">
+                            <li
+                                class="list-group-item"
+                                v-for="doctor in filteredDoctor"
+                                :key="doctor.id"
+                            >
+                                <div class="row m-0 p-0">
+                                    <div
+                                        class="col m-0 p-0 d-flex justify-content-center"
+                                    >
+                                        <img
+                                            class="rounded-circle"
+                                            :src="doctor.photo"
+                                            alt=""
+                                        />
+                                    </div>
+                                    <div
+                                        class="col d-flex flex-column justify-content-around m-0 p-0"
+                                    >
+                                        <div class="row m-0 p-0">
+                                            <div class="col m-0 p-0">
+                                                <div
+                                                    class="text-uppercase fw-bold text-lighter"
+                                                    v-for="(
+                                                        spec, index
+                                                    ) in doctor.specializations"
+                                                    :key="`spec-${index}`"
+                                                >
+                                                    {{ spec.category }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0 p-0">
+                                            <div class="col m-0 p-0">
+                                                <h4 class="mb-0">
+                                                    Dr. {{ doctor.firstname }}
+                                                    {{ doctor.lastname }}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0 p-0">
+                                            <div class="col m-0 p-0">
+                                                Votazione (<em>numero</em>
+                                                recensioni)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col m-0 p-0">
+                                        <ul v-if="doctor.services">
+                                            <li
+                                                v-for="(
+                                                    service, index
+                                                ) in doctor.services"
+                                                :key="`service-${index}`"
+                                            >
+                                                {{ service.type }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div
+                                        class="col d-flex flex-column justify-content-around align-items-center m-0 p-0"
+                                    >
+                                        <div class="row m-0 p-0">
+                                            <div class="col">
+                                                <router-link
+                                                    class="btn rounded-pill btn-color-a"
+                                                    :to="{
+                                                        name: 'message',
+                                                        params: {
+                                                            slug: doctor.slug,
+                                                        },
+                                                    }"
+                                                    v-if="doctor.slug"
+                                                    >Send a message</router-link
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="row m-0 p-0">
+                                            <div class="col">
+                                                <router-link
+                                                    class="btn rounded-pill btn-color-b"
+                                                    :to="{
+                                                        name: 'message',
+                                                        params: {
+                                                            slug: doctor.slug,
+                                                        },
+                                                    }"
+                                                    v-if="doctor.slug"
+                                                    >Send a message</router-link
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="container">
             <div class="filter-container">
                 <label for="vote">Filtra per voto</label>
                 <select
@@ -40,14 +199,14 @@
                         <hr />
                         <b><em>Telefono</em></b>
                         {{ doctor.phone }}
-                    </div>
-                    <!-- RECENSIONI DEL DOTTORE -->
-                    <div v-if="doctor.reviews">
+                    </div> -->
+        <!-- RECENSIONI DEL DOTTORE -->
+        <!-- <div v-if="doctor.reviews">
                         <hr />
                         <b><em>Reviews</em></b>
-                        <p>{{ doctor.review_mean.toFixed(1) }}</p>
+                        <p>{{ doctor.review_mean.toFixed(1) }}</p> -->
 
-                        <!-- <ul>
+        <!-- nope <ul>
                             <li
                                 v-for="(review, index) in doctor.reviews"
                                 :key="`review-${index}`"
@@ -60,10 +219,10 @@
                                 </div>
                                 <b>Voto: </b>{{ review.vote }}
                             </li>
-                        </ul> -->
-                    </div>
-                    <!-- SPECIALIZZAZIONI -->
-                    <hr />
+                        </ul> nope -->
+        <!-- </div> -->
+        <!-- SPECIALIZZAZIONI -->
+        <!-- <hr />
                     <div v-if="doctor.specializations">
                         <b><em>Specializations</em></b>
                         <div
@@ -72,9 +231,9 @@
                         >
                             {{ spec.category }}
                         </div>
-                    </div>
-                    <!-- SERVIZI -->
-                    <div v-if="doctor.services">
+                    </div> -->
+        <!-- SERVIZI -->
+        <!-- <div v-if="doctor.services">
                         <b><em>Services</em></b>
                         <div
                             v-for="(service, index) in doctor.services"
@@ -100,9 +259,9 @@
                     >
                     <hr />
                 </li>
-            </ul>
-            <!-- {{ doctors }} -->
-        </div>
+            </ul> -->
+        <!-- {{ doctors }} -->
+        <!-- </div>
         <div class="container" v-if="doctors.length === 0">
             <b
                 >Non ci sono dottori con specializzazione =
@@ -111,7 +270,7 @@
         </div>
         <div class="container" v-if="check_filter">
             <b>Non ci sono dottori.</b>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -173,4 +332,64 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.container-fluid {
+    .row.page {
+        height: calc(100vh - 70px);
+        .col-2 {
+            border: 1px solid #3c4996;
+            .row {
+                .col {
+                    .select-spec {
+                        width: 100%;
+                        border-radius: 15px;
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
+        .col-10 {
+            // border: 1px solid yellowgreen;
+            .row {
+                .col {
+                    .list-group {
+                        .list-group-item {
+                            .row {
+                                .col {
+                                    img {
+                                        width: 100px;
+                                        height: 100px;
+                                    }
+                                }
+                                .col {
+                                    .row {
+                                        .col {
+                                            .text-lighter {
+                                                color: #b5b5b5;
+                                            }
+                                            .btn-color-a {
+                                                background-color: #7b83b3;
+                                                &:hover {
+                                                    background-color: #606899;
+                                                }
+                                            }
+                                            .btn-color-b {
+                                                background-color: #646eb3;
+                                                &:hover {
+                                                    background-color: #606899;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+</style>

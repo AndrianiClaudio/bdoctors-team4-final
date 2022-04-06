@@ -9,6 +9,10 @@
         <!-- TEST SLIDER -->
         <SliderPaginate />
         <OverallRev />
+        <footer>
+            <FooterTop />
+            <FooterBot />
+        </footer>
     </div>
 </template>
 
@@ -20,6 +24,8 @@ import Specializations from "../components/Specializations.vue";
 // import DoctorOv from "../components/Doctor-ov.vue"; ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]
 import SliderPaginate from "../components/SliderPaginate.vue";
 import OverallRev from "../components/Overall-rev.vue";
+import FooterTop from "../components/Footer-top.vue";
+import FooterBot from "../components/Footer-bot.vue";
 
 export default {
     name: "Home",
@@ -31,6 +37,8 @@ export default {
         // DoctorOv, ... commentato per rimuovere errori console, ma funziona [In teoria non serve piu' e si puo' eliminare (Meme)]
         SliderPaginate,
         OverallRev,
+        FooterTop,
+        FooterBot,
     },
     data() {
         return {

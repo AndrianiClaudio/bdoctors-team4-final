@@ -7,7 +7,6 @@
             @error="onError"
             btnText="Invia"
         >
-            <!-- btnClass="ms__test btn btn-primary" -->
         </v-braintree>
     </div>
 </template>
@@ -47,21 +46,20 @@ export default {
                     console.error(err);
                 })
                 .then(() => {
-                    axios
-                        .post(
-                            `
+                    axios.post(
+                        `
                 http://localhost:8000/api/subscription/payment/make?token=${nonce}&amount=${this.amount}&user_id=${this.user_id}`
-                        )
-                        .then((res) => {
-                            console.log(res.data);
-                        });
+                    );
+                    // .then((res) => {
+                    //     console.log(res.data);
+                    // });
                 });
 
-            console.log(nonce);
+            // console.log(nonce);
         },
         onError(error) {
             let message = error.message;
-            console.log(message);
+            // console.log(message);
             // Whoops, an error has occured while trying to get the nonce
         },
     },

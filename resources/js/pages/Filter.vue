@@ -336,7 +336,7 @@ export default {
                         this.check_filter = false;
                         this.doctors = this.filteredDoctor;
                         this.filteredDoctor = [];
-                        console.log(this.doctors);
+                        // console.log(this.doctors);
                         this.doctors.forEach((doctor) => {
                             if (
                                 doctor.review_mean >=

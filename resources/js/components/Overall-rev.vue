@@ -17,15 +17,6 @@
                         </em>
                     </div>
                 </div>
-                <!-- <div class="col d-flex justify-content-center m-0 p-0">
-                    <div class="card-rev"></div>
-                </div>
-                <div class="col d-flex justify-content-center m-0 p-0">
-                    <div class="card-rev"></div>
-                </div>
-                <div class="col d-flex justify-content-center m-0 p-0">
-                    <div class="card-rev"></div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -44,7 +35,7 @@ export default {
             axios
                 .get("/api/reviews/random")
                 .then((result) => {
-                    console.log(result.data.rand_reviews);
+                    // console.log(result.data.rand_reviews);
                     this.rand_reviews = result.data.rand_reviews;
                 })
                 .catch((err) => {});

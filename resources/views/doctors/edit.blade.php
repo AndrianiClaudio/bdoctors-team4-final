@@ -27,13 +27,15 @@
             // firstname
             let firstname = document.getElementById('firstname');
             // console.log(firstname.value);
+            let check = document.getElementById('firstname_validate');
             if (firstname.value == "") {
                 // let check = document.getElementById('firstname_validate');
                 // check.style.display = "block";
+                // console.log(firstname.classList);
                 firstname.classList.add('is-invalid');
                 errors.push('firstname');
+                check.style.display = "block"
             } else {
-                let check = document.getElementById('firstname_validate');
                 check.style.display = "none";
                 firstname.classList.remove('is-invalid');
             }
@@ -41,39 +43,56 @@
             // lastname
             let lastname = document.getElementById('lastname');
 
+            check = document.getElementById('lastname_validate');
             if (lastname.value == "") {
                 // let check = document.getElementById('lastname_validate');
                 // check.style.display = "block";
                 lastname.classList.add('is-invalid');
                 errors.push('lastname');
+                check.style.display = "block"
             } else {
-                let check = document.getElementById('lastname_validate');
                 check.style.display = "none";
                 lastname.classList.remove('is-invalid');
             }
 
             // email
             let email = document.getElementById('email');
+            check = document.getElementById('email_validate');
             if (email.value == "") {
                 // let check = document.getElementById('email_validate');
                 // check.style.display = "block";
                 email.classList.add('is-invalid');
-                errors.push('email');
+                check.style.display = "block"
             } else {
-                let check = document.getElementById('email_validate');
-                check.style.display = "none";
-                email.classList.remove('is-invalid');
+                // ===========new
+
+                if (email.value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+                    email.classList.add('is-invalid');
+                    check.innerHTML = "Inserisci un indirizzo email valido"
+                    check.style.display = "block"
+                    errors.push('email');
+                    // return true;
+                } else {
+                    // return false;
+                    check.style.display = "none";
+                    email.classList.remove('is-invalid');
+                }
+
+                // --------------first
+                // check.style.display = "none";
+                // email.classList.remove('is-invalid');
             }
 
             // address_confirm
             let address = document.getElementById('address');
+            check = document.getElementById('address_validate');
             if (address.value == "") {
                 // let check = document.getElementById('address_validate');
                 // check.style.display = "block";
                 address.classList.add('is-invalid');
                 errors.push('address');
+                check.style.display = "block"
             } else {
-                let check = document.getElementById('address_validate');
                 check.style.display = "none";
                 address.classList.remove('is-invalid');
             }
@@ -137,55 +156,55 @@
                             @method('PATCH')
                     </div>
                     <!-- NOME -->
-                        <div class="mb-3">
-                            <label for="firstname" class="form-label fs-4">Nome</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname"
-                                value="{{ old('firstname', $doctor->firstname) }}">
-                            @error('firstname')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                            <span id="firstname_validate" class="invalid-feedback" role="alert">
-                                <strong>Compila questo campo </strong>
-                            </span>
-                        </div>
+                    <div class="mb-3">
+                        <label for="firstname" class="form-label fs-4">Nome</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname"
+                            value="{{ old('firstname', $doctor->firstname) }}">
+                        @error('firstname')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <span id="firstname_validate" class="invalid-feedback" role="alert">
+                            <strong>Compila questo campo </strong>
+                        </span>
+                    </div>
             </div>
             <div class="col-6">
 
-                 <!-- COGNOME -->
-                    <div class="mb-3">
-                            <label for="lastname" class="form-label fs-4">Cognome</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"
-                                value="{{ old('lastname', $doctor->lastname) }}">
-                            @error('lastname')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                            <span id="lastname_validate" class="invalid-feedback" role="alert">
-                                <strong>Compila questo campo </strong>
-                            </span>
-                    </div>
-            </div>
-        <div>
-        <div class="row">
-            <div class="col-12">
-                    @if ($errors->any())
-                        <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
-                            
-                                @foreach ($specializations as $specialization)
-                                            <li class="item-spec">
-                                                <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
-                                                    name="specializations[]"
-                                                    {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    {{ $specialization->category }}
-                                                </label>
-                                            </li>
-                                @endforeach
-                            
+                <!-- COGNOME -->
+                <div class="mb-3">
+                    <label for="lastname" class="form-label fs-4">Cognome</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname"
+                        value="{{ old('lastname', $doctor->lastname) }}">
+                    @error('lastname')
+                        <div class="alert alert-danger">
+                            {{ $message }}
                         </div>
+                    @enderror
+                    <span id="lastname_validate" class="invalid-feedback" role="alert">
+                        <strong>Compila questo campo </strong>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-12">
+                        @if ($errors->any())
+                            <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
+
+                                @foreach ($specializations as $specialization)
+                                    <li class="item-spec">
+                                        <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                            name="specializations[]"
+                                            {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            {{ $specialization->category }}
+                                        </label>
+                                    </li>
+                                @endforeach
+
+                            </div>
                             @error('specializations')
                                 <div class="alert alert-danger">
                                     {{ $message }}
@@ -194,24 +213,24 @@
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
                             <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
-                                
-                                    @foreach ($specializations as $specialization)
-                                                <li class="item-spec">
-                                                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
-                                                    name="specializations[]"
-                                                    {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                    {{ $specialization->category }}
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                    @endforeach
+
+                                @foreach ($specializations as $specialization)
+                                    <li class="item-spec">
+                                        <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                            name="specializations[]"
+                                            {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            {{ $specialization->category }}
+                                        </label>
+                                    </li>
+                                    </ul>
+                                @endforeach
                             </div>
                         @endif
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
                         <input type="password" class="d-none" name="" id="">
 
                         <div class="mb-3">
@@ -227,11 +246,11 @@
                                 <strong>Compila questo campo </strong>
                             </span>
                         </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                 {{-- CURRENT PASSWORD --}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        {{-- CURRENT PASSWORD --}}
                         <div class="mb-3">
                             <label for="old-password" class="form-label text-md-right fs-4">Vecchia Password</label>
 
@@ -248,96 +267,41 @@
                                 <strong>Compila questo campo </strong>
                             </span> --}}
                         </div>
-            </div>
-            <div class="col-3">
-                {{-- NEW PASSWORD --}}
-                            <div class="mb-3">
-                                <label for="password" class="form-label text-md-right fs-4">Nuova Password</label>
+                    </div>
+                    <div class="col-3">
+                        {{-- NEW PASSWORD --}}
+                        <div class="mb-3">
+                            <label for="password" class="form-label text-md-right fs-4">Nuova Password</label>
 
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password">
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password">
 
-                                @error('password')
-                                    {{-- <span class="invalid-feedback" role="alert"> --}}
-                                    <div class="alert alert-danger">
-                                        <strong>{{ $message }}</strong>
-                                        {{-- </span> --}}
-                                    </div>
-                                @enderror
-                                {{-- <span id="password_validate" class="invalid-feedback" role="alert">
+                            @error('password')
+                                {{-- <span class="invalid-feedback" role="alert"> --}}
+                                <div class="alert alert-danger">
+                                    <strong>{{ $message }}</strong>
+                                    {{-- </span> --}}
+                                </div>
+                            @enderror
+                            {{-- <span id="password_validate" class="invalid-feedback" role="alert">
                                     <strong>Compila questo campo </strong>
                                 </span> --}}
-                            </div>                   
-            </div>
-            <div class="col-3">
-                        {{-- NEW PASSWORD CONFIRM --}}
-                            <div class="mb-3">
-                                <label for="password-confirm" class="col-form-label text-md-right pt-0 fs-4">Conferma Password</label>
-
-                                <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation">
-                            </div>                   
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="mb-3">
-                    <label for="address" class="form-label fs-4">Indirizzo</label>
-                        <input type="address" class="form-control" id="address" name="address"
-                                value="{{ old('address', $doctor->address) }}">
-                            @error('address')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                            <span id="address_validate" class="invalid-feedback" role="alert">
-                                <strong>Compila questo campo </strong>
-                            </span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <col class="col-12">
-                        <div class="mb-3">
-                            <label for="photo" class="form-label fs-4">Inserisci la tua foto</label>
-                            <input type="file" name="photo" value="">
-                            @error('photo')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>                   
-            </div>
-        </div>
-        <div class="row pb-3">
-            <div class="col-6">
-                    <input class="btn btn-primary" type="submit" value="Salva">
-                </form>
-            </div>
-            <div class="col-6">
-                     <form action="{{ route('profile.destroy', $doctor->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-
-                        <input name="_method" type="hidden" value="DELETE">
-                        <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip"
-                            title='Delete'>Delete</button>
-                    </form> 
-            </div>
-        </div>
-            @else
-                    {{-- Messaggio di errore --}}
-                    <div class="col">
-                        <div class="container">
-                            <div class="alert alert-danger" role="alert">
-                                Stai tentando di modificare un altro utente!
-                                <a class="text-danger" href="{{ route('default') }}">Back to Home</a>
-                            </div>
                         </div>
                     </div>
-                @endif
-                                   <!-- ? cosa essere questa copia? -->
-                        <!-- <div class="mb-3">
+                    <div class="col-3">
+                        {{-- NEW PASSWORD CONFIRM --}}
+                        <div class="mb-3">
+                            <label for="password-confirm" class="col-form-label text-md-right pt-0 fs-4">Conferma
+                                Password</label>
+
+                            <input id="password-confirm" type="password" class="form-control"
+                                name="password_confirmation">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3">
                             <label for="address" class="form-label fs-4">Indirizzo</label>
                             <input type="address" class="form-control" id="address" name="address"
                                 value="{{ old('address', $doctor->address) }}">
@@ -349,6 +313,62 @@
                             <span id="address_validate" class="invalid-feedback" role="alert">
                                 <strong>Compila questo campo </strong>
                             </span>
-                        </div> -->
-    </div>
-@endsection
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <col class="col-12">
+                    <div class="mb-3">
+                        <label for="photo" class="form-label fs-4">Inserisci la tua foto</label>
+                        <input type="file" name="photo" value="">
+                        @error('photo')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col-6">
+                    <input class="btn btn-primary" type="submit" value="Salva">
+                    </form>
+                </div>
+                <div class="col-6">
+                    <form action="{{ route('profile.destroy', $doctor->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip"
+                            title='Delete'>Delete</button>
+                    </form>
+                </div>
+            </div>
+        @else
+            {{-- Messaggio di errore --}}
+            <div class="col">
+                <div class="container">
+                    <div class="alert alert-danger" role="alert">
+                        Stai tentando di modificare un altro utente!
+                        <a class="text-danger" href="{{ route('default') }}">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+            @endif
+            <!-- ? cosa essere questa copia? -->
+            <!-- <div class="mb-3">
+                                                                                                                <label for="address" class="form-label fs-4">Indirizzo</label>
+                                                                                                                <input type="address" class="form-control" id="address" name="address"
+                                                                                                                    value="{{ old('address', $doctor->address) }}">
+                                                                                                                @error('address')
+        <div class="alert alert-danger">
+                                                                                                                                                                                                            {{ $message }}
+                                                                                                                                                                                                        </div>
+    @enderror
+                                                                                                                <span id="address_validate" class="invalid-feedback" role="alert">
+                                                                                                                    <strong>Compila questo campo </strong>
+                                                                                                                </span>
+                                                                                                            </div> -->
+        </div>
+    @endsection

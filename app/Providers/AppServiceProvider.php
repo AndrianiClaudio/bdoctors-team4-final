@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-    //
+        //
     }
 
     /**
@@ -26,13 +26,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // SINGLETON! Permetto unica istanza
-        $this->app->singleton(Gateway::class , function ($app) {
+        $this->app->singleton(Gateway::class, function ($app) {
             // CHIAVI BRAINTREE (NON MODIFICARE LE CHIAVI! SONO SPECIFICHE DI BRAINTREE)
             return new Gateway([
-            'environment' => env('BRAINTREE_ENV'),
-            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
-            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
-            'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
+                'environment' => 'sandbox',
+                'merchantId' => 'xd36hj6xjdq9bphf',
+                'publicKey' => 'q6km928x8mwdb6dp',
+                'privateKey' => '9c0cb0b1ec11841ea84f671861eab447'
             ]);
         });
     }

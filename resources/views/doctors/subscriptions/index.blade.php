@@ -9,7 +9,7 @@
         {{ Auth::user()->id }}
     </div>
     <div id="expires">
-        {{ $expires }}
+       {{--  {{ $expires }} --}}
     </div>
 
     {{-- @dd(App\Model\Subscription::all()); --}}

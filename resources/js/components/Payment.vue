@@ -8,9 +8,6 @@
             @error="onError"
             btnText="Completa il pagamento"
             btnClass="btn btn-success"
-            :paypal="{
-                flow: 'vault',
-            }"
             :card="{
                 cardholderName: {
                     required: true,
@@ -27,7 +24,7 @@ export default {
     name: "Payment",
     data() {
         return {
-            token: "sandbox_bnx5zq54_q4c7qxjt9k79ssbk",
+            token: "sandbox_kt669qdh_xd36hj6xjdq9bphf",
             locale: "it_IT",
             amount: null,
             user_id: null,

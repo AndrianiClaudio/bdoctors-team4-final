@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="container-fluid text-white">
-        <div class="row">
+        <div class="row m-1200">
             <div class="col-7 ms-3">
                 <div class="welcome-sizes welcome-bg d-flex flex-column justify-content-end ps-2">
                     <div class="data-sizes position-absolute data-abs ms-2 ps-1 pe-1">
@@ -28,7 +28,7 @@
                 </div>
                 
             </div>
-            <div class="col-4">
+            <div class="col-4  m-1200-bedge">
                 <div class="profile-preview">
                     <h5 class="ps-2 pt-2">Il tuo Bedge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3" href="{{ route('profile.edit', Auth::user()->slug) }}">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row m-1200">
             <div class="col-7 ms-3 mt-3">
                 <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2">
                       <h5>I tuoi ultimi messaggi</h5>
@@ -81,7 +81,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4 m-1200-bedge">
                 <div class="profile-preview pt-2 mt-3">
                     <h5 class="ps-2">I tuoi servizi</h5>
                 </div>  
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row m-1200">
             <div class="col-7  ms-3 mt-3">
                 <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2 ">
                         <h5>Le tue ultime recensioni</h5>
@@ -126,7 +126,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4 m-1200-bedge">
                 <div class="profile-preview pt-2 mt-3">
                         <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
                 </div>  

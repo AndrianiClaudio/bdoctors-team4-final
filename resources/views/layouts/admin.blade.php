@@ -41,7 +41,7 @@
                     </svg>
                 </a>
 
-                <ul class="nav nav-pills flex-column lh-5 fs-side">
+                <ul class="nav flex-column bg-ul lh-5 fs-side">
                     <li class="nav-item">
                         <a href="{{ route('profile.index') }}" class="nav-link text-white" aria-current="page">
                             <i class="fa-solid fa-igloo p-1"></i>
@@ -85,10 +85,41 @@
                             Servizi
                         </a>
                     </li>
+                    <li>
+                         <div class="dropdown ps-3 pb-2">
+                            <hr class="text-white  me-3">
+                            <a href="#"
+                                class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
+                                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32"
+                                    height="32" class="rounded-circle me-2">
+                                <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
+                                    {{ Auth::user()->lastname }} </strong>
+                            </a>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                                <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
+                                        prestazioni</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
+                                        profilo</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"> Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
 
 
-                <div class="dropdown ps-3 pb-2">
+                <!-- <div class="dropdown ps-3 pb-2">
                     <hr class="text-white  me-3">
                     <a href="#"
                         class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
@@ -116,7 +147,7 @@
                             </form>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
 

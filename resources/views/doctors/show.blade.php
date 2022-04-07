@@ -20,7 +20,7 @@
 
             <div class="row mt-5">
                 <div class="col-3 d-flex justify-content-center">
-                    <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-photo" alt="">
+                    <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-photo ms-3" alt="">
                 </div>
                 <div class="col-9 d-flex flex-column justify-content-between">
                     <div class="row">

@@ -32,7 +32,7 @@
                 <div class="profile-preview">
                     <h5 class="ps-2 pt-2">Il tuo Bedge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
-                        href="{{ route('profile.edit', Auth::user()->slug) }}">
+                        href="{{ route('profile.edit') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>

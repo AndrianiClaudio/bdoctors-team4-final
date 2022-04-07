@@ -12,9 +12,18 @@ use DateTime;
 use DateInterval;
 
 class SubscriptionController extends Controller
-{    public function expires()
+{
+    public function expires(Request $request)
     {
-        dd('expires API');    }
+        // dd('expires API');
+        $user = User::find($request['user_id']);
+        $user_sub = $user->subscriptions()->first();
+        $expires = $user_sub->pivot->expires_date;
+        return response()->json([
+            'success' => true,
+            'expires' => $expires
+        ]);
+    }
 
     public function priceName(Request $request)
     {

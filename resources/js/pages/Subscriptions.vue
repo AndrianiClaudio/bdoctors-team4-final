@@ -65,9 +65,9 @@ export default {
         },
         getExpiresDate() {
             axios
-                .get(`/api/subcsription/expires?user_id=${this.user_id}`)
+                .post(`/api/subscriptions/expires?user_id=${this.user_id}`)
                 .then((res) => {
-                    console.log(res);
+                    this.expires_date = res.data.expires;
                 });
         },
     },

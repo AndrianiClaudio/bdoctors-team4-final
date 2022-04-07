@@ -8,13 +8,16 @@
                     :key="rew.id"
                     class="col d-flex justify-content-center m-0 p-0"
                 >
-                    <div class="card-rev">
-                        {{ rew.vote }}
-                        <hr />
-                        {{ rew.username }}
-                        <em>
-                            {{ rew.content }}
-                        </em>
+                    <div class="card-rev d-flex flex-column justify-content-around p-3">
+                        <div class="rev-top d-flex align-items-center justify-content-start">
+                            <strong class="me-2">{{ rew.username }}:</strong>
+                            <span class="stars">
+                                <i v-for="(i, index) in 5" :key="index" class="fa-solid fa-star"></i>
+                            </span>
+                        </div>
+                        <div class="content-rev">
+                            <em> {{ rew.content }} </em>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,6 +40,7 @@ export default {
                 .then((result) => {
                     // console.log(result.data.rand_reviews);
                     this.rand_reviews = result.data.rand_reviews;
+                    console.log(this.rand_reviews);
                 })
                 .catch((err) => {});
         },
@@ -67,8 +71,14 @@ export default {
                 .card-rev {
                     background-color: #ffffff;
                     border-radius: 12px;
-                    height: 200px;
+                    // height: 200px;
                     width: 280px;
+                    .rev-top {
+                        font-size: 1.2em;
+                        .fa-solid.fa-star {
+                            color: rgb(255, 217, 0);
+                        }
+                    }
                 }
             }
         }

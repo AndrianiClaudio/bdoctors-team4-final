@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function subscriptions()
     {
-        return $this->belongsToMany(Subscription::class);
+        return $this->belongsToMany(Subscription::class)->withPivot('expires_date');
     }
     public function specializations()
     {

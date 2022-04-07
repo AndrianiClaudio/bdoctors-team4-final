@@ -37,11 +37,26 @@ Route::middleware('auth')
         // Route::get('subscriptions', 'SubscriptionController@index')->name('subscriptions.index');
         // Route::post('subscriptions', 'SubscriptionController@confirm')->name('payment.form');
         Route::get('subscriptions', function () {
-            return view("doctors.subscriptions.index");
+            // SE FUNZIONA AGGIUNGERE A UN CONTROLLER PER ROTTA SOTTOSTANTE
+            $expires = [];
+            if (count(Auth::user()->subscriptions()->get()) > 0) {
+                $user_subs = Auth::user()->subscriptions()->get();
+                foreach ($user_subs as $sub) {
+                    $expires = ($sub->pivot->expires_date);
+                }
+            }
+            return view("doctors.subscriptions.index", compact('expires'));
         }
         )->name('subscription.index');
         Route::get('checkout/{any}', function () {
-            return view("doctors.subscriptions.index");
+            $expires = [];
+            if (count(Auth::user()->subscriptions()->get()) > 0) {
+                $user_subs = Auth::user()->subscriptions()->get();
+                foreach ($user_subs as $sub) {
+                    $expires = ($sub->pivot->expires_date);
+                }
+            }
+            return view("doctors.subscriptions.index", compact('expires'));
         }
         )->name('subscription.payment');
 

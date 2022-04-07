@@ -12,7 +12,10 @@ use DateTime;
 use DateInterval;
 
 class SubscriptionController extends Controller
-{
+{    public function expires()
+    {
+        dd('expires API');    }
+
     public function priceName(Request $request)
     {
         $amount = Subscription::where('name', $request['name'])->first()->price;
@@ -70,7 +73,7 @@ class SubscriptionController extends Controller
 
         if ($result->success) {
             $auth = User::find($data['user_id']);
-
+            $auth->subscriptions()->detach();
             $auth->subscriptions()->attach($sub_id, [
                 'expires_date' => $now_clone,
             ]);

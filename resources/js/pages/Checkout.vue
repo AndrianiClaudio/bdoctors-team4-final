@@ -10,11 +10,6 @@
                 <Payment :authorization="tokenApi" />
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-primary">Primary</button>
-            </div>
-        </div>
     </div>
 </template>
 <script>

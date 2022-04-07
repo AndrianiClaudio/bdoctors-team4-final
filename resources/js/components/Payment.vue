@@ -1,12 +1,20 @@
 <template>
     <div>
         <v-braintree
-            authorization="sandbox_bnx5zq54_q4c7qxjt9k79ssbk"
-            locale="it_IT"
+            :authorization="token"
+            :locale="locale"
             @success="onSuccess"
             @error="onError"
             btnText="Completa il pagamento"
             btnClass="btn btn-success"
+            :paypal="{
+                flow: 'vault',
+            }"
+            :card="{
+                cardholderName: {
+                    required: true,
+                },
+            }"
         >
         </v-braintree>
     </div>
@@ -17,6 +25,8 @@ export default {
     name: "Payment",
     data() {
         return {
+            token: "sandbox_bnx5zq54_q4c7qxjt9k79ssbk",
+            locale: "it_IT",
             amount: null,
             user_id: null,
         };
@@ -28,11 +38,9 @@ export default {
         },
     },
     created() {
+        console.log(this.authorization);
         this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
         document.querySelector("#fulvio").remove();
-    },
-    mounted() {
-        document.querySelector("button.btn.btn-primary").remove();
     },
     methods: {
         onSuccess(payload) {
@@ -50,21 +58,17 @@ export default {
                     console.error(err);
                 })
                 .then(() => {
+                    // Conferma pagamento
                     axios.post(
                         `
                 http://localhost:8000/api/subscription/payment/make?token=${nonce}&amount=${this.amount}&user_id=${this.user_id}`
                     );
-                    // .then((res) => {
-                    //     console.log(res.data);
-                    // });
                 });
-
-            // console.log(nonce);
         },
         onError(error) {
             let message = error.message;
-            // console.log(message);
             // Whoops, an error has occured while trying to get the nonce
+            console.log(message);
         },
     },
 };

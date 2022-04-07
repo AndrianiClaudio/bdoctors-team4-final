@@ -83,11 +83,17 @@
                     <div
                         class="col m-0 p-0 d-flex justify-content-end align-items-center"
                     >
-                        <h5 class="m-0 mb-3">
-                            <strong>
-                                <em> {{ filteredDoctor.length }} </em> dottori
-                            </strong>
+                        <h5 class="m-0 mb-3" v-if="filteredDoctor.length > 1">
+                            <strong> {{ filteredDoctor.length }}  dottori </strong>
                             rispettano i filtri selezionati
+                        </h5>
+                        <h5 class="m-0 mb-3" v-if="filteredDoctor.length == 1">
+                            <strong> {{ filteredDoctor.length }}  dottore </strong>
+                            rispetta i filtri selezionati
+                        </h5>
+                        <h5 class="m-0 mb-3" v-if="filteredDoctor.length == 0">
+                            <strong> Nessun dottore </strong>
+                            rispetta i filtri selezionati
                         </h5>
                     </div>
                 </div>
@@ -102,12 +108,20 @@
                                 <div class="row m-0 p-0">
                                     <div
                                         class="col m-0 p-0 d-flex justify-content-center"
-                                    >
+                                    >   
+                                        <!-- Da togliere Il v-if quando si riempie il database -->
                                         <img
+                                            v-if="doctor.id == 18 || doctor.id == 19"
                                             class="rounded-circle"
-                                            :src="doctor.photo"
+                                            :src="`http://localhost:8000/storage/${doctor.photo}`"
                                             alt=""
                                         />
+                                        <!-- Da togliere quando si riempie il database -->
+                                        <img
+                                            v-else
+                                            class="rounded-circle"
+                                            :src="doctor.photo"
+                                            alt="">
                                     </div>
                                     <div
                                         class="col d-flex flex-column justify-content-around m-0 p-0"
@@ -135,9 +149,9 @@
                                         </div>
                                         <div class="row m-0 p-0">
                                             <div class="col m-0 p-0">
-                                                Media: {{ doctor.review_mean }}
-                                                <em># recensioni: </em>
-                                                {{ doctor.reviews.length }}
+                                                {{ doctor.review_mean }} ({{ doctor.reviews.length }} recensioni)
+                                                <!-- <em># recensioni: </em> -->
+                                                <!-- {{ doctor.reviews.length }} -->
                                             </div>
                                         </div>
                                     </div>
@@ -171,21 +185,7 @@
                                                 >
                                             </div>
                                         </div>
-                                        <div class="row m-0 p-0">
-                                            <div class="col">
-                                                <router-link
-                                                    class="btn rounded-pill btn-color-b"
-                                                    :to="{
-                                                        name: 'message',
-                                                        params: {
-                                                            slug: doctor.slug,
-                                                        },
-                                                    }"
-                                                    v-if="doctor.slug"
-                                                    >Send a message</router-link
-                                                >
-                                            </div>
-                                        </div>
+
                                         <div class="row m-0 p-0">
                                             <div class="col">
                                                 <router-link

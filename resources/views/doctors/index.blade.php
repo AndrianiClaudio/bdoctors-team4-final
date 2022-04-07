@@ -132,7 +132,7 @@
                     <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
                 </div>
                 <div class="service text-black">
-                    DOTTOOOOOO'!
+                    
                 </div>
             </div>
         </div>

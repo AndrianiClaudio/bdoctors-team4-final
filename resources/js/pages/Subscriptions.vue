@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul class="list-group">
+        <ul class="list-group" v-if="!expires_date">
             <li
                 v-for="(subscription, index) in subscriptions"
                 :key="index"
@@ -29,6 +29,7 @@
                 </div>
             </li>
         </ul>
+        <div v-else>Test se ci sono gia sub attive per l'user</div>
     </div>
 </template>
 <script>
@@ -38,14 +39,17 @@ export default {
         return {
             subscriptions: null,
             tokenApi: "",
-            // //
-            user: null,
+            user: "",
+            expires_date: null,
         };
     },
     components: {},
     created() {
         // this.getUser();
         this.subCall();
+        this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
+        // alert(this.user_id);
+        this.getExpiresDate();
     },
     methods: {
         subCall() {
@@ -57,6 +61,13 @@ export default {
                 })
                 .catch((err) => {
                     console.error(err);
+                });
+        },
+        getExpiresDate() {
+            axios
+                .get(`/api/subcsription/expires?user_id=${this.user_id}`)
+                .then((res) => {
+                    console.log(res);
                 });
         },
     },

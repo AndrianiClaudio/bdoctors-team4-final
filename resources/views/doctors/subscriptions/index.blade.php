@@ -8,6 +8,10 @@
     <div id="fulvio" class="d-none">
         {{ Auth::user()->id }}
     </div>
+    <div id="expires">
+        {{ $expires }}
+    </div>
+
     {{-- @dd(App\Model\Subscription::all()); --}}
     {{-- @foreach (App\Model\Subscription::all() as $sub)
         <ul class="list-group">

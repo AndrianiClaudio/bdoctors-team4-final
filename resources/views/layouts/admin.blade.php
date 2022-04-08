@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.show') }}" class="nav-link text-white">
+                    <a href="{{ route('stats.index') }}" class="nav-link text-white">
                         <i class="fa-solid fa-chart-line p-1"></i>
                         Le tue statistiche
                     </a>

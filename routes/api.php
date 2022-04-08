@@ -19,6 +19,8 @@ Route::middleware('api')->namespace('Api')
 
         Route::get('reviews/random', 'ReviewController@random');
 
+        Route::get('message/my', 'MessageController@MonthYear');
+
         Route::get('specializations', 'SpecializationController@index');
 
         // Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');

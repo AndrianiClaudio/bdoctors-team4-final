@@ -21,8 +21,8 @@
                             class="select-spec m-0 mb-3"
                             name=""
                             id=""
-                            v-model="test_v_model"
-                            @change="getFilterDoctors(test_v_model)"
+                            v-model="selectedSpec"
+                            @change="getFilterDoctors(selectedSpec)"
                         >
                             <option value="all">Tutti</option>
                             <option
@@ -44,7 +44,7 @@
                     <div class="col m-0 px-3">
                         <select
                             class="select-spec m-0 mb-3"
-                            @change="getFilterDoctors(test_v_model)"
+                            @change="getFilterDoctors(selectedSpec)"
                             v-model="selectedVote"
                         >
                             <option value="all">Tutte</option>
@@ -65,7 +65,7 @@
                     <div class="col m-0 px-3">
                         <select
                             class="select-spec m-0 mb-3"
-                            @change="getFilterDoctors(test_v_model)"
+                            @change="getFilterDoctors(selectedSpec)"
                             v-model="selectedReviews"
                         >
                             <option value="all">Tutte</option>
@@ -84,11 +84,15 @@
                         class="col m-0 p-0 d-flex justify-content-end align-items-center"
                     >
                         <h5 class="m-0 mb-3" v-if="filteredDoctor.length > 1">
-                            <strong> {{ filteredDoctor.length }}  dottori </strong>
+                            <strong>
+                                {{ filteredDoctor.length }} dottori
+                            </strong>
                             rispettano i filtri selezionati
                         </h5>
                         <h5 class="m-0 mb-3" v-if="filteredDoctor.length == 1">
-                            <strong> {{ filteredDoctor.length }}  dottore </strong>
+                            <strong>
+                                {{ filteredDoctor.length }} dottore
+                            </strong>
                             rispetta i filtri selezionati
                         </h5>
                         <h5 class="m-0 mb-3" v-if="filteredDoctor.length == 0">
@@ -108,7 +112,7 @@
                                 <div class="row m-0 p-0">
                                     <div
                                         class="col m-0 p-0 d-flex justify-content-center"
-                                    >   
+                                    >
                                         <!-- Se c'e' doctor.photo -->
                                         <img
                                             v-if="doctor.photo"
@@ -121,7 +125,8 @@
                                             v-else
                                             class="rounded-circle"
                                             src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
-                                            alt="">
+                                            alt=""
+                                        />
                                     </div>
                                     <div
                                         class="col d-flex flex-column justify-content-around m-0 p-0"
@@ -149,7 +154,10 @@
                                         </div>
                                         <div class="row m-0 p-0">
                                             <div class="col m-0 p-0">
-                                                {{ doctor.review_mean }} ({{ doctor.reviews.length }} recensioni)
+                                                {{ doctor.review_mean }} ({{
+                                                    doctor.reviews.length
+                                                }}
+                                                recensioni)
                                                 <!-- <em># recensioni: </em> -->
                                                 <!-- {{ doctor.reviews.length }} -->
                                             </div>
@@ -178,6 +186,10 @@
                                                         name: 'message',
                                                         params: {
                                                             slug: doctor.slug,
+                                                            specialization:
+                                                                selectedSpec,
+                                                            vote: selectedVote,
+                                                            review: selectedReviews,
                                                         },
                                                     }"
                                                     v-if="doctor.slug"
@@ -221,7 +233,7 @@ export default {
     },
     data() {
         return {
-            test_v_model: "all",
+            selectedSpec: "all",
             selectedVote: "all",
             selectedReviews: "all",
             specs: [],
@@ -310,13 +322,28 @@ export default {
         },
     },
     created() {
+        // console.log(this.$route.params);
         this.getSpecs();
     },
     mounted() {
+        // console.log(this.$route.params.specialization);
+        // if (!this.$route.params) {
+        //     this.$route.params.specialization = "all";
+        //     this.$route.params.selectedVote = "all";
+        //     this.$route.params.selectedReview = "all";
+        // }
+        console.log(this.$route.params);
         if (this.$route.params.specialization) {
-            this.test_v_model = this.$route.params.specialization;
+            this.selectedSpec = this.$route.params.specialization;
         }
-        this.getFilterDoctors(this.test_v_model);
+        if (this.$route.params.vote) {
+            this.selectedVote = this.$route.params.vote;
+        }
+        if (this.$route.params.review) {
+            this.selectedReviews = this.$route.params.review;
+        }
+        // console.log(this.$route.params);
+        this.getFilterDoctors(this.selectedSpec);
     },
 };
 </script>

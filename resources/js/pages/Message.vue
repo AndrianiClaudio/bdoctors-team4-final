@@ -1,11 +1,13 @@
 <template>
-    <div class="container-fluid d-flex justify-content-center align-items-center m-0 p-0">
+    <div
+        class="container-fluid d-flex justify-content-center align-items-center m-0 p-0"
+    >
         <div class="form-container p-2">
             <form
                 :action="`http://localhost:8000/api/doctors/${doctor.slug}/message`"
                 method="post"
                 @submit="checkForm($event)"
-            >   
+            >
                 <div class="row m-0 mt-2 mb-4 pb-2 p-0">
                     <div class="col">
                         <label for="firstname" class="form-label">Nome:</label>
@@ -27,7 +29,9 @@
                         </span>
                     </div>
                     <div class="col">
-                        <label for="lastname" class="form-label">Cognome:</label>
+                        <label for="lastname" class="form-label"
+                            >Cognome:</label
+                        >
                         <input
                             type="text"
                             class="form-control"
@@ -69,7 +73,9 @@
                 </div>
                 <div class="row m-0 p-0">
                     <div class="col">
-                        <label for="content" class="form-label">Messaggio:</label>
+                        <label for="content" class="form-label"
+                            >Messaggio:</label
+                        >
                         <textarea
                             class="form-control p-2"
                             id="content"
@@ -90,10 +96,19 @@
                 <div class="row justify-content-between m-0 mt-3 mb-2 p-0">
                     <div class="col">
                         <router-link
-                        class="btn back"
-                        :to="{ name: 'filter'}"
-                        v-if="doctor.slug"
-                        >Torna indietro</router-link>
+                            class="btn back"
+                            :to="{
+                                name: 'filter',
+                                params: {
+                                    specialization:
+                                        this.$route.params.specialization,
+                                    vote: this.$route.params.vote,
+                                    review: this.$route.params.review,
+                                },
+                            }"
+                            v-if="doctor.slug"
+                            >Torna indietro</router-link
+                        >
                     </div>
                     <div class="col d-flex justify-content-end">
                         <button type="submit" class="btn send">
@@ -129,6 +144,13 @@ export default {
         };
     },
     created() {
+        // console.log(this.$route.params);
+        if (!this.$route.params) {
+            this.$route.params.specialization = "all";
+            this.$route.params.vote = "all";
+            this.$route.params.review = "all";
+        }
+        // console.log(this.$route.params);
         const url = "http://127.0.0.1:8000/api/doctors/" + this.slug;
         this.getProduct(url);
     },
@@ -193,52 +215,52 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .container-fluid {
-        background-color: #F6F5F8;
-        height: calc(100vh - 70px);
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 19px;
-            width: 50%;
-            // height: 580px;
-            .row {
-                .col {
-                    textarea {
-                        height: 300px;
-                        border-radius: 15px;
-                        resize: none;
-                        &:focus,
-                        &:active {
-                            -webkit-box-shadow: none;
-                            border: 1px solid #ced4da;
-                        }
+.container-fluid {
+    background-color: #f6f5f8;
+    height: calc(100vh - 70px);
+    .form-container {
+        background-color: #ffffff;
+        border-radius: 19px;
+        width: 50%;
+        // height: 580px;
+        .row {
+            .col {
+                textarea {
+                    height: 300px;
+                    border-radius: 15px;
+                    resize: none;
+                    &:focus,
+                    &:active {
+                        -webkit-box-shadow: none;
+                        border: 1px solid #ced4da;
                     }
-                    input {
-                        border-radius: 12px;
-                        &:focus,
-                        &:active {
-                            -webkit-box-shadow: none;
-                            border: 1px solid #ced4da;
-                        }
+                }
+                input {
+                    border-radius: 12px;
+                    &:focus,
+                    &:active {
+                        -webkit-box-shadow: none;
+                        border: 1px solid #ced4da;
                     }
-                    .btn {
-                        border-radius: 17px;
-                        color: #ffffff;
+                }
+                .btn {
+                    border-radius: 17px;
+                    color: #ffffff;
+                }
+                .btn.back {
+                    background-color: #646eb3;
+                    &:hover {
+                        background-color: #606899;
                     }
-                    .btn.back {
-                        background-color: #646eb3;
-                        &:hover {
-                            background-color: #606899;
-                        }
-                    }
-                    .btn.send {
-                        background-color: #7b83b3;
-                        &:hover {
-                            background-color: #606899;
-                        }
+                }
+                .btn.send {
+                    background-color: #7b83b3;
+                    &:hover {
+                        background-color: #606899;
                     }
                 }
             }
         }
     }
+}
 </style>

@@ -133,11 +133,17 @@
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 1200px) {
-    
+@media only screen and (max-width: 1440px) {
+
     .img-sizes {
         display: none;
     }
+}
+
+
+@media only screen and (max-width: 1200px) {
+    
+    
     .m-1200 {
         flex-direction: column;
         width: 100%;

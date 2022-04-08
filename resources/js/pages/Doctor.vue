@@ -121,15 +121,22 @@ export default {
         if (this.$route.params.specialization) {
             this.selectedSpec = this.$route.params.specialization;
             this.fromFilter = true;
+        } else {
+            this.selectedSpec = "all";
         }
         if (this.$route.params.vote) {
             this.selectedVote = this.$route.params.vote;
             this.fromFilter = true;
+        } else {
+            this.selectedSpec = "all";
         }
         if (this.$route.params.review) {
             this.selectedReviews = this.$route.params.review;
             this.fromFilter = true;
+        } else {
+            this.selectedSpec = "all";
         }
+
         const url = "http://127.0.0.1:8000/api/doctors/" + this.slug;
         this.getProduct(url);
     },

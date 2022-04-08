@@ -181,7 +181,7 @@
                                                         },
                                                     }"
                                                     v-if="doctor.slug"
-                                                    >Send a message</router-link
+                                                    >Messaggia</router-link
                                                 >
                                             </div>
                                         </div>
@@ -197,7 +197,7 @@
                                                         },
                                                     }"
                                                     v-if="doctor.slug"
-                                                    >View Profile</router-link
+                                                    >Vedi profilo</router-link
                                                 >
                                             </div>
                                         </div>

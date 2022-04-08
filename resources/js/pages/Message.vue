@@ -1,12 +1,130 @@
 <template>
-    <div class="container-fluid p-0">
-        <div class="container">
+    <div class="container-fluid d-flex justify-content-center align-items-center m-0 p-0">
+        <div class="form-container p-2">
             <form
                 :action="`http://localhost:8000/api/doctors/${doctor.slug}/message`"
                 method="post"
                 @submit="checkForm($event)"
+            >   
+                <div class="row m-0 mt-2 mb-4 pb-2 p-0">
+                    <div class="col">
+                        <label for="firstname" class="form-label">Nome:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="firstname"
+                            placeholder="Mario"
+                            name="firstname"
+                            v-model="firstname"
+                        />
+                        <span
+                            id="firstname_validate"
+                            class="invalid-feedback"
+                            role="alert"
+                            v-if="errors.firstname"
+                        >
+                            <strong>Compila questo campo </strong>
+                        </span>
+                    </div>
+                    <div class="col">
+                        <label for="lastname" class="form-label">Cognome:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="lastname"
+                            placeholder="Rossi"
+                            name="lastname"
+                            v-model="lastname"
+                        />
+                        <span
+                            id="lastname_validate"
+                            class="invalid-feedback"
+                            role="alert"
+                            v-if="errors.lastname"
+                        >
+                            <strong>Compila questo campo </strong>
+                        </span>
+                    </div>
+                </div>
+                <div class="row m-0 mb-4 pb-2 p-0">
+                    <div class="col">
+                        <label for="email" class="form-label">Email:</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="mario.rossi@email.com"
+                            name="email"
+                            v-model="email"
+                        />
+                        <span
+                            id="email_validate"
+                            class="invalid-feedback"
+                            role="alert"
+                            v-if="errors.email"
+                        >
+                            <strong>Compila questo campo </strong>
+                        </span>
+                    </div>
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col">
+                        <label for="content" class="form-label">Messaggio:</label>
+                        <textarea
+                            class="form-control p-2"
+                            id="content"
+                            rows="3"
+                            name="content"
+                            v-model="content"
+                        ></textarea>
+                        <span
+                            id="content_validate"
+                            class="invalid-feedback"
+                            role="alert"
+                            v-if="errors.content"
+                        >
+                            <strong>Compila questo campo </strong>
+                        </span>
+                    </div>
+                </div>
+                <div class="row justify-content-between m-0 mt-3 mb-2 p-0">
+                    <div class="col">
+                        <router-link
+                        class="btn back"
+                        :to="{ name: 'filter'}"
+                        v-if="doctor.slug"
+                        >Torna indietro</router-link>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <button type="submit" class="btn send">
+                            Invia il messaggio
+                        </button>
+                    </div>
+                </div>
+                    <!-- <div class="mb-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-3">
+                                Confirm message
+                            </button>
+                        </div>
+                    </div> -->
+                    <!-- <router-link
+                        class="btn btn-info"
+                        :to="{ name: 'doctor', params: { slug: doctor.slug } }"
+                        v-if="doctor.slug"
+                        >Back to Doctor info</router-link
+                    > -->
+                    <!-- <router-link class="btn btn-info" :to="{ name: 'home' }"
+                        >Back to Home</router-link
+                    > -->
+            </form>
+
+            <!-- <form
+                :action="`http://localhost:8000/api/doctors/${doctor.slug}/message`"
+                method="post"
+                @submit="checkForm($event)"
             >
-                <!-- FIRSTNAME -->
+                FIRSTNAME
                 <div class="mb-3">
                     <label for="firstname" class="form-label">firstname</label>
                     <input
@@ -26,7 +144,7 @@
                         <strong>Compila questo campo </strong>
                     </span>
                 </div>
-                <!-- LASTNAME -->
+                LASTNAME
                 <div class="mb-3">
                     <label for="lastname" class="form-label">lastname</label>
                     <input
@@ -46,7 +164,7 @@
                         <strong>Compila questo campo </strong>
                     </span>
                 </div>
-                <!-- EMAIL -->
+                EMAIL
                 <div class="mb-3">
                     <label for="email" class="form-label">email</label>
                     <input
@@ -66,7 +184,7 @@
                         <strong>Compila questo campo </strong>
                     </span>
                 </div>
-                <!-- CONTENT -->
+                CONTENT
                 <div class="mb-3">
                     <label for="content" class="form-label">content</label>
                     <textarea
@@ -85,7 +203,7 @@
                         <strong>Compila questo campo </strong>
                     </span>
                 </div>
-                <!-- BUTTONS -->
+                BUTTONS
                 <div class="mb-3">
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary mb-3">
@@ -102,7 +220,7 @@
                 <router-link class="btn btn-info" :to="{ name: 'home' }"
                     >Back to Home</router-link
                 >
-            </form>
+            </form> -->
         </div>
     </div>
 </template>
@@ -193,4 +311,53 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+    .container-fluid {
+        background-color: #F6F5F8;
+        height: calc(100vh - 70px);
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 19px;
+            width: 50%;
+            // height: 580px;
+            .row {
+                .col {
+                    textarea {
+                        height: 300px;
+                        border-radius: 15px;
+                        resize: none;
+                        &:focus,
+                        &:active {
+                            -webkit-box-shadow: none;
+                            border: 1px solid #ced4da;
+                        }
+                    }
+                    input {
+                        border-radius: 12px;
+                        &:focus,
+                        &:active {
+                            -webkit-box-shadow: none;
+                            border: 1px solid #ced4da;
+                        }
+                    }
+                    .btn {
+                        border-radius: 17px;
+                        color: #ffffff;
+                    }
+                    .btn.back {
+                        background-color: #646eb3;
+                        &:hover {
+                            background-color: #606899;
+                        }
+                    }
+                    .btn.send {
+                        background-color: #7b83b3;
+                        &:hover {
+                            background-color: #606899;
+                        }
+                    }
+                }
+            }
+        }
+    }
+</style>

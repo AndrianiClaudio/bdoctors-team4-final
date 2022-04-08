@@ -52,7 +52,7 @@ class DoctorController extends Controller
                     foreach ($doctor->reviews as $review) {
                         $sum += $review->vote;
                     }
-                    $doctor->review_mean = $sum / count($doctor->reviews);
+                    $doctor->review_mean = round($sum / count($doctor->reviews), 2);
                 }
                 else {
                     $doctor->review_mean = null;
@@ -85,7 +85,7 @@ class DoctorController extends Controller
                     foreach ($doctor->reviews as $review) {
                         $sum += $review->vote;
                     }
-                    $doctor->review_mean = $sum / count($doctor->reviews);
+                    $doctor->review_mean = round($sum / count($doctor->reviews), 2);
                 }
                 else {
                     $doctor->review_mean = null;
@@ -113,7 +113,7 @@ class DoctorController extends Controller
                 $sum += $review->vote;
             }
             ;
-            $doctors->review_mean = $sum / count($doctors->reviews);
+            $doctors->review_mean = round($sum / count($doctors->reviews), 2);
         }
 
 

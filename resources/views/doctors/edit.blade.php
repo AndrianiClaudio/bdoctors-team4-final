@@ -148,27 +148,26 @@
                     </div>
                 @endif
                 {{-- Modifica possibile solo a se stessi o se si é admin --}}
-                @if ($doctor->id === Auth::id())
-                    <div class="col">
-                        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"
-                            onsubmit="return validateEditForm(event)">
-                            @csrf
-                            @method('PATCH')
-                    </div>
-                    <!-- NOME -->
-                    <div class="mb-3">
-                        <label for="firstname" class="form-label fs-4">Nome</label>
-                        <input type="text" class="form-control" id="firstname" name="firstname"
-                            value="{{ old('firstname', $doctor->firstname) }}">
-                        @error('firstname')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                        <span id="firstname_validate" class="invalid-feedback" role="alert">
-                            <strong>Compila questo campo </strong>
-                        </span>
-                    </div>
+                <div class="col">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"
+                        onsubmit="return validateEditForm(event)">
+                        @csrf
+                        @method('PATCH')
+                </div>
+                <!-- NOME -->
+                <div class="mb-3">
+                    <label for="firstname" class="form-label fs-4">Nome</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname"
+                        value="{{ old('firstname', $doctor->firstname) }}">
+                    @error('firstname')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <span id="firstname_validate" class="invalid-feedback" role="alert">
+                        <strong>Compila questo campo </strong>
+                    </span>
+                </div>
             </div>
             <div class="col-6">
 
@@ -367,30 +366,4 @@
                     </form>
                 </div>
             </div>
-        @else
-            {{-- Messaggio di errore --}}
-            <div class="col">
-                <div class="container">
-                    <div class="alert alert-danger" role="alert">
-                        Stai tentando di modificare un altro utente!
-                        <a class="text-danger" href="{{ route('default') }}">Back to Home</a>
-                    </div>
-                </div>
-            </div>
-            @endif
-            <!-- ? cosa essere questa copia? -->
-            <!-- <div class="mb-3">
-                                                                                                                                                                                                                            <label for="address" class="form-label fs-4">Indirizzo</label>
-                                                                                                                                                                                                                            <input type="address" class="form-control" id="address" name="address"
-                                                                                                                                                                                                                                value="{{ old('address', $doctor->address) }}">
-                                                                                                                                                                                                                            @error('address')
-        <div class="alert alert-danger">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    {{ $message }}
-                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-    @enderror
-                                                                                                                                                                                                                            <span id="address_validate" class="invalid-feedback" role="alert">
-                                                                                                                                                                                                                                <strong>Compila questo campo </strong>
-                                                                                                                                                                                                                            </span>
-                                                                                                                                                                                                                        </div> -->
-        </div>
-    @endsection
+        @endsection

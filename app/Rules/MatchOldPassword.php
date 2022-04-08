@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class MatchOldPassword implements Rule
 {
@@ -26,7 +27,7 @@ class MatchOldPassword implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Hash::check($value, auth()->user()->password);
+        return Hash::check($value, Auth::user()->password);
     }
 
     /**
@@ -36,6 +37,6 @@ class MatchOldPassword implements Rule
      */
     public function message()
     {
-        return 'The :attribute is match with old password.';
+        return 'Hai inserito una password diversa dalla tua.';
     }
 }

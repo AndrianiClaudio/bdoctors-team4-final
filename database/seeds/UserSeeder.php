@@ -46,9 +46,8 @@ class UserSeeder extends Seeder
                 'address' => $faker->address(),
                 // NULLABLE
                 'phone' => $faker->phoneNumber(),
-                'photo' => $faker->imageUrl(200, 200, 'doctors', true),
-                'cv' => $faker->imageUrl(200, 200),
-                'cv' => $faker->imageUrl(200, 200),
+                'photo' => '',
+                'cv' => '',
             ]
             );
         }

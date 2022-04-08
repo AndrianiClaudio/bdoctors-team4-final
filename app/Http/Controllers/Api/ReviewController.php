@@ -10,7 +10,7 @@ class ReviewController extends Controller
 {
     public function random()
     {
-        $rews = Review::where('vote', '>', 4)->whereNotNull('content')->inRandomOrder()->limit(4)->get();
+        $rews = Review::where('vote', '>=', 4)->whereNotNull('content')->inRandomOrder()->limit(4)->get();
 
         return response()->json([
             'success' => true,

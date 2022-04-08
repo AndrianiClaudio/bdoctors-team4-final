@@ -107,6 +107,16 @@ class DoctorController extends Controller
 
         $doctors = User::where('slug', $slug)->with('specializations', 'services', 'reviews', 'messages')->first();
 
+        if (count($doctors->reviews) > 0) {
+            $sum = 0;
+            foreach ($doctors->reviews as $review) {
+                $sum += $review->vote;
+            }
+            ;
+            $doctors->review_mean = $sum / count($doctors->reviews);
+        }
+
+
         return response()->json([
             'response' => true,
             // 'doctors' => $doctors,

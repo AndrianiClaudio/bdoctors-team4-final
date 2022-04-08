@@ -25,8 +25,27 @@
                     <!-- RECENSIONI DEL DOTTORE -->
                     <div v-if="doctor.reviews">
                         <hr />
-                        <b><em>Reviews</em></b>
-                        <ul>
+                        <b
+                            >Media recensioni:
+                            <em>{{ doctor.review_mean }}</em></b
+                        >
+                        <br />
+                        <b
+                            >Numero recensioni:
+                            <em>{{ doctor.reviews.length }}</em></b
+                        >
+                        <br />
+                        <router-link
+                            class="text-primary text-underline"
+                            :to="{
+                                name: 'reviews',
+                                params: {
+                                    slug: doctor.slug,
+                                },
+                            }"
+                            >Mostra tutte le recensioni</router-link
+                        >
+                        <!-- <ul>
                             <li
                                 v-for="(review, index) in doctor.reviews"
                                 :key="`review-${index}`"
@@ -39,11 +58,7 @@
                                 </div>
                                 <b>Voto: </b>{{ review.vote }}
                             </li>
-                        </ul>
-                        <!-- <div
-                            v-for="(review, index) in doctor.reviews"
-                            :key="`review-${index}`"
-                        > -->
+                        </ul> -->
                     </div>
                     <!-- SPECIALIZZAZIONI -->
                     <hr />

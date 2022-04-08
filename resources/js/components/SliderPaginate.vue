@@ -3,8 +3,9 @@
         <hr class="hr" />
         <!-- PREV PAGE CLICK -->
         <div class="d-flex align-items-center left-arrow">
-            <i
-                class="fas fa-chevron-left"
+            <i  
+                role='button'
+                class="fas fa-chevron-left p-3"
                 @click.prevent="getPremiumDoctors(slider.prev_page_url)"
                 v-if="slider.prev_page_url"
             ></i>
@@ -82,8 +83,9 @@
         </div>
         <!-- NEXT PAGE CLICK -->
         <div class="d-flex align-items-center right-arrow">
-            <i
-                class="fas fa-chevron-right"
+            <i  
+                role='button'
+                class="fas fa-chevron-right p-3"
                 @click.prevent="getPremiumDoctors(slider.next_page_url)"
                 v-if="slider.next_page_url"
             ></i>

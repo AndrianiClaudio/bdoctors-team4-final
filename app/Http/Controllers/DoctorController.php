@@ -100,13 +100,15 @@ class DoctorController extends Controller
      */
     public function update(Request $request)
     {
+        //dd($request);
 
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
             'lastname' => ['string', 'max:60'],
-            'photo' => ['image'],
             'email' => ['string', 'email', 'max:255'],
             'specializations' => ['required', 'exists:App\Model\Specialization,id'],
+            'photo' => ['image'],
+            'cv' => ['mimes:pdf'],
             'old-password' => ['nullable', 'min:8', new MatchOldPassword],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
@@ -121,7 +123,21 @@ class DoctorController extends Controller
             $img_path = Storage::put('uploads/doctors/photo', $data['photo']);
             $data['photo'] = $img_path;
         }
+        if (!empty($data['cv'])) {
+            Storage::delete($user->cv);
+            $cv_path = Storage::put('uploads/doctors/cv', $data['cv']);
+            $data['cv'] = $cv_path;
+        }
 
+        // UPLOAD PASSWORD HASH
+        // 
+
+        if (!empty($data['cv'])) {
+            Storage::delete($user->cv);
+            $path = Storage::put('uploads/doctors/cv', $data['cv']);
+            $data['cv'] = $path;
+        }
+        // dd($data['cv']);
         $user->update($data);
 
         $user->specializations()->sync($data['specializations']);

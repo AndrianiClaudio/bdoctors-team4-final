@@ -1,7 +1,6 @@
 <template>
     <div>
         <v-braintree
-            v-if="!expires"
             :authorization="token"
             :locale="locale"
             @success="onSuccess"
@@ -15,7 +14,6 @@
             }"
         >
         </v-braintree>
-        <div v-else>Test .......</div>
     </div>
 </template>
 
@@ -28,7 +26,6 @@ export default {
             locale: "it_IT",
             amount: null,
             user_id: null,
-            expires: false,
         };
     },
     props: {
@@ -41,8 +38,16 @@ export default {
         // console.log(this.authorization);
         this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
         document.querySelector("#fulvio").remove();
+        // this.getExpiresDate();
     },
     methods: {
+        // getExpiresDate() {
+        //     axios
+        //         .post(`/api/subscriptions/expires?user_id=${this.user_id}`)
+        //         .then((res) => {
+        //             this.expires = res.data.expires;
+        //         });
+        // },
         onSuccess(payload) {
             let nonce = payload.nonce;
             // Do something great with the nonce...
@@ -53,6 +58,8 @@ export default {
                 )
                 .then((res) => {
                     this.amount = res.data.amount;
+                    // this.getExpiresDate();
+                    // console.log(this.expires);
                 })
                 .catch((err) => {
                     console.error(err);

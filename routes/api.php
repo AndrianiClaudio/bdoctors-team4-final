@@ -21,7 +21,8 @@ Route::middleware('api')->namespace('Api')
 
         Route::get('specializations', 'SpecializationController@index');
 
-        Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');
+        // Route::get('doctors/paginate/testCla', 'DoctorController@sliderPaginate');
+        Route::get('doctors/paginate/premium', 'DoctorController@sliderPaginate');
 
         // Route::get('orders/generate', 'SubscriptionController@generate');
         Route::get('subscription/generate', 'SubscriptionController@generate');

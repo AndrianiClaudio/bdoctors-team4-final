@@ -10,20 +10,21 @@ use App\User;
 use App\Model\Subscription;
 use DateTime;
 use DateInterval;
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
-    public function expires(Request $request)
-    {
-        // dd('expires API');
-        $user = User::find($request['user_id']);
-        $user_sub = $user->subscriptions()->first();
-        $expires = $user_sub->pivot->expires_date;
-        return response()->json([
-            'success' => true,
-            'expires' => $expires
-        ]);
-    }
+    // public function expires(Request $request)
+    // {
+    //     // dd('expires API');
+    //     $user = User::find($request['user_id']);
+    //     $user_sub = $user->subscriptions()->first();
+    //     $expires = $user_sub->pivot->expires_date;
+    //     return response()->json([
+    //         'success' => true,
+    //         'expires' => $expires
+    //     ]);
+    // }
 
     public function priceName(Request $request)
     {
@@ -74,17 +75,33 @@ class SubscriptionController extends Controller
 
         // FDURATION
         date_default_timezone_set('Europe/Rome');
-        $now = new DateTime();
-        $now_clone = clone $now;
-        $now_clone->add(new DateInterval('PT' . $sub->duration . 'H'));
-        $sub_id = $sub->id;
 
 
+
+
+        //     $user_sub = $user->subscriptions()->first();
+        //     $expires = $user_sub->pivot->expires_date;
+
+        $auth = User::find($data['user_id']);
         if ($result->success) {
-            $auth = User::find($data['user_id']);
+            $user_sub = $auth->subscriptions()->first();
+            if ($user_sub) {
+                $expires = $user_sub->pivot->expires_date;
+                $now_clone = Carbon::parse($expires);
+
+                // $now_clone->addMonths($sub->duration);
+                $now_clone = $now_clone->addHours($sub->duration);
+            }
+            else {
+                $now = new DateTime();
+                $now_clone = clone $now;
+                $now_clone->add(new DateInterval('PT' . $sub->duration . 'H'));
+            }
+            $sub_id = $sub->id;
+
             $auth->subscriptions()->detach();
             $auth->subscriptions()->attach($sub_id, [
-                'expires_date' => $now_clone,
+                'expires_date' => $now_clone->format("y-m-d H:i"),
             ]);
             $data = [
                 'success' => true,

@@ -1,15 +1,17 @@
 <template>
-    <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartMessageData"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-    />
+    <div class="container" id="chart">
+        <Bar
+            :chart-options="chartOptions"
+            :chart-data="chartData"
+            :chart-id="chartId"
+            :dataset-id-key="datasetIdKey"
+            :plugins="plugins"
+            :css-classes="cssClasses"
+            :styles="styles"
+            :width="width"
+            :height="height"
+        />
+    </div>
 </template>
 
 <script>
@@ -69,12 +71,13 @@ export default {
     },
     data() {
         return {
+            tmp: [],
             user_id: null,
             messageCountMonthYear: null,
+            reviewCountMonthYear: null,
             // messageCountMonth: [],
-            // reviewCountMonth: [],
             // voteCountMonth: [],
-            chartMessageData: {
+            chartData: {
                 labels: [
                     "Gennaio",
                     "Febbraio",
@@ -89,7 +92,18 @@ export default {
                     "Novembre",
                     "Dicembre",
                 ],
-                datasets: [{ data: [] }],
+                datasets: [
+                    {
+                        label: "Messaggi",
+                        backgroundColor: "#f8A979",
+                        data: [6, 7, 6, 8, 0, 0, 0, 0, 0, 0, 0, 0],
+                    },
+                    {
+                        label: "Recensioni",
+                        backgroundColor: "#387979",
+                        data: [2, 3, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0],
+                    },
+                ],
                 // datasets: [{ data: this.messageCountMonthYear }],
             },
             chartOptions: {
@@ -100,41 +114,44 @@ export default {
 
     methods: {
         getMessagesMonthYear() {
-            console.log(this.chartMessageData.datasets[0].data);
+            // console.log(this.chartData.datasets[0].data);
             axios
                 .get(`/api/message/my?user_id=${this.user_id}`)
                 .then((res) => {
+                    this.tmp = [];
                     this.messageCountMonthYear = res.data.messageCountMonth;
                     for (const key in this.messageCountMonthYear) {
-                        if (
-                            Object.hasOwnProperty.call(
-                                this.messageCountMonthYear,
-                                key
-                            )
-                        ) {
-                            this.chartMessageData.datasets[0].data.push(
-                                this.messageCountMonthYear[key]
-                            );
-                        }
+                        console.log(
+                            "message--",
+                            this.messageCountMonthYear[key]
+                        );
+                        this.chartData.datasets[0].data.push(
+                            this.messageCountMonthYear[key]
+                        );
                     }
-                    // console.log(this.messageCountMonth);
                 })
                 .catch((err) => {
                     console.error(err);
                 });
-            // axios
-            //     .get(`/api/message/my?user_id=${this.user_id}`)
-            //     .then((res) => {
-            //         console.log(res.data);
-            //         this.messageCountMonth = res.data.messageCountMonth;
-            //     })
-            //     .catch((err) => {
-            //         console.error(err);
-            //     });
+            console.log(this.chartData.datasets[0].data);
         },
-        // getReviewsMonthYear(){
-
-        // },
+        getReviewsMonthYear() {
+            axios
+                .get(`/api/review/my?user_id=${this.user_id}`)
+                .then((res) => {
+                    this.tmp = [];
+                    this.reviewCountMonthYear = res.data.reviewCountMonth;
+                    for (const key in this.reviewCountMonthYear) {
+                        console.log("review--", this.reviewCountMonthYear[key]);
+                        this.chartData.datasets[1].data.push(
+                            this.reviewCountMonthYear[key]
+                        );
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        },
         // getVoteMonthYear() {
 
         // }
@@ -144,10 +161,10 @@ export default {
             this.user_id = document.getElementById("fulvio").innerHTML;
             document.getElementById("fulvio").innerHTML = "";
         }
-        console.log(this.user_id);
+        // console.log(this.user_id);
         // numero di messaggi e recensioni ricevute per mese/anno
         this.getMessagesMonthYear();
-        // this.getReviewsMonthYear();
+        this.getReviewsMonthYear();
 
         // grafico a barre fasce di voto ricevuti per mese/anno
         // this.getVoteMonthYear();

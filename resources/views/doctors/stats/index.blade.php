@@ -2,8 +2,7 @@
 
 @section('script')
     <script src="{{ asset('js/front.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> --}}
 @endsection
 
 @section('content')

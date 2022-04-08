@@ -20,6 +20,7 @@ Route::middleware('api')->namespace('Api')
         Route::get('reviews/random', 'ReviewController@random');
 
         Route::get('message/my', 'MessageController@MonthYear');
+        Route::get('review/my', 'ReviewController@MonthYear');
 
         Route::get('specializations', 'SpecializationController@index');
 

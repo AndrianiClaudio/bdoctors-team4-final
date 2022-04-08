@@ -26712,9 +26712,13 @@ main {
   display: flex;
 }
 
+.main-vh-overflow {
+  height: calc(100vh - 3rem);
+  overflow: auto;
+}
+
 .side-sizes {
   width: 280px;
-  height: 680px;
 }
 
 .lh-5 {

@@ -116,6 +116,13 @@
                 <div class="col me-3  d-flex justify-content-center align-items-end mt-5">
                     <div class="container-cv">
                         <div class="content-cv">
+                            @if ($doctor->cv)
+                                <embed src="http://localhost:8000/storage/{{ $doctor->cv }}" width="100%"
+                                    height="100%" />
+                            @else
+                                <b class="text-danger"><em>Non hai ancora caricato il tuo CV. Inseriscilo al piu
+                                        presto!</em></b>
+                            @endif
                         </div>
                         <div class="title-cv d-flex align-items-center">
                             <h5 class="text-uppercase text-white mb-0 ms-3"> Il tuo curriculum </h5>

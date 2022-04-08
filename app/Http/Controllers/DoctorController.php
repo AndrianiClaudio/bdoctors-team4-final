@@ -113,30 +113,38 @@ class DoctorController extends Controller
             'password' => ['nullable', 'min:8', 'confirmed'],
             'address' => ['string', 'max:255'],
         ]);
-
         // UPLOAD PHOTO
         $user = User::where('slug', Auth::user()->slug)->first();
 
-        if (!empty($data['old-password']) && $data['old-password']) {
-            $data['password'] = Hash::make($data['password']);
+        if ($data['old-password']) {
+            // UPLOAD PASSWORD HASH
+            // $data['password'] = Hash::make($data['password']);
+            $user->password = Hash::make($data['password']);
         }
 
         if (!empty($data['photo'])) {
             Storage::delete($user->photo);
             $img_path = Storage::put('uploads/doctors/photo', $data['photo']);
             $data['photo'] = $img_path;
+            $user->photo = $img_path;
         }
 
-        // UPLOAD PASSWORD HASH
         // 
 
         if (!empty($data['cv'])) {
             Storage::delete($user->cv);
             $path = Storage::put('uploads/doctors/cv', $data['cv']);
             $data['cv'] = $path;
+            $user->cv = $path;
         }
-        // dd($data['cv']);
-        $user->update($data);
+        // dd($data);
+
+        $user->firstname = $data['firstname'];
+        $user->firstname = $data['lastname'];
+        $user->email = $data['email'];
+        // $user->update($data);
+        $user->save();
+
 
         $user->specializations()->sync($data['specializations']);
 

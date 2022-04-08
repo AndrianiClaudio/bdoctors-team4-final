@@ -24,6 +24,9 @@ Route::middleware('auth')
         Route::get('profile/info', 'DoctorController@show')->name('profile.show');
         Route::delete('profile/delete/${id}', 'DoctorController@destroy')->name('profile.destroy');
 
+        // STATISTICHE
+        Route::get('stats', 'StatController@index')->name('stats.index');
+
         Route::resource('reviews', 'ReviewController');
 
         Route::resource('messages', 'MessageController');

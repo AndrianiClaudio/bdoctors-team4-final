@@ -37,7 +37,7 @@
                             fill="white" />
                     </svg>
                 </a>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="navbar justify-content-end" id="navbarNav">
                     @if (!Auth::check())
                         <h4 class="text-white pe-2 my-0">Sei un medico?</h4>
                         <ul class="navbar-nav">

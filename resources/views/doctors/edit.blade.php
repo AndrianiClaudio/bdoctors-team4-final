@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="row justify-item-center w-row-name pt-2 radious-row">
-            <div class="col-6">
+            <div class="col-12">
                 @if (session('edit_response'))
                     <div class="alert alert-success" role="alert">
                         {{ session('edit_response') }}

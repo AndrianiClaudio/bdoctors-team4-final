@@ -25,11 +25,18 @@
 <body>
     <main class="main-vh">
 
-        <div
+        <div id="left-bar-admin"
             class="d-flex flex-column justify-content-between flex-shrink-0 bg-side side-vh ms-3 mt-3 mb-3 radious side-sizes">
 
-            <a href="{{ url('/') }}" class="ps-3 active" aria-current="page">
-                <svg width="150" height="70" viewBox="0 0 214 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a id="svg-container" href="{{ url('/') }}" class="ps-3 active mt-2" aria-current="page">
+                <svg class="media-show" width="30" height="50" viewBox="0 0 169 170" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M33.9161 54.3527H35.3083H17.6736C11.3824 56.3516 9.30947 59.331 7 66.4192V104.475C9.65366 111.277 12.5733 113.523 19.5299 115.613H40.4131C49.9249 116.077 52.8462 119.238 53.4071 130.464L53.8712 150.884C53.5594 156.915 61.0598 161.331 65.0089 162.487C68.958 163.642 102.135 162.487 102.135 162.487C112.411 161.392 115.236 156.347 115.129 150.884V97.0494C115.277 89.2234 112.811 86.7542 103.063 86.3752H65.937C55.5622 86.4494 53.6167 82.5995 53.8712 71.9883V20.0098C54.4101 9.86447 57.2006 6.75217 67.7933 7.01516H102.599C112.858 6.8132 115.302 10.0659 115.593 20.0098L116.057 42.2863C116.485 51.6233 119.911 53.439 129.051 53.4245H150.398C159.596 53.4817 162.013 56.2464 162 65.491V105.403C162.029 113.459 159.451 115.761 150.398 116.077H135.084"
+                        stroke="#58C1F9" stroke-width="14" />
+                </svg>
+                <svg class="media-hide" width="150" height="70" viewBox="0 0 214 62" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M11.2455 19.2126H11.7754H5.06287C2.66816 19.9814 1.87909 21.1273 1 23.8535V38.4903C2.0101 41.1065 3.12144 41.9704 5.76945 42.7743H13.7185C17.3391 42.9526 18.4511 44.1683 18.6646 48.4862L18.8413 56.3401C18.7226 58.6597 21.5776 60.3582 23.0808 60.8025C24.584 61.2468 37.2125 60.8025 37.2125 60.8025C41.1242 60.3814 42.1996 58.4413 42.1586 56.3401V35.6344C42.2152 32.6244 41.2765 31.6747 37.5658 31.5289H23.4341C19.485 31.5575 18.7444 30.0767 18.8413 25.9955V6.00376C19.0464 2.10172 20.1086 0.904682 24.1407 1.00583H37.3892C41.2944 0.928155 42.2248 2.17919 42.3353 6.00376L42.5119 14.5716C42.6749 18.1628 43.9788 18.8612 47.458 18.8556H55.5837C59.085 18.8776 60.0049 19.9409 59.9999 23.4965V38.8473C60.0111 41.9457 59.0297 42.8313 55.5837 42.9528H49.7544"
                         stroke="#58C1F9" stroke-width="2" />
@@ -46,122 +53,108 @@
                 <li class="nav-item">
                     <a href="{{ route('profile.index') }}" class="nav-link text-white" aria-current="page">
                         <i class="fa-solid fa-igloo p-1"></i>
-                        Home
+                        <span class="media-hide">Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('profile.show') }}" class="nav-link  text-white" aria-current="page">
                         <i class="fa-solid fa-user-doctor p-1"></i>
-                        Il tuo Profilo
+                        <span class="media-hide">Il tuo Profilo</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('messages.index') }}" class="nav-link  text-white">
                         <i class="fa-solid fa-comment-medical p-1"></i>
-                        Messaggi
+                        <span class="media-hide">Messaggi</span>
                     </a>
                 </li>
                 <li>
 
                     <a href="{{ route('subscription.index') }}" class="nav-link text-white">
                         <i class="fa-regular fa-star p-1"></i>
-                        Piani di abbonamento
+                        <span class="media-hide">Piani di abbonamento</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('stats.index') }}" class="nav-link text-white">
                         <i class="fa-solid fa-chart-line p-1"></i>
-                        Le tue statistiche
+                        <span class="media-hide">Le tue statistiche</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('reviews.index') }}" class="nav-link text-white">
                         <i class="fa-solid fa-star-half-stroke p-1"></i>
-                        Recensioni
+                        <span class="media-hide">Recensioni</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('services.index') }}" class="nav-link text-white">
                         <i class="fa-solid fa-star-half-stroke p-1"></i>
-                        Servizi
+                        <span class="media-hide">Servizi</span>
                     </a>
                 </li>
             </ul>
 
-            <div class="dropdown ps-3 pb-2">
-                {{-- <a href="#" class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
+            <div class="dropdown ps-3 pb-2 media-show">
+                <hr class="text-white  me-3">
+                <a href="#" class="d-flex align-items-center text-white link-dark text-decoration-none "
                     id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32" height="32"
-                        class="rounded-circle me-2">
-                    <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
+
+                    <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
+                        alt="" width="32" height="32" class="rounded-circle me-2">
+
+                    <strong class=" media-hide text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
                         {{ Auth::user()->lastname }} </strong>
                 </a>
-
-                <ul class="nav flex-column bg-ul lh-5 fs-side">
-                    <li class="nav-item">
-                        <a href="{{ route('profile.index') }}" class="nav-link text-white" aria-current="page">
-                            <i class="fa-solid fa-igloo p-1"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('profile.show') }}" class="nav-link  text-white" aria-current="page">
-                            <i class="fa-solid fa-user-doctor p-1"></i>
-                            Il tuo Profilo
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('messages.index') }}" class="nav-link  text-white">
-                            <i class="fa-solid fa-comment-medical p-1"></i>
-                            Messaggi
-                        </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
+                            prestazioni</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
+                            profilo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"> Logout</a>
+                            document.getElementById('logout-form').submit();"> Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     </li>
-                </ul> --}}
-
-                <div class="dropdown ps-3 pb-2">
-                    <hr class="text-white  me-3">
-                    <a href="#"
-                        class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
-                        id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-
-                        <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
-                            alt="" width="32" height="32" class="rounded-circle me-2">
-
-                        <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
-                            {{ Auth::user()->lastname }} </strong>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
-                                prestazioni</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
-                                profilo</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"> Logout</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-
+                </ul>
             </div>
+            <div class="dropdown ps-3 pb-2 media-hide">
+                <hr class="text-white  me-3">
+                <a href="#" class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
+                    id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
+                        alt="" width="32" height="32" class="rounded-circle me-2">
+
+                    <strong class=" media-hide text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
+                        {{ Auth::user()->lastname }} </strong>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    <li><a class="dropdown-item" href="{{ route('services.index') }}">Gestisci le tue
+                            prestazioni</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Modifica
+                            profilo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profilo</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"> Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
 
         </div>
 

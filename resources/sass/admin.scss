@@ -1,0 +1,30 @@
+#left-bar-admin {
+    .media-hide {
+        display: inline-block;
+    }
+    .media-show {
+        display: none;
+    }
+}
+@media screen and (max-width: 525px) {
+    #left-bar-admin {
+        max-width: 60px;
+        .media-hide {
+            display: none;
+        }
+        .media-show {
+            display: inline-block;
+            font-size: 0.5rem;
+        }
+        #svg-container {
+            display: flex;
+           padding: 0 !important;
+            width: 100%;
+            justify-content: center;
+        }
+        .nav-item {
+            justify-content: center;
+            display: flex;
+        }
+    }
+}

@@ -17,7 +17,7 @@
 @section('content')
     <div class="container-fluid text-white">
         <div class="row m-1200">
-            <div class="col-7 ms-3">
+            <div class="col-7 ms-3 m-w-1200">
                 <div class="welcome-sizes welcome-bg d-flex flex-column justify-content-end ps-2">
                     <div class="data-sizes position-absolute data-abs ms-2 ps-1 pe-1">
                         <i class="fa-solid fa-calendar-days"></i> {{ now('Europe/Rome')->toDateString() }}
@@ -28,14 +28,14 @@
                 </div>
                 
             </div>
-            <div class="col-4  m-1200-bedge">
-                <div class="profile-preview">
+            <div class="col-4  m-1200-bedge m-w-1200">
+                <div class="profile-preview ">
                     <h5 class="ps-2 pt-2">Il tuo Bedge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3" href="{{ route('profile.edit', Auth::user()->slug) }}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>
-                <div class="profile-sizes d-flex">
+                <div class="profile-sizes d-flex justify-m-1200 ">
                     <div class="profile-picture-preview mt-3 ms-3">
                         <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="100%"
                             height="100%" class="rounded-circle me-2">
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="row m-1200">
-            <div class="col-7 ms-3 mt-3">
+            <div class="col-7 ms-3 mt-3 m-w-1200">
                 <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2">
                       <h5>I tuoi ultimi messaggi</h5>
                 </div>
@@ -81,7 +81,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-4 m-1200-bedge">
+            <div class="col-4 m-1200-bedge m-w-1200">
                 <div class="profile-preview pt-2 mt-3">
                     <h5 class="ps-2">I tuoi servizi</h5>
                 </div>  
@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="row m-1200">
-            <div class="col-7  ms-3 mt-3">
+            <div class="col-7  ms-3 mt-3 m-w-1200">
                 <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2 ">
                         <h5>Le tue ultime recensioni</h5>
                 </div>
@@ -126,7 +126,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-4 m-1200-bedge">
+            <div class="col-4 m-1200-bedge m-w-1200">
                 <div class="profile-preview pt-2 mt-3">
                         <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
                 </div>  

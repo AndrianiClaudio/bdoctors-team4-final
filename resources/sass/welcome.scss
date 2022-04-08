@@ -140,10 +140,18 @@
     }
     .m-1200 {
         flex-direction: column;
+        width: 100%;
+    }
+
+    .m-w-1200 {
+        width: 100%;
     }
     .m-1200-bedge {
-        width: 59%;
+        width: 100%;
         margin-left: 1em;
         margin-top: 1em;
+    }
+    .justify-m-1200 {
+        justify-content: center;
     }
   }

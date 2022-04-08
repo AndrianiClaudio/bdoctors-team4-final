@@ -26891,18 +26891,27 @@ main {
 
   .m-1200 {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .m-w-1200 {
+    width: 100%;
   }
 
   .m-1200-bedge {
-    width: 59%;
+    width: 100%;
     margin-left: 1em;
     margin-top: 1em;
+  }
+
+  .justify-m-1200 {
+    justify-content: center;
   }
 }
 
 .container-show {
   background-color: #fff;
-  height: 100%;
+  height: 680px;
   width: 90%;
   border-radius: 15px;
 }
@@ -26975,8 +26984,8 @@ main {
   background-color: #fff;
   border-radius: 28px;
   border: 5px solid #3C4996;
-  width: 500px;
-  height: 348px;
+  width: 300px;
+  height: 150px;
 }
 
 .container-show .row .col .container-cv .content-cv {
@@ -26993,6 +27002,31 @@ main {
   border-radius: 50%;
   width: 250px;
   height: 250px;
+}
+
+@media only screen and (max-width: 1400px) {
+  .m-1400-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .m-1400 {
+    width: 100%;
+    padding-bottom: 3em;
+    padding-left: 2em;
+  }
+
+  .m-d {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1400px) and (max-width: 900px) {
+  .m-900-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .container-fluid .bg-color,

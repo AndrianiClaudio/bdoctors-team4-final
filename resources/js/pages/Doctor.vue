@@ -24,9 +24,16 @@
                     </div>
                     <!-- RECENSIONI DEL DOTTORE -->
                     <div v-if="doctor.reviews">
+                        <b
+                            >Media recensioni:
+                            <em>{{ doctor.review_mean }}</em></b
+                        >
                         <hr />
-                        <b><em>Reviews</em></b>
-                        <ul>
+                        <b
+                            >Numero recensioni:
+                            <em>{{ doctor.reviews.length }}</em></b
+                        >
+                        <!-- <ul>
                             <li
                                 v-for="(review, index) in doctor.reviews"
                                 :key="`review-${index}`"
@@ -39,11 +46,7 @@
                                 </div>
                                 <b>Voto: </b>{{ review.vote }}
                             </li>
-                        </ul>
-                        <!-- <div
-                            v-for="(review, index) in doctor.reviews"
-                            :key="`review-${index}`"
-                        > -->
+                        </ul> -->
                     </div>
                     <!-- SPECIALIZZAZIONI -->
                     <hr />

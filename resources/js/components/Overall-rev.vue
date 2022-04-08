@@ -67,7 +67,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     .overlay {
-        background-color: rgba($color: #418ed6, $alpha: 0.75);
+        background-color: rgba($color: #5363b9, $alpha: 0.75);
         position: absolute;
         top: 0;
         left: 0;

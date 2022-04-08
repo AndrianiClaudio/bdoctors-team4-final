@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.show') }}" class="nav-link text-white">
+                    <a href="{{ route('stats.index') }}" class="nav-link text-white">
                         <i class="fa-solid fa-chart-line p-1"></i>
                         Le tue statistiche
                     </a>
@@ -165,7 +165,7 @@
 
         </div>
 
-        <div class="container-fluid m-3 p-3">
+        <div class="container-fluid m-3 p-0 main-vh-overflow">
             {{-- COSE BLADE --}}
             @yield('content')
             {{-- PER QUI SOTTO --> Checkout.vue --}}

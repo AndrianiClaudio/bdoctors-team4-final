@@ -225,6 +225,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -357,7 +358,8 @@ export default {
     .row.page {
         height: calc(100vh - 70px);
         .col-2 {
-            border: 1px solid #3c4996;
+            height: calc(100vh - 70px);
+            border-right: 1px solid #3c4996;
             .row {
                 .col {
                     .select-spec {
@@ -371,7 +373,8 @@ export default {
             }
         }
         .col-10 {
-            // border: 1px solid yellowgreen;
+            height: calc(100vh - 70px);
+            overflow: auto;
             .row {
                 .col {
                     .list-group {

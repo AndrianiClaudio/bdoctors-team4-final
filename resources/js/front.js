@@ -19,6 +19,7 @@ import FilterSpec from "./pages/Filter.vue";
 import Checkout from "./pages/Checkout.vue";
 // import Navbar from './components/Navbar.vue';
 import Reviews from "./pages/Reviews.vue";
+import Stats from "./pages/Stats.vue";
 
 import Subscriptions from "./pages/Subscriptions.vue";
 
@@ -87,6 +88,11 @@ const router = new VueRouter({
             name: "reviews",
             props: true,
             component: Reviews,
+        },
+        {
+            path: "/dashboard/stats",
+            name: "stats",
+            component: Stats,
         },
     ],
 });

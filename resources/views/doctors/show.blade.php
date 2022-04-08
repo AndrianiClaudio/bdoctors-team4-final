@@ -127,7 +127,7 @@
                     <img class="" src="{{ $doctor->photo }}" alt="">
                 </div>
             </div>
-            <div class="row">
+            <div class="row pt-3">
                 <div class="col">
                     doctor info
                     <ul>

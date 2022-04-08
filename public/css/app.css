@@ -26749,6 +26749,40 @@ main {
   max-height: 600px;
 }
 
+.display-none {
+  display: none;
+}
+
+@media only screen and (max-width: 640px) {
+  .m-display {
+    display: none;
+  }
+
+  .side-sizes {
+    width: 100px;
+    height: 680px;
+  }
+
+  .m-w-li {
+    width: 100px;
+    font-size: large;
+    text-align: center;
+  }
+
+  .m-d-name {
+    display: none;
+  }
+
+  .display-none {
+    display: block;
+    width: 70px;
+  }
+
+  .active-logo {
+    display: none;
+  }
+}
+
 .welcome-sizes {
   width: 100%;
   height: 230px;
@@ -26987,11 +27021,11 @@ main {
   border-radius: 28px;
   border: 5px solid #3C4996;
   width: 300px;
-  height: 150px;
+  height: 100%;
 }
 
 .container-show .row .col .container-cv .content-cv {
-  height: 270px;
+  height: 100%;
 }
 
 .container-show .row .col .container-cv .title-cv {

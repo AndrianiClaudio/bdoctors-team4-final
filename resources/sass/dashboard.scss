@@ -40,5 +40,37 @@ main {
     max-height: 600px;
 }
 
+.display-none {
+    display: none;
+}
+
+@media only screen and (max-width: 640px) { 
+
+    .m-display{
+        display: none;
+    }
+
+    .side-sizes {
+        width: 100px;
+        height: 680px;
+    }
+    .m-w-li{
+        width: 100px;
+        font-size: large;
+        text-align: center;
+    }
+
+    .m-d-name {
+        display: none;
+    }
+
+    .display-none {
+        display: block;
+        width: 70px;
+    }
+    .active-logo{
+        display: none;
+    }
+}
 
 

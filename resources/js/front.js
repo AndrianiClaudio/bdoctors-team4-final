@@ -4,98 +4,95 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
 
-window.Vue = require('vue');
+window.Vue = require("vue");
 
 // IMPORT COMPONENTS
-import App from './view/App.vue';
-import Home from './pages/Home.vue';
-import Doctor from './pages/Doctor.vue';
-import Message from './pages/Message.vue';
-import Review from './pages/Review.vue';
-import ProvaApi from './pages/ProvaApi.vue';
-import FilterSpec from './pages/Filter.vue';
-import Checkout from './pages/Checkout.vue';
+import App from "./view/App.vue";
+import Home from "./pages/Home.vue";
+import Doctor from "./pages/Doctor.vue";
+import Message from "./pages/Message.vue";
+import Review from "./pages/Review.vue";
+import ProvaApi from "./pages/ProvaApi.vue";
+import FilterSpec from "./pages/Filter.vue";
+import Checkout from "./pages/Checkout.vue";
 // import Navbar from './components/Navbar.vue';
+import Reviews from "./pages/Reviews.vue";
 
-import Subscriptions from './pages/Subscriptions.vue';
-
+import Subscriptions from "./pages/Subscriptions.vue";
 
 // IMPORT ROUTER ... NEXT
-import VueRouter from 'vue-router';
+import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
+import Vue from "vue";
+import vuebraintree from "vue-braintree";
 
-import Vue from 'vue'
-import vuebraintree from 'vue-braintree'
-
-
-Vue.use(vuebraintree)
+Vue.use(vuebraintree);
 
 const router = new VueRouter({
-    mode: 'history',
-        routes: [
+    mode: "history",
+    routes: [
         {
-            path: '/',
-            name: 'home',
+            path: "/",
+            name: "home",
             component: Home,
-            
         },
         {
-            path: '/doctor/:slug',
-            name: 'doctor',
+            path: "/doctor/:slug",
+            name: "doctor",
             props: true,
             component: Doctor,
-            
         },
         {
-            path: '/doctor/:slug/message',
-            name: 'message',
+            path: "/doctor/:slug/message",
+            name: "message",
             props: true,
             component: Message,
-            
         },
         {
-            path: '/doctor/:slug/review',
-            name: 'review',
+            path: "/doctor/:slug/review",
+            name: "review",
             props: true,
             component: Review,
-            
         },
         {
-            path: '/provaApi',
-            name: 'ProvaApi',
+            path: "/provaApi",
+            name: "ProvaApi",
             props: true,
             component: ProvaApi,
-            
         },
         {
-            path: '/filter',
-            name: 'filter',
+            path: "/filter",
+            name: "filter",
             query: true,
             component: FilterSpec,
-            
         },
         {
             // se funziona cambierei in dashboard/subscriptions
-            path: '/dashboard/subscriptions',
-            name: 'subscriptions',
+            path: "/dashboard/subscriptions",
+            name: "subscriptions",
             component: Subscriptions,
         },
         {
             // se funziona cambierei in dashboard/subscriptions
-            path: '/dashboard/checkout/:name',
-            name: 'checkout',
+            path: "/dashboard/checkout/:name",
+            name: "checkout",
             params: true,
             component: Checkout,
         },
-        
-    ]
+        {
+            path: "/doctor/:slug/reviews",
+            name: "reviews",
+            props: true,
+            component: Reviews,
+        },
+    ],
 });
 
 const app = new Vue({
-    el: '#app',
-    render: h => h(App),
-    router
+    el: "#app",
+    render: (h) => h(App),
+    router,
 });

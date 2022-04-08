@@ -24,14 +24,26 @@
                     </div>
                     <!-- RECENSIONI DEL DOTTORE -->
                     <div v-if="doctor.reviews">
+                        <hr />
                         <b
                             >Media recensioni:
                             <em>{{ doctor.review_mean }}</em></b
                         >
-                        <hr />
+                        <br />
                         <b
                             >Numero recensioni:
                             <em>{{ doctor.reviews.length }}</em></b
+                        >
+                        <br />
+                        <router-link
+                            class="text-primary text-underline"
+                            :to="{
+                                name: 'reviews',
+                                params: {
+                                    slug: doctor.slug,
+                                },
+                            }"
+                            >Mostra tutte le recensioni</router-link
                         >
                         <!-- <ul>
                             <li

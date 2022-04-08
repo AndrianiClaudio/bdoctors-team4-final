@@ -270,23 +270,8 @@ export default {
                 vote.classList.remove("is-invalid");
             }
 
-            let username = document.getElementById("username");
-            if (!this.username) {
-                this.errors.username = true;
-                username.classList.add("is-invalid");
-            } else {
-                username.classList.remove("is-invalid");
-            }
-
-            let content = document.getElementById("content");
-            if (!this.content) {
-                this.errors.content = true;
-                content.classList.add("is-invalid");
-            } else {
-                content.classList.remove("is-invalid");
-            }
             // se tutto ok submit form
-            if (this.vote && this.username && this.content) {
+            if (this.vote) {
                 //continue submitting
                 e.currentTarget.submit();
             }

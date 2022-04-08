@@ -100,6 +100,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request)
     {
+        //dd($request);
 
         $data = $request->validate([
             'firstname' => ['string', 'max:60'],
@@ -121,6 +122,11 @@ class DoctorController extends Controller
             Storage::delete($user->photo);
             $img_path = Storage::put('uploads/doctors/photo', $data['photo']);
             $data['photo'] = $img_path;
+        }
+        if (!empty($data['cv'])) {
+            Storage::delete($user->cv);
+            $cv_path = Storage::put('uploads/doctors/cv', $data['cv']);
+            $data['cv'] = $cv_path;
         }
 
         // UPLOAD PASSWORD HASH

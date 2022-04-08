@@ -349,6 +349,15 @@
                         {{-- <img src="http://localhost:8000/storage/{{ $doctor->cv }}"
                         alt="Curriculum Vitae non caricato correttamente"> --}}
                     </div>
+                    <div class="mb-3">
+                        <label for="cv" class="form-label fs-4">Inserisci il tuo CV</label>
+                        <input type="file" name="cv" value="">
+                        @error('cv')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="row pb-3">

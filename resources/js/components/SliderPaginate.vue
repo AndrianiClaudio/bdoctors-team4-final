@@ -5,7 +5,7 @@
         <div class="d-flex align-items-center left-arrow">
             <i
                 class="fas fa-chevron-left"
-                @click.prevent="getDoctors(slider.prev_page_url)"
+                @click.prevent="getPremiumDoctors(slider.prev_page_url)"
                 v-if="slider.prev_page_url"
             ></i>
             <i class="fa-solid fa-xmark-large" v-else></i>
@@ -26,14 +26,18 @@
                 v-if="doctor.photo"
             /> -->
             <!-- Static -->
-            <img class="card-img-top img img-fluid mx-auto py-2"
+            <img
+                class="card-img-top img img-fluid mx-auto py-2"
                 src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
                 alt="Immagine profilo del dottore."
                 v-if="doctor.photo"
             />
             <!-- Else -->
-            <img v-else class="card-img-top img img-fluid mx-auto py-2"
-                src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png">
+            <img
+                v-else
+                class="card-img-top img img-fluid mx-auto py-2"
+                src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+            />
             <div class="card-body">
                 <!-- FULLNAME -->
                 <h5 class="card-title">
@@ -106,7 +110,7 @@
         <div class="d-flex align-items-center right-arrow">
             <i
                 class="fas fa-chevron-right"
-                @click.prevent="getDoctors(slider.next_page_url)"
+                @click.prevent="getPremiumDoctors(slider.next_page_url)"
                 v-if="slider.next_page_url"
             ></i>
             <i class="fa-solid fa-xmark-large" v-else></i>
@@ -128,12 +132,13 @@ export default {
         };
     },
     methods: {
-        getDoctors(url) {
+        getPremiumDoctors(url) {
             // <!-- al click su freccia: chiamata api ... aggiorna i medici di slider-->
             axios
                 .get(url)
                 .then((res) => {
                     this.slider.doctors = res.data.results.pagination.data;
+                    // console.log(res.data.results.pagination);
                     this.slider.prev_page_url =
                         res.data.results.pagination.prev_page_url;
                     this.slider.next_page_url =
@@ -143,9 +148,28 @@ export default {
                     console.error(err);
                 });
         },
+
+        // getDoctors(url) {
+        //     // <!-- al click su freccia: chiamata api ... aggiorna i medici di slider-->
+        //     axios
+        //         .get(url)
+        //         .then((res) => {
+        //             this.slider.doctors = res.data.results.pagination.data;
+        //             this.slider.prev_page_url =
+        //                 res.data.results.pagination.prev_page_url;
+        //             this.slider.next_page_url =
+        //                 res.data.results.pagination.next_page_url;
+        //         })
+        //         .catch((err) => {
+        //             console.error(err);
+        //         });
+        // },
     },
     created() {
-        this.getDoctors("http://127.0.0.1:8000/api/doctors/paginate/testCla");
+        this.getPremiumDoctors(
+            "http://127.0.0.1:8000/api/doctors/paginate/premium"
+        );
+        // this.getDoctors("http://127.0.0.1:8000/api/doctors/paginate/testCla");
     },
 };
 </script>

@@ -225,7 +225,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </template>
 
@@ -252,6 +251,7 @@ export default {
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
+                    // otteniamo i dottori premium
                     this.filteredDoctor = res.data.results.doctors;
                     // console.log(this.filteredDoctor);
                     if (this.selectedVote && this.selectedVote !== "all") {
@@ -311,6 +311,84 @@ export default {
                 })
                 .catch((err) => {
                     console.error(err);
+                })
+                .then(() => {
+                    // ottieni dottori non premium
+                    // console.log(this.filteredDoctor);
+                    axios
+                        .post(
+                            `/api/doctors/standard?specialization=${specialization}`
+                        )
+                        .then((res) => {
+                            // otteniamo i dottori premium
+                            this.filteredDoctor = this.filteredDoctor.concat(
+                                res.data.results.doctors
+                            );
+                            console.log(this.filteredDoctor);
+                            if (
+                                this.selectedVote &&
+                                this.selectedVote !== "all"
+                            ) {
+                                this.check_filter = false;
+                                this.doctors = this.filteredDoctor;
+                                // this.filteredDoctor = [];
+                                // console.log(this.doctors);
+                                this.doctors.forEach((doctor) => {
+                                    if (
+                                        doctor.review_mean >=
+                                            parseInt(this.selectedVote) &&
+                                        doctor.review_mean <
+                                            parseInt(this.selectedVote) + 1
+                                    ) {
+                                        this.filteredDoctor.push(doctor);
+                                    }
+                                });
+                                if (this.filteredDoctor.length === 0) {
+                                    this.check_filter = true;
+                                }
+                            }
+
+                            if (this.selectedReviews != "all") {
+                                if (this.selectedReviews === "25") {
+                                    this.filteredDoctor =
+                                        this.filteredDoctor.filter((doctor) => {
+                                            return (
+                                                doctor.reviews.length >
+                                                parseInt(this.selectedReviews)
+                                            );
+                                        });
+                                } else if (this.selectedReviews === "5") {
+                                    //
+                                    this.filteredDoctor =
+                                        this.filteredDoctor.filter((doctor) => {
+                                            return (
+                                                doctor.reviews.length <
+                                                parseInt(this.selectedReviews) +
+                                                    5
+                                            );
+                                        });
+                                } else {
+                                    // VALORI DI MEZZO
+                                    this.filteredDoctor =
+                                        this.filteredDoctor.filter((doctor) => {
+                                            return (
+                                                doctor.reviews.length >=
+                                                    parseInt(
+                                                        this.selectedReviews
+                                                    ) &&
+                                                doctor.reviews.length <=
+                                                    parseInt(
+                                                        this.selectedReviews
+                                                    ) +
+                                                        5
+                                            );
+                                        });
+                                }
+                            }
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                        });
                 });
         },
         getSpecs() {

@@ -23,11 +23,89 @@ class DoctorController extends Controller
         ]);
     }
 
+    public function filterSpecNotPremium(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $doctors = User::orderBy('id', 'desc')->doesntHave('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+
+
+        if (strtolower($data['specialization']) !== "all") {
+            $filtered_doctors = [];
+
+            foreach ($doctors as $doctor) {
+                $doctor_spec = [];
+
+                foreach ($doctor->specializations()->get() as $doct_spec) {
+                    $doctor_spec[] = strtolower($doct_spec->category);
+                }
+
+
+                // dd($doctor_spec, $data['specialization']);
+
+                if (in_array($data['specialization'], $doctor_spec)) {
+                    $filtered_doctors[] = $doctor;
+                }
+
+                if (count($doctor->reviews) > 0) {
+                    $sum = 0;
+                    foreach ($doctor->reviews as $review) {
+                        $sum += $review->vote;
+                    }
+                    $doctor->review_mean = round($sum / count($doctor->reviews), 2);
+                }
+                else {
+                    $doctor->review_mean = null;
+                }
+            }
+            return response()->json([
+                'response' => true,
+                'results' => [
+                    'count' => count($filtered_doctors),
+                    'doctors' => $filtered_doctors
+                ]]);
+        }
+        else {
+            foreach ($doctors as $doctor) {
+                $doctor_spec = [];
+
+                foreach ($doctor->specializations()->get() as $doct_spec) {
+                    $doctor_spec[] = strtolower($doct_spec->category);
+                }
+
+
+                // dd($doctor_spec, $data['specialization']);
+
+                if (in_array($data['specialization'], $doctor_spec)) {
+                    $filtered_doctors[] = $doctor;
+                }
+
+                if (count($doctor->reviews) > 0) {
+                    $sum = 0;
+                    foreach ($doctor->reviews as $review) {
+                        $sum += $review->vote;
+                    }
+                    $doctor->review_mean = round($sum / count($doctor->reviews), 2);
+                }
+                else {
+                    $doctor->review_mean = null;
+                }
+            }
+            return response()->json([
+                'response' => true,
+                'results' => [
+                    'count' => count($doctors),
+                    'doctors' => $doctors
+                ]]);
+        }
+
+
+    }
     public function filterSpec(Request $request)
     {
         $data = $request->all();
         // dd($data);
-        $doctors = User::orderBy('id', 'desc')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+        $doctors = User::orderBy('id', 'desc')->whereHas('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
 
         if (strtolower($data['specialization']) !== "all") {

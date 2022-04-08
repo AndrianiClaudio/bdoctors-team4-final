@@ -1,6 +1,7 @@
 <template>
-    <div class="container" id="chart" v-if="loading">
+    <div class="row" id="chart" v-if="loading">
         <Bar
+            class="col-6"
             :chart-options="chartOptions"
             :chart-data="chartData"
             :chart-id="chartId"
@@ -12,6 +13,7 @@
             :height="height"
         />
         <Bar
+            class="col-6"
             v-if="loadingVote"
             :chart-options="chartOptions"
             :chart-data="chartDataVote"

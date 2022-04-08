@@ -148,7 +148,31 @@
                     <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
                 </div>
                 <div class="service text-black">
+                    @if (count($doctor->subscriptions()->get()) > 0)
+                        <b>
+                            <em class="text-uppercase">
+                                {{ $doctor->subscriptions()->first()->name }}
+                            </em>
+                            <hr>
+                            <em>Scadenza: </em>
+                            {{ Carbon\Carbon::parse($doctor->subscriptions()->first()->expires_date)->format('y-m-d H:i') }}
+                        </b>
+                        <hr>
+                        <em>
+                            <a href="{{ route('subscription.index') }}">Desideri allungare la durata del tuo
+                                abbonamento?</a>
 
+                        </em>
+                    @else
+                        <b>
+                            <em class="text-danger">
+                                Non sei ancora abbonato. Cosa stai aspettando?<a
+                                    href="{{ route('subscription.index') }}">Abbonati</a> per essere in cima alla
+                                ricerca.
+
+                            </em>
+                        </b>
+                    @endif
                 </div>
             </div>
         </div>

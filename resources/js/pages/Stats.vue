@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="chart">
+    <div class="container" id="chart" v-if="loading">
         <Bar
             :chart-options="chartOptions"
             :chart-data="chartData"
@@ -12,6 +12,7 @@
             :height="height"
         />
     </div>
+    <div v-else>Attendi il caricamento delle tue statistiche ...</div>
 </template>
 
 <script>
@@ -71,6 +72,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             tmp: [],
             user_id: null,
             messageCountMonthYear: null,
@@ -96,12 +98,12 @@ export default {
                     {
                         label: "Messaggi",
                         backgroundColor: "#f8A979",
-                        data: [6, 7, 6, 8, 0, 0, 0, 0, 0, 0, 0, 0],
+                        data: [],
                     },
                     {
                         label: "Recensioni",
                         backgroundColor: "#387979",
-                        data: [2, 3, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0],
+                        data: [],
                     },
                 ],
                 // datasets: [{ data: this.messageCountMonthYear }],
@@ -125,15 +127,16 @@ export default {
                             "message--",
                             this.messageCountMonthYear[key]
                         );
-                        this.chartData.datasets[0].data.push(
-                            this.messageCountMonthYear[key]
-                        );
+                        this.tmp.push(this.messageCountMonthYear[key]);
                     }
                 })
                 .catch((err) => {
                     console.error(err);
+                })
+                .then(() => {
+                    this.chartData.datasets[0].data = this.tmp;
+                    console.log(this.chartData.datasets[0].data);
                 });
-            console.log(this.chartData.datasets[0].data);
         },
         getReviewsMonthYear() {
             axios
@@ -143,20 +146,23 @@ export default {
                     this.reviewCountMonthYear = res.data.reviewCountMonth;
                     for (const key in this.reviewCountMonthYear) {
                         console.log("review--", this.reviewCountMonthYear[key]);
-                        this.chartData.datasets[1].data.push(
-                            this.reviewCountMonthYear[key]
-                        );
+                        this.tmp.push(this.reviewCountMonthYear[key]);
                     }
                 })
                 .catch((err) => {
                     console.error(err);
+                })
+                .then(() => {
+                    this.chartData.datasets[1].data = this.tmp;
+                    console.log(this.chartData.datasets[1].data);
+                    this.loading = true;
                 });
         },
         // getVoteMonthYear() {
 
         // }
     },
-    created() {
+    mounted() {
         if (document.getElementById("fulvio")) {
             this.user_id = document.getElementById("fulvio").innerHTML;
             document.getElementById("fulvio").innerHTML = "";
@@ -165,9 +171,9 @@ export default {
         // numero di messaggi e recensioni ricevute per mese/anno
         this.getMessagesMonthYear();
         this.getReviewsMonthYear();
-
         // grafico a barre fasce di voto ricevuti per mese/anno
         // this.getVoteMonthYear();
     },
+    // this.loading = true;
 };
 </script>

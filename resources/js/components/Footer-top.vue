@@ -108,11 +108,12 @@
 
 <style lang="scss" scoped>
     .container-fluid {
-        // background-color: #3c4996;
         .row {
+
             .col {
                 .row {
                     .col {
+
                         p {
                             ul {
                                 li {
@@ -135,13 +136,6 @@
                         ul {
                             li {
                                 span {
-                                    // background-color: #5b6dd4;
-                                    // display: flex;
-                                    // justify-content: center;
-                                    // align-items: center;
-                                    // width: 40px;
-                                    // height: 40px;
-                                    // text-decoration: none;
                                     i {
                                         color: #313131;
                                         font-size: 1.1em;

@@ -73,7 +73,8 @@
                 </div>
                 <div class="preview-message text-black">
                     <ul class="ul-message">
-                        @foreach ($doctor->messages as $message)
+                        @foreach ($doctor->messages()->orderBy('updated_at', 'desc')->limit(2)->get()
+        as $message)
                             <li class="pt-2">
                                 Inviato da: <p class="bold-p">{{ $message->email }}</p>
                                 <p class="message mt-3 text-white ps-1 pe-1">{{ $message->content }}</p>
@@ -82,6 +83,9 @@
                             <hr>
                         @endforeach
                     </ul>
+                    <a href={{ route('messages.index') }}>
+                        Vedi tutti i tuoi messaggi
+                    </a>
                 </div>
             </div>
             <div class="col-4">
@@ -107,18 +111,25 @@
                 </div>
                 <div class="review text-black">
                     <ul class="ul-message">
-                        @foreach ($doctor->reviews as $review)
+                        @foreach ($doctor->reviews()->orderBy('updated_at', 'desc')->limit(2)->get()
+        as $review)
                             <li class="pt-2">
-                                Scritto dall'utente: <p class="bold-p">{{ $review->username }}</p>
+                                Scritto dall'utente: <p class="d-inline bold-p">
+                                    @if ($review->username)
+                                        {{ $review->username }}
+                                    @else
+                                        Utente anonimo
+                                    @endif
+                                </p>
+                                <p>
+                                    @for ($i = 1; $i <= $review->vote; $i++)
+                                        <i class="bi bi-star-fill"></i>
+                                    @endfor
+                                    @for ($i = $review->vote; $i < 5; $i++)
+                                        <i class="bi bi-star"></i>
+                                    @endfor
+                                </p>
                                 @if ($review->content)
-                                    <p>
-                                        @for ($i = 1; $i <= $review->vote; $i++)
-                                            <i class="bi bi-star-fill"></i>
-                                        @endfor
-                                        @for ($i = $review->vote; $i < 5; $i++)
-                                            <i class="bi bi-star"></i>
-                                        @endfor
-                                    </p>
                                     <p class=" message mt-3 text-white ps-1 pe-1">{{ $review->content }}</p>
                                 @else
                                     <p>Questa recensione non ha un testo</p>
@@ -127,6 +138,9 @@
                             </li>
                         @endforeach
                     </ul>
+                    <a href={{ route('reviews.index') }}>
+                        Vedi tutte le tue recensioni
+                    </a>
                 </div>
             </div>
             <div class="col-4">

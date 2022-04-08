@@ -99,10 +99,10 @@
                                 @foreach ($doctor->services as $service)
                                     <div class="service m-3">
                                         <div class="service-title d-flex justify-content-center align-items-center">
-                                            <h5 class="text-uppercase text-white m-0"> {{ $doctor->service }} </h5>
+                                            <h5 class="text-uppercase text-white m-0"> {{ $service->type }} </h5>
                                         </div>
                                         <p class="service-desc px-3 pt-2">
-                                            {{ $doctor->service }}
+                                            {{ $service->description }}
                                         </p>
                                     </div>
                                 @endforeach

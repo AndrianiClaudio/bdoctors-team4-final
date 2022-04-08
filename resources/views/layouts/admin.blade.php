@@ -165,7 +165,7 @@
 
         </div>
 
-        <div class="container-fluid m-3 p-3">
+        <div class="container-fluid m-3 p-0 main-vh-overflow">
             {{-- COSE BLADE --}}
             @yield('content')
             {{-- PER QUI SOTTO --> Checkout.vue --}}

@@ -180,7 +180,7 @@ body {
 }
 .card .title {
     padding: 1rem;
-    color: #3c4996;
+    color: #505DA8;
     font-weight: bold;
     font-size: 20px;
 }
@@ -229,11 +229,11 @@ body {
     background: none;
     font-size: 24px;
 
-    color: #3c4996;
+    color: #505DA8;
     cursor: pointer;
     transition: 0.5s;
     &:hover {
-        color: #58c1f9;
+        color: #3c4996;
     }
 }
 </style>

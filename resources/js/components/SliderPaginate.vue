@@ -28,7 +28,7 @@
             <!-- Static -->
             <img
                 class="card-img-top img img-fluid mx-auto py-2"
-                src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+                :src="`http://localhost:8000/storage/${doctor.photo}`"
                 alt="Immagine profilo del dottore."
                 v-if="doctor.photo"
             />

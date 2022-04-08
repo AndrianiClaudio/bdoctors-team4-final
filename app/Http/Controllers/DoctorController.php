@@ -53,7 +53,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-    //
+        //
     }
 
     /**
@@ -67,8 +67,7 @@ class DoctorController extends Controller
         // dd(Auth::user()->slug);
         if (!Auth::user()->slug) {
             abort('403');
-        }
-        else {
+        } else {
             $doctor = User::where('slug', Auth::user()->slug)->first();
             // OTTENGO SPEC DI DOCTOR
             $doctor->specs = $doctor->specializations()->get();
@@ -122,11 +121,6 @@ class DoctorController extends Controller
             Storage::delete($user->photo);
             $img_path = Storage::put('uploads/doctors/photo', $data['photo']);
             $data['photo'] = $img_path;
-        }
-        if (!empty($data['cv'])) {
-            Storage::delete($user->cv);
-            $cv_path = Storage::put('uploads/doctors/cv', $data['cv']);
-            $data['cv'] = $cv_path;
         }
 
         // UPLOAD PASSWORD HASH

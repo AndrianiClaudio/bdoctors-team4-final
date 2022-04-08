@@ -4,12 +4,11 @@ main {
 
 .side-sizes {
     width: 280px;
-    height: 100vh;
-    min-height: 798px;
+    height: 680px;
 }
 
 .lh-5 {
-    line-height: 5em;
+    line-height: 4em;
 }
 
 .nav-link:hover {
@@ -33,6 +32,12 @@ main {
     height: 100vh;
     background-color: #f6f5f8;
    
+}
+
+.bg-ul {
+    background-color: #4263d0;
+    border-radius: 0px 0px 15px 15px;
+    max-height: 600px;
 }
 
 

@@ -98,7 +98,7 @@
                         {{ Auth::user()->lastname }} </strong>
                 </a>
 
-                <ul class="nav nav-pills flex-column lh-5 fs-side">
+                <ul class="nav flex-column bg-ul lh-5 fs-side">
                     <li class="nav-item">
                         <a href="{{ route('profile.index') }}" class="nav-link text-white" aria-current="page">
                             <i class="fa-solid fa-igloo p-1"></i>

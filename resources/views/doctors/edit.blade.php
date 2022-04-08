@@ -211,7 +211,7 @@
                             @enderror
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
-                            <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
+                            <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
 
                                 @foreach ($specializations as $specialization)
                                     <li class="item-spec">
@@ -249,10 +249,9 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- CURRENT PASSWORD --}}
-                <div class="row">
+                <div class="row m-1200-pass">
                     <div class="col-6">
+                        {{-- CURRENT PASSWORD --}}
                         <div class="mb-3">
                             <label for="old-password" class="form-label text-md-right fs-4">Vecchia Password</label>
 

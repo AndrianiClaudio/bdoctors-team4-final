@@ -1,6 +1,6 @@
 .welcome-sizes {
     width: 100%;
-    height: 250px;
+    height: 230px;
 }
 
 .welcome-bg {
@@ -19,14 +19,14 @@
 }
 
 .profile-sizes {
-    min-height: calc(250px - 60px);
+    min-height: 120px;
     width: 100%;
     background-color: white;
     border-radius: 0px 0px 15px 15px;
 }
 
 .profile-preview {
-    height: 60px;
+    min-height: 60px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -93,7 +93,7 @@
 }
 
 .img-sizes {
-    width: 185px;
+    width: 170px;
 }
 
 .color-phone {
@@ -115,16 +115,6 @@
     margin-bottom: 0.6em;
 }
 
-.message-sizes {
-    height: 60px;
-}
-
-.preview-message {
-    height: 300px;
-    background-color: white;
-    border-radius: 0px 0px 15px 15px;
-
-}
 
 .ul-message {
     list-style-type: none;
@@ -143,14 +133,31 @@
     text-decoration: underline;
 }
 
-.service {
-    height: 300px;
-    background-color: white;
-    border-radius: 0px 0px 15px 15px;
+@media only screen and (max-width: 1440px) {
+
+    .img-sizes {
+        display: none;
+    }
 }
 
-.review {
-    height: 200px;
-    background-color: white;
-    border-radius: 0px 0px 15px 15px;
-}
+
+@media only screen and (max-width: 1200px) {
+    
+    
+    .m-1200 {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .m-w-1200 {
+        width: 100%;
+    }
+    .m-1200-bedge {
+        width: 100%;
+        margin-left: 1em;
+        margin-top: 1em;
+    }
+    .justify-m-1200 {
+        justify-content: center;
+    }
+  }

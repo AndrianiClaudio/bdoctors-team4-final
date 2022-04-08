@@ -19,13 +19,12 @@
                 </a>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-3 d-flex justify-content-center">
-
+            <div class="row mt-5 m-1400-row">
+                <div class="col-3 d-flex justify-content-center m-1400">
                     <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
                         class="rounded-photo" />
                 </div>
-                <div class="col-9 d-flex flex-column justify-content-between">
+                <div class="col-9 d-flex flex-column justify-content-between m-1400">
                     <div class="row">
                         <div class="col">
                             <h1> Dr. {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </h1>
@@ -46,7 +45,7 @@
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row m-900-row">
                         <div class="col">
                             <div class="row">
                                 <div class="col">
@@ -80,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="row ">
+            <div class="row m-d">
                 <div class="col ms-3 mt-5">
                     <div class="row">
                         <div class="col d-flex align-items-center justify-content-between">

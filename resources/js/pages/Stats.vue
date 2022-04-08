@@ -11,6 +11,22 @@
             :width="width"
             :height="height"
         />
+        <Bar
+            v-if="loadingVote"
+            :chart-options="chartOptions"
+            :chart-data="chartDataVote"
+            :chart-id="chartId"
+            :dataset-id-key="datasetIdKey"
+            :plugins="plugins"
+            :css-classes="cssClasses"
+            :styles="styles"
+            :width="width"
+            :height="height"
+        />
+        <div v-else>
+            Attendi il caricamento delle tue statistiche relative ai voti delle
+            recensioni...
+        </div>
     </div>
     <div v-else>Attendi il caricamento delle tue statistiche ...</div>
 </template>
@@ -26,7 +42,7 @@ import {
     CategoryScale,
     LinearScale,
 } from "chart.js";
-import { param } from "jquery";
+// import { param } from "jquery";
 
 ChartJS.register(
     Title,
@@ -73,12 +89,10 @@ export default {
     data() {
         return {
             loading: false,
-            tmp: [],
+            loadingVote: false,
             user_id: null,
-            messageCountMonthYear: null,
-            reviewCountMonthYear: null,
-            // messageCountMonth: [],
-            // voteCountMonth: [],
+
+            // GRAPH
             chartData: {
                 labels: [
                     "Gennaio",
@@ -93,6 +107,7 @@ export default {
                     "Ottobre",
                     "Novembre",
                     "Dicembre",
+                    "Totale",
                 ],
                 datasets: [
                     {
@@ -106,7 +121,50 @@ export default {
                         data: [],
                     },
                 ],
-                // datasets: [{ data: this.messageCountMonthYear }],
+            },
+            chartDataVote: {
+                labels: [
+                    "Gennaio",
+                    "Febbraio",
+                    "Marzo",
+                    "Aprile",
+                    "Maggio",
+                    "Giugno",
+                    "Luglio",
+                    "Agosto",
+                    "Settembre",
+                    "Ottobre",
+                    "Novembre",
+                    "Dicembre",
+                    "Totale",
+                ],
+                datasets: [
+                    {
+                        label: "0-1",
+                        backgroundColor: "#f8A979",
+                        data: [],
+                    },
+                    {
+                        label: "1-2",
+                        backgroundColor: "#387979",
+                        data: [],
+                    },
+                    {
+                        label: "2-3",
+                        backgroundColor: "#f879ef",
+                        data: [],
+                    },
+                    {
+                        label: "3-4",
+                        backgroundColor: "#38cc73",
+                        data: [],
+                    },
+                    {
+                        label: "4-5",
+                        backgroundColor: "#38dddd",
+                        data: [],
+                    },
+                ],
             },
             chartOptions: {
                 responsive: true,
@@ -116,64 +174,63 @@ export default {
 
     methods: {
         getMessagesMonthYear() {
-            // console.log(this.chartData.datasets[0].data);
             axios
                 .get(`/api/message/my?user_id=${this.user_id}`)
                 .then((res) => {
-                    this.tmp = [];
-                    this.messageCountMonthYear = res.data.messageCountMonth;
-                    for (const key in this.messageCountMonthYear) {
-                        console.log(
-                            "message--",
-                            this.messageCountMonthYear[key]
-                        );
-                        this.tmp.push(this.messageCountMonthYear[key]);
-                    }
+                    this.chartData.datasets[0].data =
+                        res.data.messageCountMonth;
+                    this.chartData.datasets[0].data.push(res.data.count);
                 })
                 .catch((err) => {
                     console.error(err);
                 })
                 .then(() => {
-                    this.chartData.datasets[0].data = this.tmp;
-                    console.log(this.chartData.datasets[0].data);
+                    this.getReviewsMonthYear();
                 });
         },
         getReviewsMonthYear() {
             axios
                 .get(`/api/review/my?user_id=${this.user_id}`)
                 .then((res) => {
-                    this.tmp = [];
-                    this.reviewCountMonthYear = res.data.reviewCountMonth;
-                    for (const key in this.reviewCountMonthYear) {
-                        console.log("review--", this.reviewCountMonthYear[key]);
-                        this.tmp.push(this.reviewCountMonthYear[key]);
-                    }
+                    this.chartData.datasets[1].data = res.data.reviewCountMonth;
+                    this.chartData.datasets[1].data.push(res.data.count);
                 })
                 .catch((err) => {
                     console.error(err);
                 })
                 .then(() => {
-                    this.chartData.datasets[1].data = this.tmp;
-                    console.log(this.chartData.datasets[1].data);
                     this.loading = true;
                 });
         },
-        // getVoteMonthYear() {
-
-        // }
+        getVoteMonthYear() {
+            for (let vote = 1; vote <= 5; vote++) {
+                axios
+                    .get(
+                        `/api/review/vote/my?user_id=${this.user_id}&vote=${vote}`
+                    )
+                    .then((res) => {
+                        this.chartDataVote.datasets[vote - 1].data =
+                            res.data.reviewCountMonth;
+                        this.chartDataVote.datasets[vote - 1].data.push(
+                            res.data.count
+                        );
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    })
+                    .then(() => {
+                        this.loadingVote = true;
+                    });
+            }
+        },
     },
     mounted() {
         if (document.getElementById("fulvio")) {
             this.user_id = document.getElementById("fulvio").innerHTML;
             document.getElementById("fulvio").innerHTML = "";
         }
-        // console.log(this.user_id);
-        // numero di messaggi e recensioni ricevute per mese/anno
         this.getMessagesMonthYear();
-        this.getReviewsMonthYear();
-        // grafico a barre fasce di voto ricevuti per mese/anno
-        // this.getVoteMonthYear();
+        this.getVoteMonthYear();
     },
-    // this.loading = true;
 };
 </script>

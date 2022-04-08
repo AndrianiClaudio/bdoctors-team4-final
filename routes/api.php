@@ -21,6 +21,7 @@ Route::middleware('api')->namespace('Api')
 
         Route::get('message/my', 'MessageController@MonthYear');
         Route::get('review/my', 'ReviewController@MonthYear');
+        Route::get('review/vote/my', 'ReviewController@VoteMonthYear');
 
         Route::get('specializations', 'SpecializationController@index');
 

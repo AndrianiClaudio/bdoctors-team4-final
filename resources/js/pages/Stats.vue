@@ -114,12 +114,12 @@ export default {
                 datasets: [
                     {
                         label: "Messaggi",
-                        backgroundColor: "#f8A979",
+                        backgroundColor: "#4263d0",
                         data: [],
                     },
                     {
                         label: "Recensioni",
-                        backgroundColor: "#387979",
+                        backgroundColor: "#294193",
                         data: [],
                     },
                 ],
@@ -143,27 +143,27 @@ export default {
                 datasets: [
                     {
                         label: "0-1",
-                        backgroundColor: "#f8A979",
+                        backgroundColor: "#4263D0",
                         data: [],
                     },
                     {
                         label: "1-2",
-                        backgroundColor: "#387979",
+                        backgroundColor: "#7160C9",
                         data: [],
                     },
                     {
                         label: "2-3",
-                        backgroundColor: "#f879ef",
+                        backgroundColor: "#8F5EBF",
                         data: [],
                     },
                     {
                         label: "3-4",
-                        backgroundColor: "#38cc73",
+                        backgroundColor: "#A65DB5",
                         data: [],
                     },
                     {
                         label: "4-5",
-                        backgroundColor: "#38dddd",
+                        backgroundColor: "#B75EAA",
                         data: [],
                     },
                 ],

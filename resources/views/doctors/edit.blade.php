@@ -229,6 +229,8 @@
                         @endif
                     </div>
                 </div>
+
+                {{-- EMAIL --}}
                 <div class="row">
                     <div class="col-12">
                         <input type="password" class="d-none" name="" id="">
@@ -248,9 +250,10 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- CURRENT PASSWORD --}}
                 <div class="row">
                     <div class="col-6">
-                        {{-- CURRENT PASSWORD --}}
                         <div class="mb-3">
                             <label for="old-password" class="form-label text-md-right fs-4">Vecchia Password</label>
 
@@ -268,8 +271,8 @@
                             </span> --}}
                         </div>
                     </div>
+                    {{-- NEW PASSWORD --}}
                     <div class="col-3">
-                        {{-- NEW PASSWORD --}}
                         <div class="mb-3">
                             <label for="password" class="form-label text-md-right fs-4">Nuova Password</label>
 
@@ -317,15 +320,34 @@
                     </div>
                 </div>
                 <div class="row">
-                    <col class="col-12">
-                    <div class="mb-3">
-                        <label for="photo" class="form-label fs-4">Inserisci la tua foto</label>
-                        <input type="file" name="photo" value="">
-                        @error('photo')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="photo" class="form-label fs-4">Inserisci la tua foto</label>
+                            <input type="file" name="photo" value="">
+                            @error('photo')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="cv" class="form-label fs-4">Inserisci il tuo cv</label>
+                            <input type="file" name="cv" value="">
+                            @error('cv')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <embed src="http://localhost:8000/storage/{{ $doctor->cv }}" width="200px" height="200px" />
+                        {{-- <img src="http://localhost:8000/storage/{{ $doctor->cv }}"
+                        alt="Curriculum Vitae non caricato correttamente"> --}}
                     </div>
                 </div>
             </div>
@@ -358,17 +380,17 @@
             @endif
             <!-- ? cosa essere questa copia? -->
             <!-- <div class="mb-3">
-                                                                                                                            <label for="address" class="form-label fs-4">Indirizzo</label>
-                                                                                                                            <input type="address" class="form-control" id="address" name="address"
-                                                                                                                                value="{{ old('address', $doctor->address) }}">
-                                                                                                                            @error('address')
+                                                                                                                                                                                                                            <label for="address" class="form-label fs-4">Indirizzo</label>
+                                                                                                                                                                                                                            <input type="address" class="form-control" id="address" name="address"
+                                                                                                                                                                                                                                value="{{ old('address', $doctor->address) }}">
+                                                                                                                                                                                                                            @error('address')
         <div class="alert alert-danger">
-                                                                                                                                                                                                                                    {{ $message }}
-                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    {{ $message }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
     @enderror
-                                                                                                                            <span id="address_validate" class="invalid-feedback" role="alert">
-                                                                                                                                <strong>Compila questo campo </strong>
-                                                                                                                            </span>
-                                                                                                                        </div> -->
+                                                                                                                                                                                                                            <span id="address_validate" class="invalid-feedback" role="alert">
+                                                                                                                                                                                                                                <strong>Compila questo campo </strong>
+                                                                                                                                                                                                                            </span>
+                                                                                                                                                                                                                        </div> -->
         </div>
     @endsection

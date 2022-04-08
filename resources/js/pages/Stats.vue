@@ -1,7 +1,7 @@
 <template>
     <Bar
         :chart-options="chartOptions"
-        :chart-data="chartData"
+        :chart-data="chartMessageData"
         :chart-id="chartId"
         :dataset-id-key="datasetIdKey"
         :plugins="plugins"
@@ -71,10 +71,10 @@ export default {
         return {
             user_id: null,
             messageCountMonthYear: null,
-            messageCountMonth: [],
+            // messageCountMonth: [],
             // reviewCountMonth: [],
             // voteCountMonth: [],
-            chartData: {
+            chartMessageData: {
                 labels: [
                     "Gennaio",
                     "Febbraio",
@@ -89,7 +89,8 @@ export default {
                     "Novembre",
                     "Dicembre",
                 ],
-                datasets: [{ data: [1, 1, 1, 12, 0, 0, 0, 0, 0, 0, 0, 0] }],
+                datasets: [{ data: [] }],
+                // datasets: [{ data: this.messageCountMonthYear }],
             },
             chartOptions: {
                 responsive: true,
@@ -99,15 +100,11 @@ export default {
 
     methods: {
         getMessagesMonthYear() {
+            console.log(this.chartMessageData.datasets[0].data);
             axios
                 .get(`/api/message/my?user_id=${this.user_id}`)
                 .then((res) => {
-                    // console.log(res.data.messageCountMonth);
                     this.messageCountMonthYear = res.data.messageCountMonth;
-                    // this.subscriptions = res.data.results.subscriptions;
-                    //console.log(this.subscriptions);
-                    // console.log(this.messageCountMonthYear);
-                    // this.txt;
                     for (const key in this.messageCountMonthYear) {
                         if (
                             Object.hasOwnProperty.call(
@@ -115,12 +112,12 @@ export default {
                                 key
                             )
                         ) {
-                            this.messageCountMonth.push(
+                            this.chartMessageData.datasets[0].data.push(
                                 this.messageCountMonthYear[key]
                             );
                         }
                     }
-                    console.log(this.messageCountMonth);
+                    // console.log(this.messageCountMonth);
                 })
                 .catch((err) => {
                     console.error(err);

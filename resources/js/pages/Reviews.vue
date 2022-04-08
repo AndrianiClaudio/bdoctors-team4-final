@@ -14,7 +14,7 @@
                         <i class="bi bi-star-fill"></i>
                     </span>
                     <span
-                        v-for="(star, index) in review.vote"
+                        v-for="(star, index) in 5 - review.vote"
                         :key="`star-${index}`"
                     >
                         <i class="bi bi-star"></i>

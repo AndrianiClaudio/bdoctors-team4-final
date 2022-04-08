@@ -10,17 +10,20 @@
 @section('content')
     <div class="container-show ms-3 me-3">
         @if (Auth::user()->id)
-        
+
             <div class="show-title d-flex align-items-center justify-content-between">
                 <h4 class="text-uppercase text-white mb-0 ms-3">Il tuo profilo</h4>
-                <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
+                    href="{{ route('profile.edit', Auth::user()->slug) }}">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
             </div>
 
             <div class="row mt-5">
                 <div class="col-3 d-flex justify-content-center">
-                    <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" class="rounded-photo" alt="">
+
+                    <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
+                        class="rounded-photo" />
                 </div>
                 <div class="col-9 d-flex flex-column justify-content-between">
                     <div class="row">
@@ -32,9 +35,10 @@
                         <div class="col">
                             <h3 class="text-uppercase text-secondary">
                                 @if (count($doctor->specs) > 0)
-                                @foreach ($doctor->specs as $spec)
-                                        <a class="text-reset" href="{{ route('specializations.show', $spec->id) }}">{{ $spec->category }}{{ !($loop->last) ? ',' : '' }}</a>
-                                @endforeach
+                                    @foreach ($doctor->specs as $spec)
+                                        <a class="text-reset"
+                                            href="{{ route('specializations.show', $spec->id) }}">{{ $spec->category }}{{ !$loop->last ? ',' : '' }}</a>
+                                    @endforeach
                                 @else
                                     <a href="{{ route('profile.edit') }}">Inserisci una specializzazione</a>
                                 @endif
@@ -81,7 +85,8 @@
                     <div class="row">
                         <div class="col d-flex align-items-center justify-content-between">
                             <h2 class="text-uppercase fw-bold ms-3">Prestazioni in evidenza</h2>
-                            <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 mb-3" href="{{ route('profile.edit', Auth::user()->slug) }}">
+                            <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 mb-3"
+                                href="{{ route('profile.edit', Auth::user()->slug) }}">
                                 <i class="fa-solid fa-plus"></i>
                             </a>
                         </div>
@@ -92,14 +97,14 @@
 
                             @if (count($doctor->services) > 0)
                                 @foreach ($doctor->services as $service)
-                                <div class="service m-3">
-                                    <div class="service-title d-flex justify-content-center align-items-center">
-                                        <h5 class="text-uppercase text-white m-0"> {{$doctor->service}} </h5>
+                                    <div class="service m-3">
+                                        <div class="service-title d-flex justify-content-center align-items-center">
+                                            <h5 class="text-uppercase text-white m-0"> {{ $doctor->service }} </h5>
+                                        </div>
+                                        <p class="service-desc px-3 pt-2">
+                                            {{ $doctor->service }}
+                                        </p>
                                     </div>
-                                    <p class="service-desc px-3 pt-2">
-                                        {{$doctor->service}}
-                                    </p>
-                                </div>
                                 @endforeach
                             @else
                                 <a class="ms-3" href="{{ route('profile.edit') }}">Inserisci un servizio</a>
@@ -107,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                        
+
                 <div class="col me-3  d-flex justify-content-center align-items-end mt-5">
                     <div class="container-cv">
                         <div class="content-cv">

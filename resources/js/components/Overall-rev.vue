@@ -8,11 +8,19 @@
                     :key="rew.id"
                     class="col d-flex justify-content-center m-0 p-0"
                 >
-                    <div class="card-rev d-flex flex-column justify-content-around p-3">
-                        <div class="rev-top d-flex align-items-center justify-content-start">
+                    <div
+                        class="card-rev d-flex flex-column justify-content-around p-3"
+                    >
+                        <div
+                            class="rev-top d-flex align-items-center justify-content-start"
+                        >
                             <strong class="me-2">{{ rew.username }}:</strong>
                             <span class="stars">
-                                <i v-for="(i, index) in 5" :key="index" class="fa-solid fa-star"></i>
+                                <i
+                                    v-for="(i, index) in 5"
+                                    :key="index"
+                                    class="fa-solid fa-star"
+                                ></i>
                             </span>
                         </div>
                         <div class="content-rev">
@@ -40,7 +48,7 @@ export default {
                 .then((result) => {
                     // console.log(result.data.rand_reviews);
                     this.rand_reviews = result.data.rand_reviews;
-                    console.log(this.rand_reviews);
+                    // console.log(this.rand_reviews);
                 })
                 .catch((err) => {});
         },

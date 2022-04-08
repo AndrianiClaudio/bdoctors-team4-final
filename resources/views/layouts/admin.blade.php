@@ -134,8 +134,10 @@
                     <a href="#"
                         class="d-flex align-items-center text-white link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="32"
-                            height="32" class="rounded-circle me-2">
+
+                        <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
+                            alt="" width="32" height="32" class="rounded-circle me-2">
+
                         <strong class="text-white text-capitalize"> Dr. {{ Auth::user()->firstname }}
                             {{ Auth::user()->lastname }} </strong>
                     </a>

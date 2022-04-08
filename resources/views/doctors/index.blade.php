@@ -38,10 +38,11 @@
                 </div>
                 <div class="profile-sizes d-flex">
                     <div class="profile-picture-preview mt-3 ms-3">
-                        <img src="http://localhost:8000/storage/{{ Auth::user()->photo }}" alt="" width="100%"
-                            height="100%" class="rounded-circle me-2">
+
+                        <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
+                            alt="" width="100%" height="100%" class="rounded-circle me-2" />
                     </div>
-                    <div class="text-black ms-2 mt-4 text-capitalize">
+                    <div class="  text-black ms-2 mt-4 text-capitalize">
                         <h6 class="bold-prev">Dr. {{ $doctor->firstname }} {{ $doctor->lastname }}</h6>
                         <ul class="ul-spec mb-1 p-0">
                             @foreach ($doctor->specializations as $spec)
@@ -56,10 +57,11 @@
                             {{ $doctor->address }}</p>
                         <hr class="mb-hr">
                         @if ($doctor->phone)
-                            <p class="text-black mb-1"><i class="fa-solid fa-mobile color-phone"></i> {{ $doctor->phone }}
+                            <p class="text-black mb-1"><i class="fa-solid fa-mobile color-phone"></i>
+                                {{ $doctor->phone }}
                             </p>
                         @endif
-                        <p><i class="fa-solid fa-envelope email"></i> {{ $doctor->email }}</p>
+                        <p><i class="     fa-solid fa-envelope email"></i> {{ $doctor->email }}</p>
                     </div>
                 </div>
             </div>
@@ -132,7 +134,7 @@
                     <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
                 </div>
                 <div class="service text-black">
-                    
+
                 </div>
             </div>
         </div>

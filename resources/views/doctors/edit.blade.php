@@ -344,7 +344,13 @@
                                 </div>
                             @enderror
                         </div>
-                        <embed src="http://localhost:8000/storage/{{ $doctor->cv }}" width="200px" height="200px" />
+                        @if ($doctor->cv)
+                            <embed src="http://localhost:8000/storage/{{ $doctor->cv }}" width="200px" height="200px" />
+                        @else
+                            <b class="text-danger"><em>Non hai ancora caricato il tuo CV. Inseriscilo al piu
+                                    presto!</em></b>
+                        @endif
+
                         {{-- <img src="http://localhost:8000/storage/{{ $doctor->cv }}"
                         alt="Curriculum Vitae non caricato correttamente"> --}}
                     </div>

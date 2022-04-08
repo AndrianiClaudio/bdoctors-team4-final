@@ -25,7 +25,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'address' => 'via dell\'admin, 23',
             'phone' => '3339876543',
-            'photo' => null,
         ]);
 
         for ($i = 0; $i < 15; $i++) {
@@ -46,8 +45,6 @@ class UserSeeder extends Seeder
                 'address' => $faker->address(),
                 // NULLABLE
                 'phone' => $faker->phoneNumber(),
-                'photo' => '',
-                'cv' => '',
             ]
             );
         }

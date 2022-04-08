@@ -19,13 +19,6 @@
             style="width: 25rem"
         >
             <!-- IMAGE -->
-            <!-- Dynamic (Upload profile pics FIRST) -->
-            <!-- <img class="card-img-top img img-fluid mx-auto py-2"
-                :src="`http://localhost:8000/storage/${doctor.photo}`"
-                alt="Immagine profilo del dottore."
-                v-if="doctor.photo"
-            /> -->
-            <!-- Static -->
             <img
                 class="card-img-top img img-fluid mx-auto py-2"
                 :src="`http://localhost:8000/storage/${doctor.photo}`"

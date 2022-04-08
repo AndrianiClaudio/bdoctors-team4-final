@@ -109,18 +109,18 @@
                                     <div
                                         class="col m-0 p-0 d-flex justify-content-center"
                                     >   
-                                        <!-- Da togliere Il v-if quando si riempie il database -->
+                                        <!-- Se c'e' doctor.photo -->
                                         <img
-                                            v-if="doctor.id == 18 || doctor.id == 19"
+                                            v-if="doctor.photo"
                                             class="rounded-circle"
                                             :src="`http://localhost:8000/storage/${doctor.photo}`"
-                                            alt=""
+                                            alt="Immagine profilo del dottore."
                                         />
-                                        <!-- Da togliere quando si riempie il database -->
+                                        <!-- Else -->
                                         <img
                                             v-else
                                             class="rounded-circle"
-                                            :src="doctor.photo"
+                                            src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
                                             alt="">
                                     </div>
                                     <div

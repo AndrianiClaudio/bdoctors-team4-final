@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\User;
-use App\Model\Review;
+use App\Model\Message;
 
 class MessageController extends Controller
 {
     public function MonthYear(Request $request)
     {
-        $auth_reviews = Review::orderBy('created_at')->where('user_id', $request['user_id'])->get();
+        $auth_messages = Message::orderBy('created_at')->where('user_id', $request['user_id'])->get();
         // dd($auth_reviews);
         $num1 = 0;
         $num2 = 0;
@@ -26,8 +25,8 @@ class MessageController extends Controller
         $num11 = 0;
         $num12 = 0;
         // dd(count($auth_reviews));
-        foreach ($auth_reviews as $rev) {
-            $month = $rev->created_at->format('m');
+        foreach ($auth_messages as $msg) {
+            $month = $msg->created_at->format('m');
             // dd($month);
             switch ($month) {
                 case "01":

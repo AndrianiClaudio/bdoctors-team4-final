@@ -70,12 +70,26 @@ export default {
     data() {
         return {
             user_id: null,
-            messageCountMonth: null,
+            messageCountMonthYear: null,
+            messageCountMonth: [],
             // reviewCountMonth: [],
             // voteCountMonth: [],
             chartData: {
-                labels: ["January", "February", "March"],
-                datasets: [{ data: [40, 20, 12] }],
+                labels: [
+                    "Gennaio",
+                    "Febbraio",
+                    "Marzo",
+                    "Aprile",
+                    "Maggio",
+                    "Giugno",
+                    "Luglio",
+                    "Agosto",
+                    "Settembre",
+                    "Ottobre",
+                    "Novembre",
+                    "Dicembre",
+                ],
+                datasets: [{ data: [1, 1, 1, 12, 0, 0, 0, 0, 0, 0, 0, 0] }],
             },
             chartOptions: {
                 responsive: true,
@@ -88,10 +102,25 @@ export default {
             axios
                 .get(`/api/message/my?user_id=${this.user_id}`)
                 .then((res) => {
-                    console.log(res.data.messageCountMonth);
-                    this.messageCountMonth = res.data.messageCountMonth;
+                    // console.log(res.data.messageCountMonth);
+                    this.messageCountMonthYear = res.data.messageCountMonth;
                     // this.subscriptions = res.data.results.subscriptions;
                     //console.log(this.subscriptions);
+                    // console.log(this.messageCountMonthYear);
+                    // this.txt;
+                    for (const key in this.messageCountMonthYear) {
+                        if (
+                            Object.hasOwnProperty.call(
+                                this.messageCountMonthYear,
+                                key
+                            )
+                        ) {
+                            this.messageCountMonth.push(
+                                this.messageCountMonthYear[key]
+                            );
+                        }
+                    }
+                    console.log(this.messageCountMonth);
                 })
                 .catch((err) => {
                     console.error(err);

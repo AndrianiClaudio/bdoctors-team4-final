@@ -206,6 +206,10 @@
                                                         name: 'doctor',
                                                         params: {
                                                             slug: doctor.slug,
+                                                            specialization:
+                                                                selectedSpec,
+                                                            vote: selectedVote,
+                                                            review: selectedReviews,
                                                         },
                                                     }"
                                                     v-if="doctor.slug"
@@ -332,7 +336,7 @@ export default {
         //     this.$route.params.selectedVote = "all";
         //     this.$route.params.selectedReview = "all";
         // }
-        console.log(this.$route.params);
+        // console.log(this.$route.params);
         if (this.$route.params.specialization) {
             this.selectedSpec = this.$route.params.specialization;
         }

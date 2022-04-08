@@ -45,20 +45,6 @@
                             }"
                             >Mostra tutte le recensioni</router-link
                         >
-                        <!-- <ul>
-                            <li
-                                v-for="(review, index) in doctor.reviews"
-                                :key="`review-${index}`"
-                            >
-                                <div v-if="review.username">
-                                    <b> {{ review.username }}</b>
-                                </div>
-                                <div v-else>
-                                    <b> Utente anonimo</b>
-                                </div>
-                                <b>Voto: </b>{{ review.vote }}
-                            </li>
-                        </ul> -->
                     </div>
                     <!-- SPECIALIZZAZIONI -->
                     <hr />
@@ -97,6 +83,19 @@
                 <router-link class="btn btn-info" :to="{ name: 'home' }"
                     >Back to Home</router-link
                 >
+                <router-link
+                    v-if="fromFilter"
+                    class="text-primary text-underline"
+                    :to="{
+                        name: 'filter',
+                        params: {
+                            specialization: this.$route.params.specialization,
+                            vote: this.$route.params.vote,
+                            review: this.$route.params.review,
+                        },
+                    }"
+                    >Torna alla ricerca</router-link
+                >
             </div>
         </div>
     </div>
@@ -114,9 +113,23 @@ export default {
     data() {
         return {
             doctor: [],
+            fromFilter: false,
         };
     },
     created() {
+        // console.log(this.$route.params);
+        if (this.$route.params.specialization) {
+            this.selectedSpec = this.$route.params.specialization;
+            this.fromFilter = true;
+        }
+        if (this.$route.params.vote) {
+            this.selectedVote = this.$route.params.vote;
+            this.fromFilter = true;
+        }
+        if (this.$route.params.review) {
+            this.selectedReviews = this.$route.params.review;
+            this.fromFilter = true;
+        }
         const url = "http://127.0.0.1:8000/api/doctors/" + this.slug;
         this.getProduct(url);
     },

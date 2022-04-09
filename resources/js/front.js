@@ -14,7 +14,7 @@ import Home from "./pages/Home.vue";
 import Doctor from "./pages/Doctor.vue";
 import Message from "./pages/Message.vue";
 import Review from "./pages/Review.vue";
-import ProvaApi from "./pages/ProvaApi.vue";
+// import ProvaApi from "./pages/ProvaApi.vue";
 import FilterSpec from "./pages/Filter.vue";
 import Checkout from "./pages/Checkout.vue";
 // import Navbar from './components/Navbar.vue';
@@ -58,12 +58,12 @@ const router = new VueRouter({
             props: true,
             component: Review,
         },
-        {
-            path: "/provaApi",
-            name: "ProvaApi",
-            props: true,
-            component: ProvaApi,
-        },
+        // {
+        // path: "/provaApi",
+        // name: "ProvaApi",
+        // props: true,
+        // component: ProvaApi,
+        // },
         {
             path: "/filter",
             name: "filter",

@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
+        <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
+    </div>
+    <div v-else>
         <v-braintree
             :authorization="token"
             :locale="locale"
@@ -22,6 +25,7 @@ export default {
     name: "Payment",
     data() {
         return {
+            loading: true,
             token: "sandbox_kt669qdh_xd36hj6xjdq9bphf",
             locale: "it_IT",
             amount: null,
@@ -35,19 +39,10 @@ export default {
         },
     },
     created() {
-        // console.log(this.authorization);
         this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
         document.querySelector("#fulvio").remove();
-        // this.getExpiresDate();
     },
     methods: {
-        // getExpiresDate() {
-        //     axios
-        //         .post(`/api/subscriptions/expires?user_id=${this.user_id}`)
-        //         .then((res) => {
-        //             this.expires = res.data.expires;
-        //         });
-        // },
         onSuccess(payload) {
             let nonce = payload.nonce;
             // Do something great with the nonce...
@@ -58,22 +53,29 @@ export default {
                 )
                 .then((res) => {
                     this.amount = res.data.amount;
-                    // this.getExpiresDate();
-                    // console.log(this.expires);
                 })
                 .catch((err) => {
                     console.error(err);
                 })
                 .then(() => {
                     // Conferma pagamento
-                    axios.post(
-                        `
-                http://localhost:8000/api/subscription/payment/make?token=${nonce}&amount=${this.amount}&user_id=${this.user_id}`
-                    );
+                    this.loading = false;
+                    axios
+                        .post(
+                            `http://localhost:8000/api/subscription/payment/make?token=${nonce}&amount=${this.amount}&user_id=${this.user_id}`
+                        )
+                        .catch((err) => {
+                            console.error(err);
+                        })
+                        .then(() => {
+                            this.$router.push({
+                                name: "subscriptions",
+                            });
+                        });
                 });
         },
         onError(error) {
-            let message = error.message;
+            console.error(error);
             // Whoops, an error has occured while trying to get the nonce
             // console.log(message);
         },

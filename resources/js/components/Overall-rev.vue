@@ -50,7 +50,9 @@ export default {
                     this.rand_reviews = result.data.rand_reviews;
                     // console.log(this.rand_reviews);
                 })
-                .catch((err) => {});
+                .catch((err) => {
+                    console.error(err);
+                });
         },
     },
     created() {

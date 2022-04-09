@@ -129,6 +129,7 @@ export default {
     props: ["slug"],
     data() {
         return {
+            loading: false,
             doctor: [],
             // v-model
             errors: {
@@ -156,10 +157,19 @@ export default {
     },
     methods: {
         getProduct(url) {
-            axios.get(url).then((res) => {
-                // console.log(res.data.doctors);
-                this.doctor = res.data.results.doctors;
-            });
+            this.loading = false;
+            axios
+                .get(url)
+                .then((res) => {
+                    // console.log(res.data.doctors);
+                    this.doctor = res.data.results.doctors;
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+                .then(() => {
+                    this.loading = true;
+                });
         },
         checkForm(e) {
             e.preventDefault();

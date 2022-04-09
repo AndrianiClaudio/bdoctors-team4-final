@@ -25,9 +25,13 @@
                             id=""
                             v-model="filterSelected"
                         >
-                            <option value="all" selected>
+                            <option value="all" selected v-if="loading">
                                 <!-- Seleziona una specializzazione -->
                                 Ricerca dottori per specializzazione
+                            </option>
+                            <option value="all" selected v-else>
+                                <!-- Seleziona una specializzazione -->
+                                Caricamento in corso...
                             </option>
                             <option
                                 v-for="spec in specs"
@@ -55,6 +59,7 @@ export default {
     name: "Jumbo-top",
     data() {
         return {
+            loading: false,
             specs: {
                 Type: Array,
             },
@@ -73,14 +78,13 @@ export default {
                 })
                 .catch((err) => {
                     console.error(err);
+                })
+                .then(() => {
+                    this.loading = true;
                 });
         },
         filter(specialization) {
-            // if (specialization !== "all") {
-            specialization = specialization
-                // .split(" ")
-                // .join("_")
-                .toLowerCase();
+            specialization = specialization.toLowerCase();
             this.$router.push({
                 name: "filter",
                 params: { specialization: specialization },

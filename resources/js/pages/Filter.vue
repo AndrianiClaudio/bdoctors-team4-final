@@ -1,5 +1,8 @@
 <template>
-    <div class="container-fluid m-0 p-0">
+    <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
+        <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
+    </div>
+    <div v-else class="container-fluid m-0 p-0">
         <!-- <Navbar /> -->
         <div class="row page m-0 p-0">
             <div class="col-2 m-0 p-0">
@@ -237,6 +240,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             selectedSpec: "all",
             selectedVote: "all",
             selectedReviews: "all",
@@ -248,6 +252,7 @@ export default {
     },
     methods: {
         getFilterDoctors(specialization) {
+            this.loading = false;
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
@@ -385,6 +390,9 @@ export default {
                         })
                         .catch((err) => {
                             console.error(err);
+                        })
+                        .then(() => {
+                            this.loading = true;
                         });
                 });
         },

@@ -1,5 +1,8 @@
 <template>
-    <div class="container-fluid justify-content-center text-center">
+    <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
+        <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
+    </div>
+    <div v-else class="container-fluid justify-content-center text-center">
         <!-- {{ doctor.reviews }} -->
         <ul v-if="doctor">
             <li v-for="review in doctor.reviews" :key="review.id">
@@ -33,6 +36,7 @@ export default {
     props: ["slug"],
     data() {
         return {
+            loading: false,
             doctor: [],
         };
     },
@@ -42,9 +46,18 @@ export default {
     },
     methods: {
         getProduct(url) {
-            axios.get(url).then((result) => {
-                this.doctor = result.data.results.doctors;
-            });
+            this.loading = false;
+            axios
+                .get(url)
+                .then((result) => {
+                    this.doctor = result.data.results.doctors;
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
+                .then(() => {
+                    this.loading = true;
+                });
         },
     },
 };

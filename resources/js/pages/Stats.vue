@@ -1,5 +1,5 @@
 <template>
-    <div class="row" id="chart" v-if="loading">
+    <div id="graph-stats" class="row" v-if="loading && maxi_media_query">
         <Bar
             class="col-6"
             :chart-options="chartOptions"
@@ -25,12 +25,42 @@
             :width="width"
             :height="height"
         />
-        <div v-else>
-            Attendi il caricamento delle tue statistiche relative ai voti delle
-            recensioni...
-        </div>
     </div>
-    <div v-else>Attendi il caricamento delle tue statistiche ...</div>
+    <div
+        id="graph-stats"
+        class="d-flex flex-column"
+        v-else-if="loading && !maxi_media_query"
+    >
+        <Bar
+            class="col-6"
+            :chart-options="chartOptions"
+            :chart-data="chartData"
+            :chart-id="chartId"
+            :dataset-id-key="datasetIdKey"
+            :plugins="plugins"
+            :css-classes="cssClasses"
+            :styles="styles"
+            :width="width"
+            :height="height"
+        />
+        <Bar
+            class="col-6"
+            v-if="loadingVote"
+            :chart-options="chartOptions"
+            :chart-data="chartDataVote"
+            :chart-id="chartId"
+            :dataset-id-key="datasetIdKey"
+            :plugins="plugins"
+            :css-classes="cssClasses"
+            :styles="styles"
+            :width="width"
+            :height="height"
+        />
+    </div>
+    <div v-else>
+        Attendi il caricamento delle tue statistiche relative ai voti delle
+        recensioni...
+    </div>
 </template>
 
 <script>
@@ -90,6 +120,7 @@ export default {
     },
     data() {
         return {
+            maxi_media_query: null,
             loading: false,
             loadingVote: false,
             user_id: null,
@@ -176,6 +207,7 @@ export default {
 
     methods: {
         getMessagesMonthYear() {
+            this.loading = false;
             axios
                 .get(`/api/message/my?user_id=${this.user_id}`)
                 .then((res) => {
@@ -205,6 +237,7 @@ export default {
                 });
         },
         getVoteMonthYear() {
+            this.loadingVote = false;
             for (let vote = 1; vote <= 5; vote++) {
                 axios
                     .get(
@@ -225,6 +258,22 @@ export default {
                     });
             }
         },
+
+        mediaQueryCheck(scr) {
+            if (scr.matches) {
+                // If media query matches
+                this.maxi_media_query = false;
+            } else {
+                this.maxi_media_query = true;
+            }
+        },
+    },
+    created() {
+        let screen = window.matchMedia("(max-width: 750px)");
+        this.mediaQueryCheck(screen); // Call listener function at run time
+        screen.addEventListener("change", () => {
+            this.mediaQueryCheck(screen);
+        });
     },
     mounted() {
         if (document.getElementById("fulvio")) {
@@ -236,3 +285,7 @@ export default {
     },
 };
 </script>
+
+<style scoped lang="scss">
+//
+</style>

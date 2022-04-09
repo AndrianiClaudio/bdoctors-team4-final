@@ -140,7 +140,7 @@ class DoctorController extends Controller
         // dd($data);
 
         $user->firstname = $data['firstname'];
-        $user->firstname = $data['lastname'];
+        $user->lastname = $data['lastname'];
         $user->email = $data['email'];
         // $user->update($data);
         $user->save();
@@ -149,7 +149,8 @@ class DoctorController extends Controller
         $user->specializations()->sync($data['specializations']);
 
         // dd($user);
-        return redirect()->route('profile.edit')->with('edit_response', 'Modifica al profilo avvenuta con successo');
+        // return redirect()->route('profile.edit')->with('edit_response', 'Modifica al profilo avvenuta con successo');
+        return redirect()->route('profile.index')->with('edit_response', 'Modifica al profilo avvenuta con successo');
     }
 
     /**

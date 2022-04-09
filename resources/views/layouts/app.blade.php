@@ -37,10 +37,10 @@
                             fill="white" />
                     </svg>
                 </a>
-                <div class="navbar justify-content-end" id="navbarNav">
+                <div class="navbar justify-content-end " id="navbarNav">
                     @if (!Auth::check())
-                        <h4 class="text-white pe-2 my-0">Sei un medico?</h4>
-                        <ul class="navbar-nav">
+                        <h4 class="text-white ms-3 pe-2 my-0">Sei un medico?</h4>
+                        <ul class="navbar-nav flex-row">
                             <li class="nav-item sign-in me-2">
                                 <a class="nav-link text-white px-3" aria-current="page"
                                     href="http://localhost:8000/login">Accedi</a>
@@ -51,7 +51,7 @@
                         </ul>
                     @else
                         <div>
-                            <a class="nav-link text-white px-3" href="http://localhost:8000/login">vai al profilo</a>
+                            <a class="nav-link back-to-profile text-white px-3" href="http://localhost:8000/login">Torna al profilo</a>
                         </div>
                     @endif
 

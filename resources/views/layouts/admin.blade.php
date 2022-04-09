@@ -90,7 +90,7 @@
                 </li>
                 <li>
                     <a href="{{ route('services.index') }}" class="nav-link text-white">
-                        <i class="fa-solid fa-star-half-stroke p-1"></i>
+                        <i class="fa-solid fa-bars p-1"></i>
                         <span class="media-hide">Servizi</span>
                     </a>
                 </li>

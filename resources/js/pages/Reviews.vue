@@ -23,7 +23,7 @@
                         <i class="bi bi-star"></i>
                     </span>
                 </p>
-                <p>Recensione scritta il {{ review.created_at }}</p>
+                <p>Recensione scritta il {{ getDate(review.created_at) }}</p>
                 <hr />
             </li>
         </ul>
@@ -59,7 +59,7 @@
                                     v-if="review.created_at"
                                     class="text-secondary d-flex align-items-start mb-0 ms-2"
                                 >
-                                    <em>{{ review.created_at }} </em>
+                                    <em>{{ getDate(review.created_at) }} </em>
                                 </h6>
                             </div>
                         </div>
@@ -111,6 +111,11 @@ export default {
         this.getProduct(url);
     },
     methods: {
+        getDate(dt) {
+            return (
+                dt.split("T")[0] + " alle ore " + dt.split("T")[1].split(".")[0]
+            );
+        },
         getProduct(url) {
             this.loading = false;
             axios

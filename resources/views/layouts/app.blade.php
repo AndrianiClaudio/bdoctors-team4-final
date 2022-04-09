@@ -51,7 +51,7 @@
                         </ul>
                     @else
                         <div>
-                            <a class="nav-link text-white px-3" href="http://localhost:8000/login">vai al profilo</a>
+                            <a class="nav-link back-to-profile text-white px-3" href="http://localhost:8000/login">Torna al profilo</a>
                         </div>
                     @endif
 

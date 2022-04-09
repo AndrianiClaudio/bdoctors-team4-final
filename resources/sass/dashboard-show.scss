@@ -1,6 +1,6 @@
 .container-show {
     background-color: #fff;
-    height: 680px;
+    height: calc(100vh - 80px);
     width: 90%;
     border-radius: 15px;
     .show-title {
@@ -57,14 +57,15 @@
             .service {
                 background-color: #F6F5F8;
                 border: 2px solid #3C4996;
-                border-radius: 19px;
-                width: 210px;
-                height: 150px;
+                border-radius: 24px;
+                max-width: 250px;
+                // height: 150px;
                 .service-title {
                     background-color: #3C4996;
                     border-radius: 19px;
-                    width: 206px;
-                    height: 30px;
+                    padding: 0.5em;
+                    // width: 206px;
+                    // height: 30px;
                 }
                 .service-desc {
                     width: 210px;
@@ -77,15 +78,18 @@
                 background-color: #fff;
                 border-radius: 28px;
                 border: 5px solid #3C4996;
-                width: 300px;
-                height: 150px;
+                width: 500px;
+                // height: 150px;
                 .content-cv {
-                    height: 270px;
+                    height: 310px;
+                    embed {
+                        border-radius: 21px 21px 0 0;
+                    }
                 }
                 .title-cv {
                     background-color: #3C4996;
                     height: 70px;
-                    border-radius: 19px;
+                    border-radius: 0 0 19px 19px;
                 }
             }
         }

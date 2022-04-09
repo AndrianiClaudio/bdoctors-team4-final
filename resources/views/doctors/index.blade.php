@@ -30,7 +30,7 @@
             </div>
             <div class="col-4  m-1200-bedge m-w-1200">
                 <div class="profile-preview ">
-                    <h5 class="ps-2 pt-2">Il tuo Bedge</h5>
+                    <h5 class="ps-2 pt-2 text-uppercase">Il tuo Bedge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
                         href="{{ route('profile.edit') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -68,8 +68,8 @@
         </div>
         <div class="row m-1200">
             <div class="col-7 ms-3 mt-3 m-w-1200">
-                <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2">
-                    <h5>I tuoi ultimi messaggi</h5>
+                <div class="message-sizes welcome-nobg  d-flex justify-content-center align-items-center ps-2">
+                    <h5 class="text-uppercase">I tuoi ultimi messaggi</h5>
                 </div>
                 <div class="preview-message text-black">
                     <ul class="ul-message">
@@ -83,14 +83,14 @@
                             <hr>
                         @endforeach
                     </ul>
-                    <a href={{ route('messages.index') }}>
+                    <a class="ms-4 mb-2" href={{ route('messages.index') }}>
                         Vedi tutti i tuoi messaggi
                     </a>
                 </div>
             </div>
             <div class="col-4 m-1200-bedge m-w-1200">
                 <div class="profile-preview pt-2 mt-3">
-                    <h5 class="ps-2">I tuoi servizi</h5>
+                    <h5 class="ps-2 text-uppercase">I tuoi servizi</h5>
                 </div>
                 <div class="service text-black">
                     <ul class="pt-2 ul-message">
@@ -106,8 +106,8 @@
         </div>
         <div class="row m-1200">
             <div class="col-7  ms-3 mt-3 m-w-1200">
-                <div class="message-sizes welcome-bg d-flex justify-content-center align-items-center ps-2 ">
-                    <h5>Le tue ultime recensioni</h5>
+                <div class="message-sizes welcome-nobg d-flex justify-content-center align-items-center ps-2 ">
+                    <h5 class="text-uppercase">Le tue ultime recensioni</h5>
                 </div>
                 <div class="review text-black">
                     <ul class="ul-message">
@@ -138,14 +138,14 @@
                             </li>
                         @endforeach
                     </ul>
-                    <a href={{ route('reviews.index') }}>
+                    <a class="ms-4" href={{ route('reviews.index') }}>
                         Vedi tutte le tue recensioni
                     </a>
                 </div>
             </div>
             <div class="col-4 m-1200-bedge m-w-1200">
                 <div class="profile-preview pt-2 mt-3">
-                    <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
+                    <h5 class="ps-2 text-uppercase">I tuoi abbonamenti attivi</h5>
                 </div>
                 <div class="service text-black">
                     @if (count($doctor->subscriptions()->get()) > 0)

@@ -1,5 +1,5 @@
 <template>
-    <div class="row" id="chart" v-if="loading">
+    <div class="row m-0 p-0" id="chart" v-if="loading">
         <Bar
             class="col-6"
             :chart-options="chartOptions"
@@ -30,7 +30,7 @@
             recensioni...
         </div>
     </div>
-    <div v-else>Attendi il caricamento delle tue statistiche ...</div>
+    <div v-else class="d-flex velse justify-content-center align-items-center">Attendi il caricamento delle tue statistiche ...</div>
 </template>
 
 <script>
@@ -236,3 +236,9 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+    .velse {
+        height: calc(100vh - 3rem);
+    }
+</style>

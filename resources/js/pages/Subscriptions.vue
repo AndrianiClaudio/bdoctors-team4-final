@@ -11,7 +11,7 @@
             >
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">{{ subscription.name }}</h4>
+                        <h4 class="card-title mb-0">{{ subscription.name }}</h4>
                         <div class="d-flex justify-content-between">
                             <b>
                                 <em>Price: </em>{{ subscription.price }} &euro;
@@ -24,7 +24,7 @@
                         <router-link
                             :to="`/dashboard/checkout/${subscription.name}`"
                             :user="user"
-                            >sgancia i soldi</router-link
+                            >Acquista il piano {{subscription.name}} </router-link
                         >
                     </div>
                 </div>

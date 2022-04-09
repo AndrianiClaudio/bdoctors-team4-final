@@ -26,9 +26,9 @@ if (count($user->subscriptions()->get()) > 0) {
     <div id="expires">
         <p class="lead">
             @if (count($user->subscriptions()->get()) > 0)
-                Hai gi&aacute; un abbonamento
+                Hai gi&agrave; un abbonamento
                 <em class="text-uppercase">{{ $user_sub->name }}</em>
-                attivo che scadr&aacute; <span id="translate_day">{{ $expires_day_txt }}</span>
+                attivo che scadr&agrave; <span id="translate_day">{{ $expires_day_txt }}</span>
                 <span>{{ $expires->day }}</span>
                 <span id="translate_week_month">
                     {{ $expires->month }}

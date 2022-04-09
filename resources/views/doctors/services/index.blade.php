@@ -9,9 +9,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row welcome-bg w-title-message text-white">
+        <div class="row welcome-nobg w-title-message text-white">
             <div class="col-12">
-                <h1>I tuoi servizi</h1>
+                <h4 class="text-uppercase mb-0 py-2">I tuoi servizi</h4>
             </div>
         </div>
         <div class="row w-title-message bg-message">

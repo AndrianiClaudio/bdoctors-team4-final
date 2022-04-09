@@ -5,7 +5,7 @@
     <div
         v-else
         id="SliderPaginate"
-        class="cards d-flex justify-content-between mb-5"
+        class="cards d-flex justify-content-between mb-5 mt-5"
     >
         <hr class="hr" />
         <!-- PREV PAGE CLICK -->

@@ -26926,6 +26926,12 @@ main {
   }
 }
 
+@media only screen and (max-width: 780px) {
+  .m-display-none {
+    display: none;
+  }
+}
+
 .container-show {
   background-color: #fff;
   height: calc(100vh - 80px);

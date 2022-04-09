@@ -30,17 +30,17 @@
             </div>
             <div class="col-4  m-1200-bedge m-w-1200">
                 <div class="profile-preview ">
-                    <h5 class="ps-2 pt-2 text-uppercase">Il tuo Badge</h5>
+                    <h5 class="ps-2 pt-2">Il tuo Badge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
                         href="{{ route('profile.edit') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>
                 <div class="profile-sizes d-flex justify-m-1200 ">
-                    <div class="profile-picture-preview mt-3 ms-3">
+                    <div class="profile-picture-preview mt-3 ms-3 m-display-none">
 
                         <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
-                            alt="" width="100%" height="100%" class="rounded-circle me-2" />
+                            alt="" width="100%" height="100%" class="rounded-circle me-2  m-display-none" />
                     </div>
                     <div class="  text-black ms-2 mt-4 text-capitalize">
                         <h6 class="bold-prev">Dr. {{ $doctor->firstname }} {{ $doctor->lastname }}</h6>
@@ -71,7 +71,7 @@
                 <div class="message-sizes welcome-bg d-flex justify-content-between align-items-center ps-2">
                     <h5>I tuoi ultimi messaggi</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
-                        href="{{ route('messages.index', Auth::user()->slug) }}">
+                        href="{{ route('messages.index')}}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="profile-preview pt-2 mt-3">
                     <h5 class="ps-2">I tuoi servizi</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3 mb-2"
-                        href="{{ route('services.index', Auth::user()->slug) }}">
+                        href="{{ route('services.index') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>
@@ -117,7 +117,7 @@
                 <div class="message-sizes welcome-bg d-flex justify-content-between align-items-center ps-2 ">
                     <h5>Le tue ultime recensioni</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3 "
-                        href="{{ route('reviews.index', Auth::user()->slug) }}">
+                        href="{{ route('reviews.index') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>
@@ -159,7 +159,7 @@
                 <div class="profile-preview pt-2 mt-3">
                     <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3 mb-2 "
-                        href="{{ route('profile.show', Auth::user()->slug) }}">
+                        href="{{ route('profile.show') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>

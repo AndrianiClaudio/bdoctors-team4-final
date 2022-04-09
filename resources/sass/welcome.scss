@@ -169,3 +169,10 @@
         justify-content: center;
     }
   }
+
+  @media only screen and (max-width: 780px) {
+    .m-display-none {
+        display: none;
+    }
+      
+  }

@@ -28,7 +28,7 @@
                     <p class="d-inline">{{ $service->type }}</p>
                 </div>
                        
-                    <a class="btn btn-primary text-white" href="{{ route('services.show', $service->id) }}">Dettagli</a>
+                    {{-- <a class="btn btn-primary text-white" href="{{ route('services.show', $service->id) }}">Dettagli</a> --}}
                     <hr>
                 @endforeach
             </div>

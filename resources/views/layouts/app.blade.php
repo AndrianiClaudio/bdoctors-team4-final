@@ -39,7 +39,7 @@
                 </a>
                 <div class="navbar justify-content-end " id="navbarNav">
                     @if (!Auth::check())
-                        <h4 class="text-white pe-2 my-0">Sei un medico?</h4>
+                        <h4 class="text-white ms-3 pe-2 my-0">Sei un medico?</h4>
                         <ul class="navbar-nav flex-row">
                             <li class="nav-item sign-in me-2">
                                 <a class="nav-link text-white px-3" aria-current="page"

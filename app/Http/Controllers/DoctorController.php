@@ -140,7 +140,7 @@ class DoctorController extends Controller
         // dd($data);
 
         $user->firstname = $data['firstname'];
-        $user->firstname = $data['lastname'];
+        $user->lastname = $data['lastname'];
         $user->email = $data['email'];
         // $user->update($data);
         $user->save();

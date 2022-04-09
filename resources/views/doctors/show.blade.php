@@ -14,7 +14,7 @@
             <div class="show-title d-flex align-items-center justify-content-between">
                 <h4 class="text-uppercase text-white mb-0 ms-3">Il tuo profilo</h4>
                 <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
-                    href="{{ route('profile.edit', Auth::user()->slug) }}">
+                    href="{{ route('profile.edit') }}">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
             </div>
@@ -82,10 +82,10 @@
             <div class="row m-d">
                 <div class="col ms-3 mt-5">
                     <div class="row">
-                        <div class="col d-flex align-items-center justify-content-between">
+                        <div class="col d-flex align-items-center justify-content-start">
                             <h2 class="text-uppercase fw-bold ms-3">Prestazioni in evidenza</h2>
-                            <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 mb-3"
-                                href="{{ route('profile.edit', Auth::user()->slug) }}">
+                            <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 ms-5 mb-3"
+                                href="{{ route('profile.edit') }}">
                                 <i class="fa-solid fa-plus"></i>
                             </a>
                         </div>

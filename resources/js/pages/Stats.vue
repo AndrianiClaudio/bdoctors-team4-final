@@ -286,6 +286,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-//
+<style lang="scss" scoped>
+.velse {
+    height: calc(100vh - 3rem);
+}
 </style>

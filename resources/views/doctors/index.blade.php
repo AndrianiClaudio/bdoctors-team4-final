@@ -30,7 +30,7 @@
             </div>
             <div class="col-4  m-1200-bedge m-w-1200">
                 <div class="profile-preview ">
-                    <h5 class="ps-2 pt-2">Il tuo Bedge</h5>
+                    <h5 class="ps-2 pt-2 text-uppercase">Il tuo Bedge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
                         href="{{ route('profile.edit') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -87,7 +87,7 @@
                             <hr>
                         @endforeach
                     </ul>
-                    <a href={{ route('messages.index') }}>
+                    <a class="ms-4 mb-2" href={{ route('messages.index') }}>
                         Vedi tutti i tuoi messaggi
                     </a>
                 </div>

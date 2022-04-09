@@ -7,10 +7,15 @@
     background-color: #4263d0;
     border-radius: 15px;
 }
+.welcome-nobg {
+    background-color: #4263d0;
+    border-radius: 15px 15px 0 0;
+}
 
 .data-sizes {
-    border-radius: 5px;
-    background-color: #58C1F9;
+    border-radius: 10px;
+    padding: 5px 8px !important;
+    background-color: #718bdd;
     margin-top: 0.5em;
 }
 
@@ -32,7 +37,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: #4263d0;
-    border-radius: 15px;
+    border-radius: 15px 15px 0 0;
     line-height: 60px;
     h6{
         margin-left: 0.5em;
@@ -45,11 +50,13 @@
 }
 
 .edit-icon {
-    border-radius: 5px;
-    background-color: #58C1F9;
-    padding: 10px;
-    
-}
+    background-color: #718bdd;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+} 
 
 
 .h6-sizes {

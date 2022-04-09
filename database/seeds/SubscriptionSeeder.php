@@ -17,8 +17,8 @@ class SubscriptionSeeder extends Seeder
 
     public function run()
     {
-        $this->createUser('bronze', 2.59, 24);
-        $this->createUser('silver', 5.99, 72);
-        $this->createUser('gold', 9.99, 144);
+        $this->createUser('Bronzo', 2.59, 24);
+        $this->createUser('Argento', 5.99, 72);
+        $this->createUser('Oro', 9.99, 144);
     }
 }

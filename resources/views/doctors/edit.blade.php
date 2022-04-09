@@ -142,11 +142,11 @@
         </div>
         <div class="row justify-item-center w-row-name pt-2 radious-row">
             <div class="col-12">
-                @if (session('edit_response'))
+                {{-- @if (session('edit_response'))
                     <div class="alert alert-success" role="alert">
                         {{ session('edit_response') }}
                     </div>
-                @endif
+                @endif --}}
                 {{-- Modifica possibile solo a se stessi o se si é admin --}}
                 <div class="col">
                     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"
@@ -191,7 +191,7 @@
                     <div class="col-12">
                         @if ($errors->any())
                             <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
-                                
+
                                 {{-- @foreach ($specializations as $specialization)
                                     <li class="item-spec">
                                         <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
@@ -212,11 +212,13 @@
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
                             <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
-                                
+
                                 <div class="d-flex flex-wrap justify-content-around">
                                     @foreach ($specializations as $specialization)
                                         <label class="list-inline-item me-4">
-                                            <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}" name="specializations[]" {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
+                                            <input class="form-check-input" type="checkbox"
+                                                value="{{ $specialization->id }}" name="specializations[]"
+                                                {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
                                             {{ $specialization->category }}
                                         </label>
                                     @endforeach

@@ -18,6 +18,11 @@
     <div class="container-fluid text-white p-0">
         <div class="row m-1200">
             <div class="col-7 ms-3 m-w-1200">
+                @if (session('edit_response'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('edit_response') }}
+                    </div>
+                @endif
                 <div class="welcome-sizes welcome-bg d-flex flex-column justify-content-end ps-2">
                     <div class="data-sizes position-absolute data-abs ms-2 ps-1 pe-1">
                         <i class="fa-solid fa-calendar-days"></i> {{ now('Europe/Rome')->toDateString() }}
@@ -71,7 +76,7 @@
                 <div class="message-sizes welcome-bg d-flex justify-content-between align-items-center ps-2">
                     <h5>I tuoi ultimi messaggi</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
-                        href="{{ route('messages.index')}}">
+                        href="{{ route('messages.index') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </div>

@@ -30,10 +30,14 @@ class DoctorController extends Controller
         $doctors = User::orderBy('id', 'desc')->doesntHave('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
 
+        foreach ($doctors as $d) {
+            $d->reviews_count = count($d->reviews);
+        }
         if (strtolower($data['specialization']) !== "all") {
             $filtered_doctors = [];
 
             foreach ($doctors as $doctor) {
+                // $doctor->reviews_count = count($doctor->reviews);
                 $doctor_spec = [];
 
                 foreach ($doctor->specializations()->get() as $doct_spec) {
@@ -105,13 +109,18 @@ class DoctorController extends Controller
     {
         $data = $request->all();
         // dd($data);
+        $doctors = [];
         $doctors = User::orderBy('id', 'desc')->whereHas('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
+        foreach ($doctors as $d) {
+            $d->reviews_count = count($d->reviews);
+        }
 
         if (strtolower($data['specialization']) !== "all") {
             $filtered_doctors = [];
 
             foreach ($doctors as $doctor) {
+                // $doctor->reviews_count = count($doctor->reviews);
                 $doctor_spec = [];
 
                 foreach ($doctor->specializations()->get() as $doct_spec) {

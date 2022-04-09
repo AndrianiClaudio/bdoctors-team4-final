@@ -1,8 +1,5 @@
 <template>
-    <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
-        <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
-    </div>
-    <div v-else class="container-fluid m-0 p-0">
+    <div class="container-fluid m-0 p-0">
         <!-- <Navbar /> -->
         <div class="row page m-0 p-0">
             <div class="col-2 m-0 p-0">
@@ -38,7 +35,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="row m-0 p-0">
+                <!-- <div class="row m-0 p-0">
                     <div class="col">
                         <h5 class="m-2 pb-1">Votazione:</h5>
                     </div>
@@ -58,7 +55,7 @@
                             <option value="1">1 Stella</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="row m-0 p-0">
                     <div class="col">
                         <h5 class="m-2 pb-1">Numero recensioni:</h5>
@@ -84,8 +81,29 @@
             <div class="col-10 m-0 p-0">
                 <div class="row m-0 mt-3 me-3 p-0">
                     <div
-                        class="col m-0 p-0 d-flex justify-content-end align-items-center"
+                        class="col m-0 p-0 d-flex justify-content-between align-items-center"
                     >
+                        <div>
+                            <em>Voto: </em>
+                            <i
+                                class="fa-solid fa-arrow-down-1-9"
+                                @click.prevent="setVote('asc')"
+                            ></i>
+                            <i
+                                class="fa-solid fa-arrow-up-9-1"
+                                @click.prevent="setVote('desc')"
+                            ></i>
+                            <em>Numero recensioni :</em>
+                            <i
+                                class="fa-solid fa-arrow-down-1-9"
+                                @click.prevent="setReview('asc')"
+                            ></i>
+                            <i
+                                class="fa-solid fa-arrow-up-9-1"
+                                @click.prevent="setReview('desc')"
+                            ></i>
+                            <!-- setReview -->
+                        </div>
                         <h5 class="m-0 mb-3" v-if="filteredDoctor.length > 1">
                             <strong>
                                 {{ filteredDoctor.length }} dottori
@@ -104,7 +122,7 @@
                         </h5>
                     </div>
                 </div>
-                <div class="row m-0 p-0 mx-3">
+                <div class="row m-0 p-0 mx-3" v-if="loading">
                     <div class="col m-0 p-0">
                         <ul class="list-group" v-if="filteredDoctor.length > 0">
                             <li
@@ -226,6 +244,7 @@
                         </ul>
                     </div>
                 </div>
+                <div v-else>Caricamento dottori in corso ...</div>
             </div>
         </div>
     </div>
@@ -248,15 +267,19 @@ export default {
             filteredDoctor: [],
             doctors: [],
             check_filter: false,
+            tmp: [],
+
+            // voteAsc: false,
+            // voteDesc: false,
         };
     },
     methods: {
         getFilterDoctors(specialization) {
             this.loading = false;
+
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
-                    // otteniamo i dottori premium
                     this.filteredDoctor = res.data.results.doctors;
                     // console.log(this.filteredDoctor);
                     if (this.selectedVote && this.selectedVote !== "all") {
@@ -318,23 +341,21 @@ export default {
                     console.error(err);
                 })
                 .then(() => {
-                    // ottieni dottori non premium
-                    // console.log(this.filteredDoctor);
                     axios
                         .post(
                             `/api/doctors/standard?specialization=${specialization}`
                         )
                         .then((res) => {
-                            // otteniamo i dottori premium
-                            this.filteredDoctor = this.filteredDoctor.concat(
-                                res.data.results.doctors
-                            );
+                            this.tmp = res.data.results.doctors;
+                            // console.log(this.tmp);
                             if (
                                 this.selectedVote &&
                                 this.selectedVote !== "all"
                             ) {
                                 this.check_filter = false;
-                                this.doctors = this.filteredDoctor;
+                                this.doctors = this.tmp;
+                                this.tmp = [];
+                                // console.log(this.doctors);
                                 this.doctors.forEach((doctor) => {
                                     if (
                                         doctor.review_mean >=
@@ -342,49 +363,43 @@ export default {
                                         doctor.review_mean <
                                             parseInt(this.selectedVote) + 1
                                     ) {
-                                        this.filteredDoctor.push(doctor);
+                                        this.tmp.push(doctor);
                                     }
                                 });
-                                if (this.filteredDoctor.length === 0) {
+                                if (this.tmp.length === 0) {
                                     this.check_filter = true;
                                 }
                             }
 
                             if (this.selectedReviews != "all") {
                                 if (this.selectedReviews === "25") {
-                                    this.filteredDoctor =
-                                        this.filteredDoctor.filter((doctor) => {
-                                            return (
-                                                doctor.reviews.length >
-                                                parseInt(this.selectedReviews)
-                                            );
-                                        });
+                                    this.tmp = this.tmp.filter((doctor) => {
+                                        return (
+                                            doctor.reviews.length >
+                                            parseInt(this.selectedReviews)
+                                        );
+                                    });
                                 } else if (this.selectedReviews === "5") {
                                     //
-                                    this.filteredDoctor =
-                                        this.filteredDoctor.filter((doctor) => {
-                                            return (
-                                                doctor.reviews.length <
-                                                parseInt(this.selectedReviews) +
-                                                    5
-                                            );
-                                        });
+                                    this.tmp = this.tmp.filter((doctor) => {
+                                        return (
+                                            doctor.reviews.length <
+                                            parseInt(this.selectedReviews) + 5
+                                        );
+                                    });
                                 } else {
                                     // VALORI DI MEZZO
-                                    this.filteredDoctor =
-                                        this.filteredDoctor.filter((doctor) => {
-                                            return (
-                                                doctor.reviews.length >=
-                                                    parseInt(
-                                                        this.selectedReviews
-                                                    ) &&
-                                                doctor.reviews.length <=
-                                                    parseInt(
-                                                        this.selectedReviews
-                                                    ) +
-                                                        5
-                                            );
-                                        });
+                                    this.tmp = this.tmp.filter((doctor) => {
+                                        return (
+                                            doctor.reviews.length >=
+                                                parseInt(
+                                                    this.selectedReviews
+                                                ) &&
+                                            doctor.reviews.length <=
+                                                parseInt(this.selectedReviews) +
+                                                    5
+                                        );
+                                    });
                                 }
                             }
                         })
@@ -392,6 +407,12 @@ export default {
                             console.error(err);
                         })
                         .then(() => {
+                            this.filteredDoctor = this.filteredDoctor.concat(
+                                this.tmp
+                            );
+                            this.tmp = [];
+
+                            console.log(this.filteredDoctor);
                             this.loading = true;
                         });
                 });
@@ -400,17 +421,87 @@ export default {
             axios
                 .get("api/specializations")
                 .then((res) => {
+                    // console.log(res.data.results.specs);
                     this.specs = res.data.results.specs;
+                    // console.log(this.specs);
                 })
                 .catch((err) => {
                     console.error(err);
                 });
         },
+        setVote(type) {
+            if (type === "asc") {
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("review_mean", "asc")
+                );
+                // ordina asc
+                // alert("asc");
+            } else if (type === "desc") {
+                // ordina desc
+                // alert("desc");
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("review_mean", "desc")
+                );
+            }
+        },
+        setReview(type) {
+            if (type === "asc") {
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("reviews_count", "asc")
+                );
+                // ordina asc
+                // alert("asc");
+            } else if (type === "desc") {
+                // ordina desc
+                // alert("desc");
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("reviews_count", "desc")
+                );
+            }
+        },
+
+        compare(key, order = "desc") {
+            return (a, b) => {
+                if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                    return 0;
+                }
+                let varA =
+                    typeof a[key] === "string" ? a[key].toLowerCase() : a[key];
+                let varB =
+                    typeof b[key] === "string" ? b[key].toLowerCase() : b[key];
+
+                let comparison = 0;
+                if (varA > varB) {
+                    comparison = 1;
+                } else if (varA < varB) {
+                    comparison = -1;
+                }
+
+                return order == "desc" ? comparison * -1 : comparison;
+            };
+        },
     },
     created() {
+        // const products = [
+        //     { title: "A", price: 10 },
+        //     { title: "B", price: 5 },
+        //     { title: "C", price: 8 },
+        // ];
+
+        // console.log(
+        //     this.filteredDoctor.sort(this.compare("review_mean", "asc"))
+        // );
+        // console.log(this.$route.params);
         this.getSpecs();
     },
     mounted() {
+        // console.log(this.$route.params.specialization);
+        // if (!this.$route.params) {
+        //     this.$route.params.specialization = "all";
+        //     this.$route.params.selectedVote = "all";
+        //     this.$route.params.selectedReview = "all";
+        // }
+        // console.log(this.$route.params);
         if (this.$route.params.specialization) {
             this.selectedSpec = this.$route.params.specialization;
         }
@@ -420,6 +511,7 @@ export default {
         if (this.$route.params.review) {
             this.selectedReviews = this.$route.params.review;
         }
+        // console.log(this.$route.params);
         this.getFilterDoctors(this.selectedSpec);
     },
 };

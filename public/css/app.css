@@ -26714,7 +26714,8 @@ main {
 
 .main-vh-overflow {
   height: calc(100vh - 3rem);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .side-sizes {
@@ -26928,7 +26929,7 @@ main {
 .container-show {
   background-color: #fff;
   height: calc(100vh - 80px);
-  width: 90%;
+  width: 100%;
   border-radius: 15px;
 }
 

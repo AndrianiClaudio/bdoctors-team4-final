@@ -4,7 +4,8 @@ main {
 
 .main-vh-overflow {
     height: calc(100vh - 3rem);
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 
 .side-sizes {

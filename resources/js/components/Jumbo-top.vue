@@ -112,14 +112,28 @@ export default {
         .introduction-jumbo {
             border-radius: 20px;
             width: 575px;
+            position: absolute;
+            // top: 50%;
+            top: 31%;
+            // bottom: 21%;
+            left: 11%;
+            @media screen and(max-width: 1000px) {
+                padding: 2rem;
+                top: 15%;
+                left: 11%;
+            }
+            @media screen and(max-width: 850px) {
+                padding: 2rem;
+                top: 20px;
+                left: 11%;
+            }
             @media screen and(max-width: 600px) {
                 width: 100%;
                 padding: 2rem;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
 
             // JUMBO
             .text-jumbo {
@@ -208,13 +222,13 @@ export default {
     // SCRITTA LA TUA SALUTE ...
     .hide-sm {
         display: block;
-        @media screen and (max-width: 650px) {
+        @media screen and (max-width: 850px) {
             display: none;
         }
     }
     .hide-mini {
         display: block;
-        @media screen and (max-width: 550px) {
+        @media screen and (max-width: 700px) {
             display: none;
         }
     }

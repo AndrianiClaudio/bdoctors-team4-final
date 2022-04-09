@@ -1,9 +1,11 @@
 main {
     display: flex;
+
 }
 
 .main-vh-overflow {
     height: calc(100vh - 3rem);
+    min-height: 675px;
     overflow-y: auto;
     overflow-x:hidden;
 }
@@ -35,6 +37,7 @@ main {
 
 .main-vh {
     height: 100vh;
+    min-height: 675px;
     background-color: #f6f5f8;
    
 }

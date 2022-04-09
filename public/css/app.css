@@ -26714,6 +26714,7 @@ main {
 
 .main-vh-overflow {
   height: calc(100vh - 3rem);
+  min-height: 675px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -26745,6 +26746,7 @@ main {
 
 .main-vh {
   height: 100vh;
+  min-height: 675px;
   background-color: #f6f5f8;
 }
 
@@ -27438,5 +27440,9 @@ b {
   #left-bar-admin .nav-pills .nav-link {
     text-align: center;
   }
+}
+
+select {
+  cursor: pointer;
 }
 

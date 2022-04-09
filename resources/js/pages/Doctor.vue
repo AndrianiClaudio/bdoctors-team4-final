@@ -106,14 +106,14 @@
                     class="btn me-3 send-rev text-light rounded-pill "
                     :to="{ name: 'review', params: { slug: doctor.slug } }"
                     v-if="doctor.slug"
-                    >Send a Review</router-link
+                    >Recensici il dottore</router-link
                 >
                 
                     <router-link
                     class="btn send-mes text-light rounded-pill "
                     :to="{ name: 'message', params: { slug: doctor.slug } }"
                     v-if="doctor.slug"
-                    >Send a message</router-link
+                    >Invia un messaggio</router-link
                 >
                 </div>
             </div>

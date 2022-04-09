@@ -16,7 +16,7 @@
                                     </strong>
                             </h5>
                             <h6 v-if="review.created_at" class="text-secondary d-flex align-items-start mb-0 ms-2">
-                                In data: {{ review.created_at }}
+                                <em>{{ review.created_at }} </em>
                             </h6>
                         </div>
                     </div>

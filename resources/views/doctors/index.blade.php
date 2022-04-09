@@ -15,7 +15,7 @@
         -) Pagina statistiche (Grafico) --}}
 
 @section('content')
-    <div class="container-fluid text-white">
+    <div class="container-fluid text-white p-0">
         <div class="row m-1200">
             <div class="col-7 ms-3 m-w-1200">
                 <div class="welcome-sizes welcome-bg d-flex flex-column justify-content-end ps-2">

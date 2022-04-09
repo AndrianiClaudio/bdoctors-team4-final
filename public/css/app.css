@@ -27333,8 +27333,69 @@ main {
 }
 
 .review {
-  height: 150px;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
+}
+
+@media screen and (min-width: 650px) {
+  .ms__sm-start {
+    margin-left: 2rem;
+    justify-content: flex-start !important;
+  }
+}
+
+p,
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+span,
+em,
+strong,
+b {
+  word-wrap: break-word;
+}
+
+#left-bar-admin .media-hide {
+  display: inline-block;
+}
+
+#left-bar-admin .media-show {
+  display: none;
+}
+
+@media screen and (max-width: 650px) {
+  #left-bar-admin {
+    max-width: 60px;
+  }
+
+  #left-bar-admin .media-hide {
+    display: none;
+  }
+
+  #left-bar-admin .media-show {
+    display: inline-block;
+    font-size: 0.5rem;
+  }
+
+  #left-bar-admin #svg-container {
+    display: flex;
+    padding: 0 !important;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #left-bar-admin .nav-item {
+    justify-content: center;
+    display: flex;
+  }
 }
 

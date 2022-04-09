@@ -138,7 +138,7 @@
                             </li>
                         @endforeach
                     </ul>
-                    <a href={{ route('reviews.index') }}>
+                    <a class="ms__sm-start d-flex justify-content-center" href={{ route('reviews.index') }}>
                         Vedi tutte le tue recensioni
                     </a>
                 </div>

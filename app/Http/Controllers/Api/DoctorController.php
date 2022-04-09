@@ -219,7 +219,7 @@ class DoctorController extends Controller
 
         $msg->save();
 
-        return redirect("/");
+        return redirect("/doctor/" . $slug);
     }
     public function newReview(Request $request, $slug)
     {
@@ -227,8 +227,8 @@ class DoctorController extends Controller
 
         $request->validate([
             'vote' => 'required | min:1 | max:5',
-            'username' => 'required | max:60',
-            'content' => 'required',
+            'username' => 'nullable | max:60',
+            'content' => 'nullable',
         ]);
 
         $msg = new Review();
@@ -238,7 +238,7 @@ class DoctorController extends Controller
 
         $msg->save();
 
-        return redirect("/");
+        return redirect("/doctor/" . $slug . "/reviews");
     }
 
     // TEST SLIDER CLAUDIO

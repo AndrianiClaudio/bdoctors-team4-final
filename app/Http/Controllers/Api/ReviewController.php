@@ -206,7 +206,7 @@ class ReviewController extends Controller
 
         return response()->json([
             'success' => true,
-
+            'count' => count($rews),
             'rand_reviews' => $rews
         ]);
     }

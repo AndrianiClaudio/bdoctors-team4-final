@@ -1,5 +1,11 @@
 .review {
-    height: 150px;
+    // height: 150px;
     background-color: white;
     border-radius: 0px 0px 15px 15px;
+}
+@media screen and (min-width: 650px) {
+    .ms__sm-start {
+        margin-left: 2rem;
+        justify-content: flex-start!important;
+    }
 }

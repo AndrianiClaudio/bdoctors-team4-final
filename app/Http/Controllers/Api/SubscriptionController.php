@@ -14,18 +14,6 @@ use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
-    // public function expires(Request $request)
-    // {
-    //     // dd('expires API');
-    //     $user = User::find($request['user_id']);
-    //     $user_sub = $user->subscriptions()->first();
-    //     $expires = $user_sub->pivot->expires_date;
-    //     return response()->json([
-    //         'success' => true,
-    //         'expires' => $expires
-    //     ]);
-    // }
-
     public function priceName(Request $request)
     {
         $amount = Subscription::where('name', $request['name'])->first()->price;

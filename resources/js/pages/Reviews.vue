@@ -11,8 +11,8 @@
                             <h5 class="d-flex align-items-center mb-0">
                                 Recensione scritta da:
                                     <strong>
-                                        <span v-if="!review.username"> Utente anonimo </span>
-                                        <span v-else> {{review.username}} </span>
+                                        <span class="ms-1" v-if="!review.username"> Utente anonimo </span>
+                                        <span class="ms-1" v-else> {{review.username}} </span>
                                     </strong>
                             </h5>
                             <h6 v-if="review.created_at" class="text-secondary d-flex align-items-start mb-0 ms-2">

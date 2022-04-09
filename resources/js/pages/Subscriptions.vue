@@ -21,7 +21,7 @@
                     <router-link
                         :to="`/dashboard/checkout/${subscription.name}`"
                         :user="user"
-                        >sgancia i soldi</router-link
+                        >Prosegui con il piano {{subscription.name}}</router-link
                     >
                 </div>
             </div>

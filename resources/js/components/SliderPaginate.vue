@@ -180,11 +180,12 @@ export default {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
-    max-width: 400px;
+    max-width: 500px;
     display: flex;
     flex-direction: row;
     border-radius: 25px;
     position: relative;
+    padding: 2.5em 3.5em 1.5em 2.5em;
 }
 .name {
     font-size: 1.4em;
@@ -210,16 +211,13 @@ export default {
 
 .card-text {
     display: grid;
-    // grid-template-columns: 1fr 2fr;
-}
-
-.title-total {
-    padding: 2.5em 1.5em 1.5em 1.5em;
+    grid-template-columns: 1fr 2fr;
 }
 
 .portada {
     margin-top: 0.4em;
     padding-left: 1.4em;
+    text-align: center;
 }
 .portada img {
     width: 75px;
@@ -253,6 +251,14 @@ export default {
         color: white;
     }
 }
+@media screen and (min-width: 1100px) {
+    .card {
+        padding: unset;
+    }
+    .title-total {
+        padding: 2.5em 3.5em 1.5em 2.5em;
+    }
+}
 @media screen and (max-width: 1100px) {
     .card-text {
         grid-template-columns: unset;
@@ -263,13 +269,15 @@ export default {
         text-align: center;
     }
 }
-// @media screen and (max-width: 800px) {
-//     .card-text {
-//         min-width: 350px;
-//     }
-//     .portada {
-//         margin-top: 0.4em;
-//         // padding-left: 1.4em;
-//     }
-// }
+@media screen and (max-width: 800px) {
+    .portada {
+        margin-top: 0.4em;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .card {
+        padding: unset;
+    }
+}
 </style>

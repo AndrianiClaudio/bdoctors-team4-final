@@ -21,70 +21,66 @@
 
         <!-- CARD DOCTOR -->
         <div class="card" v-for="doctor in slider.doctors" :key="doctor.id">
-            <div class="card-text">
-                <div class="portada">
-                    <img
-                        :src="`http://localhost:8000/storage/${doctor.photo}`"
-                        alt="Immagine profilo del dottore."
-                        v-if="doctor.photo"
-                    />
-                    <img
-                        v-else
-                        class="card-img-top img mx-auto py-2"
-                        src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
-                    />
+            <div class="img-box">
+                <img
+                    :src="`http://localhost:8000/storage/${doctor.photo}`"
+                    alt="Immagine profilo del dottore."
+                    v-if="doctor.photo"
+                />
+                <img
+                    v-else
+                    class="card-img-top img mx-auto py-2"
+                    src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+                />
+            </div>
+            <div class="details">
+                <h2>{{ doctor.firstname }} {{ doctor.lastname }}</h2>
+                <div class="spec">
+                    <span
+                        v-for="(
+                            specialization, index
+                        ) in doctor.specializations"
+                        :key="`specialization-${index}`"
+                    >
+                        {{ specialization.category }}
+                    </span>
+                    <span
+                        class="text-center"
+                        v-if="!doctor.specializations.length > 0"
+                        >Dottore senza specializzazioni</span
+                    >
                 </div>
-                <div class="title-total">
-                    <h2 class="name">
-                        {{ doctor.firstname }} {{ doctor.lastname }}
-                    </h2>
-                    <div class="title">
-                        <span
-                            v-for="(
-                                specialization, index
-                            ) in doctor.specializations"
-                            :key="`specialization-${index}`"
-                        >
-                            {{ specialization.category }}
-                        </span>
-                        <span
-                            class="text-center"
-                            v-if="!doctor.specializations.length > 0"
-                            >Dottore senza specializzazioni</span
-                        >
-                    </div>
-                    <div class="actions">
-                        <router-link
-                            class="button"
-                            type="button"
-                            :to="{
-                                name: 'message',
-                                params: { slug: doctor.slug },
-                            }"
-                            v-if="doctor.slug"
-                            ><i class="far fa-envelope"></i
-                        ></router-link>
-                        <router-link
-                            class="button"
-                            type="button"
-                            :to="{
-                                name: 'review',
-                                params: { slug: doctor.slug },
-                            }"
-                            v-if="doctor.slug"
-                            ><i class="far fa-star"></i
-                        ></router-link>
-                        <router-link
-                            class="button"
-                            type="button"
-                            :to="{
-                                name: 'doctor',
-                                params: { slug: doctor.slug },
-                            }"
-                            v-if="doctor.slug"
-                            ><i class="fa-solid fa-circle-info"></i
-                        ></router-link>
-                    </div>
+                <div class="actions">
+                    <router-link
+                        class="button"
+                        type="button"
+                        :to="{
+                            name: 'message',
+                            params: { slug: doctor.slug },
+                        }"
+                        v-if="doctor.slug"
+                        ><i class="far fa-envelope"></i
+                    ></router-link>
+                    <router-link
+                        class="button"
+                        type="button"
+                        :to="{
+                            name: 'review',
+                            params: { slug: doctor.slug },
+                        }"
+                        v-if="doctor.slug"
+                        ><i class="far fa-star"></i
+                    ></router-link>
+                    <router-link
+                        class="button"
+                        type="button"
+                        :to="{
+                            name: 'doctor',
+                            params: { slug: doctor.slug },
+                        }"
+                        v-if="doctor.slug"
+                        ><i class="fa-solid fa-circle-info"></i
+                    ></router-link>
                 </div>
             </div>
         </div>
@@ -177,53 +173,26 @@ export default {
     gap: 2em;
 }
 .card {
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
-    max-width: 500px;
     display: flex;
     flex-direction: row;
     border-radius: 25px;
-    position: relative;
-    padding: 2.5em 3.5em 1.5em 2.5em;
-}
-.name {
-    font-size: 1.4em;
-    margin: 0;
-    padding: 0 1rem;
-}
-.card .title {
-    padding: 1rem;
-    color: #505da8;
-    font-weight: bold;
-    font-size: 20px;
-}
-.card .desc {
-    padding: 0.5rem 1rem;
-    font-size: 12px;
-}
-.card .actions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    padding: 0.5rem 1rem;
-}
+    flex-basis: calc(80% / 3);
+    justify-content: space-around;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
 
-.card-text {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-}
-
-.portada {
-    margin-top: 0.4em;
-    padding-left: 1.4em;
-    text-align: center;
-}
-.portada img {
-    width: 75px;
-    border-radius: 50%;
-    background-position: bottom center;
-    background-size: cover;
+    .img-box {
+        padding-left: 1em;
+        text-align: center;
+    }
+    .img-box img {
+        width: 75px;
+        border-radius: 50%;
+    }
+    .details {
+        padding: 2em;
+    }
 }
 
 .button {
@@ -251,33 +220,21 @@ export default {
         color: white;
     }
 }
-@media screen and (min-width: 1100px) {
+
+@media screen and (max-width: 992px) {
     .card {
-        padding: unset;
-    }
-    .title-total {
-        padding: 2.5em 3.5em 1.5em 2.5em;
-    }
-}
-@media screen and (max-width: 1100px) {
-    .card-text {
-        grid-template-columns: unset;
-    }
-    .portada {
-        margin-top: 0.4em;
-        padding-left: 0;
-        text-align: center;
+        flex-direction: column;
     }
 }
 @media screen and (max-width: 800px) {
-    .portada {
-        margin-top: 0.4em;
+    .card {
+        flex-direction: row;
+        flex-basis: unset;
     }
 }
-
-@media screen and (max-width: 470px) {
-    .card {
-        padding: unset;
+@media screen and (max-width: 425px) {
+    .img-box {
+        display: none;
     }
 }
 </style>

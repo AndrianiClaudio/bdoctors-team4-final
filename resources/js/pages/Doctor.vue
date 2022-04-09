@@ -2,14 +2,14 @@
     <div class="container-fluid d-flex justify-content-center align-items-center m-0 p-0">
         <div class="prof-container p-2">
             <div class="row m-0 p-0">
-                <div class="col m-0 p-0">
-                    <img v-if="doctor.photo" :src="doctor.photo" class="rounded-circle" alt="">
-                    <img v-else class="rounded-circle" src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" alt="">
+                <div class="col-2 m-0 p-0">
+                    <img v-if="doctor.photo" :src="doctor.photo" class="rounded-circle m-3" alt="">
+                    <img v-else class="rounded-circle m-3" src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" alt="">
                 </div>
-                <div class="col m-0 p-0">
-                    <div class="row m-0 p-0">
+                <div class="col m-3 ms-4 d-flex flex-column justify-content-around m-0 p-0">
+                    <div class="row m-0 mb-2 p-0">
                         <div class="col m-0 p-0">
-                            <h3> Dr. {{ doctor.firstname }} {{ doctor.lastname }} </h3>
+                            <h3 class="mb-0"> Dr. {{ doctor.firstname }} {{ doctor.lastname }} </h3>
                         </div>
                     </div>
                     <div class="row m-0 p-0">
@@ -49,24 +49,24 @@
                 </div>
             </div>
             <div class="row m-0 p-0">
-                <div class="col m-0 p-0">
+                <div class="col m-0 ms-3 p-0">
                     <div class="row m-0 p-0">
-                        <div class="col m-0 p-0">
+                        <div class="col info-item m-0 mt-3 p-0">
                             Email: {{ doctor.email }}
                         </div>
                     </div>
                     <div v-if="doctor.phone" class="row m-0 p-0">
-                        <div class="col m-0 p-0">
+                        <div class="col info-item mt-3 m-0 p-0">
                             Telefono: {{ doctor.phone }}
                         </div>
                     </div>
                     <div v-if="doctor.address" class="row m-0 p-0">
-                        <div class="col m-0 p-0">
+                        <div class="col info-item mt-3 m-0 p-0">
                             Indirizzo: {{ doctor.address }}
                         </div>
                     </div>
                     <div v-if="doctor.services" class="row m-0 p-0">
-                        <div class="col m-0 p-0">
+                        <div class="col info-item mt-3 m-0 p-0">
                             <b><em>Servizi</em></b>
                             <ul>
                                 <li
@@ -82,35 +82,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col m-0 p-0">
-                    <div class="row m-0 p-0">
-                        <div class="col m-0 p-0">
-                            <embed v-if="doctor.cv" :src="`http://localhost:8000/storage/${doctor.cv}`" type="" width="100%" height="100%" >
-                        </div>
-                    </div>
+                <div class="col mt-3 me-3 m-0 p-0">
+                    <embed class="cv" v-if="doctor.cv" :src="`http://localhost:8000/storage/${doctor.cv}`" type="" width="100%" height="100%" >  
                 </div>
             </div>
-            <div class="row m-0 p-0">
-                <div class="col m-0 p-0">
+            <div class="row mt-4 mb-2 m-0 p-0">
+                <div class="col ms-3 m-0 p-0">
                     <router-link
-                    class="btn btn-success"
-                    :to="{ name: 'message', params: { slug: doctor.slug } }"
-                    v-if="doctor.slug"
-                    >Send a message</router-link
-                >
-                </div>
-                <div class="col m-0 p-0">
-                    <router-link
-                    class="btn btn-success"
-                    :to="{ name: 'review', params: { slug: doctor.slug } }"
-                    v-if="doctor.slug"
-                    >Send a Review</router-link
-                >
-                </div>
-                <div class="col m-0 p-0">
-                    <router-link
-                    v-if="fromFilter"
-                    class="text-primary text-underline"
+                    class="btn go-back text-light rounded-pill "
                     :to="{
                         name: 'filter',
                         params: {
@@ -120,6 +99,21 @@
                         },
                     }"
                     >Torna alla ricerca</router-link
+                >
+                </div>
+                <div class="col d-flex justify-content-end m-0 me-3 p-0">
+                    <router-link
+                    class="btn me-3 send-rev text-light rounded-pill "
+                    :to="{ name: 'review', params: { slug: doctor.slug } }"
+                    v-if="doctor.slug"
+                    >Send a Review</router-link
+                >
+                
+                    <router-link
+                    class="btn send-mes text-light rounded-pill "
+                    :to="{ name: 'message', params: { slug: doctor.slug } }"
+                    v-if="doctor.slug"
+                    >Send a message</router-link
                 >
                 </div>
             </div>
@@ -285,16 +279,42 @@ export default {
             background-color: #ffffff;
             border-radius: 19px;
             width: 50%;
-            height: 580px;
+            // height: 580px;
             .row {
-                .col {
+                .col-2 {
                     img {
-                        width: 100px;
-                        height: 100px;
+                        width: 120px;
+                        height: 120px;
+                    }
+                }
+                .col {
+                    .info-item {
+                        font-size: 1.2em;
                     }
                 }
             }
 
+        }
+    }
+    .cv {
+        border-radius: 5px;
+    }
+    .go-back {
+        background-color: #646eb3;
+        &:hover {
+            background-color: #606899;
+        }
+    }
+    .send-rev {
+        background-color: #7b83b3;
+        &:hover {
+            background-color: #606899;
+        }
+    }
+    .send-mes {
+        background-color: #646eb3;
+        &:hover {
+            background-color: #606899;
         }
     }
 </style>

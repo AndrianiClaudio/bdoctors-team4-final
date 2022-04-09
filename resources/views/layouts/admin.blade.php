@@ -26,7 +26,7 @@
     <main class="main-vh">
 
         <div id="left-bar-admin"
-            class="d-flex flex-column justify-content-between flex-shrink-0 bg-side side-vh ms-3 mt-3 mb-3 radious side-sizes">
+            class="d-flex flex-column justify-content-between flex-shrink-0 bg-side side-vh margin-s mt-3 mb-3 radious side-sizes side-margin-left">
 
             <a id="svg-container" href="{{ url('/') }}" class="ps-3 active mt-2" aria-current="page">
                 <svg class="media-show" width="30" height="50" viewBox="0 0 169 170" fill="none"
@@ -158,7 +158,7 @@
 
         </div>
 
-        <div class="container-fluid m-3 p-0 main-vh-overflow">
+        <div class="container-fluid margin-left-fullsize margin-left-container p-0 main-vh-overflow">
             {{-- COSE BLADE --}}
             @yield('content')
             {{-- PER QUI SOTTO --> Checkout.vue --}}

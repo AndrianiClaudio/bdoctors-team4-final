@@ -26754,6 +26754,24 @@ main {
   max-height: 600px;
 }
 
+.margin-s {
+  margin-left: 1em;
+}
+
+.margin-left-fullsize {
+  margin: 1em;
+}
+
+@media only screen and (max-width: 500px) {
+  .side-margin-left {
+    margin-left: 0px;
+  }
+
+  .margin-left-container {
+    margin: 1em 1em 0em 1em;
+  }
+}
+
 .welcome-sizes {
   position: relative;
   width: 100%;

@@ -30,7 +30,7 @@
                     />
                     <img
                         v-else
-                        class="card-img-top img img-fluid mx-auto py-2"
+                        class="card-img-top img mx-auto py-2"
                         src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
                     />
                 </div>
@@ -173,14 +173,8 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
-body {
-    font-family: Roboto, sans-serif;
-    margin: 0;
-    height: 100vh;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
+.cards {
+    gap: 2em;
 }
 .card {
     background: #fff;
@@ -213,11 +207,6 @@ body {
     align-items: center;
     padding: 0.5rem 1rem;
 }
-.img-avatar img {
-    width: 85px;
-    height: 85px;
-    margin: 0 auto;
-}
 
 .card-text {
     display: grid;
@@ -228,16 +217,12 @@ body {
     padding: 2.5em 1.5em 1.5em 1.5em;
 }
 
-.img-portada {
-    width: 100%;
-}
-
 .portada {
     margin-top: 0.4em;
     margin-left: 1.4em;
 }
 .portada img {
-    width: 100%;
+    width: 75px;
     border-radius: 50%;
     background-position: bottom center;
     background-size: cover;
@@ -266,6 +251,25 @@ body {
         border-radius: 2rem;
         background-color: #96fbc4;
         color: white;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .card-text {
+        grid-template-columns: unset;
+    }
+    .portada {
+        margin-top: 0.4em;
+        margin-left: unset;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 800px) {
+    .card-text {
+        grid-template-columns: 1fr 2fr;
+    }
+    .portada {
+        margin-top: 0.4em;
+        margin-left: 1.4em;
     }
 }
 </style>

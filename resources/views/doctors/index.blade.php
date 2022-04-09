@@ -30,7 +30,7 @@
             </div>
             <div class="col-4  m-1200-bedge m-w-1200">
                 <div class="profile-preview ">
-                    <h5 class="ps-2 pt-2 text-uppercase">Il tuo Bedge</h5>
+                    <h5 class="ps-2 pt-2 text-uppercase">Il tuo Badge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
                         href="{{ route('profile.edit') }}">
                         <i class="fa-solid fa-pen-to-square"></i>

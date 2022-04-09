@@ -169,7 +169,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12">
 
                 <!-- COGNOME -->
                 <div class="mb-3">

@@ -136,8 +136,8 @@
 @section('content')
     <div class="container">
         <div class="row edit-title">
-            <div class="col-12 welcome-bg justify-content-center d-flex align-items-center text-white">
-                <h1>Modifica il tuo profilo</h1>
+            <div class="col-12 welcome-nobg justify-content-start d-flex align-items-center text-white">
+                <h4 class="text-uppercase mb-0 py-2">Modifica il tuo profilo</h4>
             </div>
         </div>
         <div class="row justify-item-center w-row-name pt-2 radious-row">
@@ -191,8 +191,8 @@
                     <div class="col-12">
                         @if ($errors->any())
                             <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
-
-                                @foreach ($specializations as $specialization)
+                                
+                                {{-- @foreach ($specializations as $specialization)
                                     <li class="item-spec">
                                         <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
                                             name="specializations[]"
@@ -201,7 +201,7 @@
                                             {{ $specialization->category }}
                                         </label>
                                     </li>
-                                @endforeach
+                                @endforeach --}}
 
                             </div>
                             @error('specializations')
@@ -212,18 +212,28 @@
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
                             <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
-
-                                @foreach ($specializations as $specialization)
-                                    <li class="item-spec">
-                                        <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
-                                            name="specializations[]"
-                                            {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
-                                        <label class="form-check-label" for="flexCheckDefault">
+                                
+                                <div class="d-flex flex-wrap justify-content-around">
+                                    @foreach ($specializations as $specialization)
+                                        <label class="list-inline-item me-4">
+                                            <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}" name="specializations[]" {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
                                             {{ $specialization->category }}
                                         </label>
-                                    </li>
-                                    </ul>
-                                @endforeach
+                                    @endforeach
+                                </div>
+
+                                {{-- <ul>
+                                    @foreach ($specializations as $specialization)
+                                    <li class="item-spec">
+                                            <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                                name="specializations[]"
+                                                {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                {{ $specialization->category }}
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul> --}}
                             </div>
                         @endif
                     </div>

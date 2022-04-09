@@ -26754,6 +26754,7 @@ main {
 }
 
 .welcome-sizes {
+  position: relative;
   width: 100%;
   height: 230px;
 }

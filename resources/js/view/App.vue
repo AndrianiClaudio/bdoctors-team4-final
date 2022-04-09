@@ -14,4 +14,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container-fluid {
+    height: calc(100vh - 70px);
+    overflow: auto;
+}
+</style>

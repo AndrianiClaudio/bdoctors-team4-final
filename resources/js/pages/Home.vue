@@ -1,10 +1,8 @@
 <template>
-    <div class="container-fluid p-0">
-        <!-- <Navbar /> -->
+    <div class="container-fluid nope p-0">
         <JumboT />
         <Overview />
         <Specializations />
-        <!-- TEST SLIDER -->
         <SliderPaginate />
         <OverallRev />
         <footer>
@@ -39,4 +37,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped> </style>

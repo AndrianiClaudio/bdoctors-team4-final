@@ -2,6 +2,5 @@
     "/js/admin.js": "/js/admin.js",
     "/css/app.css": "/css/app.css",
     "/js/front.js": "/js/front.js",
-    "/js/popper.js": "/js/popper.js",
-    "/js/translate_day.js": "/js/translate_day.js"
+    "/js/popper.js": "/js/popper.js"
 }

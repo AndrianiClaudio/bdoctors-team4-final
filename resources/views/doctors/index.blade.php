@@ -37,10 +37,10 @@
                     </a>
                 </div>
                 <div class="profile-sizes d-flex justify-m-1200 ">
-                    <div class="profile-picture-preview mt-3 ms-3">
+                    <div class="profile-picture-preview mt-3 ms-3 m-display-none">
 
                         <img src="@if (Auth::user()->photo) http://localhost:8000/storage/{{ Auth::user()->photo }} @else https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png @endif"
-                            alt="" width="100%" height="100%" class="rounded-circle me-2" />
+                            alt="" width="100%" height="100%" class="rounded-circle me-2  m-display-none" />
                     </div>
                     <div class="  text-black ms-2 mt-4 text-capitalize">
                         <h6 class="bold-prev">Dr. {{ $doctor->firstname }} {{ $doctor->lastname }}</h6>

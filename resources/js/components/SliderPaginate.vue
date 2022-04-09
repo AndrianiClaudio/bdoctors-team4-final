@@ -210,7 +210,7 @@ export default {
 
 .card-text {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    // grid-template-columns: 1fr 2fr;
 }
 
 .title-total {
@@ -219,7 +219,7 @@ export default {
 
 .portada {
     margin-top: 0.4em;
-    margin-left: 1.4em;
+    padding-left: 1.4em;
 }
 .portada img {
     width: 75px;
@@ -259,17 +259,17 @@ export default {
     }
     .portada {
         margin-top: 0.4em;
-        margin-left: unset;
+        padding-left: 0;
         text-align: center;
     }
 }
-@media screen and (max-width: 800px) {
-    .card-text {
-        grid-template-columns: 1fr 2fr;
-    }
-    .portada {
-        margin-top: 0.4em;
-        margin-left: 1.4em;
-    }
-}
+// @media screen and (max-width: 800px) {
+//     .card-text {
+//         min-width: 350px;
+//     }
+//     .portada {
+//         margin-top: 0.4em;
+//         // padding-left: 1.4em;
+//     }
+// }
 </style>

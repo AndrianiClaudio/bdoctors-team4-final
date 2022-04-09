@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('admin.name', 'Laravel') }}</title>
+    <title>{{ config('admin.name', 'BDoctor') }}</title>
 
     <!-- Scripts -->
     @yield('script')

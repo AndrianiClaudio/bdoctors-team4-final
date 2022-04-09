@@ -39,8 +39,11 @@ export default {
         },
     },
     created() {
-        this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
-        document.querySelector("#fulvio").remove();
+        if (document.querySelector("#fulvio")) {
+            this.user_id = parseInt(
+                document.querySelector("#fulvio").innerHTML
+            );
+        }
     },
     methods: {
         onSuccess(payload) {
@@ -70,6 +73,10 @@ export default {
                         .then(() => {
                             this.$router.push({
                                 name: "subscriptions",
+                                params: {
+                                    refresh: true,
+                                    uid:this.user_id
+                                },
                             });
                         });
                 });

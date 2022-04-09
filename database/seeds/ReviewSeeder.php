@@ -14,8 +14,7 @@ class ReviewSeeder extends Seeder
                 $review = new Review();
                 $review->vote = rand(3, 5);
                 $review->user_id = $user->id;
-
-                $date = new Carbon(rand(1, $max) . "-" . $dt . "-2022");
+                $date = new Carbon(rand(1, $max) . "-" . $dt . "-2022 " . rand(0, 24) . ":" . rand(0, 59));
                 $review->created_at = $date;
                 $review->updated_at = $date;
 

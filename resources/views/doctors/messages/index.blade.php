@@ -16,11 +16,23 @@
         </div>
         <div class="row w-title-message bg-message">
             <div class="col-12">
-                 @foreach ($messages as $message)
-                    <p class="pt-3 d-inline fs-4">Messaggio arrivato il {{ $message->created_at }} dall'utente:</p>
-                    <p class="user-email-b fs-4"> {{ $message->email }}<p>
-                    <a class="btn btn-primary text-white" href="{{ route('messages.show', $message->id) }}">Dettagli</a>
-                    <hr>
+                @foreach ($messages as $message)
+                    <p class="pt-3 d-inline fs-4">
+                        Messaggio arrivato il
+                        {{ Carbon\Carbon::parse($message->created_at)->format('d-m-y') }} alle ore
+                        {{ Carbon\Carbon::parse($message->created_at)->format('H:i') }}
+                        @if ($message->username)
+                            dall'utente: {{ $message->username }}
+                        @else
+                            da un utente anonimo
+                        @endif
+                    </p>
+                    <p class="user-email-b fs-4">
+                            {{ $message->email }}
+                    <p>
+                        <a class="btn btn-primary text-white"
+                            href="{{ route('messages.show', $message->id) }}">Dettagli</a>
+                        <hr>
                 @endforeach
             </div>
         </div>

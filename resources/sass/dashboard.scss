@@ -5,17 +5,26 @@ main {
 
 .main-vh-overflow {
     height: calc(100vh - 3rem);
-    min-height: 675px;
     overflow-y: auto;
     overflow-x:hidden;
 }
 
 .side-sizes {
     width: 280px;
+    @media screen and (max-width: 850px) {
+        width: 240px;
+    }
 }
 
 .lh-5 {
     line-height: 4em;
+
+    @media screen and (max-height: 650px) {
+        line-height: 2rem;
+    }
+    @media screen and (max-height: 450px) {
+        line-height: .5rem;
+    }
 }
 
 .nav-link:hover {
@@ -37,8 +46,16 @@ main {
 
 .main-vh {
     height: 100vh;
-    min-height: 675px;
     background-color: #f6f5f8;
+    .nav-pills {
+        width:100%;
+        flex-wrap:wrap;
+        overflow-y:auto;
+        // overflow-x:auto;
+        li {
+            width:100%;
+        }
+    }
    
 }
 

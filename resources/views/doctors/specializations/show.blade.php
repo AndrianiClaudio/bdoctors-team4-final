@@ -23,12 +23,13 @@
                         </em>
                     </p>
                     <a class="btn btn-primary" href="{{ route('profile.show') }}">indietro</a>
-                    <form action="{{ route('specializations.destroy', $spec->id) }}" method="POST">
+                    {{-- <form action="{{ route('specializations.destroy', $spec->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
                         <input type="submit" value="Delete" class="btn btn-danger" />
 
-                    </form>
+                    </form> --}}
+                    {{-- SE ERA L'UNICA SPECIALIZZAZIONE IL DOTTORE RIMANEVA SENZA. SE VUOLE MODIFICARE LE SPEC. VA NELLA INFO IN FONDO --}}
                 </div>
             </div>
         </div>

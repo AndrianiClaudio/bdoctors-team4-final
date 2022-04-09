@@ -21,7 +21,8 @@
                     <router-link
                         :to="`/dashboard/checkout/${subscription.name}`"
                         :user="user"
-                        >Prosegui con il piano {{subscription.name}}</router-link
+                        >Prosegui con il piano
+                        {{ subscription.name }}</router-link
                     >
                 </div>
             </div>
@@ -41,8 +42,21 @@ export default {
     },
     components: {},
     created() {
+        if (this.$route.params.refresh) {
+            // forziamo il refresh della pagina per far apparire nuovo abbonamento
+            location.reload();
+        }
+        if (document.querySelector("#fulvio")) {
+            this.user_id = parseInt(
+                document.querySelector("#fulvio").innerHTML
+            );
+        } else {
+            if (this.$route.params.uid) {
+                this.$route.params.uid = this.user_id;
+                document.querySelector("#fulvio").remove();
+            }
+        }
         this.subCall();
-        this.user_id = parseInt(document.querySelector("#fulvio").innerHTML);
     },
     methods: {
         subCall() {

@@ -22,7 +22,7 @@ class MessageSeeder extends Seeder
 
                 $msg->user_id = $user->id;
 
-                $date = new Carbon(rand(1, $max) . "-" . $dt . "-2022");
+                $date = new Carbon(rand(1, $max) . "-" . $dt . "-2022 " . rand(0, 23) . ":" . rand(0, 59));
                 $msg->created_at = $date;
                 $msg->updated_at = $date;
                 $msg->save();

@@ -75,7 +75,7 @@ export default {
         onError(error) {
             let message = error.message;
             // Whoops, an error has occured while trying to get the nonce
-            console.log(message);
+            // console.log(message);
         },
     },
 };

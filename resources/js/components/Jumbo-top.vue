@@ -4,13 +4,13 @@
             <img src="/images/jumbo-top.jpg" alt="" />
             <div class="introduction-jumbo d-flex flex-column">
                 <div class="card2 text-jumbo text-center">
-                    <h1 class="mt-4 ms-3 text-white pb-2">
+                    <h1 class="hide-xs mt-4 ms-3 text-white pb-2">
                         Benvenuto in <strong>B</strong>Doctors
                     </h1>
-                    <h4 class="mimmo text-white pb-2">
+                    <h4 class="hide-sm text-white pb-2">
                         La tua salute &egrave; la nostra priorit&agrave;.
                     </h4>
-                    <h6 class="text-white pb-2">
+                    <h6 class="hide-mini text-white pb-2">
                         Cerca tra piu' di 10.000 Dottori su tutto il territorio
                         Italiano.
                     </h6>
@@ -25,8 +25,9 @@
                             id=""
                             v-model="filterSelected"
                         >
-                            <option value="all" disabled selected>
-                                Seleziona una specializzazione
+                            <option value="all" selected>
+                                <!-- Seleziona una specializzazione -->
+                                Ricerca dottori per specializzazione
                             </option>
                             <option
                                 v-for="spec in specs"
@@ -52,7 +53,6 @@
 <script>
 export default {
     name: "Jumbo-top",
-    // props: ["specs "],
     data() {
         return {
             specs: {
@@ -76,16 +76,16 @@ export default {
                 });
         },
         filter(specialization) {
-            if (specialization !== "all") {
-                specialization = specialization
-                    // .split(" ")
-                    // .join("_")
-                    .toLowerCase();
-                this.$router.push({
-                    name: "filter",
-                    params: { specialization: specialization },
-                });
-            }
+            // if (specialization !== "all") {
+            specialization = specialization
+                // .split(" ")
+                // .join("_")
+                .toLowerCase();
+            this.$router.push({
+                name: "filter",
+                params: { specialization: specialization },
+            });
+            // }
         },
     },
     created() {
@@ -108,10 +108,16 @@ export default {
         .introduction-jumbo {
             border-radius: 20px;
             width: 575px;
+            @media screen and(max-width: 600px) {
+                width: 100%;
+                padding: 2rem;
+            }
             position: absolute;
-            top: 31%;
-            left: 11%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
 
+            // JUMBO
             .text-jumbo {
                 background-color: #3c4996;
                 border-radius: 20px;
@@ -123,10 +129,11 @@ export default {
                 background-color: #3c4996;
                 border-radius: 25px;
                 padding: 32px 24px;
+
                 text-decoration: none;
                 z-index: 0;
                 overflow: hidden;
-
+                padding: 32px 24px;
                 &:hover {
                     transition: all 0.25s ease-out;
                     box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
@@ -157,28 +164,60 @@ export default {
 
                 form {
                     border-radius: 25px;
-                    position: relative;
+                    display: flex;
                     select {
+                        flex-basis: 100%;
+                        position: relative;
                         width: 90%;
                         height: 2.5em;
                         border: 0;
                         border-radius: 25px;
+                        // text-align: center;
+
                         &:focus {
                             outline: none;
+                        }
+
+                        @media screen and (max-width: 400px) {
+                            display: block;
+                            position: relative;
                         }
                     }
                     input {
                         background-color: #58c1f9;
                         position: absolute;
-                        top: 0;
                         right: 20px;
                         width: 30%;
                         height: 2.5em;
                         border: 0;
                         border-radius: 25px;
+                        width: 125px;
+                        @media screen and (max-width: 400px) {
+                            display: block;
+                            position: relative;
+                        }
                     }
                 }
             }
+        }
+    }
+    // SCRITTA LA TUA SALUTE ...
+    .hide-sm {
+        display: block;
+        @media screen and (max-width: 650px) {
+            display: none;
+        }
+    }
+    .hide-mini {
+        display: block;
+        @media screen and (max-width: 550px) {
+            display: none;
+        }
+    }
+    .hide-xs {
+        display: block;
+        @media screen and (max-width: 500px) {
+            display: none;
         }
     }
 }

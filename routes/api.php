@@ -35,6 +35,7 @@ Route::middleware('api')->namespace('Api')
         Route::get('specializations', 'SpecializationController@index');
 
         Route::get('doctors/paginate/premium', 'DoctorController@sliderPaginate');
+        Route::get('doctors/paginate/premium/single', 'DoctorController@sliderPaginateOne');
 
         // SUBSCRIPTIONS
         Route::get('subscriptions', 'SubscriptionController@index');

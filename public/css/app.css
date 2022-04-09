@@ -27377,6 +27377,13 @@ b {
     max-width: 60px;
   }
 
+  #left-bar-admin #svg-container {
+    display: flex;
+    padding: 0 !important;
+    width: 100%;
+    justify-content: center;
+  }
+
   #left-bar-admin .media-hide {
     display: none;
   }
@@ -27386,16 +27393,14 @@ b {
     font-size: 0.5rem;
   }
 
-  #left-bar-admin #svg-container {
-    display: flex;
-    padding: 0 !important;
-    width: 100%;
-    justify-content: center;
-  }
-
   #left-bar-admin .nav-item {
     justify-content: center;
     display: flex;
+    text-align: center;
+  }
+
+  #left-bar-admin .nav-pills .nav-link {
+    text-align: center;
   }
 }
 

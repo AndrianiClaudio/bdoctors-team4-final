@@ -253,4 +253,15 @@ class DoctorController extends Controller
             ]
         ]);
     }
+    public function SliderPaginateOne()
+    {
+        $doctors_paginate = User::where('id', '>', 0)->whereHas('subscriptions')->with('specializations', 'reviews', 'subscriptions', 'services')->paginate(1);
+
+        return response()->json([
+            'response' => true,
+            'results' => [
+                'pagination' => $doctors_paginate,
+            ]
+        ]);
+    }
 }

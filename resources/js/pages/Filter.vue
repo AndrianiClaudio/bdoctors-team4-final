@@ -324,15 +324,12 @@ export default {
                             this.filteredDoctor = this.filteredDoctor.concat(
                                 res.data.results.doctors
                             );
-                            console.log(this.filteredDoctor);
                             if (
                                 this.selectedVote &&
                                 this.selectedVote !== "all"
                             ) {
                                 this.check_filter = false;
                                 this.doctors = this.filteredDoctor;
-                                // this.filteredDoctor = [];
-                                // console.log(this.doctors);
                                 this.doctors.forEach((doctor) => {
                                     if (
                                         doctor.review_mean >=
@@ -395,9 +392,7 @@ export default {
             axios
                 .get("api/specializations")
                 .then((res) => {
-                    // console.log(res.data.results.specs);
                     this.specs = res.data.results.specs;
-                    // console.log(this.specs);
                 })
                 .catch((err) => {
                     console.error(err);
@@ -405,17 +400,9 @@ export default {
         },
     },
     created() {
-        // console.log(this.$route.params);
         this.getSpecs();
     },
     mounted() {
-        // console.log(this.$route.params.specialization);
-        // if (!this.$route.params) {
-        //     this.$route.params.specialization = "all";
-        //     this.$route.params.selectedVote = "all";
-        //     this.$route.params.selectedReview = "all";
-        // }
-        // console.log(this.$route.params);
         if (this.$route.params.specialization) {
             this.selectedSpec = this.$route.params.specialization;
         }
@@ -425,7 +412,6 @@ export default {
         if (this.$route.params.review) {
             this.selectedReviews = this.$route.params.review;
         }
-        // console.log(this.$route.params);
         this.getFilterDoctors(this.selectedSpec);
     },
 };

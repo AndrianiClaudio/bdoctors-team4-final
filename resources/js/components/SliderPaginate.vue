@@ -1,10 +1,17 @@
 <template>
-    <div id="SliderPaginate" class="cards d-flex justify-content-between mb-5">
+    <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
+        <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
+    </div>
+    <div
+        v-else
+        id="SliderPaginate"
+        class="cards d-flex justify-content-between mb-5"
+    >
         <hr class="hr" />
         <!-- PREV PAGE CLICK -->
         <div class="d-flex align-items-center left-arrow">
-            <i  
-                role='button'
+            <i
+                role="button"
                 class="fas fa-chevron-left p-3"
                 @click.prevent="getPremiumDoctors(slider.prev_page_url)"
                 v-if="slider.prev_page_url"
@@ -83,8 +90,8 @@
         </div>
         <!-- NEXT PAGE CLICK -->
         <div class="d-flex align-items-center right-arrow">
-            <i  
-                role='button'
+            <i
+                role="button"
                 class="fas fa-chevron-right p-3"
                 @click.prevent="getPremiumDoctors(slider.next_page_url)"
                 v-if="slider.next_page_url"
@@ -100,11 +107,14 @@ export default {
     name: "SliderPaginate",
     data() {
         return {
+            loading: false,
             slider: {
                 doctors: [],
                 next_page_url: null,
                 prev_page_url: null,
             },
+            screen: window.matchMedia("(max-width: 800px)"),
+            // maxi_media_query: null,
         };
     },
     methods: {
@@ -120,33 +130,42 @@ export default {
 
                     this.slider.next_page_url =
                         res.data.results.pagination.next_page_url;
-                    console.log(res);
+                    // console.log(res);
                 })
                 .catch((err) => {
                     console.error(err);
+                })
+                .then(() => {
+                    this.loading = true;
                 });
         },
-
-        // getDoctors(url) {
-        //     // <!-- al click su freccia: chiamata api ... aggiorna i medici di slider-->
-        //     axios
-        //         .get(url)
-        //         .then((res) => {
-        //             this.slider.doctors = res.data.results.pagination.data;
-        //             this.slider.prev_page_url =
-        //                 res.data.results.pagination.prev_page_url;
-        //             this.slider.next_page_url =
-        //                 res.data.results.pagination.next_page_url;
-        //         })
-        //         .catch((err) => {
-        //             console.error(err);
-        //         });
-        // },
+        mediaQueryCheck(scr) {
+            if (scr.matches) {
+                // If media query matches
+                // this.maxi_media_query = true;
+                // console.log(this.maxi_media_query);
+                this.loading = false;
+                this.getPremiumDoctors(
+                    "http://127.0.0.1:8000/api/doctors/paginate/premium/single"
+                );
+            } else {
+                this.loading = false;
+                this.getPremiumDoctors(
+                    "http://127.0.0.1:8000/api/doctors/paginate/premium"
+                );
+                // this.maxi_media_query = false;
+                // console.log(this.maxi_media_query);
+            }
+        },
     },
     created() {
-        this.getPremiumDoctors(
-            "http://127.0.0.1:8000/api/doctors/paginate/premium"
-        );
+        this.mediaQueryCheck(this.screen); // Call listener function at run time
+        this.screen.addEventListener("change", () => {
+            this.mediaQueryCheck(this.screen);
+        });
+        // this.getPremiumDoctors(
+        //     "http://127.0.0.1:8000/api/doctors/paginate/premium"
+        // );
         // this.getDoctors("http://127.0.0.1:8000/api/doctors/paginate/testCla");
     },
 };
@@ -180,7 +199,7 @@ body {
 }
 .card .title {
     padding: 1rem;
-    color: #505DA8;
+    color: #505da8;
     font-weight: bold;
     font-size: 20px;
 }
@@ -229,11 +248,24 @@ body {
     background: none;
     font-size: 24px;
 
-    color: #505DA8;
+    color: #505da8;
     cursor: pointer;
     transition: 0.5s;
     &:hover {
         color: #3c4996;
+    }
+}
+
+.left-arrow,
+.right-arrow {
+    margin: auto auto;
+    min-width: 43px;
+    max-height: 43px;
+    cursor: pointer;
+    &:hover {
+        border-radius: 2rem;
+        background-color: #96fbc4;
+        color: white;
     }
 }
 </style>

@@ -237,7 +237,7 @@ export default {
 
 <style lang="scss" scoped>
 .container-fluid {
-    height: 850px;
+    // height: 850px;
     .row {
         .col {
             .title-section {

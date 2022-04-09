@@ -35,7 +35,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="row m-0 p-0">
+                <!-- <div class="row m-0 p-0">
                     <div class="col">
                         <h5 class="m-2 pb-1">Votazione:</h5>
                     </div>
@@ -55,7 +55,7 @@
                             <option value="1">1 Stella</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="row m-0 p-0">
                     <div class="col">
                         <h5 class="m-2 pb-1">Numero recensioni:</h5>
@@ -81,8 +81,29 @@
             <div class="col-10 m-0 p-0">
                 <div class="row m-0 mt-3 me-3 p-0">
                     <div
-                        class="col m-0 p-0 d-flex justify-content-end align-items-center"
+                        class="col m-0 p-0 d-flex justify-content-between align-items-center"
                     >
+                        <div>
+                            <em>Voto: </em>
+                            <i
+                                class="fa-solid fa-arrow-down-1-9"
+                                @click.prevent="setVote('asc')"
+                            ></i>
+                            <i
+                                class="fa-solid fa-arrow-up-9-1"
+                                @click.prevent="setVote('desc')"
+                            ></i>
+                            <em>Numero recensioni :</em>
+                            <i
+                                class="fa-solid fa-arrow-down-1-9"
+                                @click.prevent="setReview('asc')"
+                            ></i>
+                            <i
+                                class="fa-solid fa-arrow-up-9-1"
+                                @click.prevent="setReview('desc')"
+                            ></i>
+                            <!-- setReview -->
+                        </div>
                         <h5 class="m-0 mb-3" v-if="filteredDoctor.length > 1">
                             <strong>
                                 {{ filteredDoctor.length }} dottori
@@ -247,11 +268,15 @@ export default {
             doctors: [],
             check_filter: false,
             tmp: [],
+
+            // voteAsc: false,
+            // voteDesc: false,
         };
     },
     methods: {
         getFilterDoctors(specialization) {
             this.loading = false;
+
             axios
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
@@ -385,6 +410,9 @@ export default {
                             this.filteredDoctor = this.filteredDoctor.concat(
                                 this.tmp
                             );
+                            this.tmp = [];
+
+                            console.log(this.filteredDoctor);
                             this.loading = true;
                         });
                 });
@@ -401,8 +429,68 @@ export default {
                     console.error(err);
                 });
         },
+        setVote(type) {
+            if (type === "asc") {
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("review_mean", "asc")
+                );
+                // ordina asc
+                // alert("asc");
+            } else if (type === "desc") {
+                // ordina desc
+                // alert("desc");
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("review_mean", "desc")
+                );
+            }
+        },
+        setReview(type) {
+            if (type === "asc") {
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("reviews_count", "asc")
+                );
+                // ordina asc
+                // alert("asc");
+            } else if (type === "desc") {
+                // ordina desc
+                // alert("desc");
+                this.filteredDoctor = this.filteredDoctor.sort(
+                    this.compare("reviews_count", "desc")
+                );
+            }
+        },
+
+        compare(key, order = "desc") {
+            return (a, b) => {
+                if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                    return 0;
+                }
+                let varA =
+                    typeof a[key] === "string" ? a[key].toLowerCase() : a[key];
+                let varB =
+                    typeof b[key] === "string" ? b[key].toLowerCase() : b[key];
+
+                let comparison = 0;
+                if (varA > varB) {
+                    comparison = 1;
+                } else if (varA < varB) {
+                    comparison = -1;
+                }
+
+                return order == "desc" ? comparison * -1 : comparison;
+            };
+        },
     },
     created() {
+        // const products = [
+        //     { title: "A", price: 10 },
+        //     { title: "B", price: 5 },
+        //     { title: "C", price: 8 },
+        // ];
+
+        // console.log(
+        //     this.filteredDoctor.sort(this.compare("review_mean", "asc"))
+        // );
         // console.log(this.$route.params);
         this.getSpecs();
     },

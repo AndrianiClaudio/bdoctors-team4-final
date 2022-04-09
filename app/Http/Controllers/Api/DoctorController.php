@@ -105,6 +105,7 @@ class DoctorController extends Controller
     {
         $data = $request->all();
         // dd($data);
+        $doctors = [];
         $doctors = User::orderBy('id', 'desc')->whereHas('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
 

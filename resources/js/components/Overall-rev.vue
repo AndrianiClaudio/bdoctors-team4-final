@@ -6,7 +6,7 @@
                 <div
                     v-for="rew in rand_reviews"
                     :key="rew.id"
-                    class="col d-flex justify-content-center m-0 p-0"
+                    class="col d-flex justify-content-center m-0 mt-2 p-0"
                 >
                     <div
                         class="card-rev d-flex flex-column justify-content-around p-3"
@@ -64,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 .container-fluid {
     position: relative;
-    height: 450px;
+    height: 532px;
     background: url("https://www.mediyos.com/assets/web/img/bg-special.png");
     background-repeat: no-repeat;
     background-size: cover;

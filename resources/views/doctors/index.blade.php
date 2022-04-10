@@ -35,7 +35,7 @@
             </div>
             <div class="col-4  m-1200-bedge m-w-1200">
                 <div class="profile-preview ">
-                    <h5 class="ps-2 pt-2">Il tuo Badge</h5>
+                    <h5 class="ps-2 m-0 pt-2">Il tuo Badge</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
                         href="{{ route('profile.edit') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -73,8 +73,8 @@
         </div>
         <div class="row m-1200">
             <div class="col-7 ms-3 mt-3 m-w-1200">
-                <div class="message-sizes welcome-bg d-flex justify-content-between align-items-center ps-2">
-                    <h5>I tuoi ultimi messaggi</h5>
+                <div class="message-sizes welcome-nobg d-flex justify-content-between align-items-center ps-2">
+                    <h5 class="m-0">I tuoi ultimi messaggi</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3"
                         href="{{ route('messages.index') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -99,7 +99,7 @@
             </div>
             <div class="col-4 m-1200-bedge m-w-1200">
                 <div class="profile-preview pt-2 mt-3">
-                    <h5 class="ps-2">I tuoi servizi</h5>
+                    <h5 class="ps-2 m-0">I tuoi servizi</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3 mb-2"
                         href="{{ route('services.index') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -119,8 +119,8 @@
         </div>
         <div class="row m-1200">
             <div class="col-7  ms-3 mt-3 m-w-1200">
-                <div class="message-sizes welcome-bg d-flex justify-content-between align-items-center ps-2 ">
-                    <h5>Le tue ultime recensioni</h5>
+                <div class="message-sizes welcome-nobg d-flex justify-content-between align-items-center ps-2 ">
+                    <h5 class="m-0">Le tue ultime recensioni</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3 "
                         href="{{ route('reviews.index') }}">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -162,7 +162,7 @@
             </div>
             <div class="col-4 m-1200-bedge m-w-1200">
                 <div class="profile-preview pt-2 mt-3">
-                    <h5 class="ps-2">I tuoi abbonamenti attivi</h5>
+                    <h5 class="ps-2 m-0">I tuoi abbonamenti attivi</h5>
                     <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-3 mb-2 "
                         href="{{ route('profile.show') }}">
                         <i class="fa-solid fa-pen-to-square"></i>

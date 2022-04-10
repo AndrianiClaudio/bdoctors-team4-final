@@ -2,7 +2,7 @@
     <div class="container-fluid m-0 p-0">
         <!-- <Navbar /> -->
         <div class="row page m-0 p-0">
-            <div class="col-2 m-0 p-0">
+            <div class="col-xl-2 col-xs-12 m-0 p-0">
                 <div class="row m-0 p-0">
                     <div class="col">
                         <h4 class="fw-bold border-bottom m-2 pb-2">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-10 m-0 p-0">
+            <div class="col-xl-10 col-xs-12 m-0 p-0">
                 <div class="row m-0 mt-3 me-3 p-0">
                     <div
                         class="col m-0 p-0 d-flex justify-content-between align-items-center"
@@ -93,6 +93,7 @@
                                 class="fa-solid fa-arrow-up-9-1"
                                 @click.prevent="setVote('desc')"
                             ></i>
+                            <br>
                             <em>Numero recensioni :</em>
                             <i
                                 class="fa-solid fa-arrow-down-1-9"
@@ -521,8 +522,8 @@ export default {
 .container-fluid {
     .row.page {
         height: calc(100vh - 70px);
-        .col-2 {
-            height: calc(100vh - 70px);
+        .col-xl-2 {
+            // height: calc(100vh - 70px);
             border-right: 1px solid #3c4996;
             .row {
                 .col {
@@ -536,7 +537,7 @@ export default {
                 }
             }
         }
-        .col-10 {
+        .col-xl-10 {
             height: calc(100vh - 70px);
             overflow: auto;
             .row {

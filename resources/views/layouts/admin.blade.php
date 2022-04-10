@@ -175,8 +175,8 @@
         var name = $(this).data("name");
         event.preventDefault();
         swal({
-                title: `Are you sure you want to delete this record?`,
-                text: "If you delete this, it will be gone forever.",
+                title: `Sei sicuro di volerti eliminare? Le persone hanno bisogno di te!`,
+                text: "Se decidi di eliminarti, dovrai ricreare nuovamente il tuo account.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

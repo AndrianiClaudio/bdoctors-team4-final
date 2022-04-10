@@ -58,7 +58,8 @@ class MessageSeeder extends Seeder
         // MARZO
         $this::generate(3, $faker, 31);
         // APRILE
-        $this::generate(4, $faker, 30);
+
+        $this::generate(4, $faker, intval(Carbon::now()->format("m")) - 1);
 
     // for ($i = 0; $i < rand(5, 15); $i++) {
     //     $msg = new Message();

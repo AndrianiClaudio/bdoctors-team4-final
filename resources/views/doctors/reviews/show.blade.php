@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-  <div class="container show-message-w pt-1 pb-1">
+    <div class="container show-message-w pt-1 pb-1">
         <div class="row ">
             <div class="col pb-2">
                 <h1>Dettagli recensioni</h1>
@@ -33,6 +33,9 @@
                     <p>Questa recensione non ha un testo</p>
                 @endif
 
+                <div class="date">
+                    <em>Recensione del giorno: {{ Carbon\Carbon::parse($review->created_at)->format('d-m-Y') }}</em>
+                </div>
                 <a class="btn btn-primary text-white" href="{{ route('reviews.index') }}">indietro</a>
                 {{-- <form action="{{ route('review.destroy', $review->id) }}" method="POST">
                     @method('DELETE')

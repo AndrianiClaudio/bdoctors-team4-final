@@ -13,8 +13,8 @@
                 document.getElementById("chk_option_error").style.visibility = "hidden";
                 return true;
             }
-
             div.classList.add('is-invalid')
+
             return false;
         }
 
@@ -67,90 +67,49 @@
             const div = document.getElementById(key);
             const el_error = document.getElementById(`${key}_validate`);
 
-            let res = defaultError(div, el_error, 'Campo obbligatorio!');
+                let res = defaultError(div, el_error, 'Campo obbligatorio!');
 
-            if (res) {
-                checkSub[key] = true;
-                removeError(div, el_error);
-                if (key === 'password') {
-                    if (div.value.length < 8) {
-                        setError(div, el_error, 'La password deve contenere almeno 8 caratteri');
-                        // checkSub[index] = false;
-                        checkSub[key] = false
-                    } else {
-                        removeError(div, el_error);
-                        // checkSub[index] = true;
-                        checkSub[key] = true
+                if (res) {
+                    checkSub[key] = true;
+                    removeError(div, el_error);
+                    if (key === 'password') {
+                        if (div.value.length < 8) {
+                            setError(div, el_error, 'La password deve contenere almeno 8 caratteri');
+                            // checkSub[index] = false;
+                            checkSub[key] = false
+                        } else {
+                            removeError(div, el_error);
+                            // checkSub[index] = true;
+                            checkSub[key] = true
+                        }
                     }
-                }
-                if (key === 'email') {
-                    if (!isMailValue(div.value)) {
-                        setError(div, el_error, 'Inserire un indirizzo email valido');
-                        checkSub[key] = false
-                        // checkSub[index] = false
-                    } else {
-                        removeError(div, el_error);
-                        checkSub[key] = true
-                        // checkSub[index] = true;
+                    if (key === 'email') {
+                        if (!isMailValue(div.value)) {
+                            setError(div, el_error, 'Inserire un indirizzo email valido');
+                            checkSub[key] = false
+                            // checkSub[index] = false
+                        } else {
+                            removeError(div, el_error);
+                            checkSub[key] = true
+                            // checkSub[index] = true;
+                        }
                     }
+                } else {
+                    checkSub[key] = false;
                 }
-            } else {
-                checkSub[key] = false;
             }
+
+            handleData();
+            if (!Object.values(checkSub).includes(false)) {
+                return handleData();
+            }
+            return false;
         }
-
-        if (!Object.values(checkSub).includes(false)) {
-            return handleData();
-        }
-        return false;
-    }
-
-
-    // validate.foreach()
-    // validate.forEach((el, index) => {
-    //     const div = document.getElementById(el);
-    //     const el_error = document.getElementById(`${el}_validate`);
-
-        //         if (defaultError(div, el_error, 'Campo obbligatorio!')) {
-        //             checkSub[index] = false;
-        //         } else {
-        //             if (el === 'password') {
-        //                 if (div.value.length < 8) {
-        //                     setError(div, el_error, 'La password deve contenere almeno 8 caratteri');
-        //                     checkSub[index] = false;
-        //                 } else {
-        //                     removeError(el_error);
-        //                     checkSub[index] = true;
-        //                 }
-        //             }
-        //             if (el === 'email') {
-        //                 if (!isMailValue(div.value)) {
-        //                     setError(div, el_error, 'Inserire un indirizzo email valido');
-        //                     checkSub[index] = false
-        //                 } else {
-        //                     removeError(el_error);
-        //                     checkSub[index] = true;
-        //                 }
-        //             }
-        //         }
-
-
-        //     });
-        //     checkSub.forEach(el => {
-        //         console.log(el);
-        //     });
-        //     return false;
-        // }
     </script>
 @endsection
 
 @section('content')
     <div class="container">
-        {{-- @foreach ($errors->all() as $err)
-            <div class="alert alert-danger" role="alert">
-                <strong>{{ $err }}</strong>
-            </div>
-        @endforeach --}}
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -285,7 +244,7 @@
                                             </div>
                                         @endforeach
                                         <div style="visibility:hidden; color:red; " id="chk_option_error">
-                                            Please select at least one option.
+                                            <strong>Campo obbligatorio!</strong>
                                         </div>
                                         @error('specializations')
                                             {{-- @dd($errors->any())

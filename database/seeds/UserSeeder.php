@@ -41,8 +41,8 @@ class UserSeeder extends Seeder
                 'firstname' => $data['firstname'],
                 'lastname' => $data['lastname'],
 
-                'email' => $faker->email(),
                 'slug' => User::createSlug($data['firstname'] . '-' . $data['lastname']),
+                'email' => User::createSlug($data['firstname'] . '.' . $data['lastname']) . '@gmail.com',
                 'password' => Hash::make('12345678'),
                 'address' => $faker->address(),
                 // NULLABLE

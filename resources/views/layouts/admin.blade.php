@@ -52,7 +52,8 @@
             <ul class="nav nav-pills lh-5 fs-side">
                 <li class="nav-item">
                     <a href="{{ route('profile.index') }}" class="nav-link text-white" aria-current="page">
-                        <i class="fa-solid fa-igloo p-1"></i>
+                        {{-- <i class="fa-solid fa-igloo p-1"></i> --}}
+                        <i class="fa-solid fa-house p-1"></i>
                         <span class="media-hide">Home</span>
                     </a>
                 </li>

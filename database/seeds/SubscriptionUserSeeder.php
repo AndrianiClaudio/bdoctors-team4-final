@@ -13,7 +13,7 @@ class SubscriptionUserSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 21; $i++) {
             $user = User::inRandomOrder()->first();
             $sub = Subscription::inRandomOrder()->first();
 

@@ -5,20 +5,34 @@ use Faker\Generator as Faker;
 use App\Model\Message;
 use App\User;
 use Carbon\Carbon;
+use Faker\Factory as Fakers;
 
 
 class MessageSeeder extends Seeder
 {
     public static function generate($dt, Faker $faker, $max)
     {
+        $faker = Fakers::create('it_IT');
         foreach (User::all() as $user) {
-            for ($i = 0; $i < rand(5, 15); $i++) {
+            for ($i = 0; $i < rand(3, 8); $i++) {
+                $defaultmsg = [
+                    'Salve dottore, le volevo chiedere se fosse disponibile un giorno della prossima settimana per una visita.',
+                    'Buongiorno, avrei bisogno di una visita il prima possibile dato che poi parto per le ferie, ha per caso tempo?',
+                    'Salve, ho dei dolori lancinanti ma non ho idea di cosa possa provocarli, riesce a darmi uan controllata?',
+                    'Dottore avrei bisogno di una visita di controllo per vedere se dopo l\'intervento è tutto a posto',
+                    'Dottore mi fa male tutto, mi può dare una mano?',
+                    'E DA DUE SETTIMANE CHE NON MI RISPONI, SE NON MI FISSI UN APPUNTAMENTO TI DENUNCIO, NON SCHERZO',
+                    'Salve, chiedo per avere un\'informazione, è possibile pagare la visita tramite i ticket in ospedale?',
+                    'Salve, mio figlio è medico, mi può fare uno sconto?',
+                    'Sa quale è il colmo per dottore? Influenzare i propri pazienti ahahahah. Ci possiamo vedere domani che avrei bisogno di una visitina?'
+
+                ];
                 $msg = new Message();
 
                 $msg->firstname = $faker->firstName();
                 $msg->lastname = $faker->lastName();
                 $msg->email = $faker->email();
-                $msg->content = 'Ciao bello';
+                $msg->content = $defaultmsg[rand(0, 8)];
 
                 $msg->user_id = $user->id;
 

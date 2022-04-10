@@ -65,7 +65,7 @@
 
 @section('content')
     <div class="container margin-left-fullsize margin-left-container p-0">
-        <div class="row welcome-nobg w-title-message text-white mt-2 mb-3">
+        <div class="row welcome-nobg w-title-message text-white mt-2">
             <div class="col-12">
                 <h4 class="text-uppercase ms-3 my-2"> Inserisci un nuovo servizio</h4>
             </div>
@@ -73,13 +73,13 @@
         </div>
         <div class="row w-title-message bg-message">
 
-            <div class="col">
+            <div class="col mt-3">
                 <form action="{{ route('services.store') }}" method="post" onsubmit="createServicesValidation(event)">
                     @method('POST')
                     @csrf
 
                     <div class="form-group">
-                        <label for="type">Title</label>
+                        <label for="type">Titolo</label>
                         <input type="text" class="form-control" id="type" placeholder="Titolo servizio" name="type"
                             value="{{ old('type') }}">
                         @error('type')
@@ -106,7 +106,7 @@
 
                     <div class="form-group">
                         <select class="form-select" id="specialization" name="specialization_id">
-                            <option value="">choose a specialization</option>
+                            <option value="">Scegli una specializzazione</option>
                             @foreach ($specs as $spec)
                                 <option @if (old('specialization_id') == $spec->id) selected @endif value="{{ $spec->id }}"
                                     @if (in_array($spec->category, $user_specs)) class="bg-success" @endif>

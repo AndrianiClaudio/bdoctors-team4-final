@@ -113,7 +113,11 @@ export default {
     methods: {
         getDate(dt) {
             return (
-                dt.split("T")[0] + " alle ore " + dt.split("T")[1].split(".")[0]
+                dt.split("T")[0] +
+                " alle ore " +
+                dt.split("T")[1].split(".")[0].split(":")[0] +
+                ":" +
+                dt.split("T")[1].split(".")[0].split(":")[1]
             );
         },
         getProduct(url) {

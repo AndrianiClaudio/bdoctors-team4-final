@@ -11,6 +11,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('api')->namespace('Api')
     ->group(function () {
+        Route::get('doctors/reviews/count', 'DoctorController@generateSelectCountReview');
+
         // return auth doctor
         Route::get('doctors', 'DoctorController@index');
         // from slug, show doctor

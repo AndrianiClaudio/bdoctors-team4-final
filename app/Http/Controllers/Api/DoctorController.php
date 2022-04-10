@@ -12,6 +12,34 @@ use App\Model\Specialization;
 
 class DoctorController extends Controller
 {
+    public function generateSelectCountReview()
+    {
+        $max = 0;
+        foreach (User::all() as $doctor) {
+            if (count(Review::where('user_id', $doctor->id)->get()) > $max) {
+                $max = count(Review::where('user_id', $doctor->id)->get());
+            }
+        }
+
+        $range = (int)($max / 5);
+        $reviewsChange = [
+            $range * 5,
+            $range * 4,
+            $range * 3,
+            $range * 2,
+            $range,
+        ];
+        // dd($reviewsChange);
+
+
+        return response()->json(
+        [
+            'response' => true,
+            'results' => [
+                'reviewsChange' => $reviewsChange,
+            ]
+        ]);
+    }
     public function index()
     {
         $doctors = User::where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();

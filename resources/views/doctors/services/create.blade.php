@@ -64,8 +64,15 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
+    <div class="container margin-left-fullsize margin-left-container p-0">
+        <div class="row welcome-nobg w-title-message text-white mt-2 mb-3">
+            <div class="col-12">
+                <h4 class="text-uppercase ms-3 my-2"> Inserisci un nuovo servizio</h4>
+            </div>
+
+        </div>
+        <div class="row w-title-message bg-message">
+
             <div class="col">
                 <form action="{{ route('services.store') }}" method="post" onsubmit="createServicesValidation(event)">
                     @method('POST')
@@ -117,13 +124,14 @@
                         </span>
                         </span>
                     </div>
+                </form>
             </div>
             <div class="mb-3">
 
                 <input class="btn btn-info" type="submit" value="Invia">
             </div>
-            </form>
+
+
         </div>
-    </div>
     </div>
 @endsection

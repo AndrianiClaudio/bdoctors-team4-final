@@ -102,9 +102,12 @@
     height: 250px;
 }
 
+.main-vh-overflow {
+    background-color: #fff;
+}
 @media only screen and (max-width: 1400px) {
-    .main-vh-overflow {
-        background-color: #fff;
+    // .main-vh-overflow {
+        // background-color: #fff;
         .m-d {
             text-align: center;
             margin-right: 0!important;
@@ -112,7 +115,7 @@
                 justify-content: center;
             }
         }
-    }
+    // }
     
     .m-1400-row {
         display: flex;

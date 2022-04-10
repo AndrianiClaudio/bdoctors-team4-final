@@ -4,16 +4,16 @@
     >
         <div class="prof-container width-ifsmall p-2">
             <div class="row m-0 p-0">
-                <div class="col-2 m-0 p-0">
+                <div class="min-col col m-0 p-0">
                     <img
                         v-if="doctor.photo"
                         :src="doctor.photo"
-                        class="rounded-circle dis-none m-3"
+                        class="img img-fluid rounded-circle m-3"
                         alt=""
                     />
                     <img
                         v-else
-                        class="rounded-circle dis-none m-3"
+                        class="img img-fluid rounded-circle m-3"
                         src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
                         alt=""
                     />
@@ -105,7 +105,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-3 me-3 d-flex justify-content-end m-0 p-0">
+                <div
+                    class="col-lg-6 mt-3 me-3 d-flex justify-content-end m-0 p-0"
+                >
                     <embed
                         class="cv dis-none"
                         v-if="doctor.cv"
@@ -222,15 +224,27 @@ export default {
         width: 50%;
         // height: 580px;
         .row {
-            .col-2 {
+            .min-col {
+                max-width: calc(120px + 1.5rem);
                 img {
-                    width: 120px;
+                    @media screen and (max-width: 800px) {
+                        text-align: center;
+                    }
+                    min-width: 120px;
                     height: 120px;
                 }
             }
+            // .col {
+            //     img {
+            //         @media screen and (max-width: 800px) {
+            //             text-align: center;
+            //         }
+            //         min-width: 120px;
+            //         height: 120px;
+            //     }
+            // }
             .col.info-item {
-                    font-size: 1.2em;
-                
+                font-size: 1.2em;
             }
         }
     }

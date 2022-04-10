@@ -36,8 +36,8 @@
                             </h6>
                         </div>
                     </div>
-                    <div class="row m-0p-0">
-                        <div class="col-3 d-flex align-items-center m-0 p-0">
+                    <div class="row m-0 p-0">
+                        <div class="col-12 d-flex align-items-center m-0 p-0">
                             <div class="ms-3 stars">
                                 <span
                                     v-for="(star, index) in review.vote"

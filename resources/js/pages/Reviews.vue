@@ -2,96 +2,73 @@
     <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
         <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
     </div>
-    <div v-else class="container-fluid justify-content-center text-center">
-        <!-- {{ doctor.reviews }} -->
-        <ul v-if="doctor">
-            <li v-for="review in doctor.reviews" :key="review.id">
-                Recensione scritta da :
-                <em v-if="!review.username">Utente anonimo</em>
-                <em v-else>{{ review.content }}</em>
-                <p>
-                    <span
-                        v-for="(star, index) in review.vote"
-                        :key="`review-${review.id}-star-${index}`"
-                    >
-                        <i class="bi bi-star-fill"></i>
-                    </span>
-                    <span
-                        v-for="(star, index) in 5 - review.vote"
-                        :key="`star-${index}`"
-                    >
-                        <i class="bi bi-star"></i>
-                    </span>
-                </p>
-                <p>Recensione scritta il {{ getDate(review.created_at) }}</p>
-                <hr />
-            </li>
-        </ul>
-        <div
-            class="container-fluid d-flex justify-content-center align-items-center m-0 p-0"
-        >
-            <div class="list-container p-2">
-                <ul v-if="doctor" class="list-group">
-                    <li
-                        class="list-group-item"
-                        v-for="review in doctor.reviews"
-                        :key="review.id"
-                    >
-                        <div class="row m-0 p-0">
-                            <div
-                                class="col d-flex justify-content-start align-items-center m-0 p-0"
-                            >
-                                <h5 class="d-flex align-items-center mb-0">
-                                    Recensione scritta da:
-                                    <strong>
-                                        <span
-                                            class="ms-1"
-                                            v-if="!review.username"
-                                        >
-                                            Utente anonimo
-                                        </span>
-                                        <span class="ms-1" v-else>
-                                            {{ review.username }}
-                                        </span>
-                                    </strong>
-                                </h5>
-                                <h6
-                                    v-if="review.created_at"
-                                    class="text-secondary d-flex align-items-start mb-0 ms-2"
-                                >
-                                    <em>{{ getDate(review.created_at) }} </em>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="row m-0p-0">
-                            <div
-                                class="col-3 d-flex align-items-center m-0 p-0"
-                            >
-                                <div class="ms-3 stars">
-                                    <span
-                                        v-for="(star, index) in review.vote"
-                                        :key="`review-${review.id}-star-${index}`"
-                                        class="me-2"
-                                    >
-                                        <i class="bi bi-star-fill"></i></span
-                                    ><span
-                                        v-for="(star, index) in 5 - review.vote"
-                                        :key="`star-${index}`"
-                                        class="me-2"
-                                    >
-                                        <i class="bi bi-star"></i>
+    <div
+        v-else
+        class="container-fluid d-flex justify-content-center align-items-center m-0 p-0"
+    >
+        <div class="list-container p-2">
+            <ul v-if="doctor" class="list-group">
+                <li
+                    class="list-group-item"
+                    v-for="review in doctor.reviews"
+                    :key="review.id"
+                >
+                    <div class="row m-0 p-0">
+                        <!-- <div
+                            class="col d-flex justify-content-start align-items-center m-0 p-0"
+                        > -->
+                        <div class="col d-flex justify-content-between">
+                            <h5 class="mb-0 fs-4 me-2">
+                                Recensione scritta da:
+                                <strong>
+                                    <span class="ms-2" v-if="!review.username">
+                                        Utente anonimo
                                     </span>
-                                </div>
-                            </div>
-                            <div class="col d-flex align-items-center">
-                                <div class="ms-3 content">
-                                    {{ review.content }}
-                                </div>
+                                    <span class="ms-2" v-else>
+                                        {{ review.username }}
+                                    </span>
+                                </strong>
+                            </h5>
+                            <h6
+                                v-if="review.created_at"
+                                class="fs-5 ms-text-white mb-0"
+                            >
+                                In data: {{ getDate(review.created_at) }}
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="row m-0 p-0">
+                        <div class="col-12 d-flex align-items-center m-0 p-0">
+                            <div class="ms-3 stars">
+                                <span
+                                    v-for="(star, index) in review.vote"
+                                    :key="`review-${review.id}-star-${index}`"
+                                    class="me-2"
+                                >
+                                    <i class="bi bi-star-fill"></i></span
+                                ><span
+                                    v-for="(star, index) in 5 - review.vote"
+                                    :key="`star-${index}`"
+                                    class="me-2"
+                                >
+                                    <i class="bi bi-star"></i>
+                                </span>
                             </div>
                         </div>
-                    </li>
-                </ul>
-            </div>
+                        <div
+                            class="col d-flex align-items-center"
+                            v-if="review.content"
+                        >
+                            <div class="ms-3 content">
+                                {{ review.content }}
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center" v-else>
+                            <div class="ms-3 content">Nessun contenuto.</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -113,7 +90,11 @@ export default {
     methods: {
         getDate(dt) {
             return (
-                dt.split("T")[0] + " alle ore " + dt.split("T")[1].split(".")[0]
+                dt.split("T")[0] +
+                " alle ore " +
+                dt.split("T")[1].split(".")[0].split(":")[0] +
+                ":" +
+                dt.split("T")[1].split(".")[0].split(":")[1]
             );
         },
         getProduct(url) {
@@ -122,28 +103,74 @@ export default {
                 .get(url)
                 .then((result) => {
                     this.doctor = result.data.results.doctors;
+                    console.log(this.doctor);
                 })
                 .catch((err) => {
                     console.error(err);
                 })
                 .then(() => {
+                    this.doctor.reviews = this.doctor.reviews.sort(
+                        this.compare("created_at", "desc")
+                    );
                     this.loading = true;
                 });
+        },
+
+        compare(key, order = "desc") {
+            return (a, b) => {
+                if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                    return 0;
+                }
+                let varA =
+                    typeof a[key] === "string" ? a[key].toLowerCase() : a[key];
+                let varB =
+                    typeof b[key] === "string" ? b[key].toLowerCase() : b[key];
+
+                let comparison = 0;
+                if (varA > varB) {
+                    comparison = 1;
+                } else if (varA < varB) {
+                    comparison = -1;
+                }
+
+                return order == "desc" ? comparison * -1 : comparison;
+            };
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
+.ms-text-white {
+    color: #f6f5f879;
+}
 .container-fluid {
     background-color: #f6f5f8;
     height: calc(100vh - 70px);
     .list-container {
-        background-color: #ffffff;
+        // background-color: #ffffff;
         border-radius: 19px;
         width: 60%;
         height: 650px;
         overflow: auto;
+        .list-group-item {
+            width: 100%;
+            margin: auto;
+            border-radius: 15px;
+            color: white;
+            background-color: #3c4996;
+
+            margin-bottom: 0.5rem;
+        }
+        * {
+            word-wrap: break-word;
+        }
+
+        @media screen and (max-width: 800px) {
+            .col.d-flex.justify-content-between {
+                flex-direction: column;
+            }
+        }
     }
 }
 .stars {

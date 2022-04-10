@@ -127,7 +127,7 @@ export default {
                 top: 20px;
                 left: 11%;
             }
-            @media screen and(max-width: 600px) {
+            @media screen and(max-width: 650px) {
                 width: 100%;
                 padding: 2rem;
                 top: 50%;

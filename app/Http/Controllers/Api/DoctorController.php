@@ -12,6 +12,34 @@ use App\Model\Specialization;
 
 class DoctorController extends Controller
 {
+    public function generateSelectCountReview()
+    {
+        $max = 0;
+        foreach (User::all() as $doctor) {
+            if (count(Review::where('user_id', $doctor->id)->get()) > $max) {
+                $max = count(Review::where('user_id', $doctor->id)->get());
+            }
+        }
+
+        $range = (int)($max / 5);
+        $reviewsChange = [
+            $range * 5,
+            $range * 4,
+            $range * 3,
+            $range * 2,
+            $range,
+        ];
+        // dd($reviewsChange);
+
+
+        return response()->json(
+        [
+            'response' => true,
+            'results' => [
+                'reviewsChange' => $reviewsChange,
+            ]
+        ]);
+    }
     public function index()
     {
         $doctors = User::where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
@@ -27,7 +55,7 @@ class DoctorController extends Controller
     {
         $data = $request->all();
         // dd($data);
-        $doctors = User::orderBy('id', 'desc')->doesntHave('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+        $doctors = User::inRandomOrder()->doesntHave('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
 
         foreach ($doctors as $d) {
@@ -110,7 +138,7 @@ class DoctorController extends Controller
         $data = $request->all();
         // dd($data);
         $doctors = [];
-        $doctors = User::orderBy('id', 'desc')->whereHas('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+        $doctors = User::inRandomOrder()->whereHas('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
         foreach ($doctors as $d) {
             $d->reviews_count = count($d->reviews);

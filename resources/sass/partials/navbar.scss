@@ -30,3 +30,10 @@
         }
     }
 }
+.back-to-profile {
+    background-color: #4553a5;
+    border-radius: 25px;
+    &:hover {
+        background-color: #3c4996;
+    }
+}

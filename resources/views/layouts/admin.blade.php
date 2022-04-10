@@ -52,7 +52,8 @@
             <ul class="nav nav-pills lh-5 fs-side">
                 <li class="nav-item">
                     <a href="{{ route('profile.index') }}" class="nav-link text-white" aria-current="page">
-                        <i class="fa-solid fa-igloo p-1"></i>
+                        {{-- <i class="fa-solid fa-igloo p-1"></i> --}}
+                        <i class="fa-solid fa-house p-1"></i>
                         <span class="media-hide">Home</span>
                     </a>
                 </li>
@@ -174,8 +175,8 @@
         var name = $(this).data("name");
         event.preventDefault();
         swal({
-                title: `Are you sure you want to delete this record?`,
-                text: "If you delete this, it will be gone forever.",
+                title: `Sei sicuro di volerti eliminare? Le persone hanno bisogno di te!`,
+                text: "Se decidi di eliminarti, dovrai ricreare nuovamente il tuo account.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

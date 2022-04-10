@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid d-flex justify-content-center align-items-center m-0 p-0">
-    <div class="form-container p-2">
+    <div class="form-container width-ifsmall p-2">
         <form
             :action="`http://localhost:8000/api/doctors/${doctor.slug}/review`"
             method="post"
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="row justify-content-between m-0 mt-3 mb-2 p-0">
-                <div class="col">
+                <div class="col d-flex align-items-center">
                     <router-link
                     class="btn back"
                     :to="{ name: 'doctor', params: { slug: doctor.slug } }" v-if="doctor.slug"
@@ -186,9 +186,15 @@ export default {
         background-color: #F6F5F8;
         height: calc(100vh - 70px);
         .form-container {
-            background-color: #ffffff;
-            border-radius: 19px;
+            // width: 50%;
+            // background-color: #ffffff;
             width: 50%;
+            margin: auto;
+            border-radius: 15px;
+            color: white;
+            background-color: #3c4996;
+
+            border-radius: 19px;
             .row {
                 .col {
                     textarea {
@@ -229,4 +235,10 @@ export default {
                 }
             }
         }
-    }</style>
+    }
+    @media screen and(max-width: 600px) {
+        .width-ifsmall {
+            width: 90% !important;
+        }
+    }
+    </style>

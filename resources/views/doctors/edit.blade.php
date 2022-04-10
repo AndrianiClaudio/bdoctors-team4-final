@@ -7,17 +7,19 @@
 @section('script')
     <script src="{{ asset('js/admin.js') }}" defer></script>
     <script>
-        // function handleData() {
-        //     var form_data = new FormData(document.querySelector("form"));
-        //     if (!form_data.has("specializations[]")) {
-        //         document.getElementById("chk_option_error").style.visibility = "visible";
-        //     } else {
-        //         document.getElementById("chk_option_error").style.visibility = "hidden";
-        //         return true
-        //     }
+        function handleData() {
+            var form_data = new FormData(document.querySelector("form"));
+            const div = document.getElementById('specializations_validate')
+            if (!form_data.has("specializations[]")) {
+                document.getElementById("chk_option_error").style.visibility = "visible";
+            } else {
+                document.getElementById("chk_option_error").style.visibility = "hidden";
+                return true
+            }
+            div.classList.add('is-invalid')
 
-        //     return false;
-        // }
+            return false;
+        }
 
         function validateEditForm(e) {
             // console.log(e.target.value);
@@ -99,6 +101,7 @@
 
 
 
+            handleData();
             if (errors.length > 0) {
                 // console.log(true);
                 // e.currentTarget.submit();
@@ -119,8 +122,9 @@
             // }
             else {
 
+
                 e.currentTarget.submit();
-                return true
+                return handleData()
             }
 
             // console.log(errors.length);
@@ -211,7 +215,8 @@
                             @enderror
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
-                            <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
+                            <div id="specializations_validate"
+                                class="form-control d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
 
                                 <div class="d-flex flex-wrap justify-content-around">
                                     @foreach ($specializations as $specialization)
@@ -222,6 +227,16 @@
                                             {{ $specialization->category }}
                                         </label>
                                     @endforeach
+                                    <div style="visibility:hidden; color:red; " id="chk_option_error">
+                                        <strong>Campo obbligatorio!</strong>
+                                    </div>
+                                    @error('specializations')
+                                        {{-- @dd($errors->any())
+                                            @dd($message) --}}
+                                        <span class="invalid-feedback" id="InvalidCheck3Feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 {{-- <ul>

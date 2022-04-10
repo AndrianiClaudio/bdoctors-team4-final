@@ -4,7 +4,8 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="{{ asset('js/admin.js') }}" defer>
+    </script>
 @endsection
 
 @section('content')
@@ -16,14 +17,18 @@
         </div>
         <div class="row w-title-message bg-message">
             <div class="col-12 pt-2">
-                 @foreach ($reviews as $review)
-                    <p class="pt-3 d-inline fs-4">Recensione dall'utente: 
+                @foreach ($reviews as $review)
+                    <p class="pt-3 d-inline fs-4">Recensione dall'utente:
                         @if (!$review->username)
                             Utente
                         @else
                             {{ $review->username }}
-                        @endif</p>
-                    <a class="btn btn-primary text-white" href="{{ route('reviews.show', $review->id) }}">Dettagli</a>
+                        @endif
+                    </p>
+
+                    <div>
+                        <a class="btn btn-primary text-white" href="{{ route('reviews.show', $review->id) }}">Dettagli</a>
+                    </div>
                     <hr>
                 @endforeach
             </div>

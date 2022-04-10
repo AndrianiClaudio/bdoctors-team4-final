@@ -2,18 +2,18 @@
     <div
         class="container-fluid d-flex justify-content-center align-items-center m-0 p-0"
     >
-        <div class="prof-container p-2">
+        <div class="prof-container width-ifsmall p-2">
             <div class="row m-0 p-0">
-                <div class="col-2 m-0 p-0">
+                <div class="min-col col m-0 p-0">
                     <img
                         v-if="doctor.photo"
                         :src="doctor.photo"
-                        class="rounded-circle m-3"
+                        class="img img-fluid rounded-circle m-3"
                         alt=""
                     />
                     <img
                         v-else
-                        class="rounded-circle m-3"
+                        class="img img-fluid rounded-circle m-3"
                         src="https://www.ilcedrangolo.it/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
                         alt=""
                     />
@@ -69,8 +69,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row m-0 p-0">
-                <div class="col m-0 ms-3 p-0">
+            <div class="row justify-content-between m-0 p-0">
+                <div class="col-xs-12 col-lg-5 m-0 ms-3 p-0">
                     <div class="row m-0 p-0">
                         <div class="col info-item m-0 mt-3 p-0">
                             Email: {{ doctor.email }}
@@ -105,9 +105,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col mt-3 me-3 m-0 p-0">
+                <div
+                    class="col-lg-6 mt-3 me-3 d-flex justify-content-end m-0 p-0"
+                >
                     <embed
-                        class="cv"
+                        class="cv dis-none"
                         v-if="doctor.cv"
                         :src="`http://localhost:8000/storage/${doctor.cv}`"
                         type=""
@@ -149,105 +151,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="row row-cols-1 row-cols-md-4 g-4" v-if="doctor">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{ doctor.firstname }} {{ doctor.lastname }}
-                    </h5>
-                    <hr />
-                    <b><em>Email</em></b>
-                    {{ doctor.email }}
-                    <hr />
-                    <b><em>Address</em></b>
-                    {{ doctor.address }}
-                    <div v-if="doctor.cv">
-                        <hr />
-                        <b><em>Curriculum Vitae</em></b>
-                        {{ doctor.address }}
-                    </div>
-                    <div v-if="doctor.phone">
-                        <hr />
-                        <b><em>Telefono</em></b>
-                        {{ doctor.phone }}
-                    </div>
-                    RECENSIONI DEL DOTTORE
-                    <div v-if="doctor.reviews">
-                        <hr />
-                        <b
-                            >Media recensioni:
-                            <em>{{ doctor.review_mean }}</em></b
-                        >
-                        <br />
-                        <b
-                            >Numero recensioni:
-                            <em>{{ doctor.reviews.length }}</em></b
-                        >
-                        <br />
-                        <router-link
-                            class="text-primary text-underline"
-                            :to="{
-                                name: 'reviews',
-                                params: {
-                                    slug: doctor.slug,
-                                },
-                            }"
-                            >Mostra tutte le recensioni</router-link
-                        >
-                    </div>
-                    SPECIALIZZAZIONI
-                    <hr />
-                    <div v-if="doctor.specializations">
-                        <b><em>Specializations</em></b>
-                        <div
-                            v-for="(spec, index) in doctor.specializations"
-                            :key="`spec-${index}`"
-                        >
-                            {{ spec.category }}
-                        </div>
-                    </div>
-                    SERVIZI
-                    <div v-if="doctor.services">
-                        <b><em>Services</em></b>
-                        <div
-                            v-for="(service, index) in doctor.services"
-                            :key="`service-${index}`"
-                        >
-                            {{ service.type }}
-                        </div>
-                    </div>
-                </div>
-                <router-link
-                    class="btn btn-success"
-                    :to="{ name: 'message', params: { slug: doctor.slug } }"
-                    v-if="doctor.slug"
-                    >Send a message</router-link
-                >
-                <router-link
-                    class="btn btn-success"
-                    :to="{ name: 'review', params: { slug: doctor.slug } }"
-                    v-if="doctor.slug"
-                    >Send a Review</router-link
-                >
-                <router-link class="btn btn-info" :to="{ name: 'home' }"
-                    >Back to Home</router-link
-                >
-                <router-link
-                    v-if="fromFilter"
-                    class="text-primary text-underline"
-                    :to="{
-                        name: 'filter',
-                        params: {
-                            specialization: this.$route.params.specialization,
-                            vote: this.$route.params.vote,
-                            review: this.$route.params.review,
-                        },
-                    }"
-                    >Torna alla ricerca</router-link
-                >
-            </div>
-        </div> -->
     </div>
 </template>
 
@@ -321,16 +224,27 @@ export default {
         width: 50%;
         // height: 580px;
         .row {
-            .col-2 {
+            .min-col {
+                max-width: calc(120px + 1.5rem);
                 img {
-                    width: 120px;
+                    @media screen and (max-width: 800px) {
+                        text-align: center;
+                    }
+                    min-width: 120px;
                     height: 120px;
                 }
             }
-            .col {
-                .info-item {
-                    font-size: 1.2em;
-                }
+            // .col {
+            //     img {
+            //         @media screen and (max-width: 800px) {
+            //             text-align: center;
+            //         }
+            //         min-width: 120px;
+            //         height: 120px;
+            //     }
+            // }
+            .col.info-item {
+                font-size: 1.2em;
             }
         }
     }
@@ -354,6 +268,14 @@ export default {
     background-color: #646eb3;
     &:hover {
         background-color: #606899;
+    }
+}
+@media screen and(max-width: 600px) {
+    .width-ifsmall {
+        width: 90% !important;
+    }
+    .dis-none {
+        display: none;
     }
 }
 </style>

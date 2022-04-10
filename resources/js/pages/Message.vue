@@ -54,7 +54,7 @@
                     <div class="col">
                         <label for="email" class="form-label">Email:</label>
                         <input
-                            type="email"
+                            type="text"
                             class="form-control"
                             id="email"
                             placeholder="mario.rossi@email.com"
@@ -156,6 +156,17 @@ export default {
         this.getProduct(url);
     },
     methods: {
+        isMailValue(val) {
+            if (
+                val.match(
+                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                )
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         getProduct(url) {
             this.loading = false;
             axios
@@ -204,6 +215,16 @@ export default {
                 email.classList.add("is-invalid");
             } else {
                 email.classList.remove("is-invalid");
+
+                if (!this.isMailValue(this.email)) {
+                    this.errors.email = true;
+                    console.log(email);
+                    email.classList.add("is-invalid");
+                    let email_val = document.getElementById("email_validate");
+                    email_val.innerHTML = `<strong>Indirizzo email non valido</strong>`;
+                } else {
+                    email.classList.remove("is-invalid");
+                }
             }
 
             let content = document.getElementById("content");
@@ -229,7 +250,12 @@ export default {
     background-color: #f6f5f8;
     height: calc(100vh - 70px);
     .form-container {
-        background-color: #ffffff;
+        width: 80%;
+        margin: auto;
+        border-radius: 15px;
+        color: white;
+        background-color: #3c4996;
+        // background-color: #ffffff;
         border-radius: 19px;
         width: 50%;
         // height: 580px;

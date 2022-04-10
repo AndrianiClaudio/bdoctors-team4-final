@@ -14,10 +14,14 @@ class SpecializationUserSeeder extends Seeder
     public function run()
     {
         $users = User::all();
-        foreach ($users as  $user) {
-            $sub = Specialization::inRandomOrder()->first();
-    
-            $user->specializations()->attach($sub->id);
+        foreach ($users as $user) {
+            $sub = Specialization::inRandomOrder()->limit(rand(1, 3))->get();
+            $ids = [];
+            foreach ($sub as $s) {
+                $ids[] = $s->id;
+            }
+            $user->specializations()->attach($ids);
+
         }
 
     }

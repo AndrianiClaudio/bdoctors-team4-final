@@ -14,30 +14,31 @@
                     :key="review.id"
                 >
                     <div class="row m-0 p-0">
-                        <div
+                        <!-- <div
                             class="col d-flex justify-content-start align-items-center m-0 p-0"
-                        >
-                            <h5 class="d-flex align-items-center mb-0">
+                        > -->
+                        <div class="col d-flex justify-content-between">
+                            <h5 class="mb-0 fs-4 me-2">
                                 Recensione scritta da:
                                 <strong>
-                                    <span class="ms-1" v-if="!review.username">
+                                    <span class="ms-2" v-if="!review.username">
                                         Utente anonimo
                                     </span>
-                                    <span class="ms-1" v-else>
+                                    <span class="ms-2" v-else>
                                         {{ review.username }}
                                     </span>
                                 </strong>
                             </h5>
                             <h6
                                 v-if="review.created_at"
-                                class="text-secondary d-flex align-items-start mb-0 ms-2"
+                                class="fs-5 text-secondary mb-0"
                             >
                                 In data: {{ getDate(review.created_at) }}
                             </h6>
                         </div>
                     </div>
-                    <div class="row m-0p-0">
-                        <div class="col-3 d-flex align-items-center m-0 p-0">
+                    <div class="row m-0 p-0">
+                        <div class="col-12 d-flex align-items-center m-0 p-0">
                             <div class="ms-3 stars">
                                 <span
                                     v-for="(star, index) in review.vote"
@@ -54,10 +55,16 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col d-flex align-items-center">
+                        <div
+                            class="col d-flex align-items-center"
+                            v-if="review.content"
+                        >
                             <div class="ms-3 content">
                                 {{ review.content }}
                             </div>
+                        </div>
+                        <div class="col d-flex align-items-center" v-else>
+                            <div class="ms-3 content">Nessun contenuto.</div>
                         </div>
                     </div>
                 </li>
@@ -122,6 +129,12 @@ export default {
         overflow-y: auto;
         * {
             word-wrap: break-word;
+        }
+
+        @media screen and (max-width: 800px) {
+            .col.d-flex.justify-content-between {
+                flex-direction: column;
+            }
         }
     }
 }

@@ -175,9 +175,9 @@ export default {
 .card {
     display: flex;
     flex-direction: row;
-    border-radius: 25px;
-    flex-basis: calc(80% / 3);
     justify-content: space-around;
+    flex-basis: calc(80% / 3);
+    padding: 1em;
     background: #fff;
     border-radius: 20px;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);

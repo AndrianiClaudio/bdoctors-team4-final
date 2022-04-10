@@ -83,7 +83,7 @@
                     <div
                         class="col m-0 p-0 d-flex justify-content-between align-items-center"
                     >
-                        <div>
+                        <div class="filterBtn">
                             <em>Voto: </em>
                             <i
                                 class="fa-solid fa-arrow-down-1-9"
@@ -93,7 +93,7 @@
                                 class="fa-solid fa-arrow-up-9-1"
                                 @click.prevent="setVote('desc')"
                             ></i>
-                            <br>
+                            <br />
                             <em>Numero recensioni :</em>
                             <i
                                 class="fa-solid fa-arrow-down-1-9"
@@ -535,6 +535,17 @@ export default {
                         }
                     }
                 }
+            }
+        }
+        .filterBtn {
+            padding-left: 1em;
+            i {
+                font-size: 1.2em;
+                margin: 0 0.5em;
+            }
+
+            .selected {
+                background-color: #3c4996;
             }
         }
         .col-xl-10 {

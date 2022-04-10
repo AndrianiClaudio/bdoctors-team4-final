@@ -229,7 +229,12 @@ export default {
     background-color: #f6f5f8;
     height: calc(100vh - 70px);
     .form-container {
-        background-color: #ffffff;
+        width: 80%;
+        margin: auto;
+        border-radius: 15px;
+        color: white;
+        background-color: #5274e1;
+        // background-color: #ffffff;
         border-radius: 19px;
         width: 50%;
         // height: 580px;

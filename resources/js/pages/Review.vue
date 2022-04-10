@@ -186,9 +186,14 @@ export default {
         background-color: #F6F5F8;
         height: calc(100vh - 70px);
         .form-container {
-            background-color: #ffffff;
-            border-radius: 19px;
+            // width: 50%;
+            // background-color: #ffffff;
             width: 50%;
+            margin: auto;
+            border-radius: 15px;
+            color: white;
+            background-color: #5274e1;
+            border-radius: 19px;
             .row {
                 .col {
                     textarea {

@@ -31,7 +31,7 @@
                             </h5>
                             <h6
                                 v-if="review.created_at"
-                                class="fs-5 text-secondary mb-0"
+                                class="fs-5 ms-text-white mb-0"
                             >
                                 In data: {{ getDate(review.created_at) }}
                             </h6>
@@ -117,16 +117,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ms-text-white {
+    color: #f6f5f879;
+}
 .container-fluid {
     background-color: #f6f5f8;
     height: calc(100vh - 70px);
     .list-container {
-        background-color: #ffffff;
+        // background-color: #ffffff;
         border-radius: 19px;
         width: 60%;
         height: 650px;
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: auto;
+        .list-group-item {
+            // width: 80%;
+            margin: auto;
+            border-radius: 15px;
+            color: white;
+            background-color: #5274e1;
+            margin-bottom: 0.5rem;
+        }
         * {
             word-wrap: break-word;
         }

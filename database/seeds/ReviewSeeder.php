@@ -10,8 +10,31 @@ class ReviewSeeder extends Seeder
     public static function generate($dt, $max)
     {
         foreach (User::all() as $user) {
-            for ($i = 0; $i < rand(8, 30); $i++) {
+            for ($i = 0; $i < rand(5, 15); $i++) {
+                $arrayusers = [
+                    'Userino',
+                    'Scrittolo',
+                    'MariaGrazia',
+                    '_LimonOste',
+                    '_AranciaGhiacciata',
+                    'Mele',
+                    '_MandarinoBruciato',
+                    'GIANNI',
+                    'Macedonia96',
+                    'Mango_Spiaccicato',
+                    'Melone_Di_Palombaro',
+                    'Patate_e_Semola',
+                    'Pomodori pelati',
+                    '_FrafolaFrooper',
+                    'BananaSbucciata',
+                    'CachiNeri',
+                    'Coccomento',
+                    'PatatinaPelata',
+                    'MGG',
+                    null,
+                ];
                 $review = new Review();
+                $review->username = $arrayusers[rand(0, 19)];
                 $review->vote = rand(3, 5);
                 $review->user_id = $user->id;
                 $date = new Carbon(rand(1, $max) . "-" . $dt . "-2022 " . rand(0, 24) . ":" . rand(0, 59));

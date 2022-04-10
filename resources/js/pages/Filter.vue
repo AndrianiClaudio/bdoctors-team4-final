@@ -69,11 +69,25 @@
                             v-model="selectedReviews"
                         >
                             <option value="all">Tutte</option>
+                            <option
+                                v-for="(i, index) in this.reviewsChange"
+                                :key="`range-${index}`"
+                                :value="i"
+                            >
+                                <span v-if="!reviewsChange[index + 1]">
+                                    &#60; {{ i }}
+                                </span>
+                                <span v-else-if="!reviewsChange[index - 1]">
+                                    &#62; {{ i }}
+                                </span>
+                                <span v-else> {{ i }}-{{ i + 1 }} </span>
+                            </option>
+                            <!-- 
                             <option value="25">&#62; 25</option>
                             <option value="20">20-25</option>
                             <option value="15">15-20</option>
                             <option value="10">10-15</option>
-                            <option value="5">&#60; 10</option>
+                            <option value="5">&#60; 10</option> -->
                         </select>
                     </div>
                 </div>
@@ -93,7 +107,7 @@
                                 class="fa-solid fa-arrow-up-9-1"
                                 @click.prevent="setVote('desc')"
                             ></i>
-                            <br>
+                            <br />
                             <em>Numero recensioni :</em>
                             <i
                                 class="fa-solid fa-arrow-down-1-9"
@@ -105,19 +119,28 @@
                             ></i>
                             <!-- setReview -->
                         </div>
-                        <h5 class="m-0 dis-none mb-3" v-if="filteredDoctor.length > 1">
+                        <h5
+                            class="m-0 dis-none mb-3"
+                            v-if="filteredDoctor.length > 1"
+                        >
                             <strong>
                                 {{ filteredDoctor.length }} dottori
                             </strong>
                             rispettano i filtri selezionati
                         </h5>
-                        <h5 class="m-0 dis-none mb-3" v-if="filteredDoctor.length == 1">
+                        <h5
+                            class="m-0 dis-none mb-3"
+                            v-if="filteredDoctor.length == 1"
+                        >
                             <strong>
                                 {{ filteredDoctor.length }} dottore
                             </strong>
                             rispetta i filtri selezionati
                         </h5>
-                        <h5 class="m-0 dis-none mb-3" v-if="filteredDoctor.length == 0">
+                        <h5
+                            class="m-0 dis-none mb-3"
+                            v-if="filteredDoctor.length == 0"
+                        >
                             <strong> Nessun dottore </strong>
                             rispetta i filtri selezionati
                         </h5>
@@ -270,6 +293,7 @@ export default {
             check_filter: false,
             tmp: [],
 
+            reviewsChange: null,
             // voteAsc: false,
             // voteDesc: false,
         };
@@ -282,26 +306,9 @@ export default {
                 .post(`/api/doctors?specialization=${specialization}`)
                 .then((res) => {
                     this.filteredDoctor = res.data.results.doctors;
-                    // console.log(this.filteredDoctor);
-                    if (this.selectedVote && this.selectedVote !== "all") {
-                        this.check_filter = false;
-                        this.doctors = this.filteredDoctor;
-                        this.filteredDoctor = [];
-                        // console.log(this.doctors);
-                        this.doctors.forEach((doctor) => {
-                            if (
-                                doctor.review_mean >=
-                                    parseInt(this.selectedVote) &&
-                                doctor.review_mean <
-                                    parseInt(this.selectedVote) + 1
-                            ) {
-                                this.filteredDoctor.push(doctor);
-                            }
-                        });
-                        if (this.filteredDoctor.length === 0) {
-                            this.check_filter = true;
-                        }
-                    }
+
+                    this.maxCountReview = res.data.results.maxCountReview;
+                    this.minCountReview = res.data.results.minCountReview;
 
                     if (this.selectedReviews != "all") {
                         if (this.selectedReviews === "25") {
@@ -349,28 +356,28 @@ export default {
                         .then((res) => {
                             this.tmp = res.data.results.doctors;
                             // console.log(this.tmp);
-                            if (
-                                this.selectedVote &&
-                                this.selectedVote !== "all"
-                            ) {
-                                this.check_filter = false;
-                                this.doctors = this.tmp;
-                                this.tmp = [];
-                                // console.log(this.doctors);
-                                this.doctors.forEach((doctor) => {
-                                    if (
-                                        doctor.review_mean >=
-                                            parseInt(this.selectedVote) &&
-                                        doctor.review_mean <
-                                            parseInt(this.selectedVote) + 1
-                                    ) {
-                                        this.tmp.push(doctor);
-                                    }
-                                });
-                                if (this.tmp.length === 0) {
-                                    this.check_filter = true;
-                                }
-                            }
+                            // if (
+                            //     this.selectedVote &&
+                            //     this.selectedVote !== "all"
+                            // ) {
+                            //     this.check_filter = false;
+                            //     this.doctors = this.tmp;
+                            //     this.tmp = [];
+                            //     // console.log(this.doctors);
+                            //     this.doctors.forEach((doctor) => {
+                            //         if (
+                            //             doctor.review_mean >=
+                            //                 parseInt(this.selectedVote) &&
+                            //             doctor.review_mean <
+                            //                 parseInt(this.selectedVote) + 1
+                            //         ) {
+                            //             this.tmp.push(doctor);
+                            //         }
+                            //     });
+                            //     if (this.tmp.length === 0) {
+                            //         this.check_filter = true;
+                            //     }
+                            // }
 
                             if (this.selectedReviews != "all") {
                                 if (this.selectedReviews === "25") {
@@ -413,7 +420,17 @@ export default {
                             );
                             this.tmp = [];
 
-                            console.log(this.filteredDoctor);
+                            // console.log(this.filteredDoctor);
+                            axios
+                                .get("api/doctors/reviews/count")
+                                .then((res) => {
+                                    console.log(res.data.results.reviewsChange);
+                                    this.reviewsChange =
+                                        res.data.results.reviewsChange;
+                                })
+                                .catch((err) => {
+                                    console.error(err);
+                                });
                             this.loading = true;
                         });
                 });

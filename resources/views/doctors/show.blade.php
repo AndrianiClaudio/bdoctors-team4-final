@@ -112,7 +112,7 @@
                         </div>
                     </div>
 
-                    <div class="col me-3  d-flex justify-content-center align-items-end mt-5">
+                    <div class="col d-flex justify-content-center align-items-end mt-5">
                         <div class="container-cv">
                             <div class="content-cv">
                                 @if ($doctor->cv)

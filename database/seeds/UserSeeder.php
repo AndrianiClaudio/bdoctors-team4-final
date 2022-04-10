@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         ]);
 
         $faker = Fakers::create('it_IT');
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             // firstname, lastname inseriti prima per permettere slug
             $data = [
                 'firstname' => $faker->firstName(),
@@ -41,8 +41,8 @@ class UserSeeder extends Seeder
                 'firstname' => $data['firstname'],
                 'lastname' => $data['lastname'],
 
-                'email' => $faker->email(),
                 'slug' => User::createSlug($data['firstname'] . '-' . $data['lastname']),
+                'email' => User::createSlug($data['firstname'] . '.' . $data['lastname']) . '@gmail.com',
                 'password' => Hash::make('12345678'),
                 'address' => $faker->address(),
                 // NULLABLE

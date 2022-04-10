@@ -15,7 +15,7 @@ class MessageSeeder extends Seeder
         $faker = Fakers::create('it_IT');
         foreach (User::all() as $user) {
             for ($i = 0; $i < rand(3, 8); $i++) {
-                $defaultmsg = [
+                $defaultmsgs = [
                     'Salve dottore, le volevo chiedere se fosse disponibile un giorno della prossima settimana per una visita.',
                     'Buongiorno, avrei bisogno di una visita il prima possibile dato che poi parto per le ferie, ha per caso tempo?',
                     'Salve, ho dei dolori lancinanti ma non ho idea di cosa possa provocarli, riesce a darmi uan controllata?',
@@ -32,7 +32,7 @@ class MessageSeeder extends Seeder
                 $msg->firstname = $faker->firstName();
                 $msg->lastname = $faker->lastName();
                 $msg->email = $faker->email();
-                $msg->content = $defaultmsg[rand(0, 8)];
+                $msg->content = $defaultmsgs[rand(0, count($defaultmsgs) - 1)];
 
                 $msg->user_id = $user->id;
 

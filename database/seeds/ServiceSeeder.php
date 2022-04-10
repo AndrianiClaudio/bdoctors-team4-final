@@ -17,14 +17,17 @@ class ServiceSeeder extends Seeder
         // $specializations = Specialization::all();
 
         $service_names = [
-            'Visita di chirurgia estetica. ...',
-            'Manipolazioni vertebrali. ...',
-            'Visita di chiropratica. ...',
-            'Visita Oculistica medico legale. ...',
-            'Visita Odontoiatrica Posturale. ...',
-            'Videodermatoscopia del cuoio capelluto. ...',
-            'Visita Gastroenterologica. ...',
-            'Visita tricologica.',
+            'Visita specialistica di controllo',
+            'Consulto medico in presenza',
+            'Consulto medico in videochiamata',
+            'Richiesta ricetta medica',
+            'Operazione chirurgica',
+            'Manipolazioni vertebrali',
+            'Consulto protesi',
+            'Controllo post-intervento',
+            'Verifica pre-intervento',
+            'Chiarimenti',
+            'Visita specialistica',
         ];
 
         foreach (User::all() as $user) {
@@ -38,19 +41,5 @@ class ServiceSeeder extends Seeder
 
             $newService->save();
         }
-    // foreach ($specializations as $spec) {
-    //     $newService = new Service();
-
-    //     $newService->type = $service_names[rand(0, count($service_names) - 1)];
-    //     // $newService->type;
-    //     $newService->description = 'descrizione servizio';
-
-    //     $user = User::inRandomOrder()->first();
-    //     $spec = Specialization::inRandomOrder()->first();
-    //     $newService->user_id = $user->id;
-    //     $newService->specialization_id = $spec->id;
-
-    //     $newService->save();
-    // }
     }
 }

@@ -33,7 +33,7 @@ class ReviewSeeder extends Seeder
                     'MGG',
                     null,
                 ];
-                $arraycontent = [
+                $arraycontents = [
                     'Il dottore è super premuroso e attento, il suo studio è pulito e in ordine. Ottimo dottore, consigliato.',
                     'Il dottore è molto simpatico forse anche andando a mancare appena sulla professionalità però rimane comunque competente in quello che fa.',
                     'Educato e professionale',
@@ -62,10 +62,10 @@ class ReviewSeeder extends Seeder
                 ];
                 $review = new Review();
                 $review->user_id = $user->id;
-                $review->username = $arrayusers[rand(0, 19)];
+                $review->username = $arrayusers[rand(0, count($arrayusers) - 1)];
                 $review->vote = rand(3, 5);
                 if (rand(0, 2) === 0) {
-                    $review->content = $arraycontent[rand(0, 24)];
+                    $review->content = $arraycontents[rand(0, count($arraycontents) - 1)];
                 }
 
                 $date = new Carbon(rand(1, $max) . "-" . $dt . "-2022 " . rand(0, 23) . ":" . rand(0, 59));

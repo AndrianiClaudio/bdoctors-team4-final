@@ -2,7 +2,7 @@
     <div
         class="container-fluid d-flex justify-content-center align-items-center m-0 p-0"
     >
-        <div class="form-container p-2">
+        <div class="form-container width-ifsmall p-2">
             <form
                 :action="`http://localhost:8000/api/doctors/${doctor.slug}/message`"
                 method="post"
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-between m-0 mt-3 mb-2 p-0">
-                    <div class="col">
+                    <div class="col center-small">
                         <router-link
                             class="btn back"
                             :to="{
@@ -110,7 +110,7 @@
                             >Torna indietro</router-link
                         >
                     </div>
-                    <div class="col d-flex justify-content-end">
+                    <div class="col d-flex center-small justify-content-end">
                         <button type="submit" class="btn send">
                             Invia il messaggio
                         </button>
@@ -271,6 +271,16 @@ export default {
                 }
             }
         }
+    }
+}
+
+@media screen and(max-width: 600px) {
+    .center-small {
+        display: flex;
+        justify-content: center !important;
+    }
+    .width-ifsmall {
+        width: 90% !important;
     }
 }
 </style>

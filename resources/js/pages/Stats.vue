@@ -1,61 +1,67 @@
 <template>
-    <div id="graph-stats" class="row" v-if="loading && maxi_media_query">
-        <Bar
-            class="col-6"
-            :chart-options="chartOptions"
-            :chart-data="chartData"
-            :chart-id="chartId"
-            :dataset-id-key="datasetIdKey"
-            :plugins="plugins"
-            :css-classes="cssClasses"
-            :styles="styles"
-            :width="width"
-            :height="height"
-        />
-        <Bar
-            class="col-6"
-            v-if="loadingVote"
-            :chart-options="chartOptions"
-            :chart-data="chartDataVote"
-            :chart-id="chartId"
-            :dataset-id-key="datasetIdKey"
-            :plugins="plugins"
-            :css-classes="cssClasses"
-            :styles="styles"
-            :width="width"
-            :height="height"
-        />
+    <div id="graph-stats" class="d-flex" v-if="loading && maxi_media_query">
+        <div class="col-6">
+            <h2>Grafico Recensioni/Messaggi</h2>
+            <Bar
+                :chart-options="chartOptions"
+                :chart-data="chartData"
+                :chart-id="chartId"
+                :dataset-id-key="datasetIdKey"
+                :plugins="plugins"
+                :css-classes="cssClasses"
+                :styles="styles"
+                :width="width"
+                :height="height"
+            />
+        </div>
+        <div class="col-6">
+            <h2>Grafico Voti</h2>
+            <Bar
+                v-if="loadingVote"
+                :chart-options="chartOptions"
+                :chart-data="chartDataVote"
+                :chart-id="chartId"
+                :dataset-id-key="datasetIdKey"
+                :plugins="plugins"
+                :css-classes="cssClasses"
+                :styles="styles"
+                :width="width"
+                :height="height"
+            />
+        </div>
     </div>
     <div
         id="graph-stats"
         class="d-flex flex-column"
         v-else-if="loading && !maxi_media_query"
     >
-        <Bar
-            class="col-6"
-            :chart-options="chartOptions"
-            :chart-data="chartData"
-            :chart-id="chartId"
-            :dataset-id-key="datasetIdKey"
-            :plugins="plugins"
-            :css-classes="cssClasses"
-            :styles="styles"
-            :width="width"
-            :height="height"
-        />
-        <Bar
-            class="col-6"
-            v-if="loadingVote"
-            :chart-options="chartOptions"
-            :chart-data="chartDataVote"
-            :chart-id="chartId"
-            :dataset-id-key="datasetIdKey"
-            :plugins="plugins"
-            :css-classes="cssClasses"
-            :styles="styles"
-            :width="width"
-            :height="height"
-        />
+        <div class="col-12">
+            <h2>Grafico Recensioni/Messaggi</h2>
+            <Bar
+                :chart-options="chartOptions"
+                :chart-data="chartData"
+                :chart-id="chartId"
+                :dataset-id-key="datasetIdKey"
+                :plugins="plugins"
+                :css-classes="cssClasses"
+                :styles="styles"
+                :width="width"
+                :height="height"
+            />
+            <h2>Grafico Voti</h2>
+            <Bar
+                v-if="loadingVote"
+                :chart-options="chartOptions"
+                :chart-data="chartDataVote"
+                :chart-id="chartId"
+                :dataset-id-key="datasetIdKey"
+                :plugins="plugins"
+                :css-classes="cssClasses"
+                :styles="styles"
+                :width="width"
+                :height="height"
+            />
+        </div>
     </div>
     <div v-else>
         Attendi il caricamento delle tue statistiche relative ai voti delle
@@ -234,6 +240,9 @@ export default {
                 })
                 .then(() => {
                     this.loading = true;
+                    // this.div1 = document.getElementById("bar-chart-msg-rev");
+                    // this.div2 = document.getElementById("bar-chart-msg-vote");
+                    // console.log(this.div1, this.div2);
                 });
         },
         getVoteMonthYear() {
@@ -255,21 +264,30 @@ export default {
                     })
                     .then(() => {
                         this.loadingVote = true;
+                        // this.div1 =
+                        //     document.getElementById("bar-chart-msg-rev");
+                        // this.div2 =
+                        //     document.getElementById("bar-chart-msg-vote");
+                        // console.log(this.div1, this.div2);
                     });
             }
         },
 
         mediaQueryCheck(scr) {
+            // let div = document.getElementById("bar-chart-msg-rev");
+            // console.log(div);
             if (scr.matches) {
                 // If media query matches
                 this.maxi_media_query = false;
+                // console.log(this.div1, this.div2);
             } else {
                 this.maxi_media_query = true;
+                // console.log(this.div1, this.div2);
             }
         },
     },
     created() {
-        let screen = window.matchMedia("(max-width: 750px)");
+        let screen = window.matchMedia("(max-width: 1000px)");
         this.mediaQueryCheck(screen); // Call listener function at run time
         screen.addEventListener("change", () => {
             this.mediaQueryCheck(screen);
@@ -287,6 +305,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#graph-stats {
+    .bar-chart-vote,
+    .bar-chart-rev-msg {
+        min-height: 500px;
+    }
+    h2 {
+        min-height: 5rem;
+        @media screen and (max-width: 1000px) {
+            min-height: 2.5rem;
+        }
+    }
+    width: 100%;
+    display: flex;
+}
 .velse {
     height: calc(100vh - 3rem);
 }

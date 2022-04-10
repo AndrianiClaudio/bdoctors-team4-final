@@ -105,19 +105,19 @@
                             ></i>
                             <!-- setReview -->
                         </div>
-                        <h5 class="m-0 mb-3" v-if="filteredDoctor.length > 1">
+                        <h5 class="m-0 dis-none mb-3" v-if="filteredDoctor.length > 1">
                             <strong>
                                 {{ filteredDoctor.length }} dottori
                             </strong>
                             rispettano i filtri selezionati
                         </h5>
-                        <h5 class="m-0 mb-3" v-if="filteredDoctor.length == 1">
+                        <h5 class="m-0 dis-none mb-3" v-if="filteredDoctor.length == 1">
                             <strong>
                                 {{ filteredDoctor.length }} dottore
                             </strong>
                             rispetta i filtri selezionati
                         </h5>
-                        <h5 class="m-0 mb-3" v-if="filteredDoctor.length == 0">
+                        <h5 class="m-0 dis-none mb-3" v-if="filteredDoctor.length == 0">
                             <strong> Nessun dottore </strong>
                             rispetta i filtri selezionati
                         </h5>
@@ -578,6 +578,11 @@ export default {
                 }
             }
         }
+    }
+}
+@media screen and(max-width: 600px) {
+    .dis-none {
+        display: none;
     }
 }
 </style>

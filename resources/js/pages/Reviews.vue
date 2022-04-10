@@ -1,9 +1,62 @@
 <template>
-    <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
+<div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
+        <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
+</div>
+<div v-else class="container-fluid d-flex justify-content-center align-items-center m-0 p-0">
+        <div class="list-container p-2">
+            <ul v-if="doctor" class="list-group">
+                <li 
+                    class="list-group-item"
+                    v-for="review in doctor.reviews" :key="review.id"
+                >
+                    <div class="row m-0 p-0">
+                        <div class="col d-flex justify-content-start align-items-center m-0 p-0">
+                            <h5 class="d-flex align-items-center mb-0">
+                                Recensione scritta da:
+                                    <strong>
+                                        <span v-if="!review.username"> Utente anonimo </span>
+                                        <span v-else> {{review.username}} </span>
+                                        <span class="ms-1" v-if="!review.username"> Utente anonimo </span>
+                                        <span class="ms-1" v-else> {{review.username}} </span>
+                                    </strong>
+                            </h5>
+                            <h6 v-if="review.created_at" class="text-secondary d-flex align-items-start mb-0 ms-2">
+                                In data: {{ getDate(review.created_at) }}
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="row m-0p-0">
+                        <div class="col-3 d-flex align-items-center m-0 p-0">
+                            <div class="ms-3 stars">
+                                <span
+                                    v-for="(star, index) in review.vote"
+                                    :key="`review-${review.id}-star-${index}`"
+                                    class="me-2"
+                                >
+                                    <i class="bi bi-star-fill"></i></span><span
+                                    v-for="(star, index) in 5 - review.vote"
+                                    :key="`star-${index}`"
+                                    class="me-2"
+                                >
+                                    <i class="bi bi-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <div class="ms-3 content">
+                                {{ review.content }}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="container-fluid g-0 p-3 mt-5" v-if="!loading">
         <i class="fa-solid fa-spinner"></i> Caricamento in corso ...
     </div>
     <div v-else class="container-fluid justify-content-center text-center">
-        <!-- {{ doctor.reviews }} -->
+        {{ doctor.reviews }}
         <ul v-if="doctor">
             <li v-for="review in doctor.reviews" :key="review.id">
                 Recensione scritta da :
@@ -93,7 +146,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -122,6 +175,7 @@ export default {
                 .get(url)
                 .then((result) => {
                     this.doctor = result.data.results.doctors;
+                    console.log(this.doctor);
                 })
                 .catch((err) => {
                     console.error(err);

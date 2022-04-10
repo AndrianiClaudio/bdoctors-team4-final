@@ -17,7 +17,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::where('user_id', Auth::user()->id)->get();
+        $messages = Message::orderBy('created_at','desc')->where('user_id', Auth::user()->id)->get();
         // $doctor = User::find(Auth::user()->id);
         return view('doctors.messages.index', compact('messages'));
     // return view('doctors.messages.index', compact('messages', 'doctor'));

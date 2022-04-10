@@ -130,11 +130,12 @@ export default {
         height: 650px;
         overflow: auto;
         .list-group-item {
-            // width: 80%;
+            width: 100%;
             margin: auto;
             border-radius: 15px;
             color: white;
-            background-color: #5274e1;
+            background-color: #3c4996;
+
             margin-bottom: 0.5rem;
         }
         * {

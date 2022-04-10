@@ -233,7 +233,7 @@ export default {
         margin: auto;
         border-radius: 15px;
         color: white;
-        background-color: #5274e1;
+        background-color: #3c4996;
         // background-color: #ffffff;
         border-radius: 19px;
         width: 50%;

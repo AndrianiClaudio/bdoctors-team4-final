@@ -26,16 +26,34 @@ if (count($user->subscriptions()->get()) > 0) {
     <div id="expires">
         <p class="lead">
             @if (count($user->subscriptions()->get()) > 0)
-                Hai gi&agrave; un abbonamento
-                <em class="text-uppercase">{{ $user_sub->name }}</em>
-                attivo che scadr&agrave; <span id="translate_day">{{ $expires_day_txt }}</span>
-                <span>{{ $expires->day }}</span>
-                <span id="translate_week_month">
-                    {{ $expires->month }}
-                </span>
-                <span>{{ $expires->year }}</span>
-                alle ore
-                <span>{{ $expires->format('H:i') }}</span>
+                {{-- @dd ($user->subscriptions()->first()->pivot->expires_date) --}}
+                @php
+                    $created = new Carbon\Carbon($user->subscriptions()->first()->pivot->expires_date);
+                    $now = Carbon\Carbon::now();
+                    $difference = $now->diffForHumans($created);
+                    
+                @endphp
+                @if (explode(' ', $difference)[2] === 'after')
+                    <b>
+                        <em class="text-danger">
+                            Il tuo abbonamento &eacute; scaduto in data {{ $created->format('d-m-Y') }}!
+                        </em>
+                    </b>
+                @else
+                    {{-- @if
+                        @endif --}}
+                    Hai gi&agrave; un abbonamento
+                    <em class="text-uppercase">{{ $user_sub->name }}</em>
+                    attivo che scadr&agrave; <span id="translate_day">{{ $expires_day_txt }}</span>
+                    <span>{{ $expires->day }}</span>
+                    <span id="translate_week_month">
+                        {{ $expires->month }}
+                    </span>
+                    <span>{{ $expires->year }}</span>
+                    alle ore
+                    <span>{{ $expires->format('H:i') }}</span>
+                    <br>
+                @endif
             @endif
         </p>
     </div>

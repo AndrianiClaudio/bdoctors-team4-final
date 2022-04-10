@@ -170,20 +170,36 @@
                 </div>
                 <div class="service text-black">
                     @if (count($doctor->subscriptions()->get()) > 0)
-                        <b>
-                            <em class="text-uppercase">
-                                {{ $doctor->subscriptions()->first()->name }}
-                            </em>
-                            <hr>
-                            <em>Scadenza: </em>
-                            {{ Carbon\Carbon::parse($doctor->subscriptions()->first()->expires_date)->format('y-m-d H:i') }}
-                        </b>
-                        <hr>
-                        <em>
-                            <a href="{{ route('subscription.index') }}">Desideri allungare la durata del tuo
-                                abbonamento?</a>
+                        @php
+                            $created = new Carbon\Carbon($doctor->subscriptions()->first()->pivot->expires_date);
+                            $now = Carbon\Carbon::now();
+                            $difference = $now->diffForHumans($created);
+                            
+                        @endphp
 
-                        </em>
+                        @if (explode(' ', $difference)[2] === 'after')
+                            <b>
+                                <em class="text-danger">
+                                    Il tuo abbonamento &eacute; scaduto in data {{ $created->format('d-m-Y') }}!
+                                </em>
+                            </b>
+                        @else
+                            <b>
+                                <em class="text-uppercase">
+                                    {{ $doctor->subscriptions()->first()->name }}
+                                </em>
+                                <hr>
+                                <em>Scadenza: </em>
+                                {{ Carbon\Carbon::parse($doctor->subscriptions()->first()->pivot->expires_date)->format('d-m-Y H:i') }}
+                                {{-- {{ Carbon\Carbon::parse($doctor->subscriptions()->first()->expires_date)->format('y-m-d H:i') }} --}}
+                            </b>
+                            <hr>
+                            <em>
+                                <a href="{{ route('subscription.index') }}">Desideri allungare la durata del tuo
+                                    abbonamento?</a>
+
+                            </em>
+                        @endif
                     @else
                         <b>
                             <em class="text-danger">
@@ -194,6 +210,7 @@
                             </em>
                         </b>
                     @endif
+
                 </div>
             </div>
         </div>

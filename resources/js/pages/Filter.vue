@@ -75,12 +75,14 @@
                                 :value="i"
                             >
                                 <span v-if="!reviewsChange[index + 1]">
-                                    &#60; {{ i }}
+                                    &#60; {{ reviewsChange[index - 1] }}
                                 </span>
                                 <span v-else-if="!reviewsChange[index - 1]">
                                     &#62; {{ i }}
                                 </span>
-                                <span v-else> {{ i }}-{{ i + 1 }} </span>
+                                <span v-else>
+                                    {{ reviewsChange[index - 1] }} - {{ i }}
+                                </span>
                             </option>
                             <!-- 
                             <option value="25">&#62; 25</option>

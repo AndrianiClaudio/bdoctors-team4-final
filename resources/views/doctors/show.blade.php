@@ -77,58 +77,60 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row m-d">
-                <div class="col ms-3 mt-5">
-                    <div class="row">
-                        <div class="col d-flex align-items-center justify-content-start">
-                            <h2 class="text-uppercase fw-bold ms-3">Prestazioni in evidenza</h2>
-                            <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 ms-5 mb-3"
-                                href="{{ route('profile.edit') }}">
-                                <i class="fa-solid fa-plus"></i>
-                            </a>
+                {{-- PRESTAZIONI E CV --}}
+                <div class="row m-d">
+                    <div class="col ms-3 mt-5">
+                        <div class="row">
+                            <div class="col d-flex align-items-center justify-content-start">
+                                <h2 class="text-uppercase fw-bold ms-3">Prestazioni in evidenza</h2>
+                                <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 ms-5 mb-3"
+                                    href="{{ route('profile.edit') }}">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-12 d-flex flex-wrap mt-3">
+                        <div class="row">
+                            <div class="col-12 d-flex flex-wrap mt-3">
 
-                            @if (count($doctor->services) > 0)
-                                @foreach ($doctor->services as $service)
-                                    <div class="service m-3">
-                                        <div class="service-title d-flex justify-content-center align-items-center">
-                                            <h5 class="text-uppercase text-white m-0"> {{ $service->type }} </h5>
+                                @if (count($doctor->services) > 0)
+                                    @foreach ($doctor->services as $service)
+                                        <div class="service m-3">
+                                            <div class="service-title d-flex justify-content-center align-items-center">
+                                                <h5 class="text-uppercase text-white m-0"> {{ $service->type }} </h5>
+                                            </div>
+                                            <p class="service-desc px-3 pt-2">
+                                                {{ $service->description }}
+                                            </p>
                                         </div>
-                                        <p class="service-desc px-3 pt-2">
-                                            {{ $service->description }}
-                                        </p>
-                                    </div>
-                                @endforeach
-                            @else
-                                <a class="ms-3" href="{{ route('profile.edit') }}">Inserisci un servizio</a>
-                            @endif
+                                    @endforeach
+                                @else
+                                    <a class="ms-3" href="{{ route('profile.edit') }}">Inserisci un
+                                        servizio</a>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col me-3  d-flex justify-content-center align-items-end mt-5">
-                    <div class="container-cv">
-                        <div class="content-cv">
-                            @if ($doctor->cv)
-                                <embed src="http://localhost:8000/storage/{{ $doctor->cv }}" width="100%"
-                                    height="100%" />
-                            @else
-                                <b class="text-danger"><em>Non hai ancora caricato il tuo CV. Inseriscilo al piu
-                                        presto!</em></b>
-                            @endif
-                        </div>
-                        <div class="title-cv d-flex align-items-center">
-                            <h5 class="text-uppercase text-white mb-0 ms-3"> Il tuo curriculum </h5>
+                    <div class="col me-3  d-flex justify-content-center align-items-end mt-5">
+                        <div class="container-cv">
+                            <div class="content-cv">
+                                @if ($doctor->cv)
+                                    <embed src="http://localhost:8000/storage/{{ $doctor->cv }}" width="100%"
+                                        height="100%" />
+                                @else
+                                    <b class="text-danger"><em>Non hai ancora caricato il tuo CV. Inseriscilo al piu
+                                            presto!</em></b>
+                                @endif
+                            </div>
+                            <div class="title-cv d-flex align-items-center">
+                                <h5 class="text-uppercase text-white mb-0 ms-3"> Il tuo curriculum </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
 
             {{-- <div class="row mt-3">

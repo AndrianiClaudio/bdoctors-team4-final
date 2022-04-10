@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-// use Faker\Factory as Fakers;
+use Faker\Factory as Fakers;
 
 class UserSeeder extends Seeder
 {
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'phone' => '3339876543',
         ]);
 
-        // $faker = Fakers::create('it_IT');
+        $faker = Fakers::create('it_IT');
         for ($i = 0; $i < 15; $i++) {
             // firstname, lastname inseriti prima per permettere slug
             $data = [

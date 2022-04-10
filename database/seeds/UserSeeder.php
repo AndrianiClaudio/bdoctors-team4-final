@@ -34,15 +34,16 @@ class UserSeeder extends Seeder
             $data = [
                 'firstname' => $faker->firstName(),
                 'lastname' => $faker->lastName(),
+
             ];
+            $user_slug = User::createSlug($data['firstname'] . '-' . $data['lastname']);
 
             User::create(
             [
                 'firstname' => $data['firstname'],
                 'lastname' => $data['lastname'],
-
-                'slug' => User::createSlug($data['firstname'] . '-' . $data['lastname']),
-                'email' => User::createSlug($data['firstname'] . '.' . $data['lastname']) . '@gmail.com',
+                'slug' => $user_slug,
+                'email' => $user_slug . '@gmail.com',
                 'password' => Hash::make('12345678'),
                 'address' => $faker->address(),
                 // NULLABLE

@@ -243,7 +243,8 @@
                                                 </label>
                                             </div>
                                         @endforeach
-                                        <div style="visibility:hidden; color:red; " id="chk_option_error">
+                                        <div style="visibility:hidden; color:#e3342f; font-size: 0.875em;"
+                                            id="chk_option_error">
                                             <strong>Campo obbligatorio!</strong>
                                         </div>
                                         @error('specializations')

@@ -29,5 +29,11 @@ class SubscriptionUserSeeder extends Seeder
             ]);
 
         }
+        $admin = User::find(1);
+        if (count($admin->subscriptions()->get()) > 0) {
+            $admin->subscriptions()->detach();
+        }
+        $admin->subscriptions()->attach(1, ['expires_date' => '2022-04-01 15:00']);
+
     }
 }

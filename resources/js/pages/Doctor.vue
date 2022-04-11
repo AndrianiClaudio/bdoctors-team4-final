@@ -137,7 +137,7 @@
                 <div class="col d-flex justify-content-end m-0 me-3 p-0">
                     <router-link
                         class="btn me-3 send-rev text-light rounded-pill"
-                        :to="{ name: 'review', params: { slug: doctor.slug } }"
+                        :to="{ name: 'review', params: { slug: doctor.slug ,} }"
                         v-if="doctor.slug"
                         >Recensici il dottore</router-link
                     >

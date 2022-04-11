@@ -31,6 +31,11 @@
                     </div>
                     <hr>
                 @endforeach
+                @if (count($reviews) === 0)
+                    <h2 class="ms-4 mb-2">
+                        Non hai ancora ricevuto recensioni.
+                    </h2>
+                @endif
             </div>
         </div>
     </div>

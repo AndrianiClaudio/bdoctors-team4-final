@@ -37,7 +37,8 @@ class ServiceSeeder extends Seeder
             $newService->description = 'descrizione servizio';
 
             $newService->user_id = $user->id;
-            $newService->specialization_id = Specialization::inRandomOrder()->first()->id;
+            $user_specs = $user->specializations()->first()->id;
+            $newService->specialization_id = $user_specs;
 
             $newService->save();
         }

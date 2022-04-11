@@ -92,9 +92,15 @@
                             <hr>
                         @endforeach
                     </ul>
-                    <a class="ms-4 mb-2" href={{ route('messages.index') }}>
-                        Vedi tutti i tuoi messaggi
-                    </a>
+                    @if (count($doctor->messages()->get()) === 0)
+                        <span class="ms-4 mb-2">
+                            Non hai ancora ricevuto messaggi.
+                        </span>
+                    @else
+                        <a class="ms-4 mb-2" href={{ route('messages.index') }}>
+                            Vedi tutti i tuoi messaggi
+                        </a>
+                    @endif
                 </div>
             </div>
             <div class="col-4 m-1200-bedge m-w-1200">
@@ -106,14 +112,23 @@
                     </a>
                 </div>
                 <div class="service text-black">
-                    <ul class="pt-2 ul-message">
-                        @foreach ($doctor->services as $service)
-                            <li>
-                                <h2> {{ $service->type }} </h2>
-                                <p>{{ $service->description }}</p>
-                            </li>
-                        @endforeach
-                    </ul>
+                    @if (count($doctor->services()->get()) === 0)
+                        <span class="ms-4 mb-2">
+                            Non hai ancora inserito servizi.
+                            <a class="ms-4 mb-2" href={{ route('services.create') }}>
+                                Cosa aspetti?
+                            </a>
+                        </span>
+                    @else
+                        <ul class="pt-2 ul-message">
+                            @foreach ($doctor->services as $service)
+                                <li>
+                                    <h2> {{ $service->type }} </h2>
+                                    <p>{{ $service->description }}</p>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
@@ -155,9 +170,15 @@
                             </li>
                         @endforeach
                     </ul>
-                    <a class="ms__sm-start d-flex justify-content-center" href={{ route('reviews.index') }}>
-                        Vedi tutte le tue recensioni
-                    </a>
+                    @if (count($doctor->reviews()->get()) === 0)
+                        <span class="ms-4 mb-2">
+                            Non hai ancora ricevuto recensioni.
+                        </span>
+                    @else
+                        <a class="ms__sm-start d-flex justify-content-center" href={{ route('reviews.index') }}>
+                            Vedi tutte le tue recensioni
+                        </a>
+                    @endif
                 </div>
             </div>
             <div class="col-4 m-1200-bedge m-w-1200">

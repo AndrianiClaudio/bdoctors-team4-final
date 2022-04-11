@@ -79,7 +79,6 @@ class ServiceController extends Controller
         foreach ($user_spec as $spec) {
             $spec_id[] = $spec->id;
         }
-
         if (!in_array((int)$data['specialization_id'], $spec_id)) {
             Auth::user()->specializations()->attach((int)$data['specialization_id']);
         }

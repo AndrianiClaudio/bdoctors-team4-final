@@ -28,12 +28,17 @@
                         @endif
                     </p>
                     <p class="user-email-b fs-4">
-                            {{ $message->email }}
+                        {{ $message->email }}
                     <p>
                         <a class="btn btn-primary text-white"
                             href="{{ route('messages.show', $message->id) }}">Dettagli</a>
                         <hr>
                 @endforeach
+                @if (count($messages) === 0)
+                    <h2 class="ms-4 mb-2">
+                        Non hai ancora ricevuto messaggi.
+                    </h2>
+                @endif
             </div>
         </div>
     </div>

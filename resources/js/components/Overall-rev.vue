@@ -14,7 +14,8 @@
                         <div
                             class="rev-top d-flex align-items-center justify-content-start"
                         >
-                            <strong class="me-2">{{ rew.username }}:</strong>
+                            <strong v-if="rew.username" class="me-2">{{ rew.username }}:</strong>
+                            <strong v-else class="me-2">Utente Casuale:</strong>
                             <span class="stars">
                                 <i
                                     v-for="(i, index) in 5"

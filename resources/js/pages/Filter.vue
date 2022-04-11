@@ -99,7 +99,7 @@
                     <div
                         class="col m-0 p-0 d-flex justify-content-between align-items-center"
                     >
-                        <div>
+                        <div class="filterBtn">
                             <em>Voto: </em>
                             <i
                                 class="fa-solid fa-arrow-down-1-9"
@@ -294,7 +294,9 @@ export default {
             doctors: [],
             check_filter: false,
             tmp: [],
+            tmp2: [],
 
+            scaduti: [],
             reviewsChange: null,
             // voteAsc: false,
             // voteDesc: false,
@@ -351,35 +353,51 @@ export default {
                     console.error(err);
                 })
                 .then(() => {
+                    // console.log(this.filteredDoctor);
+                    this.tmp2 = [];
+                    this.scaduti = [];
+
+                    this.filteredDoctor.forEach((el) => {
+                        let created = el.subscriptions[0].pivot.expires_date;
+                        let now = new Date();
+                        if (
+                            parseInt(created.split(" ")[0].split("-")[0]) >=
+                            parseInt(now.getFullYear())
+                        ) {
+                            if (
+                                parseInt(created.split(" ")[0].split("-")[1]) >=
+                                parseInt(now.getMonth() + 1)
+                            ) {
+                                if (
+                                    parseInt(
+                                        created.split(" ")[0].split("-")[2]
+                                    ) >= parseInt(now.getDate())
+                                ) {
+                                    this.tmp2.push(el);
+                                } else {
+                                    this.scaduti.push(el);
+                                }
+                            } else {
+                                this.scaduti.push(el);
+                            }
+                        } else {
+                            this.scaduti.push(el);
+                        }
+                    });
+                    // console.log(this.tmp2, this.scaduti);
+                    // this.filteredDoctor = this.tmp2;
+                    this.filteredDoctor = [];
+                    this.filteredDoctor = this.tmp2;
                     axios
                         .post(
                             `/api/doctors/standard?specialization=${specialization}`
                         )
                         .then((res) => {
-                            this.tmp = res.data.results.doctors;
-                            // console.log(this.tmp);
-                            // if (
-                            //     this.selectedVote &&
-                            //     this.selectedVote !== "all"
-                            // ) {
-                            //     this.check_filter = false;
-                            //     this.doctors = this.tmp;
-                            //     this.tmp = [];
-                            //     // console.log(this.doctors);
-                            //     this.doctors.forEach((doctor) => {
-                            //         if (
-                            //             doctor.review_mean >=
-                            //                 parseInt(this.selectedVote) &&
-                            //             doctor.review_mean <
-                            //                 parseInt(this.selectedVote) + 1
-                            //         ) {
-                            //             this.tmp.push(doctor);
-                            //         }
-                            //     });
-                            //     if (this.tmp.length === 0) {
-                            //         this.check_filter = true;
-                            //     }
-                            // }
+                            // console.log("prima");
+                            this.tmp = this.scaduti;
+                            this.tmp = this.tmp.concat(
+                                res.data.results.doctors
+                            );
 
                             if (this.selectedReviews != "all") {
                                 if (this.selectedReviews === "25") {
@@ -417,6 +435,7 @@ export default {
                             console.error(err);
                         })
                         .then(() => {
+                            console.log(this.filteredDoctor, this.tmp);
                             this.filteredDoctor = this.filteredDoctor.concat(
                                 this.tmp
                             );
@@ -426,7 +445,7 @@ export default {
                             axios
                                 .get("api/doctors/reviews/count")
                                 .then((res) => {
-                                    console.log(res.data.results.reviewsChange);
+                                    // console.log(res.data.results.reviewsChange);
                                     this.reviewsChange =
                                         res.data.results.reviewsChange;
                                 })
@@ -554,6 +573,17 @@ export default {
                         }
                     }
                 }
+            }
+        }
+        .filterBtn {
+            padding-left: 1em;
+            i {
+                font-size: 1.2em;
+                margin: 0 0.5em;
+            }
+
+            .selected {
+                background-color: #3c4996;
             }
         }
         .col-xl-10 {

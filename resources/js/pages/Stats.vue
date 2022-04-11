@@ -179,27 +179,27 @@ export default {
                 ],
                 datasets: [
                     {
-                        label: "0-1",
+                        label: "1",
                         backgroundColor: "#4263D0",
                         data: [],
                     },
                     {
-                        label: "1-2",
+                        label: "2",
                         backgroundColor: "#7160C9",
                         data: [],
                     },
                     {
-                        label: "2-3",
+                        label: "3",
                         backgroundColor: "#8F5EBF",
                         data: [],
                     },
                     {
-                        label: "3-4",
+                        label: "4",
                         backgroundColor: "#A65DB5",
                         data: [],
                     },
                     {
-                        label: "4-5",
+                        label: "5",
                         backgroundColor: "#B75EAA",
                         data: [],
                     },

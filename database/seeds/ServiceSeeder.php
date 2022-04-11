@@ -34,10 +34,11 @@ class ServiceSeeder extends Seeder
             $newService = new Service();
 
             $newService->type = $service_names[rand(0, count($service_names) - 1)];
-            // $newService->description = 'descrizione servizio';
+            $newService->description = 'descrizione servizio';
 
             $newService->user_id = $user->id;
-            $newService->specialization_id = Specialization::inRandomOrder()->first()->id;
+            $user_specs = $user->specializations()->first()->id;
+            $newService->specialization_id = $user_specs;
 
             $newService->save();
         }

@@ -55,7 +55,7 @@ class DoctorController extends Controller
     {
         $data = $request->all();
         // dd($data);
-        $doctors = User::orderBy('id', 'desc')->doesntHave('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+        $doctors = User::inRandomOrder()->doesntHave('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
 
         foreach ($doctors as $d) {
@@ -138,7 +138,7 @@ class DoctorController extends Controller
         $data = $request->all();
         // dd($data);
         $doctors = [];
-        $doctors = User::orderBy('id', 'desc')->whereHas('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
+        $doctors = User::inRandomOrder()->whereHas('subscriptions')->where('id', '>', 0)->with('specializations', 'services', 'reviews', 'messages', 'subscriptions')->get();
 
         foreach ($doctors as $d) {
             $d->reviews_count = count($d->reviews);

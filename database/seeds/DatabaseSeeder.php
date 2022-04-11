@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class ,
             SubscriptionSeeder::class ,
             SpecializationSeeder::class ,
+            SpecializationUserSeeder::class ,
             ServiceSeeder::class ,
             ReviewSeeder::class ,
             MessageSeeder::class ,
             SubscriptionUserSeeder::class ,
-            SpecializationUserSeeder::class ,
         ]);
     }
 }

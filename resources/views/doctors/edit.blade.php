@@ -6,22 +6,29 @@
 
 @section('script')
     <script src="{{ asset('js/admin.js') }}" defer></script>
-    <script>
-        // function handleData() {
-        //     var form_data = new FormData(document.querySelector("form"));
-        //     if (!form_data.has("specializations[]")) {
-        //         document.getElementById("chk_option_error").style.visibility = "visible";
-        //     } else {
-        //         document.getElementById("chk_option_error").style.visibility = "hidden";
-        //         return true
-        //     }
+    <script defer>
+        function handleData() {
+            var form_data = new FormData(document.querySelector("form"));
+            const div = document.getElementById('specializations')
 
-        //     return false;
-        // }
+            if (!form_data.has("specializations[]")) {
+                div.classList.add('is-invalid')
+                document.getElementById("chk_option_error").display = "block";
+            } else {
+                document.getElementById("chk_option_error").display = "none";
+                // div.classList.add('is-invalid')
+                div.classList.remove('is-invalid')
+                return true;
+            }
+            div.classList.add('is-invalid')
+
+            return false;
+        }
 
         function validateEditForm(e) {
             // console.log(e.target.value);
             e.preventDefault();
+
             let errors = [];
 
             // firstname
@@ -72,10 +79,11 @@
                     check.style.display = "block"
                     errors.push('email');
                     // return true;
+                    email.classList.add('is-invalid');
                 } else {
+                    email.classList.remove('is-invalid');
                     // return false;
                     check.style.display = "none";
-                    email.classList.remove('is-invalid');
                 }
 
                 // --------------first
@@ -99,32 +107,25 @@
 
 
 
+            // handleData();
             if (errors.length > 0) {
                 // console.log(true);
                 // e.currentTarget.submit();
                 return false;
-            }
-            //  else {
-            //     if (handleData()) {
-            //         // console.log('handle');
-            //         // e.submit();
-            //         return true;
-            //         // document.getElementById('submit').submit();
-            //     } else {
-            //         // console.log('non handle');
-            //         return false;
-            //     }
-            //     // console.log(false);
-            //     // return true
-            // }
-            else {
+            } else {
 
-                e.currentTarget.submit();
-                return true
-            }
+                let tmp = handleData();
+                if (handleData()) {
+                    e.currentTarget.submit();
+                    retrun handleData()
+                    return true
+                } else {
+                    return false;
+                }
 
-            // console.log(errors.length);
-            // if (errors.length > 0) {
+                // }
+
+            }
             //     return false;
             // } else {
             //     return true;
@@ -161,7 +162,7 @@
                         value="{{ old('firstname', $doctor->firstname) }}">
                     @error('firstname')
                         <div class="alert alert-danger">
-                            {{ $message }}
+                            Questo campo &eacute; obbligatorio!
                         </div>
                     @enderror
                     <span id="firstname_validate" class="invalid-feedback" role="alert">
@@ -178,7 +179,7 @@
                         value="{{ old('lastname', $doctor->lastname) }}">
                     @error('lastname')
                         <div class="alert alert-danger">
-                            {{ $message }}
+                            Questo campo &eacute; obbligatorio!
                         </div>
                     @enderror
                     <span id="lastname_validate" class="invalid-feedback" role="alert">
@@ -190,28 +191,34 @@
                 <div class="row">
                     <div class="col-12">
                         @if ($errors->any())
-                            <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3">
-
-                                {{-- @foreach ($specializations as $specialization)
-                                    <li class="item-spec">
-                                        <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
-                                            name="specializations[]"
-                                            {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="flexCheckDefault">
+                            <div id="specializations"
+                                class="form-control d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
+                                <div class="d-flex flex-wrap justify-content-around">
+                                    @foreach ($specializations as $specialization)
+                                        <label class="list-inline-item me-4">
+                                            <input class="form-check-input" type="checkbox"
+                                                value="{{ $specialization->id }}" name="specializations[]"
+                                                {{ $doctor->specializations()->get()->contains($specialization->id)? 'checked': '' }}>
                                             {{ $specialization->category }}
                                         </label>
-                                    </li>
-                                @endforeach --}}
-
-                            </div>
-                            @error('specializations')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
+                                    @endforeach
+                                    <div class="invalid-feedback" id="chk_option_error">
+                                        <strong>Campo obbligatorio!</strong>
+                                    </div>
+                                    @error('specializations')
+                                        {{-- @dd($errors->any())
+                                                @dd($message) --}}
+                                        <span class="invalid-feedback" id="InvalidCheck3Feedback" role="alert"
+                                            style="color:#e3342f; font-size: 0.875em;">
+                                            <strong>Questo campo &eacute; obbligatorio!</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                            @enderror
+                            </div>
                         @else
                             {{-- Altrimenti prendiamo i dati dal db e checchiamo i nostri checkbox corrispondenti --}}
-                            <div class="form-check d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
+                            <div id="specializations"
+                                class="form-control d-flex justify-content-around align-items-center mt-3 mb-3 m-1200-check">
 
                                 <div class="d-flex flex-wrap justify-content-around">
                                     @foreach ($specializations as $specialization)
@@ -222,6 +229,17 @@
                                             {{ $specialization->category }}
                                         </label>
                                     @endforeach
+                                    <div class="invalid-feedback" id="chk_option_error">
+                                        <strong>Campo obbligatorio!</strong>
+                                    </div>
+                                    @error('specializations')
+                                        {{-- @dd($errors->any())
+                                            @dd($message) --}}
+                                        <span class="invalid-feedback" id="InvalidCheck3Feedback" role="alert"
+                                            style=" color:#e3342f; font-size: 0.875em;">
+                                            <strong>Questo campo &eacute; obbligatorio!</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 {{-- <ul>
@@ -252,7 +270,7 @@
                                 value="{{ old('email', $doctor->email) }}">
                             @error('email')
                                 <div class="alert alert-danger">
-                                    {{ $message }}
+                                    Questo campo &eacute; obbligatorio!
                                 </div>
                             @enderror
                             <span id="email_validate" class="invalid-feedback" role="alert">
@@ -272,7 +290,7 @@
                             @error('old-password')
                                 {{-- <span class="invalid-feedback" role="alert"> --}}
                                 <div class="alert alert-danger">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>Questo campo &eacute; obbligatorio!</strong>
                                     {{-- </span> --}}
                                 </div>
                             @enderror
@@ -292,7 +310,7 @@
                             @error('password')
                                 {{-- <span class="invalid-feedback" role="alert"> --}}
                                 <div class="alert alert-danger">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>Questo campo &eacute; obbligatorio!</strong>
                                     {{-- </span> --}}
                                 </div>
                             @enderror
@@ -320,7 +338,7 @@
                                 value="{{ old('address', $doctor->address) }}">
                             @error('address')
                                 <div class="alert alert-danger">
-                                    {{ $message }}
+                                    Questo campo &eacute; obbligatorio!
                                 </div>
                             @enderror
                             <span id="address_validate" class="invalid-feedback" role="alert">
@@ -336,7 +354,7 @@
                             <input type="file" name="photo" value="">
                             @error('photo')
                                 <div class="alert alert-danger">
-                                    {{ $message }}
+                                    Questo campo &eacute; obbligatorio!
                                 </div>
                             @enderror
                         </div>
@@ -351,7 +369,7 @@
                             <input type="file" name="cv" value="">
                             @error('cv')
                                 <div class="alert alert-danger">
-                                    {{ $message }}
+                                    Questo campo &eacute; obbligatorio!
                                 </div>
                             @enderror
                         </div>

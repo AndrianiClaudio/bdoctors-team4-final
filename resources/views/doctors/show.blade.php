@@ -84,7 +84,7 @@
                             <div class="col d-flex align-items-center justify-content-start">
                                 <h2 class="text-uppercase fw-bold ms-3">Prestazioni in evidenza</h2>
                                 <a class="edit-icon text-white text-decoration-none d-flex justify-content-center align-items-center me-5 ms-5 mb-3"
-                                    href="{{ route('profile.edit') }}">
+                                    href="{{ route('services.index') }}">
                                     <i class="fa-solid fa-plus"></i>
                                 </a>
                             </div>

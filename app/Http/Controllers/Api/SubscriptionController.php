@@ -73,7 +73,13 @@ class SubscriptionController extends Controller
         $auth = User::find($data['user_id']);
         if ($result->success) {
             $user_sub = $auth->subscriptions()->first();
-            if ($user_sub) {
+
+            $created = new Carbon($auth->subscriptions()->first()->pivot->expires_date);
+            $now = Carbon::now();
+            $difference = $now->diffForHumans($created);
+
+            if ($user_sub && explode(' ', $difference)[2] === 'before') {
+
                 $expires = $user_sub->pivot->expires_date;
                 $now_clone = Carbon::parse($expires);
 

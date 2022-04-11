@@ -5,11 +5,12 @@
 
 @section('script')
     <script src="{{ asset('js/admin.js') }}" defer></script>
-    <script>
+    <script defer>
         function createServicesValidation(e) {
+            // console.log('ciao')
             e.preventDefault();
             let errors = [];
-
+            console.log(errors);
 
             let type = document.getElementById('type');
             let checkType = document.getElementById('type_validate');
@@ -53,6 +54,7 @@
                 specialization.classList.remove('is-invalid');
             }
 
+            console.log(errors);
             if (errors.length > 0) {
                 return false;
             } else {
@@ -109,7 +111,7 @@
                             <option value="">Scegli una specializzazione</option>
                             @foreach ($specs as $spec)
                                 <option @if (old('specialization_id') == $spec->id) selected @endif value="{{ $spec->id }}"
-                                    @if (in_array($spec->category, $user_specs)) class="bg-success" @endif>
+                                    @if (in_array($spec->category, $user_specs)) style="background-color:#5274e1;color:#fff;" @endif>
                                     {{ $spec->category }}
                                 </option>
                             @endforeach
@@ -124,11 +126,11 @@
                         </span>
                         </span>
                     </div>
-                </form>
-            </div>
-            <div class="mb-3">
+                    <div class="mb-3">
 
-                <input class="btn btn-info" type="submit" value="Invia">
+                        <input class="btn btn-info" type="submit" value="Invia">
+                    </div>
+                </form>
             </div>
 
 

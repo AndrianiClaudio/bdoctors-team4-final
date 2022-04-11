@@ -53,7 +53,7 @@ class ReviewSeeder extends Seeder
                 $arraycontentsneg = [
                     'Guarda le stelle e saprai cosa ne penso...',
                     'Ma se faccio una recensione si legge il mio nome?',
-                    'Toc toc, chi è? Non lo so ma di certo non questo dottore, mi ha già dato buca tre volte', 
+                    'Toc toc, chi è? Non lo so ma di certo non questo dottore, mi ha già dato buca tre volte',
                     'Mi sono presentato nella clinica e il dottore è entrato insieme a me... In barella, era stato investito e quindi ho dovuto riprenotarmi. Scandaloso',
                     'Era un po\' in ritardo',
                     'Ma c\'è qualcuno che davvero legge le recensioni?',
@@ -71,12 +71,14 @@ class ReviewSeeder extends Seeder
                 if (rand(0, 2) === 0) {
                     if ($review->vote >= 4) {
                         $review->content = $arraycontentspos[rand(0, count($arraycontentspos) - 1)];
-                        
-                    } else if ($review->vote < 4) {
+
+                    }
+                    else if ($review->vote < 4) {
                         $review->vote = rand(1, 3);
                         $review->content = $arraycontentsneg[rand(0, count($arraycontentsneg) - 1)];
                     }
-                } else {
+                }
+                else {
                     $review->content = null;
                 }
 
@@ -104,7 +106,7 @@ class ReviewSeeder extends Seeder
         // MARZO
         $this::generate(3, 31);
         // APRILE
-        $this::generate(4, 30);
+        $this::generate(4, intval(Carbon::now()->format("m")) - 1);
 
     }
 }
